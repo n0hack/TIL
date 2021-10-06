@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Debounce & Throttle</title>
+  </head>
+  <body>
+    <button>Click me!</button>
+    <p>
+      <span id="normal-msg">0</span><br />
+      <span id="debounce-msg">0</span><br />
+      <span id="throttle-msg">0</span>
+    </p>
+    <script>
+      const button = document.querySelector('button');
+      const normalMsg = document.querySelector('#normal-msg');
+      const debounceMsg = document.querySelector('#debounce-msg');
+      const throttleMsg = document.querySelector('#throttle-msg');
+
+      // 디바운스: 짧은 시간동안 계속해서 일어나는 이벤트를 그룹화하여, 최초 또는 마지막 이벤트만 실행되도록 하는 기법
+      // 주로 API 호출, input값 변경, resize 이벤트 등에 사용
+      const debounce = (callback, delay) => {
+        let timerId;
+
+        return (event) => {
+          if (timerId) clearTimeout(timerId);
+          timerId = setTimeout(callback, delay, event);
+        };
+      };
+
+      // 스로틀: 그룹화하는 것은 디바운스와 동일하나, 스로틀은 일정 주기마다 이벤트를 실행하게 하는 차이가 있음
+      // 주로 스크롤 이벤트나 무한 스크롤 구현 등에 사용
+      const throttle = (callback, delay) => {
+        let timerId;
+
+        return (event) => {
+          if (timerId) return;
+          timerId = setTimeout(
+            () => {
+              callback(event);
+              timerId = null;
+            },
+            delay,
+            event
+          );
+        };
+      };
+
+      button.addEventListener('click', () => {
+        normalMsg.textContent = +normalMsg.textContent + 1;
+      });
+      button.addEventListener(
+        'click',
+        debounce(() => {
+          debounceMsg.textContent = +debounceMsg.textContent + 1;
+        }, 500)
+      );
+      button.addEventListener(
+        'click',
+        throttle(() => {
+          throttleMsg.textContent = +throttleMsg.textContent + 1;
+        }, 500)
+      );
+    </script>
+  </body>
+</html>
