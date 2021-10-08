@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Code Splitting</title>
+  </head>
+  <body>
+    <div>
+      <!-- 웹팩 빌드 결과물이 잘 로딩되면, 아래 p 태그의 텍스트 색깔이 파란색으로 표시됨 -->
+      <p>This text should be colored with blue after injecting CSS bundle</p>
+    </div>
+    <!-- 웹팩의 빌드 결과물을 로딩하는 스크립트 -->
+    <script src="./dist/bundle.js"></script>
+  </body>
+</html>
