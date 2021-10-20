@@ -1,0 +1,56 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.l-video-wrapper {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+}
+
+.video {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  object-fit: cover;
+  z-index: -2;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.content a {
+  margin: 50px;
+  background: #8ae5d6;
+  width: 250px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  border-radius: 10px;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  transition: 0.3s ease;
+}
+
+.content a:hover {
+  background: #000000;
+}
