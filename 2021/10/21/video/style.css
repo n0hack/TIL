@@ -35,22 +35,24 @@
   align-items: center;
 }
 
+.content img {
+  width: 35%;
+}
+
 .content a {
-  margin: 50px;
-  background: #8ae5d6;
+  background: #ca3535;
   width: 250px;
   height: 60px;
   line-height: 60px;
   text-align: center;
-  color: white;
+  color: #fff;
   text-decoration: none;
-  font-weight: 500;
-  border-radius: 10px;
-  font-size: 1.2em;
+  font-weight: 700;
+  font-size: 1.4em;
   text-transform: uppercase;
   transition: 0.3s ease;
 }
 
 .content a:hover {
-  background: #000000;
+  background: #691b1b;
 }
