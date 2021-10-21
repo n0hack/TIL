@@ -1,6 +1,8 @@
 # TIL 🔥
 
-<img width="100%" src="images/intro.gif">
+<p align="center">
+  <img src="images/intro.gif">
+</p>
 
 <br>
 
@@ -17,7 +19,7 @@
 <br><br>
 그리고 TIL은 별도의 주제를 정하지 않고, 공부하고 싶은 것이 생기면 그때마다 공부해서 올리면 되는 곳입니다. 예전에는 한 가지를 정하면 완벽하게 끝을 볼 때까지 올인을 했었는데, 처음에는 좋았지만 뒤로 갈수록 집중이 떨어지고, 오히려 전체적으로 흥미가 떨어지는 계기가 되었습니다. 그래서 이제는 하고 싶은 것이 있다면 일단 여유를 갖고 해보면서, 천천히 하나씩 하나씩 즐겨 보려 합니다.
 <br><br>
-몇 가지 기록은 제 티스토리 블로그 [lucid_dream](https://nohack.tistory.com)에 글로써 업로드됩니다.
+몇 가지 기록은 제 티스토리 블로그 <a href="https://nohack.tistory.com">lucid_dream</a>에 글로써 업로드됩니다.
 </p>
 
 <br>
