@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" type="text/css" />
+  </head>
+  <body>
+    <header class="header">
+      <!-- Removed the title attribute; -->
+      <!-- it is an anti-pattern.       -->
+      <a class="logo" href="#">Logo</a>
+
+      <!-- Removed the aria-label;               -->
+      <!-- <nav> position implies it is primary, -->
+      <!-- aria-label adds noise for SR users.   -->
+      <nav class="primary-nav">
+        <ul>
+          <li><a href="#">Primary nav</a></li>
+          <li><a href="#">Primary nav</a></li>
+          <li><a href="#">Primary nav</a></li>
+        </ul>
+      </nav>
+
+      <!-- Removed the aria-label;               -->
+      <!-- purpose implied by only form on page, -->
+      <!-- aria-label adds noise for SR users.   -->
+      <form class="search" role="search">
+        <!-- Got rid of <span>,               -->
+        <!-- it appeared to serve no purpose. -->
+        <label>
+          Search
+          <input type="search" />
+        </label>
+        <button type="submit">Submit</button>
+      </form>
+    </header>
+
+    <nav class="secondary-nav" aria-label="Secondary">
+      <ul>
+        <li><a href="#">Secondary nav</a></li>
+        <li><a href="#">Secondary nav</a></li>
+        <li><a href="#">Secondary nav</a></li>
+        <li><a href="#">Secondary nav</a></li>
+        <li><a href="#">Secondary nav</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <!-- Removed the <article>;              -->
+      <!-- it is redundant, adds no value;     -->
+      <!-- tf poorly scoped, can create noise. -->
+      <h1>Main article heading</h1>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quae sunt igitur communia vobis cum antiquis, iis sic utamur quasi concessis; Nihil acciderat ei, quod nollet, nisi quod anulum, quo
+        delectabatur, in mari abiecerat. Unum est sine dolore esse, alterum cum voluptate. Laboro autem non sine causa; Theophrasti igitur, inquit, tibi liber ille placet de beata vita? Nihil opus est
+        exemplis hoc facere longius. Duo Reges constructio interrete. Graecum enim hunc versum nostis omnes Suavis laborum est praeteritorum memoria. Haec et tu ita posuisti, et verba vestra sunt.
+      </p>
+      <h2>Article secondary heading</h2>
+      <p>
+        Nos commodius agimus. A mene tu? Tantum dico, magis fuisse vestrum agere Epicuri diem natalem, quam illius testamento cavere ut ageretur. Tenesne igitur, inquam, Hieronymus Rhodius quid dicat
+        esse summum bonum, quo putet omnia referri oportere? Nihilo beatiorem esse Metellum quam Regulum. Sed quanta sit alias, nunc tantum possitne esse tanta. Philosophi autem in suis lectulis
+        plerumque moriuntur. Esse enim, nisi eris, non potes.
+      </p>
+      <p>
+        Sunt enim quasi prima elementa naturae, quibus ubertas orationis adhiberi vix potest, nec equidem eam cogito consectari. Id Sextilius factum negabat. Quorum sine causa fieri nihil putandum
+        est. Quae autem natura suae primae institutionis oblita est?
+      </p>
+    </main>
+
+    <!-- Removed the aria-label;                  -->
+    <!-- purpose implied by only <aside> on page, -->
+    <!-- aria-label adds noise for SR users.      -->
+    <aside>
+      <section class="share">
+        <h2>Share</h2>
+        <ul>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">Twitter</a></li>
+          <li><a href="#">Email</a></li>
+        </ul>
+      </section>
+
+      <!-- Not sure <section> adds value here;  -->
+      <!-- leaving as it does not add SR noise. -->
+      <section class="recommended">
+        <h2>Recommended</h2>
+        <ul>
+          <li>
+            <!-- Removed unnecessary <article>;                 -->
+            <!-- the content is in a list item,                 -->
+            <!-- in a list, under a heading, in a region;       -->
+            <!-- this is overkill.                              -->
+            <!-- Removed unnecessary <h3>;                      -->
+            <!-- see preceding reasons.                         -->
+            <!-- Left in a <p> so no need to rely on CSS        -->
+            <!-- that would still cause SRs to run it together. -->
+            <p><a href="#">Related article</a></p>
+            <p>Article description</p>
+          </li>
+          <li>
+            <!-- Removed unnecessary <article>;                 -->
+            <!-- the content is in a list item,                 -->
+            <!-- in a list, under a heading, in a region;       -->
+            <!-- this is overkill.                              -->
+            <!-- Removed unnecessary <h3>;                      -->
+            <!-- see preceding reasons.                         -->
+            <!-- Left in a <p> so no need to rely on CSS        -->
+            <!-- that would still cause SRs to run it together. -->
+            <p><a href="#">Related article</a></p>
+            <p>Article description</p>
+          </li>
+        </ul>
+      </section>
+    </aside>
+
+    <footer>
+      <ul>
+        <li><a href="#">Footer link</a></li>
+        <li><a href="#">Footer link</a></li>
+        <li><a href="#">Footer link</a></li>
+        <li><a href="#">Footer link</a></li>
+        <li><a href="#">Footer link</a></li>
+      </ul>
+    </footer>
+  </body>
+</html>
