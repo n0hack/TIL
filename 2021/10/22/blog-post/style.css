@@ -1,2 +1,13 @@
 /* I removed the CSS because when working on document */
 /* structure all it can do is confuse the situation. */
+.menu-btn {
+  width: 40px;
+  height: 40px;
+  background-color: rgb(7, 8, 59);
+  border-radius: 5px;
+}
+
+.menu-btn i {
+  font-size: 28px;
+  color: white;
+}
