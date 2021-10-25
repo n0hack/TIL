@@ -30,10 +30,13 @@ HTML + CSS
 
 - [MDN Web Docs](https://developer.mozilla.org/ko/)
 - [생활코딩](https://www.opentutorials.org/)
+- [CSS Tricks](https://css-tricks.com/)
 
 JavaScript
 
+- [MDN Web Docs](https://developer.mozilla.org/ko/)
 - [모던 자바스크립트 Deep Dive (이웅모 저자님)](http://www.yes24.com/Product/Goods/92742567?OzSrank=1)
+- [모던 자바스크립트 튜토리얼](https://ko.javascript.info/)
 
 React
 
