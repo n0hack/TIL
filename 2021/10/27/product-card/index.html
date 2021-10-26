@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TIL</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="c-product">
+      <h1 class="c-product__name">Original Shoes</h1>
+      <span class="c-product__desc">Lorem ipsum dolor sit amet</span>
+      <div class="c-product__pic"></div>
+      <div class="c-product__colors">
+        <span class="c-product__color active" data-code="#7ed6df" data-pic="url(1.png)"></span>
+        <span class="c-product__color" data-code="#badc58" data-pic="url(2.png)"></span>
+        <span class="c-product__color" data-code="#f9ca24" data-pic="url(3.png)"></span>
+        <span class="c-product__color" data-code="#ff7979" data-pic="url(4.png)"></span>
+      </div>
+      <div class="c-product__info">
+        <div class="c-product__price">$90</div>
+        <button class="c-product__cart-btn">Add to cart</button>
+      </div>
+    </div>
+
+    <script>
+      const colors = document.querySelector(".c-product__colors");
+      const pic = document.querySelector(".c-product__pic");
+      const price = document.querySelector(".c-product__price");
+      const cartBtn = document.querySelector(".c-product__cart-btn");
+
+      colors.addEventListener("click", (event) => {
+        for (let child of colors.children) {
+          child.classList.remove("active");
+        }
+        const target = event.target;
+        target.classList.add("active");
+        document.body.style.backgroundColor = target.dataset.code;
+        price.style.color = target.dataset.code;
+        cartBtn.style.color = target.dataset.code;
+      });
+    </script>
+  </body>
+</html>
