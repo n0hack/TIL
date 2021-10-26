@@ -37,6 +37,7 @@
         const target = event.target;
         target.classList.add("active");
         document.body.style.backgroundColor = target.dataset.code;
+        pic.style.backgroundImage = target.dataset.pic;
         price.style.color = target.dataset.code;
         cartBtn.style.color = target.dataset.code;
       });
