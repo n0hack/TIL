@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="images/intro.jpg" style="margin-bottom: 12px; border-radius: 10px;">
+  <img src="images/intro-img.jpg" style="margin-bottom: 12px; border-radius: 10px;">
 </p>
 
 # 오늘을 기록한다는 것 📝
