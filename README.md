@@ -32,11 +32,11 @@
 - [MDN Web Docs](https://developer.mozilla.org/ko/)
 - [모던 자바스크립트 Deep Dive (이웅모님)](http://www.yes24.com/Product/Goods/92742567?OzSrank=1)
 - [모던 자바스크립트 튜토리얼](https://ko.javascript.info/)
+- [함수형 자바스크립트 (유인동님)](http://www.yes24.com/Product/Goods/56885507?OzSrank=1)
 
 **React**
 
 - [리액트를 다루는 기술 (김민준님)](http://www.yes24.com/Product/Goods/78233628?OzSrank=1)
-- [함수형 자바스크립트 (유인동님)](http://www.yes24.com/Product/Goods/56885507?OzSrank=1)
 
 ---
 
