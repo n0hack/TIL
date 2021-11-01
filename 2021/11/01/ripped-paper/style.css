@@ -1,0 +1,23 @@
+body {
+  margin: 0;
+}
+
+.bg {
+  width: 100%;
+  height: 100vh;
+  background: center/cover url(./bg.jpeg) no-repeat;
+  background-size: 60%;
+}
+
+.paper {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background: center/cover url(./paper.jpeg) no-repeat;
+}
+
+.paper:hover {
+  mix-blend-mode: lighten;
+}
