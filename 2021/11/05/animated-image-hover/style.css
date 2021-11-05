@@ -1,0 +1,71 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  background: #262626;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  -webkit-box-reflect: below 1px linear-gradient(transparent, transparent, transparent, #0004);
+}
+
+.box {
+  position: relative;
+  width: 320px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(135deg, #ff61ae 25%, #444 25%, #444 50%, #ff61ae 50%, #ff61ae 75%, #444 75%, #444 100%);
+  background-size: 40px 40px;
+  border-radius: 20px;
+  filter: grayscale(1);
+  animation: animateBg 1s linear infinite;
+  animation-play-state: paused;
+  transition: filter 1s ease;
+}
+
+.box:nth-child(2) {
+  background: linear-gradient(45deg, #2da2ff 25%, #444 25%, #444 50%, #2da2ff 50%, #2da2ff 75%, #444 75%, #444 100%);
+  background-size: 40px 40px;
+}
+
+.box:hover {
+  filter: grayscale(0);
+  animation-play-state: running;
+}
+
+img {
+  position: absolute;
+  height: 90%;
+  bottom: 0;
+  transition: 0.5s;
+}
+
+.box:nth-child(2) img {
+  transform: scale(-100%, 110%);
+  bottom: 5px;
+}
+
+.box:hover img {
+  height: calc(100% + 80px);
+}
+
+@keyframes animateBg {
+  0% {
+    background-position: 0;
+  }
+  100% {
+    background-position: 40px;
+  }
+}
