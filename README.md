@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="images/intro.jpg" style="margin-bottom: 12px; border-radius: 10px;">
+  <img src="images/readme.jpg" style="margin-bottom: 12px; border-radius: 10px;">
 </p>
 
 # 오늘을 기록한다는 것 📝
@@ -24,19 +24,24 @@
 
 **HTML + CSS**
 
-- [MDN Web Docs](https://developer.mozilla.org/ko/)
-- [CSS Tricks](https://css-tricks.com/)
+- [[Docs] MDN](https://developer.mozilla.org/ko/)
+- [[Site] CSS Tricks](https://css-tricks.com/)
+- [[Site] DEV.to](https://dev.to/)
 
 **JavaScript**
 
-- [MDN Web Docs](https://developer.mozilla.org/ko/)
-- [모던 자바스크립트 Deep Dive (이웅모님)](http://www.yes24.com/Product/Goods/92742567?OzSrank=1)
-- [모던 자바스크립트 튜토리얼](https://ko.javascript.info/)
-- [함수형 자바스크립트 (유인동님)](http://www.yes24.com/Product/Goods/56885507?OzSrank=1)
+- [[Docs] MDN](https://developer.mozilla.org/ko/)
+- [[Docs] 모던 자바스크립트 튜토리얼](https://ko.javascript.info/)
+- [[Book] 모던 자바스크립트 Deep Dive (이웅모님)](http://www.yes24.com/Product/Goods/92742567?OzSrank=1)
+- [[Book] 함수형 자바스크립트 (유인동님)](http://www.yes24.com/Product/Goods/56885507?OzSrank=1)
+- [[Youtube] JavaScript로 함수형 프로그래밍 배우기](https://www.youtube.com/watch?v=e-5obm1G_FY)
 
-**React**
+**React & React Native**
 
-- [리액트를 다루는 기술 (김민준님)](http://www.yes24.com/Product/Goods/78233628?OzSrank=1)
+- [[Docs] React](https://ko.reactjs.org/)
+- [[Docs] React Native](https://reactnative.dev/)
+- [[Book] 리액트를 다루는 기술 (Velopert님)](http://www.yes24.com/Product/Goods/78233628)
+- [[Book] 리액트 네이티브를 다루는 기술 (Velopert님)](http://www.yes24.com/Product/Goods/104643906)
 
 ---
 
