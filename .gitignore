@@ -1,6 +1,11 @@
-node_modules
+/node_modules
+**/node_modules
+
 dist/*
 *.log
-*.DS_Store
 settings.json
 .vscode
+
+# 제외 디렉토리
+/from-books/react-velopert
+/from-books/node-zerocho
