@@ -1,3 +1,7 @@
+// 간단하게 ~을 통해 라이브러리 참조 가능
+@import '~include-media/dist/include-media';
+@import '~open-color/open-color';
+
 // 변수 사용하기
 $red: #fa5252;
 $orange: #fd7e14;
