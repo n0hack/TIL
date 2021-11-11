@@ -1,0 +1,22 @@
+{
+  "name": "scss",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "node-sass": "^6.0.1"
+  },
+  "scripts": {
+    "watch": "node-sass --watch ./style.scss ./style.css",
+    "dev": "webpack -d --watch",
+    "prod": "webpack -p",
+    "build": "webpack --watch --mode=none"
+  },
+  "devDependencies": {
+    "css-loader": "^6.5.1",
+    "sass-loader": "^12.3.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.63.0",
+    "webpack-cli": "^4.9.1"
+  }
+}

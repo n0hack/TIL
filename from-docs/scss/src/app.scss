@@ -1,0 +1,22 @@
+$colors: (red, orange, yellow, green, blue, darkblue, purple);
+
+#container {
+  display: flex;
+  @for $i from 1 through 7 {
+    .box#{$i} {
+      width: 20px * $i;
+      height: 20px * $i;
+      $color: nth($colors, $i);
+      background: $color;
+      transition: 0.3s ease;
+
+      &:hover {
+        background: black;
+      }
+    }
+  }
+}
+
+#container {
+  background: black;
+}
