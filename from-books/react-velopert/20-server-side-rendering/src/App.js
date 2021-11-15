@@ -1,8 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
-import './App.css';
 import Menu from './components/Menu';
-import BluePage from './pages/BluePage';
 import RedPage from './pages/RedPage';
+import BluePage from './pages/BluePage';
 
 function App() {
   return (
