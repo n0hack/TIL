@@ -1,0 +1,42 @@
+.container {
+}
+
+.box {
+  width: 100px;
+  height: 100px;
+  margin: 20px auto;
+  color: #fff;
+  text-align: center;
+  line-height: 100px;
+  background: coral;
+  transition: 2s;
+}
+
+.almond {
+  background: blanchedalmond;
+}
+
+* {
+  margin: 0;
+}
+
+section {
+  width: 100%;
+  min-height: 100vh;
+}
+
+#intro {
+  background: azure;
+}
+
+#skill {
+  background: blanchedalmond;
+}
+
+#project {
+  background: yellowgreen;
+}
+
+#contact {
+  background: chocolate;
+}
