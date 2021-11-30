@@ -34,7 +34,6 @@
 - [[Docs] 모던 자바스크립트 튜토리얼](https://ko.javascript.info/)
 - [[Book] 모던 자바스크립트 Deep Dive (이웅모님)](http://www.yes24.com/Product/Goods/92742567?OzSrank=1)
 - [[Book] 함수형 자바스크립트 (유인동님)](http://www.yes24.com/Product/Goods/56885507?OzSrank=1)
-- [[Youtube] JavaScript로 함수형 프로그래밍 배우기](https://www.youtube.com/watch?v=e-5obm1G_FY)
 
 **React & React Native**
 
