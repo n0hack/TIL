@@ -4,7 +4,6 @@
 dist/*
 *.log
 settings.json
-.vscode
 
 # 제외 디렉토리
 # /from-books/react-velopert
@@ -22,6 +21,7 @@ settings.json
 **/build
 
 # misc
+**/.vscode
 **/.DS_Store
 **/.env.local
 **/.env.development.local
