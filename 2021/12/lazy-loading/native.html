@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Native Lazy Loading</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      img {
+        display: block;
+        width: 100%;
+        height: 100vh;
+        object-fit: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="images/1.jpg" loading="lazy" />
+    <img src="images/2.jpg" loading="lazy" />
+    <img src="images/3.jpg" loading="lazy" />
+    <img src="images/4.jpg" loading="lazy" />
+  </body>
+</html>
