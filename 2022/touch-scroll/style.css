@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  padding: 4rem 0;
+  overflow: hidden;
+}
+
+.list {
+  padding: 1rem 0;
+  width: 100%;
+  display: flex;
+  transform: translate(0, 0);
+}
+
+.item {
+  padding-right: 1rem;
+  list-style: none;
+  user-select: none;
+}
+
+.item:first-child {
+  padding-left: 1rem;
+}
+
+.link {
+  display: block;
+  -webkit-user-drag: none;
+}
+
+.image {
+  display: block;
+  width: 200px;
+  height: 200px;
+  -webkit-user-drag: none;
+}
