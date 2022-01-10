@@ -67,13 +67,13 @@ button {
 .pagination {
   width: 12px;
   height: 12px;
-  font-size: 1px;
-  text-indent: 100%;
-  overflow: hidden;
-  white-space: nowrap;
   background: rgba(0, 0, 0, 0.04);
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 50%;
+}
+
+.pagination:not(:last-child) {
+  margin-right: 0.3rem;
 }
 
 .pagination.on {
