@@ -28,6 +28,7 @@ button {
 .slide__image {
   display: block;
   width: 100%;
+  min-height: 350px;
   max-height: 550px;
   object-fit: cover;
 }
