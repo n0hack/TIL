@@ -8,8 +8,22 @@
 
 // console.log(obj1 === obj2); // false;
 
-const deepCopy = (obj) => {
-  console.log(typeof obj);
+const deepCopy = (param) => {
+  if (typeof param !== 'object' || param === null) {
+    return param;
+  }
+
+  if (param instanceof Array) {
+    return param.reduce((newArr, val) => {
+      newArr.push(deepCopy(val));
+      return newArr;
+    }, []);
+  } else if (param instanceof Object) {
+    return Object.keys(param).reduce((newObj, key) => {
+      newObj[key] = deepCopy(param[key]);
+      return newObj;
+    }, {});
+  }
 };
 
 const user = {
@@ -25,31 +39,7 @@ const user = {
   ],
 };
 
-deepCopy([]);
-deepCopy({});
-console.log([] instanceof Array);
-console.log([] instanceof Object);
-console.log({} instanceof Array);
-console.log({} instanceof Object);
-
-// function deepCopy(obj) {
-//   if (typeof obj !== 'object' || obj === null) {
-//     return obj;
-//   }
-
-//   if (obj instanceof Array) {
-//     return obj.reduce((newObj, value, index) => {
-//       newObj[index] = deepCopy(value);
-//       return newObj;
-//     }, []);
-//   }
-
-//   if (obj instanceof Object) {
-//     return Object.keys(obj).reduce((newObj, key) => {
-//       newObj[key] = deepCopy(obj[key]);
-//       return newObj;
-//     }, {});
-//   }
-// }
+console.log(user);
+console.log(deepCopy(user));
 
 // 유사 배열에 이터러블 구현하기
