@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form action="#" id="form-id">
+      form 영역
+      <div id="div-id">
+        div 영역
+        <p id="p-id">p 영역</p>
+      </div>
+    </form>
+    <script>
+      const form = document.getElementById('form-id');
+      const div = document.getElementById('div-id');
+      const p = document.getElementById('p-id');
+
+      // 버블링, 만약 addEventListener 세번째 옵션 true 주면 캡처링
+      [form, div, p].forEach((target) => {
+        // console.log(target);
+        target.addEventListener('click', () => {
+          console.log(`${String(target.tagName)}`);
+        });
+      });
+      [form, div, p].forEach((target) => {
+        // console.log(target);
+        target.addEventListener(
+          'click',
+          () => {
+            console.log(`${String(target.tagName)}`);
+          },
+          true
+        );
+      });
+    </script>
+  </body>
+</html>
