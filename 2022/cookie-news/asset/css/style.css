@@ -152,6 +152,7 @@ li {
   object-fit: cover;
   border-radius: 0.6rem;
   transition: 0.3s ease;
+  will-change: transform;
 }
 
 .partner__name {
