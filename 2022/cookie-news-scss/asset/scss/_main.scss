@@ -1,3 +1,4 @@
+@use 'variable';
 @use 'flex';
 
 #dev-sisters {
@@ -30,7 +31,7 @@
 }
 
 .content {
-  @include flex.flex;
+  @include flex.flexbox;
   @include flex.flex-direction(row);
 
   width: 100%;
@@ -198,7 +199,7 @@
   height: auto;
 }
 
-@media screen and (max-width: 1023px) {
+@media screen and (max-width: variable.$tablet-max-width) {
   .content {
     flex-direction: column;
   }
