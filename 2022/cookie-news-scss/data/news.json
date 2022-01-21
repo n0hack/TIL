@@ -1,0 +1,29 @@
+{
+  "articles": [
+    {
+      "title": "[쿠키런 킹덤] 1주년 업데이트",
+      "summary": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio doloribus, earum molestiae aperiam neque eveniet recusandae minus consectetur vitae. Architecto maxime cupiditate eum ad temporibus nobis omnis libero similique sed!",
+      "thumb": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FdnLOAv%2Fbtrq8JLfsJh%2FqIWHk57Jn0Z5omkV5ZPl11%2Fimg.png"
+    },
+    {
+      "title": "대난투 시즌2 시작! 신규 레전더리 쿠키 서리여왕 쿠키 두둥등장!",
+      "summary": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio doloribus, earum molestiae aperiam neque eveniet recusandae minus consectetur vitae. Architecto maxime cupiditate eum ad temporibus nobis omnis libero similique sed!",
+      "thumb": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F7WxOb%2FbtrliM09RuO%2Fy9dhM5j2rLeVg4lJc9Le4K%2Fimg.png"
+    },
+    {
+      "title": "할로윈 업데이트! 쿠키 스킨과 신규 쿠키 추가!",
+      "summary": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio doloribus, earum molestiae aperiam neque eveniet recusandae minus consectetur vitae. Architecto maxime cupiditate eum ad temporibus nobis omnis libero similique sed!",
+      "thumb": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcvkJbc%2FbtriUFygQrq%2FR7yWkBMsAHyTg44nQwUojk%2Fimg.png"
+    },
+    {
+      "title": "[쿠키런 킹덤] 소닉 x 쿠키런 킹덤 콜라보 업데이트",
+      "summary": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio doloribus, earum molestiae aperiam neque eveniet recusandae minus consectetur vitae. Architecto maxime cupiditate eum ad temporibus nobis omnis libero similique sed!",
+      "thumb": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FpRyC3%2Fbtrfcmunyxf%2F5sNZBB0mMaKXRqnBzXNnGk%2Fimg.jpg"
+    },
+    {
+      "title": "[이벤트] 쿠키 성장 이벤트와 푸시 보상 지원!",
+      "summary": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio doloribus, earum molestiae aperiam neque eveniet recusandae minus consectetur vitae. Architecto maxime cupiditate eum ad temporibus nobis omnis libero similique sed!",
+      "thumb": "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fot8uz%2FbtrbEgFKHNR%2FqbCc1iU8TLYDuhbJH6QhhK%2Fimg.png"
+    }
+  ]
+}
