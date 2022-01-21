@@ -1,3 +1,4 @@
+import { fetch } from 'whatwg-fetch';
 import { createSpinner, hideSpinner } from './loading.js';
 import '../css/style.css';
 
