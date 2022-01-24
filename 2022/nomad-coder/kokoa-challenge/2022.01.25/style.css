@@ -1,0 +1,96 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background-color: #000;
+}
+
+.container {
+  width: 500px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 70px;
+  background-color: #6bbcbf;
+}
+
+.top {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  transform: rotateZ(0deg);
+  animation: topAnimation 1s linear infinite;
+}
+
+@keyframes topAnimation {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  50%,
+  100% {
+    transform: rotateZ(180deg);
+  }
+}
+
+.circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #fff;
+}
+
+.bottom {
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.bar {
+  width: 10px;
+  height: 50px;
+  background-color: #fff;
+  border-top: 0px solid #fff;
+  border-bottom: 0px solid #fff;
+  animation: barAnimation 1s ease-in-out infinite;
+}
+
+.bar:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.bar:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.bar:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.bar:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.bar:nth-child(5) {
+  animation-delay: 0.5s;
+}
+
+@keyframes barAnimation {
+  0% {
+    border-top: 0px solid #fff;
+    border-bottom: 0px solid #fff;
+  }
+  25% {
+    border-top: 20px solid #fff;
+    border-bottom: 20px solid #fff;
+  }
+  50%,
+  100% {
+    border-top: 0px solid #fff;
+    border-bottom: 0px solid #fff;
+  }
+}
