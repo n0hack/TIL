@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Library</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="wrapper">
+      <header class="header">
+        <button class="btn-sidemenu" aria-label="open sidemenu">
+          <i class="fas fa-bars"></i>
+        </button>
+        <h1 class="header__title">library</h1>
+        <button class="btn-dips" aria-label="open dips">
+          <i class="fas fa-shopping-basket"></i>
+        </button>
+        <div class="search">
+          <input
+            class="search__input"
+            type="search"
+            placeholder="Search books..."
+          />
+          <button class="btn-search" aria-label="search">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </header>
+      <main class="main">
+        <section class="section">
+          <h2 class="section__title">Book of the day</h2>
+          <div class="daily">
+            <img
+              class="daily__poster"
+              src="https://user-images.githubusercontent.com/42988225/151324543-bd9166ec-6f7a-4490-9d71-dfdcac1b5df4.png"
+              alt="daily poster"
+            />
+            <div class="daily__info">
+              <span class="daily__title">Next JS</span>
+              <span class="daily__author">Vercel</span>
+              <div class="daily__scores">
+                <span class="daily__score daily__score--highlight"
+                  ><i class="fas fa-star"></i
+                ></span>
+                <span class="daily__score daily__score--highlight"
+                  ><i class="fas fa-star"></i
+                ></span>
+                <span class="daily__score daily__score--highlight"
+                  ><i class="fas fa-star"></i
+                ></span>
+                <span class="daily__score daily__score--highlight"
+                  ><i class="fas fa-star"></i
+                ></span>
+                <span class="daily__score"><i class="fas fa-star"></i></span>
+              </div>
+              <ul class="daily__tags">
+                <li class="daily__tag">IT</li>
+                <li class="daily__tag">Tech</li>
+                <li class="daily__tag">Frontend</li>
+              </ul>
+              <div class="daily__buttons">
+                <button class="btn-like"><i class="fas fa-heart"></i></button>
+                <button class="daily__button">Book Now</button>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="section">
+          <h2 class="section__title">Top Techs</h2>
+          <ul class="techs">
+            <li class="tech">
+              <img
+                class="tech__poster"
+                src="https://user-images.githubusercontent.com/42988225/151324539-6e4f6d9e-08c1-4595-a30f-d2e4f817624f.jpg"
+                alt="tech poster"
+              />
+              <div class="tech__scores">
+                <span class="tech__score tech__score--highlight"
+                  ><i class="fas fa-star"></i
+                ></span>
+                <span class="tech__score tech__score--highlight"
+                  ><i class="fas fa-star"></i
+                ></span>
+                <span class="tech__score tech__score--highlight"
+                  ><i class="fas fa-star"></i
+                ></span>
+                <span class="tech__score tech__score--highlight"
+                  ><i class="fas fa-star"></i
+                ></span>
+                <span class="tech__score"><i class="fas fa-star"></i></span>
+              </div>
+            </li>
+            <li class="tech">
+              <img
+                class="tech__poster"
+                src="https://user-images.githubusercontent.com/42988225/151324534-00c28ef7-0804-4edd-ad1d-56620db492e2.jpg"
+                alt="tech poster"
+              />
+              <div class="tech__scores">
+                <span class="tech__score tech__score--highlight"
+                  ><i class="fas fa-star"></i
+                ></span>
+                <span class="tech__score tech__score--highlight"
+                  ><i class="fas fa-star"></i
+                ></span>
+                <span class="tech__score tech__score--highlight"
+                  ><i class="fas fa-star"></i
+                ></span>
+                <span class="tech__score tech__score--highlight"
+                  ><i class="fas fa-star"></i
+                ></span>
+                <span class="tech__score"><i class="fas fa-star"></i></span>
+              </div>
+            </li>
+            <li class="tech">
+              <img
+                class="tech__poster"
+                src="https://user-images.githubusercontent.com/42988225/151324541-6e53c13d-cc28-4d98-a964-55f1ce5ee1cb.jpg"
+                alt="tech poster"
+              />
+              <div class="tech__scores">
+                <span class="tech__score tech__score--highlight"
+                  ><i class="fas fa-star"></i
+                ></span>
+                <span class="tech__score tech__score--highlight"
+                  ><i class="fas fa-star"></i
+                ></span>
+                <span class="tech__score tech__score--highlight"
+                  ><i class="fas fa-star"></i
+                ></span>
+                <span class="tech__score tech__score--highlight"
+                  ><i class="fas fa-star"></i
+                ></span>
+                <span class="tech__score"><i class="fas fa-star"></i></span>
+              </div>
+            </li>
+            <li class="tech">
+              <img
+                class="tech__poster"
+                src="https://user-images.githubusercontent.com/42988225/151324547-d3c0c613-f2c8-4bb2-9264-c69b4b073e1d.png"
+                alt="tech poster"
+              />
+              <div class="tech__scores">
+                <span class="tech__score tech__score--highlight"
+                  ><i class="fas fa-star"></i
+                ></span>
+                <span class="tech__score tech__score--highlight"
+                  ><i class="fas fa-star"></i
+                ></span>
+                <span class="tech__score tech__score--highlight"
+                  ><i class="fas fa-star"></i
+                ></span>
+                <span class="tech__score tech__score--highlight"
+                  ><i class="fas fa-star"></i
+                ></span>
+                <span class="tech__score"><i class="fas fa-star"></i></span>
+              </div>
+            </li>
+          </ul>
+        </section>
+        <section class="section">
+          <h2 class="section__title">Popular authors</h2>
+          <div class="author">
+            <img
+              class="author__image"
+              src="https://www.filepicker.io/api/file/8zhcu9oTtiFw9jQSglsR"
+              alt="Nicholas 선생님"
+            />
+            <div class="author__info">
+              <span class="author__name">Nicholas</span>
+              <span class="author__desc"
+                >니꼴라스는 9살부터 코딩을 시작한 전형적인 '천재 코더'로. 대학교
+                따위 내팽개치고 독학으로 코딩을 배웠습니다. 남들 대학교 다닐 때
+                본인은 대학교에서 코딩 강의를 한 케이스. 거액 연봉의 입사
+                제안도, 본인의 자유가 더욱 중요하다며 뻥 차버린 자유로운 영혼의
+                소유자. fxxk이 들어가는 언어를 자유롭게 구사하며, 코딩을 널리
+                알려 회사에 얽매인 영혼들을 자유롭게 구제하고자 합니다. &copy;
+                Nomadcoders.co</span
+              >
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
