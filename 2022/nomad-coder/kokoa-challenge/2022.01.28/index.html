@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Music Player</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="wrapper">
+      <div class="player">
+        <!-- 상단 메뉴 -->
+        <div class="topbar">
+          <button class="btn-behind"><i class="fas fa-arrow-left"></i></button>
+          <button class="btn-search"><i class="fas fa-search"></i></button>
+        </div>
+        <!-- 아티스트 정보 -->
+        <div class="intro">
+          <img class="intro__image" src="https://user-images.githubusercontent.com/42988225/151672357-87362e81-65ff-471e-8580-98c6c520d5d6.jpeg" alt="The Kid Laroi" />
+          <h2 class="intro__artist">The Kid Laroi</h2>
+          <span class="intro__genre">Rap, Hip-Hop</span>
+          <div class="intro__buttons">
+            <button class="btn-shuffle normal">Shuffle</button>
+            <button class="btn-like normal"><i class="fas fa-heart"></i>212,971</button>
+          </div>
+        </div>
+        <!-- 음악 리스트 -->
+        <ul class="musics">
+          <li class="music">
+            <div class="music__thumbnail">
+              <img class="music__image" src="https://user-images.githubusercontent.com/42988225/151672360-6d93b7a7-4b35-4e2e-9cc1-26002d385aa8.jpeg" alt="Music thumbnail" />
+            </div>
+            <div class="music__info">
+              <span class="music__artist">The Kid Laroi</span>
+              <span class="music__title">So Done</span>
+            </div>
+            <button class="btn-detail">
+              <i class="fas fa-ellipsis-v"></i>
+            </button>
+          </li>
+          <li class="music active">
+            <div class="music__thumbnail">
+              <img class="music__image" src="https://user-images.githubusercontent.com/42988225/151672361-75a86609-d1bb-42a7-817a-da55ab5b1899.jpeg" alt="Music thumbnail" />
+              <div class="music__overlay"><i class="fas fa-signal"></i></div>
+            </div>
+            <div class="music__info">
+              <span class="music__artist">The Kid Laroi</span>
+              <span class="music__title">Stay</span>
+            </div>
+            <button class="btn-detail">
+              <i class="fas fa-ellipsis-v"></i>
+            </button>
+          </li>
+          <li class="music">
+            <div class="music__thumbnail">
+              <img class="music__image" src="https://user-images.githubusercontent.com/42988225/151672363-66af5739-c953-4ada-b630-6bf9f8a9fce7.jpeg" alt="Music thumbnail" />
+            </div>
+            <div class="music__info">
+              <span class="music__artist">The Kid Laroi</span>
+              <span class="music__title">Without You</span>
+            </div>
+            <button class="btn-detail">
+              <i class="fas fa-ellipsis-v"></i>
+            </button>
+          </li>
+          <li class="music">
+            <div class="music__thumbnail">
+              <img class="music__image" src="https://via.placeholder.com/150" ="" alt="Music thumbnail" />
+            </div>
+            <div class="music__info">
+              <span class="music__artist">The Kid Laroi</span>
+              <span class="music__title">WOLF</span>
+            </div>
+            <button class="btn-detail">
+              <i class="fas fa-ellipsis-v"></i>
+            </button>
+          </li>
+        </ul>
+        <!-- 재생 메뉴 -->
+        <div class="playbar">
+          <div class="playbar__info">
+            <span class="playbar__artist">The Kid Laroi</span>
+            <span class="playbar__title">Stay</span>
+          </div>
+          <div class="playbar__buttons">
+            <button class="btn-stepback"><i class="fas fa-step-backward"></i></button>
+            <button class="btn-pause"><i class="fas fa-pause"></i></button>
+            <button class="btn-stepforward"><i class="fas fa-step-forward"></i></button>
+          </div>
+        </div>
+      </div>
+      <div class="player">
+        <!-- 상단 메뉴 -->
+        <div class="topbar">
+          <button class="btn-behind"><i class="fas fa-arrow-left"></i></button>
+          <button class="btn-detail"><i class="fas fa-ellipsis-v"></i></button>
+        </div>
+        <!-- 재생 중인 음악 정보 -->
+        <div class="playing">
+          <div class="playing__info">
+            <img class="playing__image" src="https://user-images.githubusercontent.com/42988225/151672361-75a86609-d1bb-42a7-817a-da55ab5b1899.jpeg" alt="Stay (The Kid Laroi)" />
+            <h2 class="playing__title">Stay</h2>
+            <span class="playing__artist">The Kid Laroi</span>
+          </div>
+          <div class="playing__timer">
+            <span class="playing__time">1:56</span>
+            <span class="playing__time">2:38</span>
+          </div>
+          <div class="playing__guage">
+            <div class="playing__guage-inner"></div>
+          </div>
+          <div class="playing__buttons">
+            <button class="btn-loop"><i class="fas fa-redo"></i></button>
+            <button class="btn-stepback"><i class="fas fa-step-backward"></i></button>
+            <button class="btn-play"><i class="fas fa-play"></i></button>
+            <button class="btn-stepforward"><i class="fas fa-step-forward"></i></button>
+            <button class="btn-shuffle"><i class="fas fa-random"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
