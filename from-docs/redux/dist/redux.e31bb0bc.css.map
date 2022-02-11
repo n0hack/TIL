@@ -1,1 +1,0 @@
-{"version":3,"sources":["index.scss"],"names":[],"mappings":"AAAA;EACE;EACA;EACA;EACA;EACA;;AAEA;EACE","file":"redux.e31bb0bc.css","sourceRoot":"..","sourcesContent":[".toggle {\n  border: 2px solid black;\n  width: 64px;\n  height: 64px;\n  border-radius: 32px;\n  box-sizing: border-box;\n\n  &.active {\n    background: yellow;\n  }\n}\n"]}
