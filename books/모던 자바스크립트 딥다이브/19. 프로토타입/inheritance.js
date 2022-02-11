@@ -1,9 +1,16 @@
-function SubArray(test) {
-  this.hi = test;
+function Person(name) {
+  this.name = name;
 }
-// Object.create (인자를 기반으로 만든 객체)
-SubArray.prototype = Object.create(Array.prototype);
-// SubArray.prototype.constructor = SubArray;
-const sub = new SubArray('hi');
-sub.push(45);
-console.log(sub);
+Person.prototype.greeting = function () {
+  console.log(`Hello, My name is ${this.name}`);
+};
+
+function Teacher(name, job) {
+  Person.call(this, name);
+  this.job = job;
+}
+Teacher.prototype = Object.create(Person.prototype);
+Teacher.prototype.constructor = Teacher;
+
+const human = new Teacher('Serah', 27);
+human.greeting();
