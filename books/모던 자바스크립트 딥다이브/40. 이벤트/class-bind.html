@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button class="btn">0</button>
+    <script>
+      class App {
+        constructor() {
+          this.$button = document.querySelector('.btn');
+          this.count = 0;
+          // 이벤트 핸들러 내부의 this는 DOM 요소를 가리키므로,
+          // bind를 해 줘야 함
+          this.$button.addEventListener('click', this.increase.bind(this));
+        }
+
+        increase() {
+          this.$button.textContent = `${++this.count}`;
+        }
+      }
+      new App();
+    </script>
+  </body>
+</html>
