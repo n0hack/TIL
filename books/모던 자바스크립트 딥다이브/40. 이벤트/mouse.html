@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      [box] {
+        width: 100px;
+        height: 100px;
+        background-color: #fff700;
+        border: 5px solid orange;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div box></div>
+    <script>
+      const box = document.querySelector('[box]');
+      let [x, y] = [0, 0];
+      const offset = { x: 0, y: 0 };
+      const move = (e) => {
+        offset.x = e.x - x;
+        offset.y = e.y - y;
+        box.style.transform = `translate(${offset.x}px, ${offset.y}px)`;
+      };
+      box.addEventListener('mousedown', (e) => {
+        [x, y] = [e.x - offset.x, e.y - offset.y];
+        document.addEventListener('mousemove', move);
+      });
+      box.addEventListener('mouseup', (e) => {
+        document.removeEventListener('mousemove', move);
+      });
+    </script>
+  </body>
+</html>
