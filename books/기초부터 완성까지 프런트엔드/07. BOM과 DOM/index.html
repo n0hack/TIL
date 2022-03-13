@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SPA</title>
+    <style>
+      ul {
+        display: flex;
+        gap: 12px;
+        padding: 0;
+      }
+
+      li {
+        list-style: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="title">메인</h1>
+    <ul class="nav">
+      <li><button data-link="/">메인</button></li>
+      <li><button data-link="/sub1">서브1</button></li>
+      <li><button data-link="/sub2">서브2</button></li>
+      <li><button data-link="/sub3">서브3</button></li>
+    </ul>
+    <script>
+      const title = document.querySelector('.title');
+      const nav = document.querySelector('.nav');
+
+      nav.addEventListener('click', (e) => {
+        const url = e.target.dataset.link;
+        const text = e.target.innerText;
+
+        if (url) {
+          history.pushState({ title: text }, '', window.location.origin + url);
+          title.innerText = text;
+        }
+      });
+
+      window.addEventListener('popstate', (e) => {
+        title.innerText = e.state.title;
+      });
+    </script>
+  </body>
+</html>
