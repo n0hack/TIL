@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      window.onload = function () {
+        const list = document.querySelector('ul');
+        console.log(list);
+
+        // beforebegin = 요소 앞
+        list.insertAdjacentHTML('beforebegin', '<div>BeforeBegin</div>');
+        // afterend = 요소 뒤
+        list.insertAdjacentHTML('afterend', '<div>AfterEnd</div>');
+        // afterbegin = 요소 안에서 맨앞
+        list.insertAdjacentHTML('afterbegin', '<div>AfterBegin</div>');
+        // beforeend = 요소 안에서 맨뒤
+        list.insertAdjacentHTML('beforeend', '<div>BeforeEnd</div>');
+      };
+    </script>
+  </head>
+  <body>
+    <ul>
+      <li>item1</li>
+      <li>item2</li>
+      <li>item3</li>
+    </ul>
+  </body>
+</html>
