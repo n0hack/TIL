@@ -1,0 +1,3 @@
+# 무시할 파일, 폴더 경로
+build
+node_modules
