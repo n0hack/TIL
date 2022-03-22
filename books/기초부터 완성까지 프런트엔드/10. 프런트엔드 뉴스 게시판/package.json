@@ -1,0 +1,35 @@
+{
+  "name": "frontend-news",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build:dev": "webpack --config webpack.config.js --mode=development",
+    "build:prod": "webpack --config webpack.config.js --mode=production",
+    "transpile": "babel src/js -d transpile",
+    "transpile:scss": "sass ./src/scss/test.scss:./src/scss/test.css"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.17.6",
+    "@babel/core": "^7.17.8",
+    "@babel/preset-env": "^7.16.11",
+    "@webpack-cli/generators": "^2.4.2",
+    "babel-loader": "^8.2.3",
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^6.7.1",
+    "css-minimizer-webpack-plugin": "^3.4.1",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.6.0",
+    "sass": "^1.49.9",
+    "sass-loader": "^12.6.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4"
+  },
+  "dependencies": {
+    "core-js": "^3.21.1",
+    "whatwg-fetch": "^3.6.2"
+  }
+}

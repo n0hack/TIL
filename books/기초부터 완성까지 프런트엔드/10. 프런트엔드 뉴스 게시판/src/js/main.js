@@ -1,4 +1,6 @@
+import { fetch } from 'whatwg-fetch';
 import { createSpinner, hideSpinner } from './spinner.js';
+import '../scss/index.scss';
 
 function createTopNewsElement(article) {
   const { title, summary, link, thumbnailImage } = article;
@@ -24,7 +26,7 @@ function renderTopNews() {
   createSpinner(aritcleSection);
 
   setTimeout(() => {
-    fetch('./data/top.json')
+    fetch('../data/top.json')
       .then((res) => res.json())
       .then((data) => {
         const { articles } = data;
@@ -57,7 +59,7 @@ function renderLatestNews() {
   createSpinner(aritcleSection);
 
   setTimeout(() => {
-    fetch('./data/latest.json')
+    fetch('../data/latest.json')
       .then((res) => res.json())
       .then((data) => {
         const { articles } = data;
