@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="area">
+      <p></p>
+      <p></p>
+      <p></p>
+      <p></p>
+      <p></p>
+      <p></p>
+      <p></p>
+      <p></p>
+      <p></p>
+      <p></p>
+    </div>
+    <script>
+      const area = document.querySelector('.area');
+      const offset = area.offsetWidth;
+      function resizeFunc() {
+        const ps = document.querySelectorAll('p');
+        for (let i = 0; i < ps.length; i++) {
+          ps[i].style.width = `${offset}px`;
+        }
+      }
+      window.addEventListener('resize', resizeFunc);
+    </script>
+  </body>
+</html>
