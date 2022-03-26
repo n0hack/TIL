@@ -4,10 +4,12 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import SassComponent from './SassComponent';
+import CSSModule from './CSSModule';
+import StyledComponent from './StyledComponent';
 
 ReactDOM.render(
   <React.StrictMode>
-    <SassComponent />
+    <StyledComponent />
   </React.StrictMode>,
   document.getElementById('root')
 );
