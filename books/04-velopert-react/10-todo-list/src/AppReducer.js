@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useReducer, useRef, useState } from 'react';
 import TodoInsert from './components/TodoInsert';
 import TodoList from './components/TodoList';
 import TodoTemplate from './components/TodoTemplate';
@@ -11,14 +11,23 @@ function createBulkTodo() {
   return array;
 }
 
-function App() {
-  // const [todos, setTodos] = useState([
-  //   { id: 1, text: '리액트의 기초 알아보기', checked: true },
-  //   { id: 2, text: '컴포넌트 스타일링해 보기', checked: true },
-  //   { id: 3, text: '일정 관리 앱 만들어 보기', checked: false },
-  // ]);
-  // // 렌더링 되는 정보가 아니므로 Ref를 사용해 내부적으로 사용
-  const [todos, setTodos] = useState(createBulkTodo);
+function todoReducer(todos, action) {
+  switch (action.type) {
+    case 'INSERT':
+      return todos.concat(action.todo);
+    case 'REMOVE':
+      return todos.filter((todo) => todo.id !== action.id);
+    case 'TOGGLE':
+      return todos.map((todo) =>
+        todo.id === action.id ? { ...todo, checked: !todo.checked } : todo
+      );
+    default:
+      return todos;
+  }
+}
+
+function AppReducer() {
+  const [todos, dispatch] = useReducer(todoReducer, undefined, createBulkTodo);
   const nextId = useRef(2501);
 
   const onInsert = useCallback((text) => {
@@ -28,20 +37,16 @@ function App() {
       checked: false,
     };
     // 함수형 업데이트로 방법을 알려주면, 굳이 참조할 필요가 없음
-    setTodos((todos) => todos.concat(todo));
+    dispatch({ type: 'INSERT', todo });
     nextId.current += 1;
   }, []);
 
   const onRemove = useCallback((id) => {
-    setTodos((todos) => todos.filter((todo) => todo.id !== id));
+    dispatch({ type: 'REMOVE', id });
   }, []);
 
   const onToggle = useCallback((id) => {
-    setTodos((todos) =>
-      todos.map((todo) =>
-        todo.id === id ? { ...todo, checked: !todo.checked } : todo
-      )
-    );
+    dispatch({ type: 'TOGGLE', id });
   }, []);
 
   return (
@@ -52,4 +57,4 @@ function App() {
   );
 }
 
-export default App;
+export default AppReducer;

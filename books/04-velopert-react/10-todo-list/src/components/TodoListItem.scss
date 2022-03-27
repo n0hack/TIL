@@ -3,10 +3,6 @@
   display: flex;
   align-items: center;
 
-  &:nth-child(even) {
-    background: #f8f9fa;
-  }
-
   .checkbox {
     cursor: pointer;
     flex: 1;
@@ -41,8 +37,14 @@
       color: #ff8787;
     }
   }
+}
 
+.TodoListItem-virtualized {
   & + & {
     border-top: 1px solid #dee2e6;
+  }
+
+  &:nth-child(even) {
+    background: #f8f9fa;
   }
 }
