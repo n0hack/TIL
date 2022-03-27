@@ -30,4 +30,7 @@ const TodoListItem = ({ todo, onRemove, onToggle, style }) => {
 
 // ShouldComponentUpdate: props가 변경되지 않은 경우 리렌더링 하지 않음
 // 하지만 onRemove, onToggle이 계속해서 바뀜 (todos가 변경될 때마다 생성되므로)
-export default memo(TodoListItem);
+export default memo(
+  TodoListItem,
+  (prevProps, nextProps) => prevProps.todo === nextProps.todo
+);
