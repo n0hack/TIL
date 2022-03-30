@@ -1,7 +1,10 @@
 import { Route, Routes } from 'react-router-dom';
 import Menu from './components/Menu';
-import BluePage from './pages/BluePage';
-import RedPage from './pages/RedPage';
+import loadable from '@loadable/component';
+const BluePage = loadable(() => import('./pages/BluePage'));
+const RedPage = loadable(() => import('./pages/RedPage'));
+const UserPage = loadable(() => import('./pages/UserPage'));
+const UsersPage = loadable(() => import('./pages/UsersPage'));
 
 function App() {
   return (
@@ -11,6 +14,9 @@ function App() {
       <Routes>
         <Route path="/red" element={<RedPage />} />
         <Route path="/blue" element={<BluePage />} />
+        <Route path="/users" element={<UsersPage />}>
+          <Route path=":id" element={<UserPage />} />
+        </Route>
       </Routes>
     </div>
   );
