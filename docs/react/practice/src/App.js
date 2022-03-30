@@ -1,19 +1,15 @@
-import 'bootstrap/dist/css/bootstrap.css';
+import './css/New.css';
 import { Route, Routes } from 'react-router-dom';
-import CookieSave from './components/CookieSave';
-import HomePage from './pages/HomePage';
-import IDPage from './pages/IDPage';
+import FloatingPopulationList from './components/FloatingPopulationList';
+import Footer from './components/footer/Footer';
+import Header from './components/header/Header';
+import LoginForm from './components/LoginForm';
+import Rechart from './components/Rechart';
 
 function App() {
   return (
     <div className="App">
-      <header>헤더</header>
-      <Routes>
-        <Route path="/" element={<HomePage />}>
-          <Route path="/:id" element={<IDPage />}></Route>
-        </Route>
-      </Routes>
-      <footer>푸터</footer>
+      <Rechart />
     </div>
   );
 }
