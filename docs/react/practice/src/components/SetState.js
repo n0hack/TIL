@@ -7,8 +7,11 @@ class SetState extends Component {
   }
 
   stateChange = (flag) => {
-    if (flag === 'direct') this.state.stateString = '리액트';
-    else this.setState({ stateSrting: '리액트' });
+    if (flag === 'direct') {
+      // 직접 변경하면 리렌더링 되지 않기에, forceUpdate 실행
+      this.state.stateString = '리액트';
+      this.forceUpdate();
+    } else this.setState({ stateSrting: '리액트' });
     console.log(this.state.stateString);
   };
 
