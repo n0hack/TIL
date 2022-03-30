@@ -1,0 +1,12 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start:server": "nodemon bin/www"
+  },
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
