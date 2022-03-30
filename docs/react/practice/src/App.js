@@ -1,12 +1,9 @@
-import logo from './logo.svg';
-import './App.css';
-import JQuery from './components/JQuery';
-import SetState from './components/SetState';
+import PComponent from './components/PComponent';
 
 function App() {
   return (
     <div className="App">
-      <SetState />
+      <PComponent />
     </div>
   );
 }
