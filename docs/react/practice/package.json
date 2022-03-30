@@ -12,6 +12,7 @@
     "react-dom": "^18.0.0",
     "react-scripts": "5.0.0",
     "reactstrap": "^9.0.1",
+    "sweetalert2": "^11.4.8",
     "web-vitals": "^2.1.0"
   },
   "scripts": {
