@@ -19,13 +19,13 @@ function App() {
       const body = { username };
       const res = await axios({
         method: 'post',
-        url: '/users',
+        url: '/users?q=hi',
         data: body,
         headers: {
           'Content-Type': 'application/json',
         },
       });
-      console.log(res.data);
+      console.log(res.data.result);
     },
     [username]
   );
