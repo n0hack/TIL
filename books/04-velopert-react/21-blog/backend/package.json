@@ -1,0 +1,13 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "eslint-config-prettier": "^8.5.0",
+    "koa": "^2.13.4"
+  },
+  "devDependencies": {
+    "eslint": "^8.12.0"
+  }
+}
