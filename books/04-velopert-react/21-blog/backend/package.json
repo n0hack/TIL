@@ -9,6 +9,7 @@
   "dependencies": {
     "dotenv": "^16.0.0",
     "eslint-config-prettier": "^8.5.0",
+    "joi": "^17.6.0",
     "koa": "^2.13.4",
     "koa-bodyparser": "^4.3.0",
     "koa-router": "^10.1.1",
