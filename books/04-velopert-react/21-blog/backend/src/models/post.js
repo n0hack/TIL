@@ -10,6 +10,10 @@ const PostSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  user: {
+    _id: mongoose.Types.ObjectId,
+    username: String,
+  },
 });
 
 // 스키마 이름은 Post지만, 이를 통해 만들어지는 컬렉션은 posts (컨벤션임)

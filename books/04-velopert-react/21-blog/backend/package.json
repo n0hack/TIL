@@ -7,9 +7,11 @@
     "start": "nodemon --exec babel-node src"
   },
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "dotenv": "^16.0.0",
     "eslint-config-prettier": "^8.5.0",
     "joi": "^17.6.0",
+    "jsonwebtoken": "^8.5.1",
     "koa": "^2.13.4",
     "koa-bodyparser": "^4.3.0",
     "koa-router": "^10.1.1",
