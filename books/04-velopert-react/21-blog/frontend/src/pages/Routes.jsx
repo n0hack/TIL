@@ -1,8 +1,8 @@
+import { Routes as ReactRoutes, Route } from 'react-router-dom';
 import LoginPage from './LoginPage';
 import PostListPage from './PostListPage';
 import RegisterPage from './RegisterPage';
 import WritePage from './WritePage';
-import { Routes as ReactRoutes, Route } from 'react-router-dom';
 import PostPage from './PostPage';
 
 const MultiRoute = ({ element: Element, paths, ...rest }) =>
