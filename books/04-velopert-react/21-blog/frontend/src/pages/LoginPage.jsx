@@ -1,7 +1,13 @@
 import React from 'react';
+import AuthForm from '../components/auth/AuthForm';
+import AuthTemplate from '../components/auth/AuthTemplate';
 
 const LoginPage = () => {
-  return <div>로그인</div>;
+  return (
+    <AuthTemplate>
+      <AuthForm type="login" />
+    </AuthTemplate>
+  );
 };
 
 export default LoginPage;
