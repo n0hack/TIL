@@ -72,6 +72,15 @@ const f = (list, length) =>
     )
   );
 
-log(f([1, 2, 3, 4, 5], 1));
-log(f([1, 2, 3, 4, 5], 2));
-log(f([1, 2, 3, 4, 5], 3));
+const f2 = (list, length) =>
+  go(
+    list,
+    (list) => filter((x) => x % 2, list),
+    (list) => map((x) => x ** 2, list),
+    (list) => take(length, list),
+    (list) => reduce(add, 0, list)
+  );
+
+log(f2([1, 2, 3, 4, 5], 1));
+log(f2([1, 2, 3, 4, 5], 2));
+log(f2([1, 2, 3, 4, 5], 3));
