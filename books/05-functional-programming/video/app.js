@@ -30,6 +30,13 @@ function take(length, iter) {
 }
 
 function reduce(f, acc, iter) {
+  /* 인자가 2개인 경우, acc가 iter이므로
+    acc에 이터레이터를 구현하고, acc는 첫번째 value로 처리
+  */
+  if (arguments.length === 2) {
+    iter = acc[Symbol.iterator]();
+    acc = iter.next().value;
+  }
   for (const a of iter) {
     acc = f(acc, a);
   }
@@ -40,7 +47,7 @@ const add = (a, b) => a + b;
 
 /* 자바스크립트에서는 함수 역시 값(일급객체)이기 때문에 
 재밌는 처리가 가능하다. (우->좌가 아닌, 좌->우로 읽을 수 있도록 함)*/
-const go = (a, ...fs) => reduce((a, f) => f(a), a, fs);
+const go = (...as) => reduce((a, f) => f(a), as);
 
 go(
   10,
