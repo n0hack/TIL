@@ -236,5 +236,11 @@ const vDelay = delay(1000, 5);
 // 함수의 인자로 프로미스를 보내고, 반환하면서 또 활용하고, 일급객체로서
 // vDelay.then(log);
 
-go(10, log);
-go(delay(1000, 5), log);
+// go(10, log);
+// go(delay(1000, 5), log);
+// go(
+//   Promise.resolve(1),
+//   (a) => a + 1,
+//   (a) => delay(100, a),
+//   log
+// );
