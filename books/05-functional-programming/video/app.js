@@ -1,30 +1,45 @@
 /* 유인동 CTO님 강의 */
 const log = console.log;
 
+// 자바스크립트에서는 배열, 리스트보다는 iterable이라 부름 (순회 가능한 요소에 대한 추상)
+
 /* 조건 처리: filter 함수 */
-function* filter(f, list) {
-  for (const a of list) {
+function* filter(f, iter) {
+  for (const a of iter) {
     if (f(a)) yield a;
   }
 }
 
 /* 연산 처리: map 함수 */
-function* map(f, list) {
-  for (const a of list) {
+function* map(f, iter) {
+  for (const a of iter) {
     yield f(a);
   }
 }
 
+/* 함수형 프로그래밍에서는 break보다 return이 좋다 
+take 함수를 통해 명령형(어떻게) 코드를 선언적(무엇을)으로 사용 가능
+*/
+function take(length, iter) {
+  let res = [];
+  for (const a of iter) {
+    res.push(a);
+    if (res.length === length) return res;
+  }
+  return res;
+}
+
 // 리스트에서 홀수를 length만큼 뽑아서 제곱한 후 모두 더하기
 function f(list, length) {
-  let i = 0;
   let acc = 0;
-  for (const a of map(
-    (x) => x ** 2,
-    filter((x) => x % 2, list)
+  for (const a of take(
+    length,
+    map(
+      (x) => x ** 2,
+      filter((x) => x % 2, list)
+    )
   )) {
     acc = acc + a;
-    if (++i === length) break;
   }
   log(acc);
 }
