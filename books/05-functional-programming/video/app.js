@@ -41,7 +41,11 @@ const add = (a, b) => a + b;
 // 리스트에서 홀수를 length만큼 뽑아서 제곱한 후 모두 더하기
 /* 함수형 프로그래밍에서는 인자와 리턴값을 통해서만 소통하는 것이 좋음 
 한 문장으로 표현 가능하다는 것은 간결한 화살표 함수로 한 줄 표현 가능함 */
-const f = (list, length) => reduce(add, 0, take(length, map((x) => x ** 2, filter((x) => x % 2, list))));
+const f = (list, length) => 
+  reduce(add, 0, 
+    take(length, 
+      map((x) => x ** 2, 
+      filter((x) => x % 2, list))));
 
 log(f([1, 2, 3, 4, 5], 1));
 log(f([1, 2, 3, 4, 5], 2));
