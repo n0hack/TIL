@@ -3,33 +3,41 @@ const log = console.log;
 
 // 자바스크립트에서는 배열, 리스트보다는 iterable이라 부름 (순회 가능한 요소에 대한 추상)
 
+/* 커링 적용 
+커링은 f(a,b,c)를 f(a)(b)(c) 와 같이 다중 callable 프로세스 형태로 변환하는 기술입니다.
+*/
+const curry =
+  (f) =>
+  (a, ...bs) =>
+    bs.length ? f(a, ...bs) : (...bs) => f(a, ...bs);
+
 /* 조건 처리: filter 함수 */
-function* filter(f, iter) {
+const filter = curry(function* (f, iter) {
   for (const a of iter) {
     if (f(a)) yield a;
   }
-}
+});
 
 /* 연산 처리: map 함수 */
-function* map(f, iter) {
+const map = curry(function* (f, iter) {
   for (const a of iter) {
     yield f(a);
   }
-}
+});
 
 /* 함수형 프로그래밍에서는 break보다 return이 좋다 
 take 함수를 통해 명령형(어떻게) 코드를 선언적(무엇을)으로 사용 가능
 */
-function take(length, iter) {
+const take = curry(function (length, iter) {
   let res = [];
   for (const a of iter) {
     res.push(a);
     if (res.length === length) return res;
   }
   return res;
-}
+});
 
-function reduce(f, acc, iter) {
+const reduce = curry(function (f, acc, iter) {
   /* 인자가 2개인 경우, acc가 iter이므로
     acc에 이터레이터를 구현하고, acc는 첫번째 value로 처리
   */
@@ -41,9 +49,9 @@ function reduce(f, acc, iter) {
     acc = f(acc, a);
   }
   return acc;
-}
+});
 
-const add = (a, b) => a + b;
+const add = curry((a, b) => a + b);
 
 /* 자바스크립트에서는 함수 역시 값(일급객체)이기 때문에 
 재밌는 처리가 가능하다. (우->좌가 아닌, 좌->우로 읽을 수 있도록 함)*/
@@ -75,10 +83,10 @@ const f = (list, length) =>
 const f2 = (list, length) =>
   go(
     list,
-    (list) => filter((x) => x % 2, list),
-    (list) => map((x) => x ** 2, list),
-    (list) => take(length, list),
-    (list) => reduce(add, 0, list)
+    (list) => filter((x) => x % 2)(list),
+    (list) => map((x) => x ** 2)(list),
+    (list) => take(length)(list),
+    (list) => reduce(add)(list)
   );
 
 log(f2([1, 2, 3, 4, 5], 1));
