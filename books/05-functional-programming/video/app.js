@@ -29,21 +29,29 @@ function take(length, iter) {
   return res;
 }
 
-// 리스트에서 홀수를 length만큼 뽑아서 제곱한 후 모두 더하기
-function f(list, length) {
-  let acc = 0;
-  for (const a of take(
-    length,
-    map(
-      (x) => x ** 2,
-      filter((x) => x % 2, list)
-    )
-  )) {
-    acc = acc + a;
+function reduce(f, acc, iter) {
+  for (const a of iter) {
+    acc = f(acc, a);
   }
-  log(acc);
+  return acc;
 }
 
-f([1, 2, 3, 4, 5], 1);
-f([1, 2, 3, 4, 5], 2);
-f([1, 2, 3, 4, 5], 3);
+// 리스트에서 홀수를 length만큼 뽑아서 제곱한 후 모두 더하기
+/* 함수형 프로그래밍에서는 인자와 리턴값을 통해서만 소통하는 것이 좋음 */
+function f(list, length) {
+  return reduce(
+    (a, b) => a + b,
+    0,
+    take(
+      length,
+      map(
+        (x) => x ** 2,
+        filter((x) => x % 2, list)
+      )
+    )
+  );
+}
+
+log(f([1, 2, 3, 4, 5], 1));
+log(f([1, 2, 3, 4, 5], 2));
+log(f([1, 2, 3, 4, 5], 3));
