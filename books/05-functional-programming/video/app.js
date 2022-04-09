@@ -128,3 +128,13 @@ L.flat = function* (iter) {
     }
   }
 };
+
+go(
+  arr,
+  L.flat,
+  L.filter((x) => x % 2),
+  L.map((x) => x ** 2),
+  take(3),
+  reduce(add),
+  log
+);
