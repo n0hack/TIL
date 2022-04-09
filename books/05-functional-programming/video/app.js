@@ -186,3 +186,39 @@ go(
   reduce(add),
   log
 );
+
+// 모나드, Promise
+// - f . g
+// - f(g(x)) = f(g(x))
+// - f(g(x)) = x
+// 자바스크립트에서 Array는 모나드이다.
+const foo = (a) => a + 1;
+const bar = (a) => a * a;
+// x가 정상적인 값이라면, 아래 두 가지는 서로 같다.
+// log(bar(foo(1)));
+[1]
+  .map(foo)
+  .map(bar)
+  .forEach((x) => log(x));
+// 하지만 x가 정상이 아니라면, 마치 아무 일도 없던 것처럼 한다.
+// 그리고 이러한 모나드는 안에 값을 여러개 가지고 있더라도, 함수를 합성했을 때 처리가 가능하게끔 한다라는 value도 가지고 있음
+// []
+//   .map(foo)
+//   .map(bar)
+//   .forEach((x) => log(x));
+// 프로미스 역시 모나드(Future Monad)이며, 함수를 안전하게 합성할 수 있는 value를 가지고 있음.
+// 다만 프로미스는 비동기 처리를 위한 목적을 추가적으로 가지고 있는 모나드임.
+// 어떤 문제가 있을 때 어떻게 처리할 지를 정한 규칙을 Kleisli Composition이라 함
+// 프로미스는 f(g(x)) = g(x)라는 규칙을 가지고 있는데, g(x)에서 에러가 발생하면 g(x)한 것과 동일하게 처리하고 끝냄
+Promise.resolve(1)
+  .then(foo)
+  .then(bar)
+  .then((x) => log(x));
+
+const pg = JSON.parse;
+const pf = ({ k }) => k;
+
+const pfg = (x) => Promise.resolve(x).then(pg).then(pf);
+pfg('{ "k": 10 }')
+  .catch((_) => '미안...')
+  .then(log);
