@@ -119,13 +119,8 @@ const arr = [
 L.flat = function* (iter) {
   for (const a of iter) {
     // 이터러블(Array보다 추상화 레벨이 높은 값)한 값인지 판단
-    if (a && a[Symbol.iterator]) {
-      for (const b of a) {
-        yield b;
-      }
-    } else {
-      yield a;
-    }
+    if (a && a[Symbol.iterator]) yield* a;
+    else yield a;
   }
 };
 
