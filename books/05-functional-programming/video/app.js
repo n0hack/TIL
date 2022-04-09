@@ -68,7 +68,8 @@ const add = curry((a, b) => a + b);
 
 /* 자바스크립트에서는 함수 역시 값(일급객체)이기 때문에 
 재밌는 처리가 가능하다. (우->좌가 아닌, 좌->우로 읽을 수 있도록 함)*/
-const go = (...as) => reduce((a, f) => f(a), as);
+const go1 = (a, f) => (a instanceof Promise ? a.then(f) : f(a));
+const go = (...as) => reduce(go1, as);
 
 // 리스트에서 홀수를 length만큼 뽑아서 제곱한 후 모두 더하기
 /* 함수형 프로그래밍에서는 인자와 리턴값을 통해서만 소통하는 것이 좋음 
@@ -218,7 +219,22 @@ Promise.resolve(1)
 const pg = JSON.parse;
 const pf = ({ k }) => k;
 
-const pfg = (x) => Promise.resolve(x).then(pg).then(pf);
-pfg('{ "k": 10 }')
-  .catch((_) => '미안...')
-  .then(log);
+// const pfg = (x) => Promise.resolve(x).then(pg).then(pf);
+// pfg('{ "k": 10 }')
+//   .catch((_) => '미안...')
+//   .then(log);
+
+// 프로미스를 그저 then, then, then으로 연속 처리가 가능한 객체로 바라보지 말고,
+// 어딘가에 담아 두고 필요할 때 사용할 수 있는 '값'의 관점에서 바라보고 사용하자
+const delay = (time, a) =>
+  new Promise((resolve) => {
+    setTimeout(() => resolve(a), time);
+  });
+
+const vDelay = delay(1000, 5);
+// 값의 관점으로 바라보면, 필요할 때 꺼내서 다양한 활용 가능
+// 함수의 인자로 프로미스를 보내고, 반환하면서 또 활용하고, 일급객체로서
+// vDelay.then(log);
+
+go(10, log);
+go(delay(1000, 5), log);
