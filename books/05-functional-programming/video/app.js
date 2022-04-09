@@ -5,6 +5,7 @@ const log = console.log;
 
 /* 커링 적용 
 커링은 f(a,b,c)를 f(a)(b)(c) 와 같이 다중 callable 프로세스 형태로 변환하는 기술입니다.
+여러 번 끊어서 실행 가능해짐
 */
 const curry =
   (f) =>
@@ -57,13 +58,6 @@ const add = curry((a, b) => a + b);
 재밌는 처리가 가능하다. (우->좌가 아닌, 좌->우로 읽을 수 있도록 함)*/
 const go = (...as) => reduce((a, f) => f(a), as);
 
-go(
-  10,
-  (a) => a + 1,
-  (a) => a + 10,
-  log
-);
-
 // 리스트에서 홀수를 length만큼 뽑아서 제곱한 후 모두 더하기
 /* 함수형 프로그래밍에서는 인자와 리턴값을 통해서만 소통하는 것이 좋음 
 한 문장으로 표현 가능하다는 것은 간결한 화살표 함수로 한 줄 표현 가능함 */
@@ -83,10 +77,10 @@ const f = (list, length) =>
 const f2 = (list, length) =>
   go(
     list,
-    (list) => filter((x) => x % 2)(list),
-    (list) => map((x) => x ** 2)(list),
-    (list) => take(length)(list),
-    (list) => reduce(add)(list)
+    filter((x) => x % 2),
+    map((x) => x ** 2),
+    take(length),
+    reduce(add)
   );
 
 log(f2([1, 2, 3, 4, 5], 1));
