@@ -12,19 +12,28 @@ const curry =
   (a, ...bs) =>
     bs.length ? f(a, ...bs) : (...bs) => f(a, ...bs);
 
+// 지연평가
+const L = {};
+
 /* 조건 처리: filter 함수 */
-const filter = curry(function* (f, iter) {
+L.filter = curry(function* (f, iter) {
   for (const a of iter) {
     if (f(a)) yield a;
   }
 });
 
 /* 연산 처리: map 함수 */
-const map = curry(function* (f, iter) {
+L.map = curry(function* (f, iter) {
   for (const a of iter) {
     yield f(a);
   }
 });
+
+/* 인자만큼 순회하며 이터러블 생성 */
+L.range = function* (stop) {
+  let i = -1;
+  while (++i < stop) yield i;
+};
 
 /* 함수형 프로그래밍에서는 break보다 return이 좋다 
 take 함수를 통해 명령형(어떻게) 코드를 선언적(무엇을)으로 사용 가능
@@ -77,8 +86,8 @@ const f = (list, length) =>
 const f2 = (list, length) =>
   go(
     list,
-    filter((x) => x % 2),
-    map((x) => x ** 2),
+    L.filter((x) => x % 2),
+    L.map((x) => x ** 2),
     take(length),
     reduce(add)
   );
