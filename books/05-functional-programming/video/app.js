@@ -29,7 +29,10 @@ L.map = curry(function* (f, iter) {
   }
 });
 
-/* 인자만큼 순회하며 이터러블 생성 */
+/* 인자만큼 순회하며 이터러블 생성 
+  L.range(INFINITY)를 해도 바로 평가를 하지는 않기에 괜찮음
+  필요한 순간에만 평가 진행
+*/
 L.range = function* (stop) {
   let i = -1;
   while (++i < stop) yield i;
@@ -97,3 +100,31 @@ const f2 = (list, length) =>
 log(f2([1, 2, 3, 4, 5], 1));
 log(f2([1, 2, 3, 4, 5], 2));
 log(f2([1, 2, 3, 4, 5], 3));
+log(f2(L.range(Infinity), 200));
+
+/* 
+  2차원 배열을 함수형 프로그래밍에서 다루는 방법 
+  기존 명령형 프로그래밍으로 작성하면 i++, j++을 사용하게 되는데,
+  이 때문에 에러가 발생하는 경우가 많다.
+
+  함수형 프로그래밍에서는 조회/순회 정도만 분리하고, 동작은 다른 함수에게 위임함
+*/
+const arr = [
+  [1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [9, 10],
+];
+
+L.flat = function* (iter) {
+  for (const a of iter) {
+    // 이터러블(Array보다 추상화 레벨이 높은 값)한 값인지 판단
+    if (a && a[Symbol.iterator]) {
+      for (const b of a) {
+        yield b;
+      }
+    } else {
+      yield a;
+    }
+  }
+};
