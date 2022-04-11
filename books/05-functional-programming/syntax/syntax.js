@@ -17,3 +17,11 @@ const flat = (arr) => {
     return res;
   })(arr, []);
 };
+
+const slice = Array.prototype.slice;
+function toArray(data) {
+  return slice.call(data);
+}
+function rest(data, n) {
+  return slice.call(data, n || 1);
+}
