@@ -28,3 +28,11 @@ _.map = function (iter, iteratee) {
   }
   return res;
 };
+
+_.identity = function (v) {
+  return v;
+};
+
+_.values = function (iter) {
+  return _.map(iter, _.identity);
+};
