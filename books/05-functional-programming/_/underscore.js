@@ -36,3 +36,18 @@ _.identity = function (v) {
 _.values = function (iter) {
   return _.map(iter, _.identity);
 };
+
+_.each = function (iter, iteratee) {
+  if (isArrayLike(iter)) {
+    for (let i = 0; i < iter.length; i++) {
+      iteratee(iter[i], i, iter);
+    }
+  } else {
+    for (let key in iter) {
+      if (iter.hasOwnProperty(key)) {
+        iteratee(iter[key], key, iter);
+      }
+    }
+  }
+  return iter;
+};
