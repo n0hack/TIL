@@ -12,22 +12,31 @@ function isArrayLike(list) {
   return typeof length === 'number' && length >= 0 && length <= MAX_ARRAY_INDEX;
 }
 
-_.map = function (iter, iteratee) {
-  const res = [];
-
-  if (isArrayLike(iter)) {
-    for (let i = 0; i < iter.length; i++) {
-      res.push(iteratee(iter[i], i, iter));
-    }
-  } else {
-    for (let key in iter) {
-      if (iter.hasOwnProperty(key)) {
-        res.push(iteratee(iter[key], key, iter));
+function bloop(newData, body) {
+  return function (data, iteratee) {
+    const result = newData(data);
+    if (isArrayLike(data)) {
+      for (let i = 0; i < data.length; i++) {
+        body(iteratee(data[i], i, data), result);
+      }
+    } else {
+      for (let key in data) {
+        if (data.hasOwnProperty(key))
+          body(iteratee(data[key], key, data), result);
       }
     }
+    return result;
+  };
+}
+
+_.map = bloop(
+  function () {
+    return [];
+  },
+  function (val, obj) {
+    return obj.push(val);
   }
-  return res;
-};
+);
 
 _.identity = function (v) {
   return v;
@@ -37,17 +46,9 @@ _.values = function (iter) {
   return _.map(iter, _.identity);
 };
 
-_.each = function (iter, iteratee) {
-  if (isArrayLike(iter)) {
-    for (let i = 0; i < iter.length; i++) {
-      iteratee(iter[i], i, iter);
-    }
-  } else {
-    for (let key in iter) {
-      if (iter.hasOwnProperty(key)) {
-        iteratee(iter[key], key, iter);
-      }
-    }
-  }
-  return iter;
-};
+_.each = bloop(
+  function (v) {
+    return v;
+  },
+  function () {}
+);
