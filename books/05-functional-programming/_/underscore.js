@@ -29,26 +29,24 @@ function bloop(newData, body) {
   };
 }
 
-_.map = bloop(
-  function () {
-    return [];
-  },
-  function (val, obj) {
-    return obj.push(val);
-  }
-);
+_.array = function () {
+  return [];
+};
+
+_.pushTo = function (val, obj) {
+  return obj.push(val);
+};
 
 _.identity = function (v) {
   return v;
 };
 
+_.noop = function () {};
+
 _.values = function (iter) {
   return _.map(iter, _.identity);
 };
 
-_.each = bloop(
-  function (v) {
-    return v;
-  },
-  function () {}
-);
+_.map = bloop(_.array, _.pushTo);
+
+_.each = bloop(_.identity, _.noop);
