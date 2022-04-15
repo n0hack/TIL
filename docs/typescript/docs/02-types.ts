@@ -43,3 +43,24 @@ function printId(id: number | string) {
 }
 printId(1);
 printId('1');
+
+// 타입 별칭 (같은 타입을 재사용하고 싶을 때)
+type Point = {
+  x: number;
+  y: number;
+};
+function printCoord2(pt: Point) {
+  console.log("The coordinate's x value is " + pt.x);
+  console.log("The coordinate's y value is " + pt.y);
+}
+printCoord2({ x: 100, y: 100 });
+
+declare function getInput(): string;
+declare function sanitize(str: string): string;
+type UserInputSanitizedString = string;
+
+function sanitizeInput(str: string): UserInputSanitizedString {
+  return sanitize(str);
+}
+let userInput = sanitizeInput(getInput());
+userInput = 'new Input';

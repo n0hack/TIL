@@ -39,4 +39,14 @@ function printId(id) {
 }
 printId(1);
 printId('1');
+function printCoord2(pt) {
+    console.log("The coordinate's x value is " + pt.x);
+    console.log("The coordinate's y value is " + pt.y);
+}
+printCoord2({ x: 100, y: 100 });
+function sanitizeInput(str) {
+    return sanitize(str);
+}
+let userInput = sanitizeInput(getInput());
+userInput = 'new Input';
 //# sourceMappingURL=02-types.js.map
