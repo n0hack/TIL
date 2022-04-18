@@ -49,4 +49,8 @@ function sanitizeInput(str) {
 }
 let userInput = sanitizeInput(getInput());
 userInput = 'new Input';
+function printCoordWithInterface(pt) {
+    console.log(pt);
+}
+printCoordWithInterface({ x: 1, y: 2, z: 3 });
 //# sourceMappingURL=02-types.js.map

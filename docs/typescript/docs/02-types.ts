@@ -64,3 +64,19 @@ function sanitizeInput(str: string): UserInputSanitizedString {
 }
 let userInput = sanitizeInput(getInput());
 userInput = 'new Input';
+
+// type과 동일하게 객체를 정의할 수 있지만, 확장 가능 여부의 차이가 있다.
+// 또한 새 필드를 만들기 쉬우며, type의 경우 재정의가 불가능하다. (인터페이스는 재정의 시 필드 추가 형태로 됨)
+interface IPoint {
+  x: number;
+  y: number;
+}
+
+interface IPoint2 extends IPoint {
+  z: number;
+}
+
+function printCoordWithInterface(pt: IPoint2) {
+  console.log(pt);
+}
+printCoordWithInterface({ x: 1, y: 2, z: 3 });
