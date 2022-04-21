@@ -3,5 +3,6 @@
     "target": "ES2015",
     "outDir": "compile",
     "strict": true
-  }
+  },
+  "files": ["poly.ts"]
 }
