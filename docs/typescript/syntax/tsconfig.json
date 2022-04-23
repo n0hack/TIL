@@ -6,5 +6,6 @@
     "noEmitOnError": true,
     "watch": true,
     "outDir": "build"
-  }
+  },
+  "include": ["src/**/*"]
 }
