@@ -5,8 +5,9 @@
     // 오류 발생 시 트랜스파일하지 않음
     "noEmitOnError": true,
     "watch": true,
-    "outDir": "build"
+    "outDir": "build",
+    "experimentalDecorators": true
   },
-  "include": ["src/generic.ts"],
+  "include": ["src/decorator.ts"],
   "exclude": []
 }
