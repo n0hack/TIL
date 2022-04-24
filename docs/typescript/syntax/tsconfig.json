@@ -7,6 +7,6 @@
     "watch": true,
     "outDir": "build"
   },
-  "include": ["src/**/*"],
+  "include": ["src/interface.ts"],
   "exclude": ["src/type-guard.ts"]
 }
