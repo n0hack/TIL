@@ -7,6 +7,6 @@
     "watch": true,
     "outDir": "build"
   },
-  "include": ["src/enum.ts"],
+  "include": ["src/generic.ts"],
   "exclude": []
 }
