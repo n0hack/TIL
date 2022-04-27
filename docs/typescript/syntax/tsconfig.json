@@ -8,6 +8,6 @@
     "outDir": "build",
     "experimentalDecorators": true
   },
-  "include": ["src/mapping.ts"],
+  "include": ["src/decorator.ts", "src/mapping.ts"],
   "exclude": []
 }
