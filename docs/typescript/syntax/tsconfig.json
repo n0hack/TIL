@@ -6,8 +6,9 @@
     "noEmitOnError": true,
     "watch": true,
     "outDir": "build",
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "sourceMap": true
   },
-  "include": ["src/conditional-type.ts"],
+  "include": ["src/hello.ts"],
   "exclude": []
 }
