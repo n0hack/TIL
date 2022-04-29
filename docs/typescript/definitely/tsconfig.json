@@ -1,6 +1,0 @@
-{
-  "compilerOptions": {
-    "types": ["jquery", "es6-shim"],
-    "lib": ["ES5"]
-  }
-}

@@ -1,7 +1,0 @@
-{
-  "compilerOptions": {
-    "lib": ["DOM"],
-    "outDir": "dist"
-  },
-  "include": ["crypto.ts"]
-}
