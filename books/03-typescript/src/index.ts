@@ -1,24 +1,20 @@
-// 모든 타입을 가질 수 있는 객체
-type ValidatorFn = (c: FormControl) => { [key: string]: any } | null;
-
-class FormControl {
-  constructor(initialValue: string, validator: ValidatorFn | null) {}
+class Dog {
+  constructor(readonly name: string) {}
+  sayHello(): string {
+    return 'Dog says hello!';
+  }
 }
 
-// 타입스크립트는 구조적 타입 시스템을 가지고 있기 때문에, 구조만을 가지고 호환성을 체크함
-interface Person {
-  firstName: string;
-  lastName: string;
-  age: number;
+class Fish {
+  constructor(readonly name: string) {}
+  dive(howDeep: number): string {
+    return `Diving ${howDeep} feet`;
+  }
 }
 
-function savePerson(person: Person) {
-  console.log('Saving ', person);
-}
+type Pet = Dog | Fish;
 
-const p = {
-  firstName: 'Jihun',
-  lastName: 'Jeon',
-  age: 29,
-};
-savePerson(p);
+function talkToPet(pet: Pet) {
+  if (pet instanceof Dog) return pet.sayHello();
+  else if (pet instanceof Fish) return 'Fish connot talk, sorry.';
+}
