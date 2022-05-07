@@ -1,0 +1,16 @@
+{
+  "name": "03-typescript",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "nodemon --exec ts-node src/index.ts"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16",
+    "ts-node": "^10.7.0"
+  },
+  "dependencies": {
+    "typescript": "^4.6.4"
+  }
+}
