@@ -1,5 +1,42 @@
 // 추상 클래스를 확장하여 더 구체적인 구현 가능
 // 구현이 끝난 메서드가 담겨도 되지만, 추상 메서드도 내부에 둘 수 있음
+/* abstract class Person3 {
+  constructor(public name: string) {}
+  changeAddress(newAddress: string) {
+    console.log(`${newAddress}로 주소 변경 완료`);
+  }
+
+  giveDayOff() {
+    console.log(`${this.name}에게 휴가 지급`);
+  }
+
+  promote(percent: number) {
+    this.giveDayOff();
+    this.increasePay(percent);
+  }
+
+  abstract increasePay(percent: number): void;
+}
+
+class Employee extends Person3 {
+  increasePay(percent: number): void {
+    console.log(`${this.name}의 급여를 ${percent}% 인상`);
+  }
+}
+
+class Contractor extends Person3 {
+  increasePay(percent: number): void {
+    console.log(`${this.name}의 시급을 ${percent}% 인상`);
+  }
+}
+
+const workers: Person3[] = [];
+workers[0] = new Employee('Lily');
+workers[1] = new Contractor('Stella');
+workers.forEach((worker) => worker.promote(5));
+
+// 추상 클래스를 확장하여 더 구체적인 구현 가능
+// 구현이 끝난 메서드가 담겨도 되지만, 추상 메서드도 내부에 둘 수 있음
 abstract class Person {
   constructor(public name: string) {}
   changeAddress(newAddress: string) {
@@ -33,7 +70,7 @@ class Contractor extends Person {
 const workers: Person[] = [];
 workers[0] = new Employee('Lily');
 workers[1] = new Contractor('Stella');
-workers.forEach((worker) => worker.promote(5));
+workers.forEach((worker) => worker.promote(5)); */
 
 // 오버로딩 = 시그니쳐를 미리 만들어 놓고, 구현부를 최하단 한 곳에 두기
 interface Product {
