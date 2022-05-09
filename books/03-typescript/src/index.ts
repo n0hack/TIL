@@ -1,64 +1,178 @@
-namespace Enum {
-  enum TempDirection {
-    FtoC,
-    CtoF,
+namespace Decorator {
+  function whoAmI(target: Function) {
+    console.log(`You are \n${target}`);
   }
-  function convertTemperature(temp: number, fromTo: TempDirection) {
-    return TempDirection.FtoC === fromTo
-      ? ((temp - 32) * 5.0) / 9.0
-      : (temp * 9.0) / 5.0 + 32;
-  }
-  console.log(`70F is ${convertTemperature(70, TempDirection.FtoC)}C`);
-  console.log(`21C is ${convertTemperature(21, TempDirection.CtoF)}F`);
 
-  // enum 앞에 const를 붙이면 자바스크립트 코드로 컴파일되지 않음
-  const enum Direction {
-    Up = 'UP',
-    Down = 'DOWN',
+  @whoAmI
+  class Friend {
+    constructor(private name: string, private age: number) {}
+  }
+
+  // 데코레이터 팩토리 (런타임에 데코레이터에 의해 호출될 표현식 반환)
+  function UIComponent(html: string) {
+    console.log(`Decorator html: ${html}`);
+    return function (target: Function) {
+      console.log(`Create UI Component from\n${target}`);
+    };
+  }
+
+  @UIComponent('<h1>Hello Shopper!</h1>')
+  class Shopper {
+    constructor(private name: string) {}
+  }
+
+  // 클래스 믹스인
+  type constructorMixin = { new (...args: any[]): {} };
+
+  function useSalutation(salutation: string) {
+    return function <T extends constructorMixin>(target: T) {
+      return class extends target {
+        private message = `Hello ${salutation}`;
+        sayHello() {
+          console.log(`${this.message}`);
+        }
+      };
+    };
+  }
+
+  @useSalutation('Mr.')
+  class Greeter {
+    constructor(public name: string) {}
+    sayHello() {
+      console.log(`Hello ${this.name}`);
+    }
+  }
+
+  const grt = new Greeter('NoHack');
+  grt.sayHello();
+
+  class Trade {
+    @logTrade
+    placeOrder(
+      stockName: string,
+      quantity: number,
+      operation: string,
+      traderID: number
+    ) {}
+  }
+  const trade = new Trade();
+  trade.placeOrder('IBM', 100, 'Buy', 123);
+
+  // 메서드 클래스 참조 객체, 메서드 데코레이터 이름, 메서드 데코레이터의 디스크립터
+  function logTrade(target: Object, key: string, descriptor: any) {
+    console.log(target, key, descriptor);
+    const originalCode = descriptor.value;
+    descriptor.value = function () {
+      console.log(`Invoked ${key} providing:`, arguments);
+      return originalCode.apply(this, arguments);
+    };
+    return descriptor;
   }
 }
 
-namespace Generic {
-  Array<number>(1);
+namespace MappingType {
+  // 기존 타입에서 새 타입을 만들 수 있도록 하는 것
+  // keyof는 T의 프로퍼티들을 요청하는 것이고, T in을 통해 타입을 유니온 한 것과 같은 값을 얻음
+  type ReadOnly<T> = {
+    readonly [P in keyof T]: T[P];
+  };
+  interface Person {
+    name: string;
+    age: number;
+  }
+  // keyof를 통해 Person의 프로퍼티 목록을 가져옴 (인덱스 타입 쿼리)
+  type propNames = keyof Person;
+  // 실질적으로 타입을 얻고 싶다면, Person[propNames]로 가져와야 함 (string | number)
+  type propTypes = Person[propNames];
 
-  interface Comparator<T> {
-    compareTo(value: T): number;
+  interface ReadOnlyPerson {
+    name: string;
+    age: number;
+  }
+  const worker: Readonly<ReadOnlyPerson> = { name: 'NoHack', age: 29 };
+
+  const persons: Person[] = [
+    { name: 'John', age: 32 },
+    { name: 'Mary', age: 33 },
+  ];
+
+  // P는 T의 프로퍼티 목록의 유니온
+  function filterBy<T, P extends keyof T>(
+    property: P,
+    value: T[P],
+    array: T[]
+  ) {
+    return array.filter((item) => item[property] === value);
   }
 
-  class Rectangle implements Comparator<Rectangle> {
-    constructor(private width: number, private height: number) {}
-    compareTo(value: Rectangle): number {
-      return this.width * this.height - value.width * value.height;
+  type Modifiable<T> = {
+    -readonly [P in keyof T]: T[P];
+  };
+
+  // Partial은 옵셔널로 만드는 커스텀 타입
+  // Required는 필수로 만드는 커스텀 타입
+  type CustomPartial<T> = {
+    [P in keyof T]?: T[P];
+  };
+  type CustomRequired<T> = {
+    [P in keyof T]-?: T[P];
+  };
+  const partialPerson: CustomPartial<Person> = { name: 'ho' };
+  const worker1: CustomPartial<ReadOnly<Person>> = { age: 20 };
+
+  interface Person2 {
+    name: string;
+    age: number;
+    address: string;
+  }
+  type CustomPick<T, K extends keyof T> = {
+    [P in K]: T[P];
+  };
+  type PersonNameAddress = CustomPick<Person2, 'name' | 'address'>;
+
+  class Product {
+    consturctor(id: number) {}
+  }
+  const getProducts = function <T>(
+    id?: T
+  ): T extends number ? Product : Product[] {
+    if (typeof id === 'number') {
+      // Product 타입으로 좁힐 수가 없으므로 any로 설정
+      return { id: 123 } as any;
+    } else {
+      return [{ id: 123 }, { id: 567 }] as any;
+    }
+  };
+  const result1 = getProducts(123);
+  const result2 = getProducts();
+  console.log(result1, result2);
+
+  type CustomExlude<T, U> = T extends U ? never : T;
+  type RemoveProps<T, K> = CustomExlude<keyof T, K>;
+  type RemainingProps = RemoveProps<Person, 'name' | 'age'>;
+  type PersonBlindAuditions = Pick<Person, RemainingProps>;
+}
+
+namespace inferKeyword {
+  interface SyncService {
+    baseUrl: string;
+    getA(): string;
+  }
+
+  type ReturnPromise<T> = T extends (...args: infer A) => infer R
+    ? (...args: A) => Promise<R>
+    : T;
+  type Promisify<T> = {
+    [P in keyof T]: ReturnPromise<T[P]>;
+  };
+
+  class AsyncService implements Promisify<SyncService> {
+    baseUrl: string;
+    getA(): Promise<string> {
+      return Promise.resolve('');
     }
   }
-  const rect1: Rectangle = new Rectangle(2, 5);
-  const rect2: Rectangle = new Rectangle(2, 3);
 
-  rect1.compareTo(rect2) > 0
-    ? console.log('rect1이 더 큼')
-    : console.log('rect2가 더 크거나 같음');
-
-  class Programmmer implements Comparator<Programmmer> {
-    constructor(public name: string, private salary: number) {}
-    compareTo(value: Programmmer): number {
-      return this.salary - value.salary;
-    }
-  }
-  const prog1: Programmmer = new Programmmer('NoHack', 20000);
-  const prog2: Programmmer = new Programmmer('Jihun', 15000);
-
-  prog1.compareTo(prog2) > 0
-    ? console.log(`${prog1.name}의 급여가 더 높음`)
-    : console.log('아님');
-
-  class Pair<K, V> {
-    constructor(public key: K, public value: V) {}
-  }
-  function compare<K, V>(pair1: Pair<K, V>, pair2: Pair<K, V>): boolean {
-    return pair1.key === pair2.key && pair1.value === pair2.value;
-  }
-  let p1: Pair<number, string> = new Pair(1, 'Apple');
-  let p2 = new Pair(1, 'Orange');
-  console.log(compare<number, string>(p1, p2));
-  console.log(compare(p1, p2));
+  let service = new AsyncService();
+  service.getA();
 }
