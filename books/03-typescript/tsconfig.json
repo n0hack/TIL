@@ -4,7 +4,9 @@
     "outDir": "build",
     "noEmitOnError": true,
     "strict": true,
-    "lib": ["DOM", "ES6"]
+    "lib": ["DOM", "ES6"],
+    "experimentalDecorators": true,
+    "strictPropertyInitialization": false
   },
   "include": ["src/index.ts"],
   "exclude": ["src/02.ts", "src/03.ts"]
