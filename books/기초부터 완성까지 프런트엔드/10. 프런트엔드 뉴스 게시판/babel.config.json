@@ -1,4 +1,0 @@
-{
-  // 폴리필을 자동으로 주입할 것이며, 사용할 폴리필은 core-js 버전 3
-  "presets": [["@babel/preset-env", { "useBuiltIns": "usage", "corejs": 3 }]]
-}
