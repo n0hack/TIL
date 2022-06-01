@@ -1,6 +1,6 @@
 import { IInvoices, IPlays } from './types';
 
-function statement(invoices: IInvoices, plays: IPlays) {
+export function statement(invoices: IInvoices, plays: IPlays) {
   let totalAmount = 0;
   let volumeCredits = 0;
   let result = `청구 내역 (고객명: ${invoices.customer})\n`;
@@ -15,7 +15,7 @@ function statement(invoices: IInvoices, plays: IPlays) {
     let thisAmount = 0;
 
     switch (play.type) {
-      case 'tradegy': // 비극
+      case 'tragedy': // 비극
         thisAmount = 40000;
         if (perf.audience > 30) {
           thisAmount += 1000 * (perf.audience - 30);
@@ -43,6 +43,15 @@ function statement(invoices: IInvoices, plays: IPlays) {
     totalAmount += thisAmount;
   }
   result += `총액: ${format(totalAmount / 100)}\n`;
-  result += `적립 포인트: ${volumeCredits}점\n`;
+  result += `적립 포인트: ${volumeCredits}점`;
+
   return result;
 }
+
+const plays: IPlays = { hamlet: { name: 'Hamlet', type: 'tragedy' } };
+const invoices: IInvoices = {
+  customer: 'BigCo',
+  performances: [{ playID: 'hamlet', audience: 55 }],
+};
+
+console.log(statement(invoices, plays));

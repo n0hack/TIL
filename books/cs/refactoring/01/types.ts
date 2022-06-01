@@ -1,9 +1,15 @@
+type PlayID = 'hamlet' | 'as-like' | 'othello';
+
+type PlayName = 'Hamlet' | 'As You Like It' | 'Othello';
+
+type PlayType = 'tragedy' | 'comedy';
+
 export interface IPlays {
-  [key: string]: { name: string; type: string };
+  [key: string]: { name: PlayName; type: PlayType };
 }
 
 interface IPerformance {
-  playID: string;
+  playID: PlayID;
   audience: number;
 }
 
