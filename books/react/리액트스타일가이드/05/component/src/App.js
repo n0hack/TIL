@@ -1,10 +1,11 @@
+import ItemContainer from "./components/ItemContainer";
+import SwitchContainer from "./components/SwitchContainer";
 import UserCardWrapper from "./components/UserCardWrapper";
 
 function App() {
-  // 11b
   return (
     <div className="App">
-      <UserCardWrapper />
+      <SwitchContainer />
     </div>
   );
 }
