@@ -21,9 +21,15 @@ type Action =
 type SampleDispatch = Dispatch<Action>;
 
 // Context 만들기
-const SampleStateContext = createContext<State | null>(null);
-const SampleDispatchContext = createContext<SampleDispatch | null>(null);
-
+// const SampleStateContext = createContext<State | null>(null);
+const SampleStateContext = createContext<State>({
+  count: 0,
+  text: "Hello",
+  color: "orange",
+  isGood: false,
+});
+// const SampleDispatchContext = createContext<SampleDispatch | null>(null);
+const SampleDispatchContext = createContext<SampleDispatch>(() => null);
 // 리듀서
 function reducer(state: State, action: Action): State {
   switch (action.type) {
@@ -60,13 +66,13 @@ export function SampleProvider({ children }: { children: React.ReactNode }) {
 }
 
 // state와 dispatch를 쉽게 사용하기 위한 커스텀 Hooks
-export function useSampleState() {
+export function useSampleState(): State {
   const state = useContext(SampleStateContext);
   if (!state) throw new Error("Cannot find SampleProvider");
   return state;
 }
 
-export function useSampleDispatch() {
+export function useSampleDispatch(): SampleDispatch {
   const dispatch = useContext(SampleDispatchContext);
   if (!dispatch) throw new Error("Cannot find SampleProvider");
   return dispatch;
