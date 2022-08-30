@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "jsx": "react",
+    "baseUrl": "./src",
+    "paths": {
+      "@components/*": ["./components/*"]
+    }
+  }
+}
