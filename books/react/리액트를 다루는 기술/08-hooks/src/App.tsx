@@ -1,6 +1,7 @@
 import React from "react";
 import HOC from "./components/HOC";
 import UseEffect, { Todo } from "./components/UseEffect";
+import UseReducer from "./components/UseReducer";
 import UseState from "./components/UseState";
 
 const todos: Todo[] = [
@@ -14,7 +15,8 @@ function App() {
     <>
       {/* <HOC defaultValue={1} label="Hello" /> */}
       {/* <UseState /> */}
-      <UseEffect todos={todos} filter={(todo: Todo) => todo.done} />
+      {/* <UseEffect todos={todos} filter={(todo: Todo) => todo.done} /> */}
+      <UseReducer />
     </>
   );
 }
