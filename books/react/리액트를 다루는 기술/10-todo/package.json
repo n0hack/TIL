@@ -15,6 +15,7 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
     "react-scripts": "5.0.1",
+    "react-virtualized": "^9.22.3",
     "sass": "^1.54.8",
     "typescript": "^4.4.2",
     "web-vitals": "^2.1.0"
@@ -44,7 +45,12 @@
     ]
   },
   "devDependencies": {
+    "@types/react-virtualized": "^9.21.21",
     "customize-cra": "^1.0.0",
     "react-app-rewired": "^2.2.1"
+  },
+  "resolutions": {
+    "@types/react": "18.0.0",
+    "@types/react-dom": "18.0.0"
   }
 }
