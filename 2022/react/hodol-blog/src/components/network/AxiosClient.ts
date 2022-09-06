@@ -1,15 +1,24 @@
 import axios from "axios";
 import { singleton } from "tsyringe";
+import HttpRepository from "../../repository/HttpRepository";
 
 @singleton()
-export default class AxiosClient {
+export default class AxiosClient implements HttpRepository {
   public client = axios.create({ timeout: 5000 });
 
   public get(url: string) {
-    this.client.get(url);
+    return this.client.get(url);
   }
 
-  public post() {}
+  public post() {
+    return null;
+  }
 
-  public update() {}
+  public update() {
+    return null;
+  }
+
+  public delete() {
+    return null;
+  }
 }
