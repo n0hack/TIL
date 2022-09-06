@@ -1,13 +1,17 @@
 import React, { useRef, useState } from "react";
 import { proxy, useSnapshot } from "valtio";
 import LoginViewModel from "../viewmodel/LoginViewModel";
+import { container } from "tsyringe";
+import UserRepository from "../repository/UserRepository";
 
 const Login = () => {
   const model = useRef(proxy(new LoginViewModel())).current;
   const state = useSnapshot(model);
+  const userRepository = container.resolve(UserRepository);
 
   const edit = () => {
-    model.user.name = "Dante";
+    console.log(">>>", userRepository);
+    userRepository.getUser();
   };
 
   return (
