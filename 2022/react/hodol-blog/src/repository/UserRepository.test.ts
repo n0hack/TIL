@@ -31,4 +31,5 @@ test("getUser", () => {
   result.then(console.log);
 
   // then
+  expect(result).toBe({});
 });
