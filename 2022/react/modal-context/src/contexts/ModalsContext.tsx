@@ -12,10 +12,12 @@ type ModalsDispatch = {
     Component: React.ComponentType<ModalProps>,
     props: ModalProps
   ) => void;
+  allClose: () => void;
 };
 
 export const ModalsDispatchContext = createContext<ModalsDispatch>({
   open: () => {},
   close: () => {},
+  allClose: () => {},
 });
 export const ModalsStateContext = createContext<ModalsState[]>([]);

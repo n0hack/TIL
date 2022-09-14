@@ -36,7 +36,11 @@ export default function ModalsProvider({ children }: Props) {
     });
   };
 
-  const dispatch = useMemo(() => ({ open, close }), []);
+  const allClose = () => {
+    setOpenedModals([]);
+  };
+
+  const dispatch = useMemo(() => ({ open, close, allClose }), []);
 
   return (
     <ModalsStateContext.Provider value={openedModals}>
@@ -56,7 +60,7 @@ function ModalContainer({
   modalContainerParent?: Element;
 }) {
   const modals = useContext(ModalsStateContext);
-  const { close } = useContext(ModalsDispatchContext);
+  const { close, allClose } = useContext(ModalsDispatchContext);
 
   if (modals.length <= 0) {
     console.log("Null Portal:", modals);
@@ -75,7 +79,9 @@ function ModalContainer({
         const handleSubmit = async () => {
           if (typeof onConfirm === "function") {
             const response = await onConfirm();
-            console.log(response);
+            if (response) {
+              allClose();
+            }
           }
           onClose();
         };

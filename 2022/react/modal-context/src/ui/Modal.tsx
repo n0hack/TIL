@@ -4,17 +4,26 @@ import styled from "styled-components";
 export type ModalProps = {
   title: string;
   content?: React.ReactNode;
+  buttons?: boolean;
   onClose?: () => void;
-  onConfirm?: () => void;
+  onConfirm?: () => Promise<boolean | void>;
   onOpen?: () => void;
 };
 
-const Modal = ({ title, content, onClose, onConfirm, onOpen }: ModalProps) => {
+const Modal = ({
+  title,
+  content,
+  onClose,
+  onConfirm,
+  onOpen,
+  buttons,
+}: ModalProps) => {
   const ref = useRef<HTMLDialogElement>(null);
 
   const handleClickConfirm = () => {
     onConfirm!();
   };
+
   const handleClickCancel = () => {
     onClose!();
   };
@@ -29,11 +38,17 @@ const Modal = ({ title, content, onClose, onConfirm, onOpen }: ModalProps) => {
     <Dialog ref={ref}>
       <h2>{title}</h2>
       {content && <div>{content}</div>}
-      <div>
+      {buttons && (
+        <div>
+          <button onClick={handleClickCancel}>아뇽</button>
+          <button onClick={handleClickConfirm}>확인</button>
+        </div>
+      )}
+      {/* <div>
         <button onClick={handleClickCancel}>취소</button>
         <button onClick={handleClickConfirm}>확인</button>
         <button onClick={onOpen}>모달 추가</button>
-      </div>
+      </div> */}
     </Dialog>
   );
 };
