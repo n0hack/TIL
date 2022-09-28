@@ -23,13 +23,46 @@ app.get("/send/:to", (req, res) => {
   res.send("메시지 전송 완료");
 });
 
-app.get("/send/f/:to", (req, res) => {
+app.get("/send/us/:to", (req, res) => {
   messageService.send({
     to: req.params.to,
     from: phoneNumber,
-    text: "솔라피 해외 문자(SMS) 테스트",
+    text: "솔라피 미국 문자(SMS) 테스트",
     // 한국 국가번호, 국가번호 뒤에 추가로 번호가 붙는 국가들은 붙여서 기입 (ex. 1 441 -> "1441")
-    country: "82",
+    country: "1",
+  });
+  res.send("메시지 전송 완료");
+});
+
+app.get("/send/us/:to", (req, res) => {
+  messageService.send({
+    to: req.params.to,
+    from: phoneNumber,
+    text: "솔라피 미국 문자(SMS) 테스트",
+    // 한국 국가번호, 국가번호 뒤에 추가로 번호가 붙는 국가들은 붙여서 기입 (ex. 1 441 -> "1441")
+    country: "1",
+  });
+  res.send("메시지 전송 완료");
+});
+
+app.get("/send/uk/:to", (req, res) => {
+  messageService.send({
+    to: req.params.to,
+    from: phoneNumber,
+    text: "솔라피 영국 문자(SMS) 테스트",
+    // 한국 국가번호, 국가번호 뒤에 추가로 번호가 붙는 국가들은 붙여서 기입 (ex. 1 441 -> "1441")
+    country: "44",
+  });
+  res.send("메시지 전송 완료");
+});
+
+app.get("/send/jp/:to", (req, res) => {
+  messageService.send({
+    to: req.params.to,
+    from: phoneNumber,
+    text: "솔라피 일본 문자(SMS) 테스트",
+    // 한국 국가번호, 국가번호 뒤에 추가로 번호가 붙는 국가들은 붙여서 기입 (ex. 1 441 -> "1441")
+    country: "81",
   });
   res.send("메시지 전송 완료");
 });
