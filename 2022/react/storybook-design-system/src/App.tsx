@@ -1,10 +1,10 @@
-/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
 import React from 'react';
 import { useCallback } from 'react';
 import { useMemo } from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import Button from './Button/Button';
 
 interface Props {}
 
@@ -68,6 +68,7 @@ const App = ({}: Props) => {
         <span>높이 차:{initialHeight! - height!}</span>
         <br />
         <input />
+        <Button>버튼</Button>
       </div>
       <button
         css={css`
