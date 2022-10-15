@@ -5,6 +5,7 @@ interface Props {
   children?: React.ReactNode;
   theme?: 'primary' | 'secondary' | 'tertiary';
   size?: 'small' | 'medium' | 'big';
+  width?: string | number;
   disabled?: boolean;
   onClick?: (e?: React.MouseEvent<HTMLButtonElement>) => void;
 }
@@ -13,12 +14,13 @@ const Button = ({
   children,
   theme = 'primary',
   size = 'medium',
+  width,
   disabled,
   onClick,
 }: Props) => {
   return (
     <button
-      css={[style, themes[theme], sizes[size]]}
+      css={[style, themes[theme], sizes[size], { width }]}
       onClick={onClick}
       disabled={disabled}
     >

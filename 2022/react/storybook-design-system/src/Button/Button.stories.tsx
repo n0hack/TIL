@@ -10,6 +10,8 @@ export default {
     children: { description: '버튼 안의 내용' },
     theme: { description: '버튼의 생김새를 설정합니다.' },
     size: { description: '버튼의 크기를 설정합니다.' },
+    width: { description: '버튼의 너비를 임의로 설정합니다.' },
+    disabled: { description: '버튼을 비활성화 시킵니다.' },
     onClick: { description: '클릭했을 때 호출할 함수' },
   },
 } as ComponentMeta<typeof Button>;
@@ -82,6 +84,19 @@ export const disabled = () => {
         <Button disabled theme="tertiary">
           TERTIARY
         </Button>
+      </div>
+    </div>
+  );
+};
+
+export const customSized = () => {
+  return (
+    <div css={buttonWrapper}>
+      <div>
+        <Button width="20rem">CUSTOM WIDTH</Button>
+      </div>
+      <div>
+        <Button width="100%">FULL WIDTH</Button>
       </div>
     </div>
   );
