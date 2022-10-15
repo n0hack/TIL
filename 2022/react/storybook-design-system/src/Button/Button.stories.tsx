@@ -14,6 +14,11 @@ export default {
     disabled: { description: '버튼을 비활성화 시킵니다.' },
     onClick: { description: '클릭했을 때 호출할 함수' },
   },
+  parameters: {
+    actions: {
+      argTypesRegex: '^on.*',
+    },
+  },
 } as ComponentMeta<typeof Button>;
 
 const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
