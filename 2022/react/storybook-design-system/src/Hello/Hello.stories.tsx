@@ -19,7 +19,14 @@ export default {
       description: 'Bye 버튼 클릭 시 실행할 함수',
     },
   },
-  parameters: { actions: { argTypesRegex: '^on.*' } },
+  parameters: {
+    actions: { argTypesRegex: '^on.*' },
+    docs: {
+      description: {
+        component: '안녕하세요. 라고 보여주는 컴포넌트',
+      },
+    },
+  },
 } as ComponentMeta<typeof Hello>;
 
 const Template: ComponentStory<typeof Hello> = (args) => <Hello {...args} />;
@@ -27,6 +34,13 @@ const Template: ComponentStory<typeof Hello> = (args) => <Hello {...args} />;
 export const standard = Template.bind({});
 standard.args = {
   name: 'Storybook',
+};
+standard.parameters = {
+  docs: {
+    description: {
+      component: '안녕하세요. 라고 보여주는 컴포넌트',
+    },
+  },
 };
 
 // big = () => <Hello big />
