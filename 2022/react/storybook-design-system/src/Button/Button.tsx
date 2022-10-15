@@ -5,6 +5,7 @@ interface Props {
   children?: React.ReactNode;
   theme?: 'primary' | 'secondary' | 'tertiary';
   size?: 'small' | 'medium' | 'big';
+  disabled?: boolean;
   onClick?: (e?: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
@@ -12,10 +13,15 @@ const Button = ({
   children,
   theme = 'primary',
   size = 'medium',
+  disabled,
   onClick,
 }: Props) => {
   return (
-    <button css={[style, themes[theme], sizes[size]]} onClick={onClick}>
+    <button
+      css={[style, themes[theme], sizes[size]]}
+      onClick={onClick}
+      disabled={disabled}
+    >
       {children}
     </button>
   );
@@ -38,6 +44,9 @@ const style = css`
   &:focus {
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
   }
+  &:disabled {
+    cursor: not-allowed;
+  }
   &:hover {
     background: #38d9a9;
   }
@@ -50,31 +59,40 @@ const themes = {
   primary: css`
     background: #20c997;
     color: white;
-    &:hover {
+    &:hover:enabled {
       background: #38d9a9;
     }
-    &:active {
+    &:active:enabled {
       background: #12b886;
+    }
+    &:disabled {
+      background: #aed9cc;
     }
   `,
   secondary: css`
     background: #e9ecef;
     color: #343a40;
-    &:hover {
+    &:hover:enabled {
       background: #f1f3f5;
     }
-    &:active {
+    &:active:enabled {
       background: #dee2e6;
+    }
+    &:disabled {
+      color: #c6d3e1;
     }
   `,
   tertiary: css`
     background: none;
     color: #20c997;
-    &:hover {
+    &:hover:enabled {
       background: #e6fcf5;
     }
-    &:active {
+    &:active:enabled {
       background: #c3fae8;
+    }
+    &:disabled {
+      color: #bcd9d0;
     }
   `,
 };
