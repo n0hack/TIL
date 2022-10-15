@@ -4,7 +4,7 @@ import { css, jsx } from '@emotion/react';
 
 interface Props {
   children?: React.ReactNode;
-  onClick: (e?: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick?: (e?: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const Button = ({ children, onClick }: Props) => {
