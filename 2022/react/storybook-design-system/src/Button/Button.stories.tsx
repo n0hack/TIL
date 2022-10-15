@@ -2,6 +2,8 @@ import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import Button from './Button';
 import { css } from '@emotion/react';
+import ButtonGroup from '../ButtonGroup/ButtonGroup';
+import Icon from '../Icon/Icon';
 
 export default {
   title: 'components/Button',
@@ -103,6 +105,42 @@ export const customSized = () => {
       <div>
         <Button width="100%">FULL WIDTH</Button>
       </div>
+    </div>
+  );
+};
+
+export const withIcon = () => {
+  return (
+    <div>
+      <ButtonGroup>
+        <Button size="small">
+          <Icon icon="heart" /> LIKE
+        </Button>
+        <Button>
+          <Icon icon="heart" /> LIKE
+        </Button>
+        <Button size="big">
+          <Icon icon="heart" /> LIKE
+        </Button>
+      </ButtonGroup>
+    </div>
+  );
+};
+
+export const iconOnly = () => {
+  return (
+    <div>
+      <ButtonGroup>
+        <Button iconOnly size="small">
+          <Icon icon="heart" />
+        </Button>
+        <Button iconOnly>
+          <Icon icon="heart" />
+        </Button>
+        <Button iconOnly size="big">
+          <Icon icon="heart" />
+        </Button>
+      </ButtonGroup>
     </div>
   );
 };

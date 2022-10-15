@@ -7,6 +7,7 @@ interface Props {
   size?: 'small' | 'medium' | 'big';
   width?: string | number;
   disabled?: boolean;
+  iconOnly?: boolean;
   onClick?: (e?: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
@@ -16,11 +17,18 @@ const Button = ({
   size = 'medium',
   width,
   disabled,
+  iconOnly,
   onClick,
 }: Props) => {
   return (
     <button
-      css={[style, themes[theme], sizes[size], { width }]}
+      css={[
+        style,
+        themes[theme],
+        sizes[size],
+        { width },
+        iconOnly && [iconOnlyStyle, iconOnlySizes[size]],
+      ]}
       onClick={onClick}
       disabled={disabled}
     >
@@ -55,12 +63,20 @@ const style = css`
   &:active {
     background: #12b886;
   }
+
+  svg {
+    width: 1em;
+    margin-right: 1em;
+  }
 `;
 
 const themes = {
   primary: css`
     background: #20c997;
     color: white;
+    svg {
+      fill: white;
+    }
     &:hover:enabled {
       background: #38d9a9;
     }
@@ -74,6 +90,9 @@ const themes = {
   secondary: css`
     background: #e9ecef;
     color: #343a40;
+    svg {
+      fill: #343a40;
+    }
     &:hover:enabled {
       background: #f1f3f5;
     }
@@ -87,6 +106,9 @@ const themes = {
   tertiary: css`
     background: none;
     color: #20c997;
+    svg {
+      fill: #20c997;
+    }
     &:hover:enabled {
       background: #e6fcf5;
     }
@@ -114,5 +136,25 @@ const sizes = {
     height: 3rem;
     font-size: 1.125rem;
     padding: 0 1.5rem;
+  `,
+};
+
+const iconOnlyStyle = css`
+  padding: 0;
+  border-radius: 50%;
+  svg {
+    margin: 0;
+  }
+`;
+
+const iconOnlySizes = {
+  small: css`
+    width: 1.75rem;
+  `,
+  medium: css`
+    width: 2.5rem;
+  `,
+  big: css`
+    width: 3rem;
   `,
 };
