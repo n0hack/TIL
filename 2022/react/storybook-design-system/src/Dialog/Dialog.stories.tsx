@@ -16,7 +16,7 @@ const Template: ComponentStory<typeof Dialog> = (args) => <Dialog {...args} />;
 export const Default = Template.bind({});
 Default.args = {
   title: '결제 성공',
-  visible: true,
+  open: false,
   description: '결제가 성공적으로 이루어졌습니다.',
   confirmText: '확인',
   cancelText: '취소',
@@ -28,7 +28,7 @@ export const cancellable = () => {
     <Dialog
       title="포스트 삭제"
       description="포스트를 정말로 삭제하시겠습니까?"
-      visible={true}
+      open={true}
       confirmText="삭제"
       cancelText="취소"
       cancellable
@@ -38,7 +38,7 @@ export const cancellable = () => {
 
 export const customContent = () => {
   return (
-    <Dialog visible={true} hideButtons>
+    <Dialog open={true} hideButtons>
       Custom Content
     </Dialog>
   );

@@ -5,6 +5,7 @@ import { useMemo } from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import Button from './Button/Button';
+import Dialog from './Dialog/Dialog';
 
 interface Props {}
 
@@ -32,6 +33,7 @@ const App = ({}: Props) => {
 
     return mobileRegex.some((mobile) => navigator.userAgent.match(mobile));
   }, []);
+  const [open, setOpen] = useState(false);
 
   const handleResize = useCallback(
     (e: any) => {
@@ -68,7 +70,7 @@ const App = ({}: Props) => {
         <span>높이 차:{initialHeight! - height!}</span>
         <br />
         <input />
-        <Button>버튼</Button>
+        <Button onClick={() => setOpen(true)}>버튼</Button>
       </div>
       <button
         css={css`
@@ -81,6 +83,12 @@ const App = ({}: Props) => {
       >
         버튼
       </button>
+      <Dialog
+        open={open}
+        title="다이얼로그"
+        confirmText="확인"
+        onConfirm={() => setOpen(false)}
+      />
     </div>
   );
 };

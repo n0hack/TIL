@@ -1,10 +1,10 @@
-import { css } from '@emotion/react';
-import React from 'react';
+import { css, keyframes } from '@emotion/react';
+import React, { useEffect, useState } from 'react';
 import Button from '../Button/Button';
 import ButtonGroup from '../ButtonGroup/ButtonGroup';
 
 interface Props {
-  visible?: boolean;
+  open?: boolean;
   title?: string;
   description?: string;
   children?: React.ReactNode;
@@ -17,7 +17,7 @@ interface Props {
 }
 
 const Dialog = ({
-  visible,
+  open = false,
   title,
   description,
   hideButtons,
@@ -28,12 +28,25 @@ const Dialog = ({
   onCancel,
   onConfirm,
 }: Props) => {
-  if (!visible) return null;
+  const [visible, setVisible] = useState(open);
+  const [animate, setAnimate] = useState(true);
+
+  useEffect(() => {
+    if (open) {
+      setVisible(true);
+      setAnimate(true);
+    } else {
+      setAnimate(false);
+      setTimeout(() => setVisible(false), 300);
+    }
+  }, [open]);
+
+  console.log(`open: ${open}, visible: ${visible}, animate: ${animate}`);
 
   return (
-    <>
-      <div css={[fullscreen, darkLayer]}></div>
-      <div css={[fullscreen, whiteBoxWrapper]}>
+    <div css={[visible ? { display: 'block' } : { display: 'none' }]}>
+      <div css={[fullscreen, darkLayer, animate ? fadeIn : fadeOut]}></div>
+      <div css={[fullscreen, whiteBoxWrapper, animate ? slideUp : slideOut]}>
         <div css={whiteBox}>
           {title && <h3>{title}</h3>}
           {description && <p>{description}</p>}
@@ -50,7 +63,7 @@ const Dialog = ({
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
@@ -62,6 +75,62 @@ const fullscreen = css`
   left: 0;
   width: 100%;
   height: 100%;
+`;
+
+const fadeInTransition = keyframes`
+  0% {
+  opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`;
+
+const fadeOutTransition = keyframes`
+  0% {
+    opacity: 1;
+  }
+  100% {
+  opacity: 0;
+  }
+`;
+
+const fadeIn = css`
+  animation: ${fadeInTransition} 0.3s ease-in;
+  animation-fill-mode: forwards;
+`;
+
+const fadeOut = css`
+  animation: ${fadeOutTransition} 0.3s ease-in;
+  animation-fill-mode: forwards;
+`;
+
+const slideUpTransition = keyframes`
+  from {
+    transform: translateY(200px) scale(0.8);
+  }
+  to {
+    transform: translateY(0) scale(1);
+  }
+`;
+
+const slideOutTransition = keyframes`
+  from {
+    transform: translateY(0) scale(1);
+  }
+  to {
+    transform: translateY(200px) scale(0.8);
+  }
+`;
+
+const slideUp = css`
+  animation: ${slideUpTransition} 0.3s ease-in;
+  animation-fill-mode: forwards;
+`;
+
+const slideOut = css`
+  animation: ${slideOutTransition} 0.3s ease-in;
+  animation-fill-mode: forwards;
 `;
 
 const darkLayer = css`

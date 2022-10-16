@@ -70,5 +70,7 @@
     "prop-types": "^15.8.1",
     "webpack": "^5.74.0"
   },
-  "peerDependencies": {}
+  "peerDependencies": {
+    "react-spring": "^9.5.5"
+  }
 }
