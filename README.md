@@ -1,8 +1,4 @@
-# 오늘을 기록한다는 것 📝
-
-<p align="center">
-  <img src="images/readme.jpg" style="margin-bottom: 12px; border-radius: 10px;">
-</p>
+![Github Thumbnail 복사](https://user-images.githubusercontent.com/42988225/200174957-5f5853da-f30b-4099-94f7-ccbbca738156.jpg)
 
 > **success is the sum of small efforts, repeated day in and day out**
 
