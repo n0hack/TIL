@@ -1,14 +1,10 @@
+# 오늘을 기록한다는 것 📝
+
 <p align="center">
   <img src="images/readme.jpg" style="margin-bottom: 12px; border-radius: 10px;">
 </p>
 
-# 오늘을 기록한다는 것 📝
-
-<br>
-
 > **success is the sum of small efforts, repeated day in and day out**
-
-<br>
 
 <p align="justify">
 사람의 기억력이 아무리 좋다 하더라도, 절대로 기록을 이길 수는 없습니다. 그렇기에 하루하루 공부한 것을 <code>TIL(Today I Learend)</code>에 꾸준히 남겨, 제 성장을 위한 발판으로 삼으려 합니다. 비록 어떤 날은 잠시 컴퓨터와 멀어져 쉬는 날도 있겠지만, 멈추지 않고 내용을 알차게 채워 나가는 것이 목표입니다. 
@@ -17,8 +13,6 @@
 <br><br>
 일부 기록은 제 블로그 <a href="https://lucid-dream.net">lucid_dream</a>에 업로드됩니다! 🤗
 </p>
-
-<br>
 
 ---
 
@@ -42,9 +36,6 @@
 - [[Book] 리액트를 다루는 기술 (Velopert님)](http://www.yes24.com/Product/Goods/78233628)
 - [[Book] 리액트 네이티브를 다루는 기술 (Velopert님)](http://www.yes24.com/Product/Goods/104643906)
 
----
-
-<br>
 
 ## License
 
