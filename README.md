@@ -11,10 +11,10 @@
 <br><br>
 그리고 별도의 주제를 정하지 않고, 공부하고 싶은 것이 생기면 그때마다 공부해서 올릴 생각입니다. 예전에는 한 가지를 정하면 완벽하게 끝을 볼 때까지 올인을 했었는데, 처음에는 좋았지만 뒤로 갈수록 집중이 떨어지고, 오히려 전체적으로 흥미가 떨어지는 계기가 되었습니다. 그래서 이제는 하고 싶은 것이 있다면 일단 여유를 갖고 해보면서, 천천히 하나씩 하나씩 즐겨 보려 합니다.
 <br><br>
-일부 기록은 제 블로그 <a href="https://lucid-dream.net">lucid_dream</a>에 업로드됩니다! 🤗
+일부 기록은 제 블로그 <a href="https://lucid-dream.net">lucid_dream</a>에 업로드됩니다! 😆
 </p>
 
----
+<br>
 
 **HTML + CSS**
 
@@ -36,7 +36,8 @@
 - [[Book] 리액트를 다루는 기술 (Velopert님)](http://www.yes24.com/Product/Goods/78233628)
 - [[Book] 리액트 네이티브를 다루는 기술 (Velopert님)](http://www.yes24.com/Product/Goods/104643906)
 
+<br>
 
 ## License
 
-MIT &copy; [NoHack](mailto:lbjp114@gmail.com)
+MIT &copy; [NoHack](mailto:nohack-@naver.com)
