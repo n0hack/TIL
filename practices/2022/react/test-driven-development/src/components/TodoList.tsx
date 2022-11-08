@@ -8,6 +8,7 @@ interface Props {
 }
 
 const TodoList = ({ todos, onToggle, onRemove }: Props) => {
+  console.log('리렌더 TodoList');
   return (
     <ul data-testid="TodoList">
       {todos.map((todo) => (

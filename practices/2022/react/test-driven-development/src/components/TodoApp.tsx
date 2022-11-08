@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import TodoForm from './TodoForm';
 import { Todo } from './TodoItem';
 import TodoList from './TodoList';
@@ -20,22 +20,24 @@ const TodoApp = ({}: Props) => {
   ]);
   const nextId = useRef(3);
 
-  const onInsert = (text: string) => {
-    setTodos(todos.concat({ id: nextId.current, text, done: false }));
+  const onInsert = useCallback((text: string) => {
+    setTodos((todos) =>
+      todos.concat({ id: nextId.current, text, done: false })
+    );
     nextId.current += 1;
-  };
+  }, []);
 
-  const onToggle = (id: number) => {
-    setTodos(
+  const onToggle = useCallback((id: number) => {
+    setTodos((todos) =>
       todos.map((todo) =>
         todo.id === id ? { ...todo, done: !todo.done } : todo
       )
     );
-  };
+  }, []);
 
-  const onRemove = (id: number) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
-  };
+  const onRemove = useCallback((id: number) => {
+    setTodos((todos) => todos.filter((todo) => todo.id !== id));
+  }, []);
 
   return (
     <>

@@ -13,6 +13,7 @@ interface Props {
 }
 
 const TodoItem = ({ todo, onToggle, onRemove }: Props) => {
+  console.log('리렌더 TodoItem', todo.text);
   return (
     <li>
       <span
@@ -26,4 +27,4 @@ const TodoItem = ({ todo, onToggle, onRemove }: Props) => {
   );
 };
 
-export default TodoItem;
+export default React.memo(TodoItem);
