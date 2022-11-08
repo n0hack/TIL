@@ -1,11 +1,13 @@
 import React from 'react';
 
+export interface Todo {
+  id: number;
+  text: string;
+  done: boolean;
+}
+
 interface Props {
-  todo: {
-    id: number;
-    text: string;
-    done: boolean;
-  };
+  todo: Todo;
   onToggle?: (id: number) => void;
   onRemove?: (id: number) => void;
 }
