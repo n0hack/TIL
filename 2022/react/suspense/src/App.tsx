@@ -1,24 +1,31 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import LoadingSpinner from './components/LoadingSpinner';
+import { useQuery } from 'react-query';
+import axios from 'axios';
 
 function App() {
+  const { data } = useQuery(
+    'test',
+    () => {
+      return axios.get<{ id: number; name: string }[]>(
+        'https://jsonplaceholder.typicode.com/users'
+      );
+    },
+    {
+      cacheTime: 0,
+    }
+  );
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>리액트 서스펜스</div>
+      <Suspense fallback={<LoadingSpinner />}>
+        {data?.data.map((user) => (
+          <div key={user.id}>{user.name}</div>
+        ))}
+      </Suspense>
     </div>
   );
 }
