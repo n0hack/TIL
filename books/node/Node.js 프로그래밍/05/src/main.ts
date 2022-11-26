@@ -2,43 +2,71 @@ import http from 'http';
 import express, { NextFunction, Request, Response } from 'express';
 import cookieParser from 'cookie-parser';
 import expressSession from 'express-session';
+import multer from 'multer';
+import cors from 'cors';
 
 const app = express();
 const router = express.Router();
 
-router.post('/process/login', (req, res) => {
-  console.log(req.body.id, req.body.password);
+// router.post('/process/login', (req, res) => {
+//   console.log(req.body.id, req.body.password);
 
-  if (req.session.user) {
-    console.log('이미 로그인되어 있습니다.');
-    res.redirect('/product.html');
-  } else {
-    req.session.user = {
-      id: Number(req.body.id),
-      name: '밍',
-      authorized: true,
-    };
+//   if (req.session.user) {
+//     console.log('이미 로그인되어 있습니다.');
+//     res.redirect('/product.html');
+//   } else {
+//     req.session.user = {
+//       id: Number(req.body.id),
+//       name: '밍',
+//       authorized: true,
+//     };
 
-    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-    res.write('<h1>로그인 성공</h1>');
-    res.end();
-  }
+//     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+//     res.write('<h1>로그인 성공</h1>');
+//     res.end();
+//   }
+// });
+
+app.use('/static', express.static('static'));
+app.use('/', express.static('public'));
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(cookieParser());
+app.use(
+  expressSession({ secret: 'my key', resave: true, saveUninitialized: true })
+);
+app.use(cors());
+
+const storage = multer.diskStorage({
+  destination: (req, file, callback) => {
+    callback(null, 'upload');
+  },
+  filename: (req, file, callback) => {
+    callback(null, file.originalname + Date.now());
+  },
+});
+
+const upload = multer({
+  storage: storage,
+  limits: {
+    files: 10,
+    fileSize: 1024 * 1024 * 1024,
+  },
+});
+
+router.post('/process/photo', upload.array('photo', 1), (req, res) => {
+  console.log('/process/photo 호출');
+
+  try {
+    const files = req.file;
+    console.log(files);
+  } catch (e) {}
 });
 
 const middleware = (req: Request, res: Response, next: NextFunction) => {
   console.log('Custom Middleware');
   next();
 };
-app.use(middleware);
-
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
-app.use('/static', express.static('static'));
-app.use('/', express.static('public'));
-app.use(cookieParser());
-app.use(
-  expressSession({ secret: 'my key', resave: true, saveUninitialized: true })
-);
 
 router.get('/', (req, res) => {
   res.send('Hello World');
