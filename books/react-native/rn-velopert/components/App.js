@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
+  Button,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -14,18 +15,16 @@ import Box from './components/Box';
 import Greeting from './components/Greeting';
 
 const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
+  const [visible, setVisible] = useState(true);
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  const onPress = () => {
+    setVisible(!visible);
   };
 
   return (
     <SafeAreaView>
-      <Greeting name="함수 컴포넌트" />
-      <Box rounded size="small" color="red" />
-      <Box rounded size="medium" />
-      <Box rounded size="large" />
+      <Button title="토글" onPress={onPress} />
+      {visible && <Box rounded size="large" color="blue" />}
     </SafeAreaView>
   );
 };
