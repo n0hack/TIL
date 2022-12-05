@@ -7,33 +7,38 @@
 <br><br>
 그리고 별도의 주제를 정하지 않고, 공부하고 싶은 것이 생기면 그때마다 공부해서 올릴 생각입니다. 예전에는 한 가지를 정하면 완벽하게 끝을 볼 때까지 올인을 했었는데, 처음에는 좋았지만 뒤로 갈수록 집중이 떨어지고, 오히려 전체적으로 흥미가 떨어지는 계기가 되었습니다. 그래서 이제는 하고 싶은 것이 있다면 일단 여유를 갖고 해보면서, 천천히 하나씩 하나씩 즐겨 보려 합니다.
 <br><br>
-일부 기록은 제 블로그 <a href="https://lucid-dream.net">lucid_dream</a>에 업로드됩니다! 😆
+일부는 제 블로그 <a href="https://lucid-dream.net">lucid_dream</a>에 시리즈 형식으로 업로드됩니다! 😆
 </p>
 
-<br>
+> Teck Stack 저장소는 더 이상 사용하지 않으며, TIL에 통합할 예정입니다.
 
-**HTML + CSS**
+## Interested 🚀
 
-- [[Docs] MDN](https://developer.mozilla.org/ko/)
-- [[Site] CSS Tricks](https://css-tricks.com/)
-- [[Site] DEV.to](https://dev.to/)
+### Languages
 
-**JavaScript**
+- JavaScript
+- TypeScript
+- C# (for Unity)
 
-- [[Docs] MDN](https://developer.mozilla.org/ko/)
-- [[Docs] 모던 자바스크립트 튜토리얼](https://ko.javascript.info/)
-- [[Book] 모던 자바스크립트 Deep Dive (이웅모님)](http://www.yes24.com/Product/Goods/92742567?OzSrank=1)
-- [[Book] 함수형 자바스크립트 (유인동님)](http://www.yes24.com/Product/Goods/56885507?OzSrank=1)
+### Frontend
 
-**React & React Native**
+- React
+- Gatsby
+- Remix
+- Next
 
-- [[Docs] React](https://ko.reactjs.org/)
-- [[Docs] React Native](https://reactnative.dev/)
-- [[Book] 리액트를 다루는 기술 (Velopert님)](http://www.yes24.com/Product/Goods/78233628)
-- [[Book] 리액트 네이티브를 다루는 기술 (Velopert님)](http://www.yes24.com/Product/Goods/104643906)
+### Backend
 
-<br>
+- Node (Fastify)
+- PostgreSQL
+- MongoDB
 
-## License
+### App
 
-MIT &copy; [NoHack](mailto:nohack-@naver.com)
+- Flutter
+- PWA
+- Electron
+
+## Copyrights
+
+© 2022 Ming (NoHack) All rights reserved.
