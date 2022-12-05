@@ -10,8 +10,6 @@
 일부는 제 블로그 <a href="https://lucid-dream.net">lucid_dream</a>에 시리즈 형식으로 업로드됩니다! 😆
 </p>
 
-> Teck Stack 저장소는 더 이상 사용하지 않으며, TIL에 통합할 예정입니다.
-
 ## Interested 🚀
 
 ### Languages
@@ -39,6 +37,6 @@
 - PWA
 - Electron
 
-## Copyrights
+## Copyrights 📌
 
 © 2022 Ming (NoHack) All rights reserved.
