@@ -1,7 +1,7 @@
 import React from 'react';
 import { HeadFC } from 'gatsby';
 import Layout from '../components/Layout';
-import SEO from '../components/Seo';
+import Seo from '../components/Seo';
 
 export default function AboutUs() {
   return (
@@ -11,4 +11,4 @@ export default function AboutUs() {
   );
 }
 
-export const Head: HeadFC = () => <SEO title="About Us" />;
+export const Head: HeadFC = () => <Seo title="About Us" />;

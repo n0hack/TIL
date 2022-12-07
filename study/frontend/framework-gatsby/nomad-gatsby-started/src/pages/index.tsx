@@ -1,7 +1,7 @@
 import React from 'react';
-import { HeadFC } from 'gatsby';
+import { graphql, HeadFC, useStaticQuery } from 'gatsby';
 import Layout from '../components/Layout';
-import SEO from '../components/Seo';
+import Seo from '../components/Seo';
 
 export default function IndexPage() {
   return (
@@ -11,4 +11,4 @@ export default function IndexPage() {
   );
 }
 
-export const Head: HeadFC = () => <SEO title="Home" />;
+export const Head: HeadFC = () => <Seo title="Home" />;
