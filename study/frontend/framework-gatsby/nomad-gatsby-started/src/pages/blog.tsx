@@ -3,12 +3,12 @@ import { HeadFC } from 'gatsby';
 import Layout from '../components/Layout';
 import SEO from '../components/Seo';
 
-export default function IndexPage() {
+export default function Blog() {
   return (
-    <Layout title="Welcome to DevStickers">
-      <div></div>
+    <Layout title="Blog">
+      <p>The most recent news from my shop.</p>
     </Layout>
   );
 }
 
-export const Head: HeadFC = () => <SEO title="Home" />;
+export const Head: HeadFC = () => <SEO title="Blog" />;
