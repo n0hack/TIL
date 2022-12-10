@@ -1,4 +1,10 @@
 import { graphql, PageProps } from 'gatsby';
+import {
+  GatsbyImage,
+  getImage,
+  IGatsbyImageData,
+  StaticImage,
+} from 'gatsby-plugin-image';
 import React from 'react';
 import Layout from '../../components/Layout';
 import Seo from '../../components/Seo';
@@ -7,7 +13,18 @@ export default function BlogPost({
   data,
   children,
 }: PageProps<Queries.PostDetailQuery>) {
-  return <Layout title="Blog Post">{children}</Layout>;
+  // 이미지 객체 생성
+  const image = getImage(
+    data.mdx?.frontmatter?.headerImage?.childrenImageSharp?.[0]
+      ?.gatsbyImageData!
+  );
+
+  return (
+    <Layout title="Blog Post">
+      {children}
+      {/* <GatsbyImage image={image as IGatsbyImageData} alt="header" /> */}
+    </Layout>
+  );
 }
 
 export const query = graphql`
@@ -17,8 +34,13 @@ export const query = graphql`
         author
         category
         date
-        slug
         title
+        slug
+        headerImage {
+          childrenImageSharp {
+            gatsbyImageData(height: 300, placeholder: BLURRED)
+          }
+        }
       }
     }
   }
