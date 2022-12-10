@@ -8,7 +8,7 @@ interface ILayoutProps {
 
 const Layout = ({ title, children }: ILayoutProps) => {
   return (
-    <div>
+    <div className="container">
       <nav>
         <ul>
           <li>
