@@ -18,6 +18,9 @@ const config: GatsbyConfig = {
         path: `${__dirname}/blog-posts`,
       },
     },
+    `gatsby-plugin-image`,
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
   ],
 };
 

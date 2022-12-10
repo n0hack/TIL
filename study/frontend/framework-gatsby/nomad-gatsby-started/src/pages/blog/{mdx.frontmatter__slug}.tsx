@@ -24,6 +24,7 @@ export const query = graphql`
   }
 `;
 
+// MDX는 Head에서도 데이터를 받아올 수 있음
 export const Head = ({ data }: PageProps<Queries.PostDetailQuery>) => (
   <Seo title={data.mdx?.frontmatter?.title!} />
 );
