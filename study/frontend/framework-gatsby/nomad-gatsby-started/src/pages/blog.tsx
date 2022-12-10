@@ -3,24 +3,38 @@ import { graphql, HeadFC, PageProps } from 'gatsby';
 import Layout from '../components/Layout';
 import Seo from '../components/Seo';
 
-export default function Blog({ data }: PageProps<Queries.BlogTitlesQuery>) {
-  console.log(data);
+export default function Blog({ data }: PageProps<Queries.BlogPostQuery>) {
   return (
     <Layout title="Blog">
-      <ul>
-        {data.allFile.nodes.map((file, index) => (
-          <li key={index}>{file.name}</li>
+      <section>
+        {data.allMdx.nodes.map((file, index) => (
+          <article key={index}>
+            <h3>{file.frontmatter?.title}</h3>
+            <h5>
+              {file.frontmatter?.author} in {file.frontmatter?.category}
+            </h5>
+            <h6>{file.frontmatter?.date}</h6>
+            <hr />
+            <p>{file.excerpt}</p>
+          </article>
         ))}
-      </ul>
+      </section>
     </Layout>
   );
 }
 
 export const query = graphql`
-  query BlogTitles {
-    allFile {
+  query BlogPost {
+    allMdx {
       nodes {
-        name
+        frontmatter {
+          category
+          title
+          date(formatString: "YYYY.MM.DD")
+          author
+        }
+        body
+        excerpt(pruneLength: 50)
       }
     }
   }
