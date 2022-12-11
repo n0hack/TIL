@@ -1,12 +1,17 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import ProfileImage from './ProfileImage';
+import { IGatsbyImageData } from 'gatsby-plugin-image';
 
-const Introduction = () => {
+interface Props {
+  profileImage: IGatsbyImageData;
+}
+
+const Introduction = ({ profileImage }: Props) => {
   return (
     <Background>
       <Wrapper>
-        <ProfileImage />
+        <ProfileImage profileImage={profileImage} />
         <div>
           <SubTitle>ㅎㅇ</SubTitle>
           <Title>ㅎㅇ</Title>

@@ -1,26 +1,35 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import PostItem from './PostItem';
+import { PageProps } from 'gatsby';
+import { useMemo } from 'react';
+import useInfiniteScroll from '@hooks/useInfiniteScroll';
 
-interface Props {}
-
-const POST_ITEM_DATA = {
-  title: 'Post Item Title',
-  date: '2020.01.29.',
-  categories: ['Web', 'Frontend', 'Testing'],
-  summary:
-    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident repellat doloremque fugit quis rem temporibus! Maxime molestias, suntrem debitis odit harum impedit. Modi cupiditate harum dignissimos eos in corrupti!',
-  thumbnail: 'https://cdn.gamemeca.com/gmboard/mobile_free/2022/03/21/20220321155711_361232.gif',
-  link: '<https://www.google.co.kr/>',
+type Mutable<T> = {
+  -readonly [P in keyof T]: T[P];
 };
 
-const PostList = ({}: Props) => {
+interface Props {
+  selectedCategory: string;
+  posts: Queries.getPostListQuery['allMarkdownRemark']['edges'];
+}
+
+const PostList = ({ selectedCategory, posts }: Props) => {
+  const { containerRef, postList } = useInfiniteScroll(selectedCategory, posts);
+
   return (
-    <PostListWrapper>
-      <PostItem {...POST_ITEM_DATA} />
-      <PostItem {...POST_ITEM_DATA} />
-      <PostItem {...POST_ITEM_DATA} />
-      <PostItem {...POST_ITEM_DATA} />
+    <PostListWrapper ref={containerRef}>
+      {postList.map(({ node: { id, frontmatter } }) => (
+        <PostItem
+          key={id}
+          title={frontmatter?.title!}
+          categories={frontmatter?.categories as string[]}
+          date={frontmatter?.date!}
+          summary={frontmatter?.summary!}
+          thumbnail={frontmatter?.thumbnail?.childrenImageSharp?.[0]?.gatsbyImageData!}
+          link="https://www.google.com"
+        />
+      ))}
     </PostListWrapper>
   );
 };
