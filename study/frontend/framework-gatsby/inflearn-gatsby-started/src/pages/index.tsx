@@ -6,6 +6,7 @@ import Footer from '@components/common/Footer';
 import CategoryList from '@components/main/CategoryList';
 import PostList from '@components/main/PostList';
 import { useMemo } from 'react';
+import Template from '@components/common/Template';
 
 const CATEGORY_LIST = {
   All: 5,
@@ -35,13 +36,11 @@ const Index = (props: PageProps<Queries.getPostListQuery>) => {
   const { file } = props.data;
 
   return (
-    <Container>
-      <GlobalStyle />
+    <Template>
       <Introduction profileImage={file?.childImageSharp?.gatsbyImageData!} />
       <CategoryList selectedCategory={selectedCategory} categoryList={categoryList} />
       <PostList posts={props.data.allMarkdownRemark.edges} selectedCategory={selectedCategory} />
-      <Footer />
-    </Container>
+    </Template>
   );
 };
 
@@ -95,9 +94,3 @@ export async function getServerData() {
     };
   }
 }
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-`;
