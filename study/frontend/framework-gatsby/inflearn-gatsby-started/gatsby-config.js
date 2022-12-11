@@ -89,5 +89,14 @@ module.exports = {
         ],
       },
     },
+    // Canocical URL이란 대표적으로 사용되는 URL을 의미한다.
+    // 이를 설정하지 않으면 임의의 페이지가 사이트를 대표하는 URL로서 크롤링이 될 수 있다.
+    {
+      resolve: 'gatsby-plugin-canonical-urls',
+      options: {
+        siteUrl: 'https://lucid-dream.net',
+        stripQueryString: true,
+      },
+    },
   ],
 };
