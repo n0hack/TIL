@@ -19,7 +19,7 @@ const PostList = ({ selectedCategory, posts }: Props) => {
 
   return (
     <PostListWrapper ref={containerRef}>
-      {postList.map(({ node: { id, frontmatter } }) => (
+      {postList.map(({ node: { id, fields, frontmatter } }) => (
         <PostItem
           key={id}
           title={frontmatter?.title!}
@@ -27,7 +27,7 @@ const PostList = ({ selectedCategory, posts }: Props) => {
           date={frontmatter?.date!}
           summary={frontmatter?.summary!}
           thumbnail={frontmatter?.thumbnail?.childrenImageSharp?.[0]?.gatsbyImageData!}
-          link="https://www.google.com"
+          link={fields?.slug!}
         />
       ))}
     </PostListWrapper>

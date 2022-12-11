@@ -14,7 +14,7 @@ interface Props {
 
 const PostItem = ({ title, date, categories, summary, thumbnail, link }: Props) => {
   return (
-    <PostItemWrapper to="">
+    <PostItemWrapper to={link}>
       <ThumbnailImage image={getImage(thumbnail) as IGatsbyImageData} alt="Post Item Image" />
       <PostItemContent>
         <Title>{title}</Title>
