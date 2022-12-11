@@ -9,13 +9,14 @@
  */
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
-    siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
+    title: `Gatsby 블로그`,
+    description: `Gatsby 공부겸 만들어 봄`,
+    author: `Ming`,
+    siteUrl: `https://lucid-dream.net`,
   },
   graphqlTypegen: true,
   plugins: [
+    `gatsby-plugin-react-helmet`,
     {
       resolve: 'gatsby-plugin-typescript',
       options: {

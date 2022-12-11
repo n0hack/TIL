@@ -6,7 +6,7 @@ import Footer from '@components/common/Footer';
 import CategoryList from '@components/main/CategoryList';
 import PostList from '@components/main/PostList';
 import { useMemo } from 'react';
-import Template from '@components/common/Template';
+import Template, { TemplateProps } from '@components/common/Template';
 
 const CATEGORY_LIST = {
   All: 5,
@@ -36,7 +36,12 @@ const Index = (props: PageProps<Queries.getPostListQuery>) => {
   const { file } = props.data;
 
   return (
-    <Template>
+    <Template
+      title={props.data.site?.siteMetadata?.title!}
+      description={props.data.site?.siteMetadata?.description!}
+      url={props.data.site?.siteMetadata?.siteUrl!}
+      image={file?.publicURL!}
+    >
       <Introduction profileImage={file?.childImageSharp?.gatsbyImageData!} />
       <CategoryList selectedCategory={selectedCategory} categoryList={categoryList} />
       <PostList posts={props.data.allMarkdownRemark.edges} selectedCategory={selectedCategory} />
@@ -48,10 +53,18 @@ export default Index;
 
 export const getPostList = graphql`
   query getPostList {
+    site {
+      siteMetadata {
+        description
+        siteUrl
+        title
+      }
+    }
     file(name: { eq: "profile-image" }) {
       childImageSharp {
         gatsbyImageData
       }
+      publicURL
     }
     allMarkdownRemark(sort: { frontmatter: { date: DESC } }) {
       edges {

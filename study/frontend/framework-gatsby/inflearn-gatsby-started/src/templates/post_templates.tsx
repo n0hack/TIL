@@ -5,11 +5,11 @@ import { graphql, PageProps } from 'gatsby';
 import { IGatsbyImageData } from 'gatsby-plugin-image';
 import React from 'react';
 
-const PostTemplates = ({ data }: PageProps<Queries.getMarkdownDataBySlugQuery>) => {
-  const { title, date, categories, thumbnail } = data.allMarkdownRemark.nodes[0].frontmatter!;
+const PostTemplates = ({ data, location: { href } }: PageProps<Queries.getMarkdownDataBySlugQuery>) => {
+  const { title, date, categories, summary, thumbnail } = data.allMarkdownRemark.nodes[0].frontmatter!;
 
   return (
-    <Template>
+    <Template title={title!} description={summary!} url={href} image={thumbnail?.publicURL!}>
       <PostHead
         title={title!}
         date={date!}
@@ -36,6 +36,7 @@ export const getMarkdownDataBySlug = graphql`
             childImageSharp {
               gatsbyImageData
             }
+            publicURL
           }
         }
         html

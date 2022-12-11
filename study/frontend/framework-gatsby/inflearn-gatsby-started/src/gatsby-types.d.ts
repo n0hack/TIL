@@ -2733,12 +2733,12 @@ type getMarkdownDataBySlugQueryVariables = Exact<{
 }>;
 
 
-type getMarkdownDataBySlugQuery = { readonly allMarkdownRemark: { readonly nodes: ReadonlyArray<{ readonly html: string | null, readonly frontmatter: { readonly title: string | null, readonly summary: string | null, readonly date: string | null, readonly categories: ReadonlyArray<string | null> | null, readonly thumbnail: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null }> } };
+type getMarkdownDataBySlugQuery = { readonly allMarkdownRemark: { readonly nodes: ReadonlyArray<{ readonly html: string | null, readonly frontmatter: { readonly title: string | null, readonly summary: string | null, readonly date: string | null, readonly categories: ReadonlyArray<string | null> | null, readonly thumbnail: { readonly publicURL: string | null, readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null } | null }> } };
 
 type getPostListQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-type getPostListQuery = { readonly file: { readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null, readonly allMarkdownRemark: { readonly edges: ReadonlyArray<{ readonly node: { readonly id: string, readonly fields: { readonly slug: string | null } | null, readonly frontmatter: { readonly categories: ReadonlyArray<string | null> | null, readonly title: string | null, readonly summary: string | null, readonly date: string | null, readonly thumbnail: { readonly childrenImageSharp: ReadonlyArray<{ readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null> | null } | null } | null } }> } };
+type getPostListQuery = { readonly site: { readonly siteMetadata: { readonly description: string | null, readonly siteUrl: string | null, readonly title: string | null } | null } | null, readonly file: { readonly publicURL: string | null, readonly childImageSharp: { readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null } | null, readonly allMarkdownRemark: { readonly edges: ReadonlyArray<{ readonly node: { readonly id: string, readonly fields: { readonly slug: string | null } | null, readonly frontmatter: { readonly categories: ReadonlyArray<string | null> | null, readonly title: string | null, readonly summary: string | null, readonly date: string | null, readonly thumbnail: { readonly childrenImageSharp: ReadonlyArray<{ readonly gatsbyImageData: import('gatsby-plugin-image').IGatsbyImageData } | null> | null } | null } | null } }> } };
 
 type MetadataQueryVariables = Exact<{ [key: string]: never; }>;
 
