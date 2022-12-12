@@ -1,7 +1,7 @@
-import { graphql, PageProps } from 'gatsby';
+import { graphql, Link, PageProps } from 'gatsby';
 import React from 'react';
-import Layout from '../components/Layout';
-import Seo from '../components/Seo';
+import Layout from '../../components/Layout';
+import Seo from '../../components/Seo';
 
 // Gatsby는 원래 페이지에서만 쿼리를 받아올 수 있었지만,
 // useStaticQuery Hook의 등장으로 컴포넌트에서도 쿼리를 받아올 수 있게 되었다.
@@ -11,9 +11,12 @@ const BlogPage = ({ data }: PageProps<Queries.getFilesQuery>) => {
       <ul>
         {data.allMdx.nodes.map((node) => (
           <article key={node.id}>
-            <h2>{node.frontmatter?.title}</h2>
+            <h2>
+              <Link to={`/blog/${node.frontmatter?.slug}`}>
+                {node.frontmatter?.title}
+              </Link>
+            </h2>
             <p>Posted: {node.frontmatter?.date}</p>
-            <p>{node.excerpt}</p>
           </article>
         ))}
       </ul>
@@ -30,9 +33,9 @@ export const query = graphql`
         frontmatter {
           date(formatString: "MMMM D, YYYY")
           title
+          slug
         }
         id
-        excerpt
       }
     }
   }
