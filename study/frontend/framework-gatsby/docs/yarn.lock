@@ -4911,6 +4911,11 @@ flatted@^3.1.0:
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.2.7.tgz#609f39207cb614b89d0765b477cb2d437fbf9787"
   integrity sha512-5nqDSxl8nn5BSNxyR3n4I6eDmbolI6WT+QqR547RwxQapgjQBmtktdP+HTBb/a/zLsbzERTONyUB5pefh5TtjQ==
 
+folktale@^2.0.1:
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/folktale/-/folktale-2.3.2.tgz#38231b039e5ef36989920cbf805bf6b227bf4fd4"
+  integrity sha512-+8GbtQBwEqutP0v3uajDDoN64K2ehmHd0cjlghhxh0WpcfPzAIjPA03e1VvHlxL02FVGR0A6lwXsNQKn3H1RNQ==
+
 follow-redirects@^1.14.0:
   version "1.15.2"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.2.tgz#b460864144ba63f2681096f274c4e57026da2c13"
@@ -5154,6 +5159,15 @@ gatsby-parcel-config@^1.2.0:
     "@parcel/runtime-js" "2.6.2"
     "@parcel/transformer-js" "2.6.2"
     "@parcel/transformer-json" "2.6.2"
+
+gatsby-plugin-i18n@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-i18n/-/gatsby-plugin-i18n-1.0.1.tgz#573fb98b85654c29e0cda50740037061fa38e694"
+  integrity sha512-6Cucb15sLQp9cTVgmRC34MeWVJu0a09G7LRrCNV87PgMlbS5iVUX00TwDnIUB0b+f6RUq3z5+V6/sIBIvsz8/Q==
+  dependencies:
+    folktale "^2.0.1"
+    graphql "^0.11.7"
+    ptz-i18n "^1.0.0"
 
 gatsby-plugin-image@^3.2.0:
   version "3.2.0"
@@ -5702,6 +5716,13 @@ graphql-type-json@0.3.2:
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/graphql-type-json/-/graphql-type-json-0.3.2.tgz#f53a851dbfe07bd1c8157d24150064baab41e115"
   integrity sha512-J+vjof74oMlCWXSvt0DOf2APEdZOCdubEvGDUAlqH//VBYcOYsGgRW7Xzorr44LvkjiuvecWc8fChxuZZbChtg==
+
+graphql@^0.11.7:
+  version "0.11.7"
+  resolved "https://registry.yarnpkg.com/graphql/-/graphql-0.11.7.tgz#e5abaa9cb7b7cccb84e9f0836bf4370d268750c6"
+  integrity sha512-x7uDjyz8Jx+QPbpCFCMQ8lltnQa4p4vSYHx6ADe8rVYRTdsyhCJbvSty5DAsLVmU6cGakl+r8HQYolKHxk/tiw==
+  dependencies:
+    iterall "1.1.3"
 
 graphql@^16.6.0:
   version "16.6.0"
@@ -6391,6 +6412,11 @@ isobject@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/isobject/-/isobject-3.0.1.tgz#4e431e92b11a9731636aa1f9c8d1ccbcfdab78df"
   integrity sha512-WhB9zCku7EGTj/HQQRz5aUQEUeoQZH2bWcltRErOpymJ4boYE6wL9Tbr23krRPSZ+C5zqNSrSw+Cc7sZZ4b7vg==
+
+iterall@1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/iterall/-/iterall-1.1.3.tgz#1cbbff96204056dde6656e2ed2e2226d0e6d72c9"
+  integrity sha512-Cu/kb+4HiNSejAPhSaN1VukdNTTi/r4/e+yykqjlG/IW+1gZH5b4+Bq3whDX4tvbYugta3r8KTMUiqT3fIGxuQ==
 
 jest-worker@^26.3.0:
   version "26.6.2"
@@ -8443,6 +8469,14 @@ pseudomap@^1.0.1, pseudomap@^1.0.2:
   resolved "https://registry.yarnpkg.com/pseudomap/-/pseudomap-1.0.2.tgz#f052a28da70e618917ef0a8ac34c1ae5a68286b3"
   integrity sha512-b/YwNhb8lk1Zz2+bXXpS/LK9OisiZZ1SNsSLxN1x2OXVEhW2Ckr/7mWE5vrC1ZTiJlD9g19jWszTmJsB+oEpFQ==
 
+ptz-i18n@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/ptz-i18n/-/ptz-i18n-1.0.0.tgz#803df4d0f5ce9a7732f5d1d805ea624c6a1f5e8c"
+  integrity sha512-3buuv2T+Qo2tyo3A1pSx2arxheW0vd+tPGizmWdvr9RWJKfQlrNw8GtnYXdjChUKN0s2UO/JJkWswOTRYBi/OQ==
+  dependencies:
+    folktale "^2.0.1"
+    ramda "^0.24.1"
+
 pump@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/pump/-/pump-3.0.0.tgz#b4a2116815bde2f4e1ea602354e8c75565107a64"
@@ -8482,6 +8516,11 @@ quick-lru@^5.1.1:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/quick-lru/-/quick-lru-5.1.1.tgz#366493e6b3e42a3a6885e2e99d18f80fb7a8c932"
   integrity sha512-WuyALRjWPDGtt/wzJiadO5AXY+8hZ80hVpe6MyivgraREW751X3SbhRvG3eLKOYN+8VEvqLcf3wdnt44Z4S4SA==
+
+ramda@^0.24.1:
+  version "0.24.1"
+  resolved "https://registry.yarnpkg.com/ramda/-/ramda-0.24.1.tgz#c3b7755197f35b8dc3502228262c4c91ddb6b857"
+  integrity sha512-HEm619G8PaZMfkqCa23qiOe7r3R0brPu7ZgOsgKUsnvLhd0qhc/vTjkUovomgPWa5ECBa08fJZixth9LaoBo5w==
 
 randombytes@^2.1.0:
   version "2.1.0"

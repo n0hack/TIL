@@ -24,6 +24,13 @@ const config: GatsbyConfig = {
       },
     },
     'gatsby-plugin-mdx',
+    {
+      resolve: 'gatsby-plugin-i18n',
+      options: {
+        langKeyDefault: 'en',
+        useLangKeyLayout: false,
+      },
+    },
   ],
 };
 
