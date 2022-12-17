@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 100px;
+        height: 100px;
+        background-color: #fff700;
+        border: 5px solid orange;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+    <script>
+      const $box = document.querySelector(".box");
+
+      // 드래그 시작 지점
+      const initialMousePos = { x: 0, y: 0 };
+      // 이동할 거리
+      const offset = { x: 0, y: 0 };
+
+      const move = (e) => {
+        offset.x = e.clientX - initialMousePos.x;
+        offset.y = e.clientY - initialMousePos.y;
+
+        $box.style.transform = `translate(${offset.x}px, ${offset.y}px)`;
+      };
+
+      $box.addEventListener("mousedown", (e) => {
+        initialMousePos.x = e.clientX - offset.x;
+        initialMousePos.y = e.clientY - offset.y;
+
+        document.addEventListener("mousemove", move);
+      });
+
+      document.addEventListener("mouseup", () => {
+        document.removeEventListener("mousemove", move);
+      });
+    </script>
+  </body>
+</html>
