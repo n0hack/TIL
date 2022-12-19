@@ -25,3 +25,14 @@ namespace Generics {
   // console.log(createInstance(Lion).keeper.nametag);
   // console.log(createInstance(Bee).keeper.hasMask);
 }
+
+namespace Keyof {
+  type Point = { x: number; y: number };
+  type P = keyof Point;
+
+  type Arrayish = { [n: number]: unknown };
+  type A = keyof Arrayish;
+
+  type Mapish = { [k: string]: boolean };
+  type M = keyof Mapish;
+}
