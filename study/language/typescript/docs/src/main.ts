@@ -104,3 +104,25 @@ namespace MappedTypes {
   type CircleEvent = { kind: 'circle'; radius: number };
   type Config = EventConfig<SquareEvent | CircleEvent>;
 }
+
+namespace Classes {
+  class Point {
+    // Private
+    #length = 1;
+
+    // 생성자에서 readonly을 붙이게 되면 자동으로 멤버 변수로 선언됨
+    constructor(readonly x = 0, readonly y = 0) {}
+
+    // Getter / Setter
+    get length() {
+      return this.#length;
+    }
+
+    set length(length: number) {
+      this.#length = length;
+    }
+  }
+  const p = new Point(1, 2);
+  p.length = 3;
+  console.log(p.length);
+}
