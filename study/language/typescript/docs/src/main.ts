@@ -124,5 +124,34 @@ namespace Classes {
   }
   const p = new Point(1, 2);
   p.length = 3;
-  console.log(p.length);
+  // console.log(p.length);
+}
+
+namespace UtilityTypes {
+  // await
+  type A = Awaited<Promise<string>>;
+
+  // 객체의 일부
+  interface Todo {
+    title: string;
+    description: string;
+  }
+  function updateTodo(todo: Todo, fieldsToUpdate: Partial<Todo>) {
+    return { ...todo, ...fieldsToUpdate };
+  }
+
+  // 객체 생성
+  interface CatInfo {
+    age: number;
+    breed: string;
+  }
+  type CatName = 'miffy' | 'boris' | 'mordred';
+  const cats: Record<CatName, CatInfo> = {
+    miffy: { age: 10, breed: 'Persian' },
+    boris: { age: 5, breed: 'Main Coon' },
+    mordred: { age: 16, breed: 'British Shorthair' },
+  };
+
+  // 우측 값 제외
+  type T0 = Exclude<'a' | 'b', 'b'>;
 }
