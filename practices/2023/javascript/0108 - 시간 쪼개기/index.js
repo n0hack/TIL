@@ -135,3 +135,7 @@ for (const schedule of schedules) {
 
   console.log("최종 결과: ", flat(requestableTimes));
 }
+
+const A = dayjs("2023-01-09T02:01:00");
+const B = dayjs("2023-01-09T01:01:00");
+console.log(A.diff(B, "m"));
