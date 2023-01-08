@@ -1,0 +1,14 @@
+{
+  "name": "0108-time",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "dayjs": "^1.11.7",
+    "nodemon": "^2.0.20"
+  },
+  "scripts": {
+    "test": "nodemon index.js"
+  },
+  "type": "module"
+}
