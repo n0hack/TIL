@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "target": "ESNext",
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -18,9 +14,15 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "jsxImportSource": "@emotion/react",
+    "types": ["vite/client", "vite-plugin-svgr/client"],
+    "baseUrl": "./src",
+    "paths": {
+      "@static": ["./static"],
+      "@static/*": ["./static/*"]
+    }
   },
-  "include": [
-    "src"
-  ]
+  "files": ["src/twin.d.ts"],
+  "include": ["src", "vite.config.ts"]
 }
