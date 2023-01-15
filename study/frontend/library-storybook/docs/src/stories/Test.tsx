@@ -1,6 +1,6 @@
 import React from 'react';
 import tw, { css } from 'twin.macro';
-import { ReactComponent as Icon } from '../assets/test.svg';
+import { ReactComponent as Icon } from '@static/svg/test.svg';
 
 interface Props {}
 

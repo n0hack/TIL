@@ -15,7 +15,12 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "jsxImportSource": "@emotion/react"
+    "jsxImportSource": "@emotion/react",
+    "baseUrl": "./src",
+    "paths": {
+      "@static": ["./static"],
+      "@static/*": ["./static/*"]
+    }
   },
   "include": ["src", "types"],
   "references": [{ "path": "./tsconfig.node.json" }]

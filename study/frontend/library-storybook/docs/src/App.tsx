@@ -2,7 +2,7 @@ import { useState } from 'react';
 import reactLogo from './assets/react.svg';
 import tw, { css } from 'twin.macro';
 import Test from './stories/Test';
-import { ReactComponent as Icon } from './assets/test.svg';
+import { ReactComponent as Icon } from '@static/svg/test.svg';
 
 function App() {
   const [count, setCount] = useState(0);
