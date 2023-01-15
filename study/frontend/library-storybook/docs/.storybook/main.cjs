@@ -5,9 +5,11 @@ const react = require('@vitejs/plugin-react');
 
 module.exports = {
   async viteFinal(config, { configType }) {
+    console.log('before:', config.plugins);
     config.plugins = config.plugins.filter(
       (plugin) => !(Array.isArray(plugin) && plugin[0]?.name.includes('vite:react'))
     );
+    console.log('after:', config.plugins);
 
     config.plugins = [
       ...config.plugins,

@@ -14,7 +14,7 @@ const Test = ({}: Props) => {
         `,
       ]}
     >
-      Test
+      노토 산스
       <Icon className="text-red-400" />
       <Test2>zz</Test2>
     </div>

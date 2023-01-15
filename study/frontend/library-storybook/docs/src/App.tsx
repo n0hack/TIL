@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import reactLogo from './assets/react.svg';
 import tw, { css } from 'twin.macro';
-import './App.css';
 import Test from './stories/Test';
 import { ReactComponent as Icon } from './assets/test.svg';
 
