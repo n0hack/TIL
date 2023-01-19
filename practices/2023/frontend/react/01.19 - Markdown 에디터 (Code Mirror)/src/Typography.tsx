@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import prismThemes from './prismThemes';
 
 interface TypographyProps {
   children?: React.ReactNode;
@@ -194,4 +195,18 @@ const TypographyBlock = styled.div`
   .katex-mathml {
     display: none;
   }
+
+  iframe {
+    width: 768px;
+    height: 430px;
+    max-width: 100%;
+    background: black;
+    display: block;
+    margin: auto;
+    border: none;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  ${prismThemes['atom-one-light']}
 `;
