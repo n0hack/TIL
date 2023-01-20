@@ -26,7 +26,7 @@ const customTheme = createTheme({
     { tag: t.labelName, color: '#9d9d9f', fontStyle: 'italic' }, // 코드 블럭 언어
     { tag: t.meta, color: '#9d9d9d', fontStyle: 'italic' },
     { tag: t.monospace, color: '#9d9d9f', fontStyle: 'italic' },
-    { tag: t.processingInstruction, color: '#212529' },
+    // { tag: t.processingInstruction, color: '#212529' },
     { tag: t.variableName, color: '#212529' },
     { tag: t.className, color: '#cf9d41' },
     { tag: t.propertyName, color: '#986801' },
@@ -96,7 +96,7 @@ const MarkdownEditor = forwardRef<ReactCodeMirrorRef, MarkdownEditorProps>(({ va
 export default MarkdownEditor;
 
 const MarkdownEditorBlock = styled.div`
-  flex: 1;
+  /* width: 50%; */
   padding: 0 3rem 3rem;
   font-size: 1.125rem;
   overflow-y: scroll;

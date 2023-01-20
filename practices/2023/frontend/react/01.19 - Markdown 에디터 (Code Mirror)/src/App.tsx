@@ -3,6 +3,7 @@ import './App.css';
 import { ReactCodeMirrorRef } from '@uiw/react-codemirror';
 import MarkdownEditor from './MarkdownEditor';
 import MarkdownRenderer from './MarkdownRenderer';
+import MarkdownPreview from '@uiw/react-markdown-preview';
 
 function App() {
   const [markdown, setMarkdown] = useState<string>('');
@@ -20,8 +21,8 @@ function App() {
         <p className="text-gray-700 font-medium">◀︎ 나가기</p>
         <button className="py-2 px-3 rounded-[4px] bg-blue-500 text-white font-medium">등록하기</button>
       </div>
-      <div className="h-screen flex pt-[60px]">
-        <div className="flex flex-col flex-1">
+      <div className="flex w-full h-screen pt-[60px]">
+        <div className="w-full flex flex-col md:w-1/2">
           <div className="flex flex-col pt-8 px-12 grow-0">
             <input
               className="text-gray-900 text-4xl font-bold border-0 outline-0 placeholder:text-gray-400"
@@ -53,7 +54,7 @@ function App() {
           </div>
           <MarkdownEditor ref={editor} value={markdown} onChange={onChange} />
         </div>
-        <div className="flex flex-col flex-1">
+        <div className="flex-col w-[50%] hidden md:flex">
           <MarkdownRenderer markdown={markdown} />
         </div>
       </div>

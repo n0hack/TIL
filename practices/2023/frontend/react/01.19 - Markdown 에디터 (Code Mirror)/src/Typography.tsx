@@ -208,5 +208,5 @@ const TypographyBlock = styled.div`
     overflow: hidden;
   }
 
-  ${prismThemes['atom-one-light']}
+  ${prismThemes['github']}
 `;

@@ -19,6 +19,7 @@
     "@uiw/codemirror-theme-atomone": "^4.19.7",
     "@uiw/codemirror-themes": "^4.19.7",
     "@uiw/react-codemirror": "^4.19.7",
+    "@uiw/react-markdown-preview": "^4.1.7",
     "html-sanitize": "^1.1.5",
     "prismjs": "^1.29.0",
     "react": "^18.2.0",

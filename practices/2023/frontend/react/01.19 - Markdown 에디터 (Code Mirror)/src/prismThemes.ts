@@ -189,6 +189,7 @@ const prismThemes = {
       color: #24292e;
     }
     pre {
+      overflow-x: auto;
       box-shadow: 0px 0px 2px #00000005;
       background: #fbfcfd;
       color: #24292e;
@@ -253,6 +254,7 @@ const prismThemes = {
     code[class*='language-'],
     pre[class*='language-'] {
       color: #24292e;
+      overflow-x: scroll;
     }
     pre {
       color: #24292e;

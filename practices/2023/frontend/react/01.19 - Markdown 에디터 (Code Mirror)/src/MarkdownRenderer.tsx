@@ -16,6 +16,8 @@ import katexWhitelist from './katexWhitelist';
 import prismPlugin from './prismPlugin';
 import prismThemes from './prismThemes';
 import embedPlugin from './embedPlugin';
+import MarkdownPreview from '@uiw/react-markdown-preview';
+import { unified } from 'unified';
 
 interface MarkdownRendererProps {
   markdown: string;
@@ -112,6 +114,7 @@ const MarkdownRenderer = ({ markdown }: MarkdownRendererProps) => {
   return (
     <MarkdownRendererBlock>
       <Typography>
+        {/* <MarkdownPreview source={markdown} /> */}
         <div dangerouslySetInnerHTML={{ __html: html }} />
       </Typography>
     </MarkdownRendererBlock>
@@ -121,10 +124,17 @@ const MarkdownRenderer = ({ markdown }: MarkdownRendererProps) => {
 export default MarkdownRenderer;
 
 const MarkdownRendererBlock = styled.div`
-  flex: 1;
+  /* width: 50%; */
+  /* flex: 1; */
   padding: 3rem;
   background: #fbfdfc;
-  overflow-y: scroll;
+  word-break: break-word;
+  overflow-y: auto;
+
+  /* div {
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  } */
 
   &::-webkit-scrollbar {
     width: 0.375rem; /* 스크롤바의 너비 */
