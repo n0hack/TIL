@@ -10,12 +10,11 @@ import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import remarkStringify from 'rehype-stringify';
 import styled from 'styled-components';
-import Typography from './Typography';
+// import Typography from './Typography';
 import sanitize from 'sanitize-html';
 import katexWhitelist from './katexWhitelist';
 import prismPlugin from './prismPlugin';
 import prismThemes from './prismThemes';
-import embedPlugin from './embedPlugin';
 import MarkdownPreview from '@uiw/react-markdown-preview';
 import { unified } from 'unified';
 
@@ -95,7 +94,6 @@ const MarkdownRenderer = ({ markdown }: MarkdownRendererProps) => {
         .use(remarkBreaks)
         .use(remarkParse)
         .use(remarkSlug)
-        .use(embedPlugin as any)
         .use(prismPlugin as any)
         .use(remarkGfm)
         .use(remarkMath)
@@ -113,10 +111,10 @@ const MarkdownRenderer = ({ markdown }: MarkdownRendererProps) => {
 
   return (
     <MarkdownRendererBlock>
-      <Typography>
-        {/* <MarkdownPreview source={markdown} /> */}
-        <div dangerouslySetInnerHTML={{ __html: html }} />
-      </Typography>
+      {/* <Typography> */}
+      {/* <MarkdownPreview source={markdown} /> */}
+      <div dangerouslySetInnerHTML={{ __html: html }} />
+      {/* </Typography> */}
     </MarkdownRendererBlock>
   );
 };

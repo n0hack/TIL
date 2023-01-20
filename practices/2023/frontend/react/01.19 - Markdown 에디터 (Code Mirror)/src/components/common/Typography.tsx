@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import prismThemes from './prismThemes';
+// import prismThemes from './prismThemes';
 
 interface TypographyProps {
   children?: React.ReactNode;
@@ -207,6 +207,5 @@ const TypographyBlock = styled.div`
     border-radius: 4px;
     overflow: hidden;
   }
-
-  ${prismThemes['github']}
 `;
+/* ${prismThemes['github']} */

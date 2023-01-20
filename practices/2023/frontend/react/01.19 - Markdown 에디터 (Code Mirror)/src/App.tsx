@@ -1,9 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
-import './App.css';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { ReactCodeMirrorRef } from '@uiw/react-codemirror';
 import MarkdownEditor from './MarkdownEditor';
 import MarkdownRenderer from './MarkdownRenderer';
-import MarkdownPreview from '@uiw/react-markdown-preview';
+import Toolbar, { ToolbarMode } from './components/write/Toolbar';
 
 function App() {
   const [markdown, setMarkdown] = useState<string>('');
@@ -13,7 +12,11 @@ function App() {
     setMarkdown(value);
   };
 
-  useEffect(() => {}, []);
+  const handleClickToolbar = (mode: ToolbarMode) => {
+    console.log(editor.current?.state?.selection.ranges[0].anchor);
+    console.log(editor.current?.state?.selection.ranges[0].from);
+    console.log(mode);
+  };
 
   return (
     <React.Fragment>
@@ -36,21 +39,7 @@ function App() {
                 <option value="terms">약관</option>
               </select>
             </div>
-          </div>
-          {/* 툴바 */}
-          <div className="flex flex-wrap items-center mb-4 px-12">
-            <button className="w-12 h-12 shrink-0 bg-gray-50 text-sm">툴바</button>
-            <button className="w-12 h-12 shrink-0 bg-gray-50 text-sm">툴바</button>
-            <button className="w-12 h-12 shrink-0 bg-gray-50 text-sm">툴바</button>
-            <button className="w-12 h-12 shrink-0 bg-gray-50 text-sm">툴바</button>
-            <div className="w-[1px] h-5 mx-2 bg-gray-200" />
-            <button className="w-12 h-12 shrink-0 bg-gray-50 text-sm">툴바</button>
-            <button className="w-12 h-12 shrink-0 bg-gray-50 text-sm">툴바</button>
-            <button className="w-12 h-12 shrink-0 bg-gray-50 text-sm">툴바</button>
-            <div className="w-[1px] h-5 mx-2 bg-gray-200" />
-            <button className="w-12 h-12 shrink-0 bg-gray-50 text-sm">툴바</button>
-            <button className="w-12 h-12 shrink-0 bg-gray-50 text-sm">툴바</button>
-            <button className="w-12 h-12 shrink-0 bg-gray-50 text-sm">툴바</button>
+            <Toolbar onClick={handleClickToolbar} />
           </div>
           <MarkdownEditor ref={editor} value={markdown} onChange={onChange} />
         </div>

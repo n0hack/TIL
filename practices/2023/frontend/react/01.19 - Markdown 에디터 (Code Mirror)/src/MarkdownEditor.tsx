@@ -96,7 +96,6 @@ const MarkdownEditor = forwardRef<ReactCodeMirrorRef, MarkdownEditorProps>(({ va
 export default MarkdownEditor;
 
 const MarkdownEditorBlock = styled.div`
-  /* width: 50%; */
   padding: 0 3rem 3rem;
   font-size: 1.125rem;
   overflow-y: scroll;
