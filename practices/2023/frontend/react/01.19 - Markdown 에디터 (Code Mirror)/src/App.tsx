@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { ReactCodeMirrorRef } from '@uiw/react-codemirror';
-import MarkdownEditor, { MarkdownEditorRef } from './MarkdownEditor';
+import MarkdownEditor from './MarkdownEditor';
 import MarkdownRenderer from './MarkdownRenderer';
 import Toolbar, { ToolbarMode } from './components/write/Toolbar';
 import { EditorSelection } from '@codemirror/state';
@@ -19,9 +19,10 @@ function App() {
         <p className="text-gray-700 font-medium">◀︎ 나가기</p>
         <button className="py-2 px-3 rounded-[4px] bg-blue-500 text-white font-medium">등록하기</button>
       </div>
+
       <div className="flex w-full h-screen pt-[60px]">
         <div className="w-full flex flex-col md:w-1/2">
-          <div className="flex flex-col pt-8 px-12 grow-0">
+          <div className="flex flex-col pt-8 px-12">
             <input
               className="text-gray-900 text-4xl font-bold border-0 outline-0 placeholder:text-gray-400"
               placeholder="제목을 입력하세요"
@@ -34,7 +35,6 @@ function App() {
                 <option value="terms">약관</option>
               </select>
             </div>
-            {/* <Toolbar onClick={handleClickToolbar} /> */}
           </div>
           <MarkdownEditor value={markdown} onChange={onChange} />
         </div>

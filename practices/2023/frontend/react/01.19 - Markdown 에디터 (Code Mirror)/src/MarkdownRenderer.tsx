@@ -126,7 +126,7 @@ export default MarkdownRenderer;
 
 const MarkdownRendererBlock = styled.div`
   /* width: 50%; */
-  /* flex: 1; */
+  flex: 1;
   padding: 3rem;
   background: #fbfdfc;
   word-break: break-word;

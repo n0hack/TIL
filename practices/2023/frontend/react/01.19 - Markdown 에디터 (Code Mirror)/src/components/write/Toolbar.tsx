@@ -73,6 +73,7 @@ const ToolbarBlock = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: 1rem;
+  padding: 0 3rem;
 `;
 
 const ToolbarItem = styled.button`
