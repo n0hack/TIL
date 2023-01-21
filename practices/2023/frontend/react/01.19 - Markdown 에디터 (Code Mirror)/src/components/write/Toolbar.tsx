@@ -62,9 +62,6 @@ export default function Toolbar({ onClick }: ToolbarProps) {
       <ToolbarItem onClick={() => onClick?.('photo')}>
         <ToolbarPhotoIcon />
       </ToolbarItem>
-      <ToolbarItem onClick={() => onClick?.('code')}>
-        <ToolbarCodeIcon />
-      </ToolbarItem>
     </ToolbarBlock>
   );
 }

@@ -1,21 +1,45 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { ReactCodeMirrorRef } from '@uiw/react-codemirror';
-import MarkdownEditor from './MarkdownEditor';
+import MarkdownEditor, { MarkdownEditorRef } from './MarkdownEditor';
 import MarkdownRenderer from './MarkdownRenderer';
 import Toolbar, { ToolbarMode } from './components/write/Toolbar';
+import { EditorSelection } from '@codemirror/state';
 
 function App() {
-  const [markdown, setMarkdown] = useState<string>('');
-  const editor = useRef<ReactCodeMirrorRef>(null);
+  const [title, setTitle] = useState('');
+  const [markdown, setMarkdown] = useState('');
+  const editor = useRef<MarkdownEditorRef>(null);
 
   const onChange = (value: string) => {
     setMarkdown(value);
   };
 
   const handleClickToolbar = (mode: ToolbarMode) => {
-    console.log(editor.current?.state?.selection.ranges[0].anchor);
-    console.log(editor.current?.state?.selection.ranges[0].from);
-    console.log(mode);
+    switch (mode) {
+      case 'bold':
+        editor.current?.bold();
+    }
+    // 현재 커서 구하기
+    // console.log(editor.current?.view?.state.selection.ranges[0]);
+
+    // 현재 선택 중인 영역
+    // const range = editor.current?.view?.state.selection.ranges[0];
+    // if (!range) return;
+    // const { from, to } = range;
+    // editor.current?.view?.dispatch({ changes: {  from: 0, insert: '**' } });
+
+    // editor.current.view?.dispatch(editor.current.view.state.update({ selection: { anchor: 1, head: 2 } }));
+
+    // ..changeByRange((range) => ({
+    //   changes: [
+    //     { from: range.from, insert: '**' },
+    //     { from: range.to, insert: '**' },
+    //   ],
+    //   range: EditorSelection.range(range.from + 2, range.to + 2),
+    // }));
+    // editor.current?.view?.state.doc
+    // console.log(mode);
+    // console.log(editor.current);
   };
 
   return (
@@ -39,7 +63,7 @@ function App() {
                 <option value="terms">약관</option>
               </select>
             </div>
-            <Toolbar onClick={handleClickToolbar} />
+            {/* <Toolbar onClick={handleClickToolbar} /> */}
           </div>
           <MarkdownEditor ref={editor} value={markdown} onChange={onChange} />
         </div>

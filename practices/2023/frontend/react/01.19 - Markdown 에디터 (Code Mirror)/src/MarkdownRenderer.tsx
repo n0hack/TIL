@@ -8,7 +8,7 @@ import remarkRehype from 'remark-rehype';
 import rehypeRaw from 'rehype-raw';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
-import remarkStringify from 'rehype-stringify';
+import rehypeStringify from 'rehype-stringify';
 import styled from 'styled-components';
 // import Typography from './Typography';
 import sanitize from 'sanitize-html';
@@ -17,6 +17,7 @@ import prismPlugin from './prismPlugin';
 import prismThemes from './prismThemes';
 import MarkdownPreview from '@uiw/react-markdown-preview';
 import { unified } from 'unified';
+import Typography from './components/common/Typography';
 
 interface MarkdownRendererProps {
   markdown: string;
@@ -91,6 +92,7 @@ const MarkdownRenderer = ({ markdown }: MarkdownRendererProps) => {
   const html = useMemo(() => {
     return filter(
       remark()
+        // remark = 마크다운 처리
         .use(remarkBreaks)
         .use(remarkParse)
         .use(remarkSlug)
@@ -98,9 +100,10 @@ const MarkdownRenderer = ({ markdown }: MarkdownRendererProps) => {
         .use(remarkGfm)
         .use(remarkMath)
         .use(remarkRehype, { allowDangerousHtml: true })
+        // rehype = HTML 처리
         .use(rehypeRaw)
         .use(rehypeKatex)
-        .use(remarkStringify)
+        .use(rehypeStringify)
         .processSync(markdown)
         .toString()
     );
