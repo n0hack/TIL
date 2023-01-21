@@ -8,38 +8,9 @@ import { EditorSelection } from '@codemirror/state';
 function App() {
   const [title, setTitle] = useState('');
   const [markdown, setMarkdown] = useState('');
-  const editor = useRef<MarkdownEditorRef>(null);
 
   const onChange = (value: string) => {
     setMarkdown(value);
-  };
-
-  const handleClickToolbar = (mode: ToolbarMode) => {
-    switch (mode) {
-      case 'bold':
-        editor.current?.bold();
-    }
-    // 현재 커서 구하기
-    // console.log(editor.current?.view?.state.selection.ranges[0]);
-
-    // 현재 선택 중인 영역
-    // const range = editor.current?.view?.state.selection.ranges[0];
-    // if (!range) return;
-    // const { from, to } = range;
-    // editor.current?.view?.dispatch({ changes: {  from: 0, insert: '**' } });
-
-    // editor.current.view?.dispatch(editor.current.view.state.update({ selection: { anchor: 1, head: 2 } }));
-
-    // ..changeByRange((range) => ({
-    //   changes: [
-    //     { from: range.from, insert: '**' },
-    //     { from: range.to, insert: '**' },
-    //   ],
-    //   range: EditorSelection.range(range.from + 2, range.to + 2),
-    // }));
-    // editor.current?.view?.state.doc
-    // console.log(mode);
-    // console.log(editor.current);
   };
 
   return (
@@ -65,7 +36,7 @@ function App() {
             </div>
             {/* <Toolbar onClick={handleClickToolbar} /> */}
           </div>
-          <MarkdownEditor ref={editor} value={markdown} onChange={onChange} />
+          <MarkdownEditor value={markdown} onChange={onChange} />
         </div>
         <div className="flex-col w-[50%] hidden md:flex">
           <MarkdownRenderer markdown={markdown} />

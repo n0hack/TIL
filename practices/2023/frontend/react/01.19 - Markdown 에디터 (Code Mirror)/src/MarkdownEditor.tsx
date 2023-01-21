@@ -91,24 +91,9 @@ const customTheme = createTheme({
   ],
 });
 
-const MarkdownEditor = forwardRef<MarkdownEditorRef, MarkdownEditorProps>(({ value, onChange }, ref) => {
-  // const [line, setLine] =
+const MarkdownEditor = ({ value, onChange }: MarkdownEditorProps) => {
   const editor = useRef<ReactCodeMirrorRef>(null);
   const timer = useRef<NodeJS.Timer>();
-
-  useImperativeHandle(ref, () => ({
-    heading1: () => handleClickToolbar('heading1'),
-    heading2: () => handleClickToolbar('heading2'),
-    heading3: () => handleClickToolbar('heading3'),
-    heading4: () => handleClickToolbar('heading4'),
-    bold: () => handleClickToolbar('bold'),
-    italic: () => handleClickToolbar('italic'),
-    strike: () => handleClickToolbar('strike'),
-    quote: () => handleClickToolbar('quote'),
-    link: () => handleClickToolbar('link'),
-    photo: () => handleClickToolbar('photo'),
-    code: () => handleClickToolbar('code'),
-  }));
 
   const handleClickToolbar = (mode: Mode) => {
     if (!editor.current || !editor.current.view) return;
@@ -134,10 +119,17 @@ const MarkdownEditor = forwardRef<MarkdownEditorRef, MarkdownEditorProps>(({ val
             selection: { anchor: line.from + 2, head: line.from + text.replace(/^#+ /, '').length + 2 },
           });
         } else {
-          view.dispatch({
-            changes: { from: line.from, insert: '# ' },
-            selection: { anchor: line.from + 2, head: line.from + 2 + text.length },
-          });
+          if (text === '') {
+            view.dispatch({
+              changes: { from: line.from, insert: '# 제목' },
+              selection: { anchor: line.from + 2, head: line.from + 4 },
+            });
+          } else {
+            view.dispatch({
+              changes: { from: line.from, insert: '# ' },
+              selection: { anchor: line.from + 2, head: line.from + 2 + text.length },
+            });
+          }
         }
         break;
       case 'heading2':
@@ -152,10 +144,17 @@ const MarkdownEditor = forwardRef<MarkdownEditorRef, MarkdownEditorProps>(({ val
             selection: { anchor: line.from + 3, head: line.from + text.replace(/^#+ /, '').length + 3 },
           });
         } else {
-          view.dispatch({
-            changes: { from: line.from, insert: '## ' },
-            selection: { anchor: line.from + 3, head: line.from + 3 + text.length },
-          });
+          if (text === '') {
+            view.dispatch({
+              changes: { from: line.from, insert: '## 제목' },
+              selection: { anchor: line.from + 3, head: line.from + 5 },
+            });
+          } else {
+            view.dispatch({
+              changes: { from: line.from, insert: '## ' },
+              selection: { anchor: line.from + 3, head: line.from + 3 + text.length },
+            });
+          }
         }
         break;
       case 'heading3':
@@ -170,10 +169,17 @@ const MarkdownEditor = forwardRef<MarkdownEditorRef, MarkdownEditorProps>(({ val
             selection: { anchor: line.from + 4, head: line.from + text.replace(/^#+ /, '').length + 4 },
           });
         } else {
-          view.dispatch({
-            changes: { from: line.from, insert: '### ' },
-            selection: { anchor: line.from + 4, head: line.from + 4 + text.length },
-          });
+          if (text === '') {
+            view.dispatch({
+              changes: { from: line.from, insert: '### 제목' },
+              selection: { anchor: line.from + 4, head: line.from + 6 },
+            });
+          } else {
+            view.dispatch({
+              changes: { from: line.from, insert: '### ' },
+              selection: { anchor: line.from + 4, head: line.from + 4 + text.length },
+            });
+          }
         }
         break;
       case 'heading4':
@@ -188,10 +194,17 @@ const MarkdownEditor = forwardRef<MarkdownEditorRef, MarkdownEditorProps>(({ val
             selection: { anchor: line.from + 5, head: line.from + text.replace(/^#+ /, '').length + 5 },
           });
         } else {
-          view.dispatch({
-            changes: { from: line.from, insert: '#### ' },
-            selection: { anchor: line.from + 5, head: line.from + 5 + text.length },
-          });
+          if (text === '') {
+            view.dispatch({
+              changes: { from: line.from, insert: '#### 제목' },
+              selection: { anchor: line.from + 5, head: line.from + 7 },
+            });
+          } else {
+            view.dispatch({
+              changes: { from: line.from, insert: '#### ' },
+              selection: { anchor: line.from + 5, head: line.from + 5 + text.length },
+            });
+          }
         }
         break;
       case 'bold':
@@ -267,12 +280,36 @@ const MarkdownEditor = forwardRef<MarkdownEditorRef, MarkdownEditorProps>(({ val
         }
         break;
       case 'quote':
+        if (/^> /.test(text)) {
+          view.dispatch({
+            changes: { from: line.from, to: line.to, insert: text.replace(/^> /, '') },
+            selection: { anchor: line.from, head: line.from + text.length - 2 },
+          });
+        } else {
+          if (text === '') {
+            view.dispatch({
+              changes: { from: line.from, insert: '> 텍스트' },
+              selection: { anchor: line.from + 2, head: line.from + 5 },
+            });
+          } else {
+            view.dispatch({
+              changes: { from: line.from, insert: '> ' },
+              selection: { anchor: line.from + 2, head: line.from + 2 + text.length },
+            });
+          }
+        }
         break;
       case 'link':
+        console.log(line);
         break;
       case 'photo':
         break;
       case 'code':
+        const placeholder = '코드를 입력하세요';
+        view.dispatch({
+          changes: { from: line.to, insert: '\n```\n' + placeholder + '\n```' },
+          selection: { anchor: line.to + 5, head: line.to + 5 + placeholder.length },
+        });
         break;
     }
   };
@@ -300,11 +337,10 @@ const MarkdownEditor = forwardRef<MarkdownEditorRef, MarkdownEditorProps>(({ val
         onChange={onChange}
         theme={customTheme}
         onKeyDown={onKeyDown}
-        // onStatistics={(data) => console.log(data)}
       />
     </MarkdownEditorBlock>
   );
-});
+};
 
 export default MarkdownEditor;
 
