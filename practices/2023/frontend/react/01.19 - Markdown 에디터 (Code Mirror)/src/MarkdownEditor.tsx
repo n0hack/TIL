@@ -112,8 +112,9 @@ const MarkdownEditor = forwardRef<MarkdownEditorRef, MarkdownEditorProps>(({ val
 
   const handleClickToolbar = (mode: Mode) => {
     if (!editor.current || !editor.current.view) return;
-    const { view } = editor.current;
 
+    // 에디터 인스턴스
+    const { view } = editor.current;
     // 커서가 가리키고 있는 행의 정보
     const line = view.state.doc.lineAt(view.state.selection.main.head);
     const text = line.text;
@@ -217,80 +218,67 @@ const MarkdownEditor = forwardRef<MarkdownEditorRef, MarkdownEditorProps>(({ val
           }
         }
         break;
-      //   case 'italic':
-      //     if (from === to) {
-      //       // 선택 영역이 없는 경우
-      //       view.dispatch({
-      //         changes: { from: from, insert: '*텍스트*' },
-      //         selection: { anchor: from + 1, head: from + 4 },
-      //       });
-      //     } else {
-      //       // 선택 영역이 있는 경우
-      //       const front = view.state.doc.sliceString(from - 1, from) === '*';
-      //       const rear = view.state.doc.sliceString(to, to + 1) === '*';
-      //       if (front && rear) {
-      //         view.dispatch({ changes: { from: to, to: to + 1, empty: true } });
-      //         view.dispatch({ changes: { from: from - 1, to: from, empty: true } });
-      //       } else {
-      //         const originalText = view.state.doc.sliceString(from, to);
-      //         view.dispatch({ changes: { from, to, empty: true } });
-      //         view.dispatch({
-      //           changes: { from, insert: `*${originalText}*` },
-      //           selection: { anchor: from + 1, head: from + 1 + originalText.length },
-      //         });
-      //       }
-      //     }
-      //     break;
-      //   case 'strike':
-      //     if (from === to) {
-      //       // 선택 영역이 없는 경우
-      //       view.dispatch({
-      //         changes: { from: from, insert: '~텍스트~' },
-      //         selection: { anchor: from + 1, head: from + 4 },
-      //       });
-      //     } else {
-      //       // 선택 영역이 있는 경우
-      //       const front = view.state.doc.sliceString(from - 1, from) === '~';
-      //       const rear = view.state.doc.sliceString(to, to + 1) === '~';
-      //       if (front && rear) {
-      //         view.dispatch({ changes: { from: to, to: to + 1, empty: true } });
-      //         view.dispatch({ changes: { from: from - 1, to: from, empty: true } });
-      //       } else {
-      //         const originalText = view.state.doc.sliceString(from, to);
-      //         view.dispatch({ changes: { from, to, empty: true } });
-      //         view.dispatch({
-      //           changes: { from, insert: `~${originalText}~` },
-      //           selection: { anchor: from + 1, head: from + 1 + originalText.length },
-      //         });
-      //       }
-      //     }
-      //     break;
-      // }
-      // 현재 커서 구하기
-      // console.log(editor.current?.view?.state.selection.ranges[0]);
-
-      // 현재 선택 중인 영역
-      // const range = editor.current?.view?.state.selection.ranges[0];
-      // if (!range) return;
-      // const { from, to } = range;
-      // editor.current?.view?.dispatch({ changes: {  from: 0, insert: '**' } });
-
-      // editor.current.view?.dispatch(editor.current.view.state.update({ selection: { anchor: 1, head: 2 } }));
-
-      // ..changeByRange((range) => ({
-      //   changes: [
-      //     { from: range.from, insert: '**' },
-      //     { from: range.to, insert: '**' },
-      //   ],
-      //   range: EditorSelection.range(range.from + 2, range.to + 2),
-      // }));
-      // editor.current?.view?.state.doc
-      // console.log(mode);
-      // console.log(editor.current);
+      case 'italic':
+        if (from === to) {
+          // 선택 영역이 없는 경우
+          view.dispatch({
+            changes: { from: from, insert: '*텍스트*' },
+            selection: { anchor: from + 1, head: from + 4 },
+          });
+        } else {
+          // 선택 영역이 있는 경우
+          const front = view.state.doc.sliceString(from - 1, from) === '*';
+          const rear = view.state.doc.sliceString(to, to + 1) === '*';
+          if (front && rear) {
+            view.dispatch({ changes: { from: to, to: to + 1, empty: true } });
+            view.dispatch({ changes: { from: from - 1, to: from, empty: true } });
+          } else {
+            const originalText = view.state.doc.sliceString(from, to);
+            view.dispatch({ changes: { from, to, empty: true } });
+            view.dispatch({
+              changes: { from, insert: `*${originalText}*` },
+              selection: { anchor: from + 1, head: from + 1 + originalText.length },
+            });
+          }
+        }
+        break;
+      case 'strike':
+        if (from === to) {
+          // 선택 영역이 없는 경우
+          view.dispatch({
+            changes: { from: from, insert: '~텍스트~' },
+            selection: { anchor: from + 1, head: from + 4 },
+          });
+        } else {
+          // 선택 영역이 있는 경우
+          const front = view.state.doc.sliceString(from - 1, from) === '~';
+          const rear = view.state.doc.sliceString(to, to + 1) === '~';
+          if (front && rear) {
+            view.dispatch({ changes: { from: to, to: to + 1, empty: true } });
+            view.dispatch({ changes: { from: from - 1, to: from, empty: true } });
+          } else {
+            const originalText = view.state.doc.sliceString(from, to);
+            view.dispatch({ changes: { from, to, empty: true } });
+            view.dispatch({
+              changes: { from, insert: `~${originalText}~` },
+              selection: { anchor: from + 1, head: from + 1 + originalText.length },
+            });
+          }
+        }
+        break;
+      case 'quote':
+        break;
+      case 'link':
+        break;
+      case 'photo':
+        break;
+      case 'code':
+        break;
     }
   };
 
   const onKeyDown = (e: React.KeyboardEvent) => {
+    // 필요한 경우 추가
     if (e.metaKey && e.code === 'KeyB') handleClickToolbar('bold');
   };
 
