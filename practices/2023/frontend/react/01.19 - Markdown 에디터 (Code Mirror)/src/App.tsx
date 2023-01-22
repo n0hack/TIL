@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { ReactCodeMirrorRef } from '@uiw/react-codemirror';
-import MarkdownEditor from './MarkdownEditor';
-import MarkdownRenderer from './MarkdownRenderer';
+import MarkdownEditor from './components/write/MarkdownEditor';
+import MarkdownPreview from './components/write/MarkdownPreview';
 import Toolbar, { ToolbarMode } from './components/write/Toolbar';
 import { EditorSelection } from '@codemirror/state';
 
@@ -39,7 +39,7 @@ function App() {
           <MarkdownEditor value={markdown} onChange={onChange} />
         </div>
         <div className="flex-col w-[50%] hidden md:flex">
-          <MarkdownRenderer markdown={markdown} />
+          <MarkdownPreview markdown={markdown} />
         </div>
       </div>
     </React.Fragment>

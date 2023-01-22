@@ -12,14 +12,12 @@ import rehypeStringify from 'rehype-stringify';
 import styled from 'styled-components';
 // import Typography from './Typography';
 import sanitize from 'sanitize-html';
-import katexWhitelist from './katexWhitelist';
-import prismPlugin from './prismPlugin';
-import prismThemes from './prismThemes';
-import MarkdownPreview from '@uiw/react-markdown-preview';
+import katexWhitelist from '../../katexWhitelist';
+import prismPlugin from '../../prismPlugin';
+import prismThemes from '../../prismThemes';
 import { unified } from 'unified';
-import Typography from './components/common/Typography';
 
-interface MarkdownRendererProps {
+interface MarkdownPreviewProps {
   markdown: string;
 }
 
@@ -88,7 +86,7 @@ function filter(html: string) {
   });
 }
 
-const MarkdownRenderer = ({ markdown }: MarkdownRendererProps) => {
+const MarkdownPreview = ({ markdown }: MarkdownPreviewProps) => {
   const html = useMemo(() => {
     return filter(
       remark()
@@ -113,18 +111,18 @@ const MarkdownRenderer = ({ markdown }: MarkdownRendererProps) => {
   //           .use(embedPlugin)
 
   return (
-    <MarkdownRendererBlock>
+    <MarkdownPreviewBlock>
       {/* <Typography> */}
       {/* <MarkdownPreview source={markdown} /> */}
       <div dangerouslySetInnerHTML={{ __html: html }} />
       {/* </Typography> */}
-    </MarkdownRendererBlock>
+    </MarkdownPreviewBlock>
   );
 };
 
-export default MarkdownRenderer;
+export default MarkdownPreview;
 
-const MarkdownRendererBlock = styled.div`
+const MarkdownPreviewBlock = styled.div`
   /* width: 50%; */
   flex: 1;
   padding: 3rem;

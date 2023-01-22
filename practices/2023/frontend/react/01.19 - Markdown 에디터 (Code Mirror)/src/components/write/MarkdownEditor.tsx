@@ -6,7 +6,7 @@ import { languages } from '@codemirror/language-data';
 import createTheme from '@uiw/codemirror-themes';
 import { tags as t } from '@lezer/highlight';
 import styled from 'styled-components';
-import Toolbar from './components/write/Toolbar';
+import Toolbar from './Toolbar';
 
 export type Mode =
   | 'heading1'
