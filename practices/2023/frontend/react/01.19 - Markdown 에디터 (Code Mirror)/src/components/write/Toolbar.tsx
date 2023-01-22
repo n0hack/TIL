@@ -29,7 +29,7 @@ interface ToolbarProps {
 
 export default function Toolbar({ onClick }: ToolbarProps) {
   return (
-    <ToolbarBlock id="toolbar">
+    <ToolbarBlock>
       <ToolbarItem onClick={() => onClick?.('heading1')}>
         H<span>1</span>
       </ToolbarItem>
@@ -71,6 +71,7 @@ export default function Toolbar({ onClick }: ToolbarProps) {
 
 const ToolbarBlock = styled.div`
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   margin-bottom: 1rem;
   padding: 0 3rem;
@@ -79,9 +80,10 @@ const ToolbarBlock = styled.div`
 const ToolbarItem = styled.button`
   width: 3rem;
   height: 3rem;
+  flex-shrink: 0;
   font-family: 'Fira Mono', sans-serif;
   font-weight: 500;
-  font-size: 1rem;
+  font-size: 1.125rem;
   color: #8f8f8f;
 
   &:hover {
@@ -90,7 +92,7 @@ const ToolbarItem = styled.button`
   }
 
   span {
-    font-size: 0.75rem;
+    font-size: 0.875rem;
   }
 
   svg {
