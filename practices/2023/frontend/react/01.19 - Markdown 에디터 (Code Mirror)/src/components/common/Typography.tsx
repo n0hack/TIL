@@ -1,5 +1,5 @@
 import React from 'react';
-import { styled } from 'twin.macro';
+import tw, { styled } from 'twin.macro';
 
 interface Props {
   children?: React.ReactNode;
@@ -13,18 +13,22 @@ export default Typography;
 
 const TypographyBlock = styled.div`
   h1 {
+    margin-top: 2.5rem;
     font-size: 2rem;
   }
 
   h2 {
+    margin-top: 1rem;
     font-size: 1.75rem;
   }
 
   h3 {
+    margin-top: 1rem;
     font-size: 1.5rem;
   }
 
   h4 {
+    margin-top: 1rem;
     font-size: 1.25rem;
   }
 

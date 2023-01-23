@@ -43,7 +43,7 @@ export default createTheme({
     { tag: t.emphasis, color: '#212529', fontWeight: 'normal', fontStyle: 'italic' },
     { tag: t.strikethrough, color: '#9d9d9d', fontWeight: 'normal' },
     // 링크 (Link)
-    // { tag: t.url, color: '#3182f6' },
+    { tag: t.url, color: '#3182f6' },
     { tag: t.link, color: '#3182f6' },
     // 인용 (Quote)
     { tag: t.quote, color: '#9d9d9d', fontStyle: 'italic' },
