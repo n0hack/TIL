@@ -19,8 +19,8 @@ function App() {
         <p className="text-gray-700 font-medium">◀︎ 나가기</p>
         <button className="py-2 px-3 rounded-[4px] bg-blue-500 text-white font-medium">등록하기</button>
       </div>
-      <div className="flex w-full h-screen pt-[60px]">
-        <div className="w-full flex flex-col md:w-1/2">
+      <div className="flex w-full h-screen">
+        <div className="relative w-full flex flex-col md:w-1/2 pt-[60px] pb-12">
           <div className="flex flex-col pt-8 px-12">
             <input
               className="text-gray-900 text-4xl font-bold border-0 outline-0 placeholder:text-gray-400"

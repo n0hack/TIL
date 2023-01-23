@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "ESNext",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -14,7 +14,26 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "jsxImportSource": "@emotion/react",
+    "baseUrl": "./src",
+    "paths": {
+      "@api": ["api"],
+      "@api/*": ["api/*"],
+      "@components": ["components"],
+      "@components/*": ["components/*"],
+      "@constants": ["constants"],
+      "@contexts/*": ["contexts/*"],
+      "@hooks": ["hooks"],
+      "@hooks/*": ["hooks/*"],
+      "@lib": ["lib"],
+      "@lib/*": ["lib/*"],
+      "@pages/*": ["pages/*"],
+      "@static/*": ["static/*"],
+      "@utils": ["utils"],
+      "@utils/*": ["utils/*"]
+    },
+    "types": ["vite/client", "vite-plugin-svgr/client"]
   },
-  "include": ["src"]
+  "include": ["./src", "vite.config.ts"]
 }

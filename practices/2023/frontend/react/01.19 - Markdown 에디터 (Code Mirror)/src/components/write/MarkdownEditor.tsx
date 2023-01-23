@@ -81,15 +81,44 @@ const customTheme = createTheme({
 });
 
 const MarkdownEditor = ({ value, onChange }: MarkdownEditorProps) => {
-  const [link, setLink] = useState({ visible: false, bottom: 0, left: 0 });
+  const [link, setLink] = useState({ visible: false, bottom: 0, left: 0, stickToBottom: false, stickToRight: false });
+  const [image, setImage] = useState({ visible: false, bottom: 0, left: 0, stickToBottom: false, stickToRight: false });
   const editor = useRef<ReactCodeMirrorRef>(null);
   // const [position, setPosition] = useState({top: editor.current?.editor., left: 0})
 
   const handleCloseLink = () => {
-    setLink({ visible: false, bottom: 0, left: 0 });
+    setLink({ visible: false, bottom: 0, left: 0, stickToBottom: false, stickToRight: false });
   };
 
-  const handleAddLink = (url: string) => {};
+  const handleAddLink = (url: string) => {
+    if (!editor.current || !editor.current.view) return;
+
+    // 에디터 인스턴스
+    const { view } = editor.current;
+    // 커서가 가리키고 있는 행의 정보
+    const line = view.state.doc.lineAt(view.state.selection.main.head);
+    view.dispatch({
+      changes: { from: line.to, insert: `[링크텍스트](${url})` },
+      selection: { anchor: line.to + 1, head: line.to + 6 },
+    });
+  };
+
+  const handleAddImage = (url: string) => {
+    if (!editor.current || !editor.current.view) return;
+
+    // 에디터 인스턴스
+    const { view } = editor.current;
+    // 커서가 가리키고 있는 행의 정보
+    const line = view.state.doc.lineAt(view.state.selection.main.head);
+    view.dispatch({
+      changes: { from: line.to, insert: `[이미지설명](${url})` },
+      selection: { anchor: line.to + 1, head: line.to + 6 },
+    });
+  };
+
+  const handleCloseImage = () => {
+    setImage({ visible: false, bottom: 0, left: 0, stickToBottom: false, stickToRight: false });
+  };
 
   const handleClickToolbar = (mode: Mode) => {
     if (!editor.current || !editor.current.view) return;
@@ -297,12 +326,19 @@ const MarkdownEditor = ({ value, onChange }: MarkdownEditorProps) => {
         break;
       case 'link':
         const coords = view.coordsAtPos(to);
+        if (!coords) return;
+
+        // left 48, width: 564 = 612를 넘어가는 순간부터 큰일
+        // left: 145, width: 268 = 413
+        // console.log(coords.left); // 145.1953125
+
         // console.log(line);
         // TODO: 오프셋으로 계산하면 될 듯
         console.log(coords);
         console.dir(view.dom);
-        if (!coords) return;
-        setLink({ visible: true, bottom: coords.bottom, left: coords.left });
+        const stickToRight = coords.left + 320 > view.dom.offsetLeft + view.dom.offsetWidth;
+        const stickToBottom = coords.bottom + 139 > window.innerHeight;
+        setLink({ visible: true, bottom: coords.bottom, left: coords.left, stickToBottom, stickToRight });
         // console.dir(view.coordsAtPos(line.to));
         // document.elementFromPoint(view.)
         // view.dispatch({
@@ -342,33 +378,45 @@ const MarkdownEditor = ({ value, onChange }: MarkdownEditorProps) => {
   return (
     <React.Fragment>
       <Toolbar onClick={handleClickToolbar} />
-      <MarkdownEditorBlock>
+      <TestBlock className="flex-1 overflow-y-scroll px-12">
         {true && <AddLink position={{ ...link }} onAdd={handleAddLink} onClose={handleCloseLink} />}
-        <ReactCodeMirror
-          ref={editor}
-          extensions={[markdown({ base: markdownLanguage, codeLanguages: languages }), EditorView.lineWrapping]}
-          placeholder="내용을 입력하세요..."
-          basicSetup={{
-            lineNumbers: false,
-            foldGutter: false,
-            highlightActiveLine: false,
-            highlightSelectionMatches: false,
-            tabSize: 2,
-          }}
-          value={value}
-          onChange={onChange}
-          theme={customTheme}
-          onKeyDown={onKeyDown}
-        />
-      </MarkdownEditorBlock>
+        <MarkdownEditorBlock>
+          <ReactCodeMirror
+            ref={editor}
+            extensions={[markdown({ base: markdownLanguage, codeLanguages: languages }), EditorView.lineWrapping]}
+            placeholder="내용을 입력하세요..."
+            basicSetup={{
+              lineNumbers: false,
+              foldGutter: false,
+              highlightActiveLine: false,
+              highlightSelectionMatches: false,
+              tabSize: 2,
+            }}
+            value={value}
+            onChange={onChange}
+            theme={customTheme}
+            onKeyDown={onKeyDown}
+          />
+        </MarkdownEditorBlock>
+      </TestBlock>
     </React.Fragment>
   );
 };
 
 export default MarkdownEditor;
 
+const TestBlock = styled.div`
+  &::-webkit-scrollbar {
+    width: 0.375rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #589eff;
+  }
+`;
+
 const MarkdownEditorBlock = styled.div`
-  padding: 0 3rem 3rem;
+  padding: 0;
   font-size: 1.125rem;
   overflow-y: scroll;
 
