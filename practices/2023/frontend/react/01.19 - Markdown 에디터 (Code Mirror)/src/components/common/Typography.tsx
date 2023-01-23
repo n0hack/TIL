@@ -1,12 +1,11 @@
 import React from 'react';
-import styled from 'styled-components';
-// import prismThemes from './prismThemes';
+import { styled } from 'twin.macro';
 
-interface TypographyProps {
+interface Props {
   children?: React.ReactNode;
 }
 
-const Typography = ({ children }: TypographyProps) => {
+const Typography = ({ children }: Props) => {
   return <TypographyBlock>{children}</TypographyBlock>;
 };
 
@@ -14,19 +13,19 @@ export default Typography;
 
 const TypographyBlock = styled.div`
   h1 {
-    font-size: 2.5rem;
-  }
-
-  h2 {
     font-size: 2rem;
   }
 
+  h2 {
+    font-size: 1.75rem;
+  }
+
   h3 {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
   }
 
   h4 {
-    font-size: 1.125rem;
+    font-size: 1.25rem;
   }
 
   h1,
@@ -38,8 +37,8 @@ const TypographyBlock = styled.div`
     line-height: 1.5;
 
     a {
-      transition: all 0.2s ease-in;
       color: #3182f6;
+      transition: all 0.2s ease-in;
       &:hover {
         color: #3576d0;
       }
@@ -159,6 +158,7 @@ const TypographyBlock = styled.div`
     overflow-x: auto;
     letter-spacing: 0px;
   }
+
   img {
     max-width: 100%;
     height: auto;
@@ -170,7 +170,6 @@ const TypographyBlock = styled.div`
   blockquote {
     margin-top: 2rem;
     margin-bottom: 2rem;
-    /* border-bottom: 2px solid #3576d0; */
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
     border-radius: 4px;
@@ -192,10 +191,6 @@ const TypographyBlock = styled.div`
     }
   }
 
-  .katex-mathml {
-    display: none;
-  }
-
   iframe {
     width: 768px;
     height: 430px;
@@ -208,4 +203,3 @@ const TypographyBlock = styled.div`
     overflow: hidden;
   }
 `;
-/* ${prismThemes['github']} */

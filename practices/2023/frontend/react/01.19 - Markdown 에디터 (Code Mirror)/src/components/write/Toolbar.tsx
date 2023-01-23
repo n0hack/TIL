@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import tw, { styled } from 'twin.macro';
 import {
   ToolbarBoldIcon,
   ToolbarCodeIcon,
@@ -69,13 +69,7 @@ export default function Toolbar({ onClick }: ToolbarProps) {
   );
 }
 
-const ToolbarBlock = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  margin-bottom: 1rem;
-  padding: 0 3rem;
-`;
+const ToolbarBlock = tw.div`flex flex-wrap items-center mb-4 px-6`;
 
 const ToolbarItem = styled.button`
   width: 3rem;
@@ -102,9 +96,4 @@ const ToolbarItem = styled.button`
   }
 `;
 
-const Seperator = styled.div`
-  width: 1px;
-  height: 1.25rem;
-  margin: 0 0.5rem;
-  background-color: #d8d8d8;
-`;
+const Seperator = tw.div`w-[1px] h-5 mx-2 bg-gray-300`;

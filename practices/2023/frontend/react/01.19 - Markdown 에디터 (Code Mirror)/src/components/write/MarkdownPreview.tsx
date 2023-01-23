@@ -1,145 +1,74 @@
-import React, { useMemo, useRef } from 'react';
+import React, { useMemo } from 'react';
 import { remark } from 'remark';
 import remarkBreaks from 'remark-breaks';
 import remarkParse from 'remark-parse';
 import remarkGfm from 'remark-gfm';
 import remarkSlug from 'rehype-slug';
 import remarkRehype from 'remark-rehype';
+import remarkEmoji from 'remark-emoji';
 import rehypeRaw from 'rehype-raw';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import rehypeStringify from 'rehype-stringify';
-import styled from 'styled-components';
-// import Typography from './Typography';
-import sanitize from 'sanitize-html';
-import katexWhitelist from '../../katexWhitelist';
-import prismPlugin from '../../prismPlugin';
-import prismThemes from '../../prismThemes';
-import { unified } from 'unified';
+import tw, { styled } from 'twin.macro';
+import PrismPlugin from '@lib/markdown/prismPlugin';
+import prismThemes from '@lib/markdown/prismThemes';
+import Typography from '@components/common/Typography';
 
-interface MarkdownPreviewProps {
+interface Props {
+  title?: string;
   markdown: string;
+  background?: boolean;
 }
 
-function filter(html: string) {
-  return sanitize(html, {
-    allowedTags: [
-      'h1',
-      'h2',
-      'h3',
-      'h4',
-      'h5',
-      'h6',
-      'blockquote',
-      'p',
-      'a',
-      'ul',
-      'ol',
-      'nl',
-      'li',
-      'b',
-      'i',
-      'strong',
-      'em',
-      'strike',
-      'code',
-      'hr',
-      'br',
-      'div',
-      'table',
-      'thead',
-      'caption',
-      'tbody',
-      'tr',
-      'th',
-      'td',
-      'pre',
-      'iframe',
-      'span',
-      'img',
-      'del',
-      'input',
-
-      ...katexWhitelist.tags,
-    ],
-    allowedAttributes: {
-      a: ['href', 'name', 'target'],
-      img: ['src'],
-      iframe: ['src', 'allow', 'allowfullscreen', 'scrolling', 'class'],
-      '*': ['class', 'id', 'aria-hidden'],
-      span: ['style'],
-      input: ['type'],
-      ol: ['start'],
-      ...katexWhitelist.attributes,
-    },
-    allowedStyles: {
-      '*': {
-        // Match HEX and RGB
-        color: [/^#(0x)?[0-9a-f]+$/i, /^rgb\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*\)$/],
-        'text-align': [/^left$/, /^right$/, /^center$/],
-      },
-      span: {
-        ...katexWhitelist.styles,
-      },
-    },
-    allowedIframeHostnames: ['www.youtube.com', 'codesandbox.io', 'codepen.io'],
-  });
-}
-
-const MarkdownPreview = ({ markdown }: MarkdownPreviewProps) => {
+const MarkdownPreview = ({ title, markdown, background }: Props) => {
   const html = useMemo(() => {
-    return filter(
-      remark()
-        // remark = 마크다운 처리
-        .use(remarkBreaks)
-        .use(remarkParse)
-        .use(remarkSlug)
-        .use(prismPlugin as any)
-        .use(remarkGfm)
-        .use(remarkMath)
-        .use(remarkRehype, { allowDangerousHtml: true })
-        // rehype = HTML 처리
-        .use(rehypeRaw)
-        .use(rehypeKatex)
-        .use(rehypeStringify)
-        .processSync(markdown)
-        .toString()
-    );
+    // TODO: Sanitize 처리
+    return remark()
+      .use(remarkBreaks)
+      .use(remarkParse)
+      .use(remarkSlug)
+      .use(remarkEmoji)
+      .use(PrismPlugin as any)
+      .use(remarkGfm)
+      .use(remarkMath)
+      .use(remarkRehype, { allowDangerousHtml: true })
+      .use(rehypeRaw)
+      .use(rehypeKatex)
+      .use(rehypeStringify)
+      .processSync(markdown)
+      .toString();
   }, [markdown]);
 
-  // .use(prismPlugin)
-  //           .use(embedPlugin)
-
   return (
-    <MarkdownPreviewBlock>
-      {/* <Typography> */}
-      {/* <MarkdownPreview source={markdown} /> */}
-      <div dangerouslySetInnerHTML={{ __html: html }} />
-      {/* </Typography> */}
+    <MarkdownPreviewBlock background={background}>
+      {title && <h1 className="text-3xl font-bold mb-8 pb-4 border-b border-gray-300">{title}</h1>}
+      <Typography>
+        <div dangerouslySetInnerHTML={{ __html: html }} />
+      </Typography>
     </MarkdownPreviewBlock>
   );
 };
 
 export default MarkdownPreview;
 
-const MarkdownPreviewBlock = styled.div`
-  /* width: 50%; */
+const MarkdownPreviewBlock = styled.div<{ background?: boolean }>`
   flex: 1;
   padding: 3rem;
-  background: #fbfdfc;
-  word-break: break-word;
+  background: ${(props) => (props.background ? '#fbfdfc' : 'white')};
   overflow-y: auto;
 
-  /* div {
-    word-break: keep-all;
-    overflow-wrap: break-word;
-  } */
-
   &::-webkit-scrollbar {
-    width: 0.375rem; /* 스크롤바의 너비 */
+    width: 0.375rem;
   }
 
   &::-webkit-scrollbar-thumb {
-    background: #589eff; /* 스크롤바의 색상 */
+    ${tw`bg-blue-400`}
   }
+
+  .katex-mathml {
+    display: none;
+  }
+
+  ${prismThemes}
 `;

@@ -31,24 +31,13 @@ import 'prismjs/components/prism-flow';
 
 export default function PrismPlugin() {
   function visitor(node) {
-    const { lang, data } = node;
-
-    // const data = node.data || (node.data = {})
-    // const props = data.hProperties || (data.hProperties = {})
-
-    // if (!data) {
-    //   node.data = {};
-    // }
+    const { lang } = node;
 
     const highlighted = Prism.highlight(node.value, Prism.languages[lang] || Prism.languages.markup, lang);
 
     window.prism = Prism;
     node.type = 'html';
     node.value = `<pre><code class="language-${lang}">${highlighted}</code></pre>`;
-
-    // if (!data.hProperties) {
-    // data.hProperties = {};
-    // }
   }
   return (ast) => visit(ast, 'code', visitor);
 }

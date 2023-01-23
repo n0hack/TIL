@@ -1,13 +1,13 @@
 import React, { useRef, useState } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
 
-interface AddLinkProps {
+interface AddImageProps {
   position: { bottom: number; left: number; stickToRight: boolean; stickToBottom: boolean };
   onAdd: (url: string) => void;
   onClose: () => void;
 }
 
-const AddLink = ({ position, onAdd, onClose }: AddLinkProps) => {
+const AddImage = ({ position, onAdd, onClose }: AddImageProps) => {
   const { bottom, left, stickToBottom, stickToRight } = position;
   const [url, setUrl] = useState('');
   const block = useRef<HTMLDivElement>(null);
@@ -15,6 +15,7 @@ const AddLink = ({ position, onAdd, onClose }: AddLinkProps) => {
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onAdd(url);
+    // console.dir(block.current);
   };
 
   return (
@@ -32,7 +33,7 @@ const AddLink = ({ position, onAdd, onClose }: AddLinkProps) => {
         }}
       >
         <div className="p-4 bg-white shadow-md border border-gray-200 rounded-sm">
-          <h3 className="text-base font-medium mb-2">링크 등록</h3>
+          <h3 className="text-base font-medium mb-2">이미지 링크 등록</h3>
           <form onSubmit={onSubmit} className="flex">
             <input
               className="text-base border-b mr-4 text-gray-900 outline-none flex-1"
@@ -50,4 +51,4 @@ const AddLink = ({ position, onAdd, onClose }: AddLinkProps) => {
   );
 };
 
-export default AddLink;
+export default AddImage;
