@@ -22,3 +22,16 @@ type K2 = keyof Person & keyof Lifespan;
 function getKey<K extends string>(val: any, key: K) {
   return key;
 }
+
+type A = {
+  a1: string;
+  a2: string;
+};
+
+type B = {
+  b1: string;
+  b2: string;
+};
+
+// never
+let Test1: keyof (A | B);
