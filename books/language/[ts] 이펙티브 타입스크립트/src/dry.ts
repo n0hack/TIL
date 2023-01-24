@@ -40,4 +40,6 @@ namespace DRY {
   };
 
   // DRY 원칙은 Type에도 최대한 적용해야 함
+  type MyType<T> = T extends infer R ? R : null;
+  const Test: MyType<string> = '';
 }
