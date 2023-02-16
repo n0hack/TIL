@@ -6,4 +6,11 @@ describe('Calculation', () => {
   test('two plus two is not five', () => {
     expect(2 + 2).not.toBe(5);
   });
+
+  test('mock function', () => {
+    const mockFunction = jest.fn();
+    mockFunction.mockReturnValue(10);
+    mockFunction();
+    expect(mockFunction).toHaveBeenCalled();
+  });
 });
