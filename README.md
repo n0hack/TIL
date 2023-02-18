@@ -1,4 +1,4 @@
-![Repo Thumbnail](https://user-images.githubusercontent.com/42988225/219869194-e0405a99-fa6d-4732-90e0-59224ecb9eea.png)
+![Repo Thumbnail](https://user-images.githubusercontent.com/42988225/219870060-cc8fcbf1-3a29-4d6e-b9d9-2a0de0e7385d.png)
 
 > **success is the sum of small efforts, repeated day in and day out**
 
@@ -37,4 +37,4 @@
 
 ## Copyrights 📌
 
-© 2022 Ming (NoHack) All rights reserved.
+© 2022. Lucid, Jihun Jeon all rights reserved.
