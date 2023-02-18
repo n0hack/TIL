@@ -1,16 +1,7 @@
-describe('Calculation', () => {
-  test('two plus two is four', () => {
-    expect(2 + 2).toBe(4);
-  });
+const productController = require('../../controller/products');
 
-  test('two plus two is not five', () => {
-    expect(2 + 2).not.toBe(5);
-  });
-
-  test('mock function', () => {
-    const mockFunction = jest.fn();
-    mockFunction.mockReturnValue(10);
-    mockFunction();
-    expect(mockFunction).toHaveBeenCalled();
+describe('Product Controller Create', () => {
+  test('should have a createProduct function', () => {
+    expect(typeof productController.createProduct).toBe('function');
   });
 });
