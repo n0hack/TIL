@@ -23,21 +23,21 @@ describe('Product Controller Create', () => {
     expect(typeof productController.createProduct).toBe('function');
   });
 
-  test('should call productModel.create', () => {
+  test('should call productModel.create', async () => {
     // 단위 테스트이기 때문에 실제 모델에 영향을 주어서는 안 됨 (Mock을 통해 Spy 심기 - 추적 가능)
-    productController.createProduct(req, res, next);
+    await productController.createProduct(req, res, next);
     expect(productModel.create).toBeCalledWith(newProduct);
   });
 
-  test('should return 201 response code', () => {
-    productController.createProduct(req, res, next);
+  test('should return 201 response code', async () => {
+    await productController.createProduct(req, res, next);
     expect(res.statusCode).toBe(201);
     expect(res._isEndCalled()).toBeTruthy();
   });
 
-  test('should return json body in response', () => {
+  test('should return json body in response', async () => {
     productModel.create.mockReturnValue(newProduct);
-    productController.createProduct(req, res, next);
+    await productController.createProduct(req, res, next);
     expect(res._getJSONData()).toStrictEqual(newProduct);
   });
 });
