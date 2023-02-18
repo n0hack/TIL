@@ -1,4 +1,4 @@
-![Github Thumbnail 복사](https://user-images.githubusercontent.com/42988225/200174957-5f5853da-f30b-4099-94f7-ccbbca738156.jpg)
+![Repo Thumbnail](https://user-images.githubusercontent.com/42988225/219869194-e0405a99-fa6d-4732-90e0-59224ecb9eea.png)
 
 > **success is the sum of small efforts, repeated day in and day out**
 
@@ -22,7 +22,6 @@
 
 - React
 - Gatsby
-- Remix
 - Next
 
 ### Backend
@@ -33,8 +32,7 @@
 
 ### App
 
-- Flutter
-- PWA
+- React Native
 - Electron
 
 ## Copyrights 📌
