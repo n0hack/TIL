@@ -11,7 +11,7 @@ let req, res, next;
 beforeEach(() => {
   req = httpMocks.createRequest();
   res = httpMocks.createResponse();
-  next = null;
+  next = jest.fn();
 });
 
 describe('Product Controller Create', () => {
@@ -39,5 +39,15 @@ describe('Product Controller Create', () => {
     productModel.create.mockReturnValue(newProduct);
     await productController.createProduct(req, res, next);
     expect(res._getJSONData()).toStrictEqual(newProduct);
+  });
+
+  test('should handle errors', async () => {
+    // 몽고 DB에서 처리하는 부분은 문제가 없다는 것을 가정
+    // 단위 테스트는 바깥을 의존하면 안 되기 때문에, 에러 메시지를 Mock으로 임의 생성
+    const errorMessage = { message: 'description property missing' };
+    const rejectedPromise = Promise.reject(errorMessage);
+    productModel.create.mockReturnValue(rejectedPromise);
+    await productController.createProduct(req, res, next);
+    expect(next).toBeCalledWith(errorMessage);
   });
 });
