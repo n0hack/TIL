@@ -18,8 +18,13 @@ app.get('/', (req, res) => {
   res.send('Hello World');
 });
 
-app.listen(PORT, () => {
-  console.log(`Running on port ${PORT}`);
+// 에러 핸들러 미들웨어를 추가해서 에러를 처리
+app.use((error, req, res, next) => {
+  res.status(500).json({ message: error.message });
 });
+
+// app.listen(PORT, () => {
+//   console.log(`Running on port ${PORT}`);
+// });
 
 module.exports = app;
