@@ -30,5 +30,33 @@ UI와 같이 어떻게 보여질지에 대한 부분은 디자인에 의존한�
 
 > 합성하는 컴포넌트들은 서로가 서로를 모르기에 변경에 유연하게 됨
 
-1. 도메인 분리하기
-   > 도메인: 다루고 있는 비즈니스와 관련된 부분
+**도메인 분리하기**
+
+> 도메인: 다루고 있는 비즈니스와 관련된 부분
+
+<img width="554" alt="image" src="https://user-images.githubusercontent.com/42988225/221143972-5d3ba56d-a562-4bf8-a8d3-a6629b93d74e.png">
+
+FrameworkSelect라는 컴포넌트에서 framework라는 도메인에 대한 Props를 전부 제거하면, 남은 Props는 Select의 Attributes와 동일해진다.
+
+- 일반적인 인터페이스로 분리하기 (컴포넌트의 이름과 Props)
+  - 컴포넌트의 역할을 이해하기 쉬움
+  - 도메인과 관련된 부분을 쳐내고, 표준에 가까워질수록 이해하기 쉬운 인터페이스가 됨
+
+<img width="477" alt="image" src="https://user-images.githubusercontent.com/42988225/221144583-29554d95-f22d-446c-b94b-c38d4e973839.png">
+
+FrameworkSelect 컴포넌트는 Container가 아니지만, 데이터에 접근한다. 비즈니스 로직은 스스로 처리하되, UI는 위임하고 있는 특징을 갖고 있음.
+
+### Action Item
+
+**인터페이스를 먼저 고민하기**
+
+구현해야 하는 어떤 기능이 이미 만들어져 있다 가정하고 작성해 보기
+
+- 의도가 무엇인가?
+- 이 컴포넌트의 기능은 무엇인가?
+- 어떻게 표현되어야 하는가?
+
+**컴포넌트를 나누기 전에 나눠야 하는지 이유 생각해 보기**
+
+- Divide and Conquer (컴포넌트를 분리하면 실제로 복잡도가 낮아지는가?)
+- Don't reinvent the wheel (컴포넌트로 분리하면 재사용 가능한 컴포넌트인가?)
