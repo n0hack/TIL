@@ -1,9 +1,13 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { useQuery } from '@tanstack/react-query';
+import post from './apis/post';
 
 function App() {
-  console.log(window.color);
+  const { data } = useQuery(['posts'], () => post.requestGetPosts());
+  console.log(data);
+
   return (
     <div className="App">
       <header className="App-header">
