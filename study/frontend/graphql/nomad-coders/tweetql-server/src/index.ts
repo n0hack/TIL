@@ -20,12 +20,19 @@ const typeDefs = `#graphql
     author: String
   }
 
+  # REST에서 GET에 대한 것을 정의
   type Query {
     allTweets: [Tweet]
     books: [Book]
     tweets: [Tweet]
     # Arguments
     tweet(id: ID): Tweet
+  }
+
+  # 유저가 보낸 데이터로 mutate하는 모든 것을 정의 (POST, PUT, DELETE 등)
+  type Mutation {
+    postTweet(text: String, userId: ID): Tweet
+    deleteTweet(id: ID): Boolean
   }
 `;
 
