@@ -8,9 +8,15 @@ const typeDefs = `#graphql
     id: ID!
     firstName: String!
     lastName: String!
+    """
+    Is the sum of firstName and lastName
+    """
     fullName: String!
   }
 
+  """
+  Tweet object represents a resource for a Tweet
+  """
   type Tweet { 
     id: ID!
     text: String!
@@ -28,6 +34,7 @@ const typeDefs = `#graphql
   # 유저가 보낸 데이터로 mutate하는 모든 것을 정의 (POST, PUT, DELETE 등)
   type Mutation {
     postTweet(text: String!, userId: ID!): Tweet!
+    """트윗 삭제"""
     deleteTweet(id: ID!): Boolean!
   }
 `;
@@ -104,7 +111,14 @@ const resolvers = {
 };
 
 // 서버 구축
-const server = new ApolloServer({ typeDefs, resolvers });
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  formatError: (formattedError, error) => {
+    console.log(error);
+    return formattedError;
+  },
+});
 (async () => {
   const { url } = await startStandaloneServer(server, { listen: { port: 4000 } });
   console.log(`🚀  Server ready at: ${url}`);
