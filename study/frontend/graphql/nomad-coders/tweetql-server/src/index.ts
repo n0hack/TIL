@@ -6,9 +6,9 @@ import { startStandaloneServer } from '@apollo/server/standalone';
 const typeDefs = `#graphql
   type User {
     id: ID!
-    username: String!
     firstName: String!
     lastName: String!
+    fullName: String!
   }
 
   type Tweet { 
@@ -19,6 +19,7 @@ const typeDefs = `#graphql
 
   # REST에서 GET에 대한 것을 정의
   type Query {
+    allUsers: [User!]!
     allTweets: [Tweet!]!
     # Arguments (!가 붙으면 non-nullable)
     tweet(id: ID!): Tweet
@@ -32,13 +33,26 @@ const typeDefs = `#graphql
 `;
 
 // 데이터셋
-const tweets = [
+const users = [
   {
     id: '1',
-    text: 'First One!',
+    firstName: 'Lucid',
+    lastName: 'Jeon',
   },
   {
     id: '2',
+    firstName: 'Jihun',
+    lastName: 'Jeon',
+  },
+];
+
+const tweets = [
+  {
+    id: 1,
+    text: 'First One!',
+  },
+  {
+    id: 2,
     text: 'Second One!',
   },
 ];
@@ -46,8 +60,40 @@ const tweets = [
 // 리졸버 (스키마와 형태가 동일해야 함)
 const resolvers = {
   Query: {
+    allUsers: () => {
+      console.log('All Users Resolver Called!');
+      return users;
+    },
     allTweets: () => tweets,
-    tweet: (root: any, args: { id: string }) => tweets.find((tweet) => tweet.id === args.id),
+    tweet: (root: any, args: { id: string }) => tweets.find((tweet) => tweet.id === Number(args.id)),
+  },
+  Mutation: {
+    postTweet(_: any, { text, userId }: any) {
+      const newTweet = {
+        id: tweets.length + 1,
+        text,
+      };
+      tweets.push(newTweet);
+      return newTweet;
+    },
+    deleteTweet(_: any, { id }: any) {
+      const index = tweets.findIndex((tweet) => tweet.id === Number(id));
+      if (index !== -1) {
+        tweets.splice(index, 1);
+        return true;
+      }
+      return false;
+    },
+  },
+  // Dynamic Resolver
+  User: {
+    firstName: ({ firstName }: { firstName: string }) => firstName,
+    fullName: (root: { firstName: string; lastName: string }) => {
+      // Root Resolver가 출력됨
+      console.log(root);
+      console.log('Full Name Resolver Called!');
+      return `${root.firstName} ${root.lastName}`;
+    },
   },
 };
 
