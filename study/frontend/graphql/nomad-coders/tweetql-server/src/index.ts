@@ -48,12 +48,14 @@ const users = [
 
 const tweets = [
   {
-    id: 1,
+    id: '1',
     text: 'First One!',
+    userId: '2',
   },
   {
-    id: 2,
+    id: '2',
     text: 'Second One!',
+    userId: '1',
   },
 ];
 
@@ -65,19 +67,20 @@ const resolvers = {
       return users;
     },
     allTweets: () => tweets,
-    tweet: (root: any, args: { id: string }) => tweets.find((tweet) => tweet.id === Number(args.id)),
+    tweet: (root: any, args: { id: string }) => tweets.find((tweet) => tweet.id === args.id),
   },
   Mutation: {
     postTweet(_: any, { text, userId }: any) {
       const newTweet = {
-        id: tweets.length + 1,
+        id: (tweets.length + 1).toString(),
         text,
+        userId,
       };
       tweets.push(newTweet);
       return newTweet;
     },
     deleteTweet(_: any, { id }: any) {
-      const index = tweets.findIndex((tweet) => tweet.id === Number(id));
+      const index = tweets.findIndex((tweet) => tweet.id === id);
       if (index !== -1) {
         tweets.splice(index, 1);
         return true;
@@ -94,6 +97,9 @@ const resolvers = {
       console.log('Full Name Resolver Called!');
       return `${root.firstName} ${root.lastName}`;
     },
+  },
+  Tweet: {
+    author: ({ userId }: { userId: string }) => users.find((user) => user.id === userId),
   },
 };
 
