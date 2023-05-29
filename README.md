@@ -10,6 +10,8 @@
 일부는 제 블로그 <a href="https://lucid-dream.net">lucid_dream</a>에 시리즈 형식으로 업로드됩니다! 😆
 </p>
 
+<br />
+
 ## 🍭 Interested
 
 ### Languages
@@ -26,15 +28,34 @@
 
 ### Backend
 
-- Fastify
-- Nest
-- PostgreSQL
-- MongoDB
+![Fastify](https://img.shields.io/badge/fastify-000000?style=for-the-badge&logo=fastify&logoColor=white)
+![Nest](https://img.shields.io/badge/nestjs-e0234e?style=for-the-badge&logo=nestjs&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/postgre-4169e1?style=for-the-badge&logo=postgresql&logoColor=white)
+![MongoDB](https://img.shields.io/badge/mongodb-47a248?style=for-the-badge&logo=mongodb&logoColor=white)
 
 ### App
 
-- React Native
-- Electron
+![React Native](https://img.shields.io/badge/react_native-0088cc?style=for-the-badge&logo=react&logoColor=white)
+![Electron](https://img.shields.io/badge/electron-47848f?style=for-the-badge&logo=electron&logoColor=white)
+
+### Testing
+
+![Jest](https://img.shields.io/badge/jest-c21325?style=for-the-badge&logo=jest&logoColor=white)
+![Storybook](https://img.shields.io/badge/storybook-ff4785?style=for-the-badge&logo=storybook&logoColor=white)
+
+### Deploy
+
+![Git](https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white)
+![GitHub](https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/github_actions-2088ff?style=for-the-badge&logo=githubactions&logoColor=white)
+![Vercel](https://img.shields.io/badge/vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
+
+### Design
+
+![Figma](https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
+![Framer](https://img.shields.io/badge/framer-0055FF?style=for-the-badge&logo=framer&logoColor=white)
+
+<br />
 
 ## 📌 Copyrights
 
