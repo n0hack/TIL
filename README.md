@@ -1,4 +1,4 @@
-![Repo Thumbnail](https://user-images.githubusercontent.com/42988225/219870060-cc8fcbf1-3a29-4d6e-b9d9-2a0de0e7385d.png)
+![Thumbnail](./assets/readme.jpg)
 
 > **success is the sum of small efforts, repeated day in and day out**
 
