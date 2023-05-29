@@ -10,23 +10,24 @@
 일부는 제 블로그 <a href="https://lucid-dream.net">lucid_dream</a>에 시리즈 형식으로 업로드됩니다! 😆
 </p>
 
-## Interested 🚀
+## 🍭 Interested
 
 ### Languages
 
-- JavaScript
-- TypeScript
-- C# (for Unity)
+![JS](<https://img.shields.io/badge/js(es6+)-F7DF1E.svg?style=for-the-badge&logo=javascript&logoColor=black>)
+![TS](https://img.shields.io/badge/ts-3178C6.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![C#](https://img.shields.io/badge/c_sharp-239120.svg?style=for-the-badge&logo=csharp&logoColor=white)
 
 ### Frontend
 
-- React
-- Gatsby
-- Next
+![React](https://img.shields.io/badge/react-0088CC?style=for-the-badge&logo=react&logoColor=white)
+![Gatsby](https://img.shields.io/badge/gatsby-663399?style=for-the-badge&logo=gatsby&logoColor=white)
+![Next](https://img.shields.io/badge/nextjs-000000?style=for-the-badge&logo=next.js&logoColor=white)
 
 ### Backend
 
-- Node (Fastify)
+- Fastify
+- Nest
 - PostgreSQL
 - MongoDB
 
@@ -35,6 +36,6 @@
 - React Native
 - Electron
 
-## Copyrights 📌
+## 📌 Copyrights
 
 © 2022. Lucid, Jihun Jeon all rights reserved.
