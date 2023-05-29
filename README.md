@@ -1,4 +1,4 @@
-![Thumbnail](./assets/readme.jpg)
+![Thumbnail](./assets/bg.png)
 
 > **success is the sum of small efforts, repeated day in and day out**
 
