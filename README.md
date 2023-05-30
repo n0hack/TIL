@@ -1,4 +1,4 @@
-![Thumbnail](./assets/bg.png)
+![[Thumbnail](https://www.pixiv.net/artworks/91877563)](./assets/bg.png)
 
 > **success is the sum of small efforts, repeated day in and day out**
 
