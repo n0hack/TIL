@@ -1,35 +1,47 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { forwardRef, useState } from 'react';
+import reactLogo from './assets/react.svg';
+import viteLogo from '/vite.svg';
+import './App.css';
+import { Path, SubmitHandler, UseFormRegister, useForm } from 'react-hook-form';
+import SchemaValidation from './tutorials/SchemaValidation';
+import './tutorials/yup';
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+interface IFormValues {
+  'First Name': string;
+  Age: number;
 }
 
-export default App
+type InputProps = {
+  label: keyof IFormValues;
+  register: UseFormRegister<IFormValues>;
+  required: boolean;
+};
+
+const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
+  return (
+    <>
+      <label>{props.label}</label>
+      <input {...props.register(props.label, { required: props.required })} />
+    </>
+  );
+});
+
+const Select = forwardRef<HTMLSelectElement, { label: string } & ReturnType<UseFormRegister<IFormValues>>>(
+  ({ label, onBlur, name, onChange }, ref) => {
+    return (
+      <>
+        <label>{label}</label>
+        <select name={name} ref={ref} onChange={onChange} onBlur={onBlur}>
+          <option value="20">20</option>
+          <option value="30">30</option>
+        </select>
+      </>
+    );
+  }
+);
+
+function App() {
+  return <SchemaValidation />;
+}
+
+export default App;
