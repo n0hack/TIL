@@ -1,4 +1,4 @@
-import { object, string, number, date } from 'yup';
+import yup, { object, string, number, date } from 'yup';
 
 const userSchema = object({
   name: string().required(),
@@ -6,7 +6,16 @@ const userSchema = object({
   email: string().email(),
   website: string().url().nullable(),
   createdOn: date().default(() => new Date()),
+  test: string().test({
+    name: 'is-test',
+    test: (value, ctx) => {
+      if (value === '1') return ctx.createError({ message: '에러 발생임' });
+      return true;
+    },
+  }),
 });
+
+type InputFields = yup.InferType<typeof userSchema>;
 
 const parsedUser = userSchema.cast({
   name: 'jimmy',
@@ -15,3 +24,6 @@ const parsedUser = userSchema.cast({
 });
 
 console.log(parsedUser);
+
+userSchema.validate({ name: 's', age: 1, test: '12' });
+console.log(userSchema.isValidSync({ name: 's', age: 1, test: '1' }));
