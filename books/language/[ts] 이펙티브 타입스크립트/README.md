@@ -6,6 +6,7 @@
 - 저자: 댄 밴더캄(Dan VanderKam)
 - 출판: O'Reilly
 - 번역: 인사이트
-- 구매: [yes24](https://www.yes24.com/Product/Goods/102124327) - 23.07.03 기준 22,500원
+- 구매: [yes24](https://www.yes24.com/Product/Goods/102124327)
+- 가격: 22,500원 (23.07.03 기준)
 
 ## 리뷰
