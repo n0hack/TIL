@@ -91,3 +91,30 @@ namespace Pick {
     completed: false,
   };
 }
+
+// Exclude<Type, ExcludedUnion>: 주어진 타입에서 ExcludedUnion에 해당하는 타입을 제외한 타입을 만들어주는 유틸리티 타입
+namespace Exclude {
+  type MyExclude<T, U> = T extends U ? never : T;
+
+  type T0 = MyExclude<'a' | 'b' | 'c', 'a'>;
+}
+
+// Omit<Type, Keys>: 주어진 Keys에 해당하는 프로퍼티를 제외한 타입을 만들어주는 유틸리티 타입
+namespace Omit {
+  type MyOmit<T, K extends keyof T> = {
+    [P in Exclude<keyof T, K>]: T[P];
+  };
+
+  type Todo = {
+    title: string;
+    description: string;
+    completed: boolean;
+  };
+
+  type TodoPreview = MyOmit<Todo, 'description'>;
+
+  const todo: TodoPreview = {
+    title: 'Clean room',
+    completed: false,
+  };
+}
