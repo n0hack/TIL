@@ -21,9 +21,6 @@ namespace Partial {
   const todo2 = updateTodo(todo1, {
     description: 'throw out trash',
   });
-
-  console.log(todo1);
-  console.log(todo2);
 }
 
 // Required<Type>: 모든 프로퍼티를 필수로 만들어주는 유틸리티 타입
@@ -54,5 +51,23 @@ namespace Readonly {
   const todo: MyReadonly<Todo> = {
     title: 'Delete inactive users',
   };
-  console.log(todo);
+}
+
+// Record<Keys, Type>: 주어진 Keys의 값을 토대로 객체를 만들어주는 유틸리티 타입
+namespace Record {
+  type MyRecord<K extends string | number | symbol, T> = {
+    [P in K]: T;
+  };
+
+  interface PageInfo {
+    title: string;
+  }
+
+  type Page = 'home' | 'about' | 'contact';
+
+  const nav: MyRecord<Page, PageInfo> = {
+    home: { title: 'home' },
+    about: { title: 'about' },
+    contact: { title: 'contact' },
+  };
 }
