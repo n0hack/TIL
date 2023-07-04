@@ -126,3 +126,11 @@ namespace Extract {
   type T0 = MyExtract<'a' | 'b' | 'c', 'a' | 'f'>;
   type T1 = MyExtract<string | number | (() => void), Function>;
 }
+
+// NonNullable<Type>: 주어진 타입에서 null과 undefined를 제외한 타입을 만들어주는 유틸리티 타입
+namespace NonNullable {
+  type MyNonNullable<T> = T & {};
+
+  type T0 = MyNonNullable<string | number | undefined>;
+  type T1 = MyNonNullable<string[] | null | undefined>;
+}
