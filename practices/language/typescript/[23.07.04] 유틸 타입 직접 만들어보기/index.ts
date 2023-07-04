@@ -148,3 +148,11 @@ namespace Parameters {
   type T4 = MyParameters<any>;
   type T5 = MyParameters<never>;
 }
+
+// ReturnType<Type>: 함수의 반환 타입을 추출해주는 유틸리티 타입
+namespace ReturnType {
+  type MyReturnType<T extends (...args: any[]) => any> = T extends (...args: any[]) => infer R ? R : any;
+
+  type T0 = MyReturnType<() => string>;
+  type T1 = MyReturnType<<T extends U, U extends number[]>() => T>;
+}
