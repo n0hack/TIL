@@ -71,3 +71,23 @@ namespace Record {
     contact: { title: 'contact' },
   };
 }
+
+// Pick<Type, Keys>: 주어진 Keys에 해당하는 프로퍼티만 뽑아서 타입을 만들어주는 유틸리티 타입
+namespace Pick {
+  type MyPick<T, K extends keyof T> = {
+    [P in K]: T[P];
+  };
+
+  type Todo = {
+    title: string;
+    description: string;
+    completed: boolean;
+  };
+
+  type TodoPreview = MyPick<Todo, 'title' | 'completed'>;
+
+  const todo: TodoPreview = {
+    title: 'Clean room',
+    completed: false,
+  };
+}
