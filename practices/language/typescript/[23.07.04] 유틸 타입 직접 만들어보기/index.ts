@@ -118,3 +118,11 @@ namespace Omit {
     completed: false,
   };
 }
+
+// Extract<Type, Union>: 주어진 타입에서 Union에 해당하는 타입을 추출해주는 유틸리티 타입
+namespace Extract {
+  type MyExtract<T, U> = T extends U ? T : never;
+
+  type T0 = MyExtract<'a' | 'b' | 'c', 'a' | 'f'>;
+  type T1 = MyExtract<string | number | (() => void), Function>;
+}
