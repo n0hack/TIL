@@ -40,3 +40,19 @@ namespace Required {
   const obj: Props = { a: 5 };
   const obj2: MyRequired<Props> = { a: 5, b: 'hello' };
 }
+
+// Readonly<Type>: 모든 프로퍼티를 readonly로 만들어주는 유틸리티 타입
+namespace Readonly {
+  type MyReadonly<T> = {
+    readonly [P in keyof T]: T[P];
+  };
+
+  interface Todo {
+    title: string;
+  }
+
+  const todo: MyReadonly<Todo> = {
+    title: 'Delete inactive users',
+  };
+  console.log(todo);
+}
