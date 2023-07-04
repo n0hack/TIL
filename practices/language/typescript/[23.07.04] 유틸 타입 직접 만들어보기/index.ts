@@ -134,3 +134,17 @@ namespace NonNullable {
   type T0 = MyNonNullable<string | number | undefined>;
   type T1 = MyNonNullable<string[] | null | undefined>;
 }
+
+// Parameters<Type>: 함수의 파라미터 타입을 튜플로 만들어주는 유틸리티 타입
+namespace Parameters {
+  type MyParameters<T extends (...args: any[]) => any> = T extends (...args: infer P) => any ? P : never;
+
+  declare function f1(arg: { a: number; b: string }): void;
+
+  type T0 = MyParameters<() => string>;
+  type T1 = MyParameters<(s: string) => void>;
+  type T2 = MyParameters<<T>(arg: T) => T>;
+  type T3 = MyParameters<typeof f1>;
+  type T4 = MyParameters<any>;
+  type T5 = MyParameters<never>;
+}
