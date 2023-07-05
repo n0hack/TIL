@@ -14,9 +14,9 @@
 
 ## Directories
 
-– books: 책으로 공부한 내용 정리
-– practices: 공부한 것을 바탕으로 무엇인가 연습해 본 것들 (DnD, Skeleton UI 등)
-– study: 동영상 강의나 문서를 통해 공부한 내용 정리
+- books: 책으로 공부한 내용 정리
+- practices: 공부한 것을 바탕으로 무엇인가 연습해 본 것들 (DnD, Skeleton UI 등)
+- study: 동영상 강의나 문서를 통해 공부한 내용 정리
 
 <br />
 
