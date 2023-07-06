@@ -10,6 +10,8 @@
 일부는 제 블로그 <a href="https://lucid-dream.net">lucid_dream</a>에 시리즈 형식으로 업로드됩니다! 😆
 </p>
 
+<br />
+
 ## 📌 Copyrights
 
 © 2022. [Lucid, Jihun Jeon][mail] all rights reserved.
