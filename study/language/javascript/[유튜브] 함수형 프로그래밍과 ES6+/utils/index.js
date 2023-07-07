@@ -7,7 +7,7 @@ export const range = function* (stop) {
   let i = -1;
   while (++i < stop) yield i;
 };
-
+z;
 export const filter = curry(function* (f, iter) {
   for (const a of iter) {
     if (f(a)) yield a;
