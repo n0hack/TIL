@@ -30,6 +30,24 @@ export const take = curry(function (length, iter) {
   return res;
 });
 
+export const takeWhile = curry(function (f, iter) {
+  iter = iter[Symbol.iterator]();
+  iter.return = null;
+
+  const res = [];
+
+  return (function recur() {
+    for (const a of iter) {
+      const b = go1(a, f);
+
+      if (!b) return res;
+      if (b instanceof Promise) return b.then(async (b) => (b ? (res.push(await a), recur()) : res));
+      res.push(a);
+    }
+    return res;
+  })();
+});
+
 export const reduce = curry(function (f, acc, iter) {
   // acc를 생략하는 경우의 스펙도 있음
   if (arguments.length === 2) {
@@ -72,6 +90,8 @@ export const flat = function* (iter) {
     }
   }
 };
+
+export const delay = (time, a) => new Promise((resolve) => setTimeout(() => resolve(a), time));
 
 export const Lazy = {
   filter,
