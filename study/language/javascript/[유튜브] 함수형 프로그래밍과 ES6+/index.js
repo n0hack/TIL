@@ -1,4 +1,4 @@
-import { filter, map, take, reduce, add, square, isOdd } from './utils/index.js';
+import { Lazy as L, filter, map, take, reduce, add, square, isOdd, go } from './utils/index.js';
 
 const log = console.log;
 
@@ -80,200 +80,45 @@ function f5(list, length) {
 
 // 리팩토링 6. 함수 표현식으로 변경
 // 함수형 프로그래밍은 오른쪽부터 읽으면 됨
-const f6 = (list, length) => reduce(add, 0, take(length, map(square, filter(isOdd, list))));
+// 잘 읽히지 않는다면, prettier를 끄고 함수 단위로 잘라도 좋을 듯
+// prettier-ignore
+const f6 = (list, length) => 
+  reduce(add, 0, 
+    take(length, 
+      map(square, 
+        filter(isOdd, list))));
+
+// 리팩토링 7. Go를 통해 읽기 좋게 변경
+const f7 = (list, length) =>
+  go(
+    list,
+    (list) => filter(isOdd, list),
+    (list) => map(square, list),
+    (list) => take(length, list),
+    (list) => reduce(add, 0, list)
+  );
+
+// 리팩토링 8. Currying
+const f8 = (list, length) => go(list, L.filter(isOdd), L.map(square), take(length), reduce(add));
 
 function main() {
   // f3([1, 2, 3, 4, 5], 1);
   // f3([1, 2, 3, 4, 5], 2);
   // f3([1, 2, 3, 4, 5], 3);
-  log(f6([1, 2, 3, 4, 5], 1));
-  log(f6([1, 2, 3, 4, 5], 2));
-  log(f6([1, 2, 3, 4, 5], 3));
+
+  // generator는 기본적으로 지연 평가이기 때문에, 필요한 만큼만 연산 수행
+  // 그래서 명령형 코드로 작성할 때와 시간 복잡도가 완전하게 동일함
+  log(f8([1, 2, 3, 4, 5], 1));
+  log(f8([1, 2, 3, 4, 5], 2));
+  log(f8([1, 2, 3, 4, 5], 3));
+
+  // reduce 리팩토링
+  // log(reduce(add, 10, [1, 2, 3, 4, 5]));
+
+  // 지연 평가에 대한 예시
+  [...L.range(5)]; // 평가 됨
+  L.range(5); // 평가 안 됨 (suspense 상태)
+  log(f8(L.range(Infinity), 5));
 }
 
 main();
-
-/* // 리스트에서 홀수를 length만큼 뽑아서 제곱한 후 모두 더하기
-function f(list, length) {
-  let i = 0;
-  let acc = 0;
-  for (const a of list) {
-    if (a % 2) {
-      acc = acc + a ** 2;
-      if (++i === length) break;
-    }
-  }
-  log(acc);
-}
-
-function main() {
-  f([1, 2, 3, 4, 5], 1);
-  f([1, 2, 3, 4, 5], 2);
-  f([1, 2, 3, 4, 5], 3);
-}
-
-main(); */
-
-/* // Filter 만들기 (함수형 프로그래밍에서는 if를 Filter라고 함)
-function* filter(f, list) {
-  for (const a of list) {
-    if (f(a)) yield a;
-  }
-}
-
-function f(list, length) {
-  let i = 0;
-  let acc = 0;
-  for (const a of filter((a) => a % 2, list)) {
-    acc = acc + a ** 2;
-    if (++i === length) break;
-  }
-  log(acc);
-}
-
-function main() {
-  f([1, 2, 3, 4, 5], 1);
-  f([1, 2, 3, 4, 5], 2);
-  f([1, 2, 3, 4, 5], 3);
-}
-
-main(); */
-
-/* // Map 만들기 (함수형 프로그래밍에서는 무엇인가 새롭게 만들어내는 것을 Map이라 함)
-function* filter(f, list) {
-  for (const a of list) {
-    if (f(a)) yield a;
-  }
-}
-
-function* map(f, list) {
-  for (const a of list) {
-    yield f(a);
-  }
-}
-
-function f(list, length) {
-  let i = 0;
-  let acc = 0;
-  for (const a of map(
-    (a) => a ** 2,
-    filter((a) => a % 2, list)
-  )) {
-    acc = acc + a;
-    if (++i === length) break;
-  }
-  log(acc);
-}
-
-function main() {
-  f([1, 2, 3, 4, 5], 1);
-  f([1, 2, 3, 4, 5], 2);
-  f([1, 2, 3, 4, 5], 3);
-}
-
-main(); */
-
-/* // Take 만들기
-// 자바스크립트에서는 순회가 가능한 값을 Iterable이라고 함
-function* filter(f, iter) {
-  for (const a of iter) {
-    if (f(a)) yield a;
-  }
-}
-
-function* map(f, iter) {
-  for (const a of iter) {
-    yield f(a);
-  }
-}
-
-function take(length, iter) {
-  let res = [];
-  for (const a of iter) {
-    res.push(a);
-    // break를 걸어도 좋지만, 함수형 프로그래밍에서는 계속 return을 하는 것이 좋음
-    if (res.length === length) return res;
-  }
-  return res;
-}
-
-function f(list, length) {
-  let acc = 0;
-  for (const a of take(
-    length,
-    map(
-      (a) => a ** 2,
-      filter((a) => a % 2, list)
-    )
-  )) {
-    acc = acc + a;
-  }
-  // 함수형 프로그래밍에서는 return을 하는 것이 좋으며,
-  // 외부 세상에 영향을 미칠 수 있는 것은 외부에서 처리하게끔 하기
-  // log(acc);
-  return acc;
-}
-
-function main() {
-  log(f([1, 2, 3, 4, 5], 1));
-  log(f([1, 2, 3, 4, 5], 2));
-  log(f([1, 2, 3, 4, 5], 3));
-}
-
-main();
- */
-
-// Reduce 만들기
-// 자바스크립트에서는 순회가 가능한 값을 Iterable이라고 함
-// function* filter(f, iter) {
-//   for (const a of iter) {
-//     if (f(a)) yield a;
-//   }
-// }
-
-// function* map(f, iter) {
-//   for (const a of iter) {
-//     yield f(a);
-//   }
-// }
-
-// function take(length, iter) {
-//   let res = [];
-//   for (const a of iter) {
-//     res.push(a);
-//     // break를 걸어도 좋지만, 함수형 프로그래밍에서는 계속 return을 하는 것이 좋음
-//     if (res.length === length) return res;
-//   }
-//   return res;
-// }
-
-// function reduce(f, acc, iter) {
-//   for (const a of iter) {
-//     acc = f(acc, a);
-//   }
-//   return acc;
-// }
-
-// function f(list, length) {
-//   // 함수형 프로그래밍에서는 return을 하는 것이 좋으며,
-//   // 외부 세상에 영향을 미칠 수 있는 것은 외부에서 처리하게끔 하기
-//   return reduce(
-//     (acc, a) => acc + a,
-//     0,
-//     take(
-//       length,
-//       map(
-//         (a) => a ** 2,
-//         filter((a) => a % 2, list)
-//       )
-//     )
-//   );
-// }
-
-// function main() {
-//   log(f([1, 2, 3, 4, 5], 1));
-//   log(f([1, 2, 3, 4, 5], 2));
-//   log(f([1, 2, 3, 4, 5], 3));
-// }
-
-// main();
