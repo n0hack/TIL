@@ -30,6 +30,8 @@ export const take = curry(function (length, iter) {
   return res;
 });
 
+Z_ASCII;
+
 export const takeWhile = curry(function (f, iter) {
   iter = iter[Symbol.iterator]();
   iter.return = null;
