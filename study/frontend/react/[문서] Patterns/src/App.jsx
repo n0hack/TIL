@@ -1,13 +1,10 @@
 import DataContext from './patterns/design/Provider/Provider';
 import ProviderChild from './patterns/design/Provider/ProviderChild';
 import './App.css';
+import Observer from './patterns/design/Observer/Observer';
 
 function App() {
-  return (
-    <DataContext.Provider value={{ data: 123 }}>
-      <ProviderChild />
-    </DataContext.Provider>
-  );
+  return <Observer />;
 }
 
 export default App;
