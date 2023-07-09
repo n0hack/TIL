@@ -1,8 +1,13 @@
-import Singleton from './patterns/design/Singletone/Singletone';
-import personProxy from './patterns/design/Proxy/proxy';
+import DataContext from './patterns/design/Provider/Provider';
+import ProviderChild from './patterns/design/Provider/ProviderChild';
+import './App.css';
 
 function App() {
-  return <Singleton />;
+  return (
+    <DataContext.Provider value={{ data: 123 }}>
+      <ProviderChild />
+    </DataContext.Provider>
+  );
 }
 
 export default App;
