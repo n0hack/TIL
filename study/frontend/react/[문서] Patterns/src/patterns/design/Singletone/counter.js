@@ -19,7 +19,6 @@ class Counter {
   }
 
   increment() {
-    console.log('increment:', counter);
     return ++counter;
   }
 

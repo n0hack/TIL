@@ -1,11 +1,13 @@
+import MinusButton from './MinusButton';
+import PlusButton from './PlusButton';
 import counter from './counter';
 
 const Singleton = () => {
   return (
     <div>
-      <button onClick={() => counter.decrement()}>-1</button>
-      <span>{counter.getCount()}</span>
-      <button onClick={() => counter.increment()}>+1</button>
+      <MinusButton />
+      <PlusButton />
+      <button onClick={() => window.alert(counter.getCount())}>값 확인하기</button>
     </div>
   );
 };
