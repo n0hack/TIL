@@ -13,19 +13,29 @@ const createInitialTodos = () => {
   return initialTodos;
 };
 
+const someFunction = () => {
+  console.log('someFunction');
+};
+
 const UseState = () => {
   console.log('UseState');
 
   // createInitialTodos() 형태로 쓰면, 리렌더링될 때마다 호출됨
   const [todos, setTodos] = useState(createInitialTodos);
+  // () => someFunction이 아닌, someFunction 형태로 쓰면, 바로 호출됨
+  const [fn, setFn] = useState(() => someFunction);
   const [count, setCount] = useState(0);
 
   const handleMinusButtonClick = () => {
     setCount((prevCount) => prevCount - 1);
+    fn();
   };
 
   const handlePlusButtonClick = () => {
     setCount((prevCount) => prevCount + 1);
+    setFn(() => () => {
+      console.log('newFunction');
+    });
   };
 
   return (
