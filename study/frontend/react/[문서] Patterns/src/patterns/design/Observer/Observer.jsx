@@ -1,4 +1,3 @@
-import React from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import observable from './observable';
 
@@ -16,10 +15,6 @@ observable.subscribe(toastify);
 const Observer = () => {
   function handleClick() {
     observable.notify('User clicked button!');
-  }
-
-  function handleToggle() {
-    observable.notify('User toggled switch!');
   }
 
   return (
