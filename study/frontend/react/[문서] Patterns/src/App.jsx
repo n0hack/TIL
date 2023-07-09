@@ -1,9 +1,9 @@
 import './App.css';
 import withTest from './patterns/design/HOC/withTest';
-import Observer from './patterns/design/Observer/Observer';
+import RenderProps from './patterns/design/RenderProps/RenderProps';
 
 function App() {
-  return <Observer />;
+  return <RenderProps />;
 }
 
 export default withTest(App);
