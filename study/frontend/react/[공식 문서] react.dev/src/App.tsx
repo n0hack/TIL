@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { Profiler, useEffect, useRef, useState } from 'react';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
@@ -26,11 +26,11 @@ function App() {
   }, []);
 
   return (
-    <>
+    <Profiler id="app" onRender={(...args) => console.log(args)}>
       <button onClick={() => setCount(count - 1)}>-1</button>
       <button onClick={() => setCount(count + 1)}>+1</button>
       <div>{count}</div>
-    </>
+    </Profiler>
   );
 }
 
