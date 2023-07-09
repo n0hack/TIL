@@ -1,15 +1,14 @@
-import { useEffect, useRef, useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-import './App.css';
-import UseState from './react-hooks/useState';
-import UseReducer from './react-hooks/UseReducer';
-import UseImperativeHandle, { Props } from './react-hooks/UseImperativeHandle';
+import { useEffect, useState } from 'react';
 
-function App() {
-  console.log('App');
+function UseEffect() {
+  console.log('UseEffect');
 
   const [count, setCount] = useState(0);
+
+  // 실험 API
+  // const onVisit = useEffectEvent(visitedUrl => {
+  //   logVisit(visitedUrl);
+  // })
 
   // 굳이 불필요한 의존성은 useEffect 내에서 만들어 사용하기
   useEffect(() => {
@@ -34,4 +33,4 @@ function App() {
   );
 }
 
-export default App;
+export default UseEffect;
