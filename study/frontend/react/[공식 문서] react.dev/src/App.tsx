@@ -1,36 +1,26 @@
-import { Profiler, useEffect, useRef, useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
+import { useState, useTransition } from 'react';
 import './App.css';
-import UseState from './react-hooks/useState';
-import UseReducer from './react-hooks/UseReducer';
-import UseImperativeHandle, { Props } from './react-hooks/UseImperativeHandle';
 
 function App() {
-  console.log('App');
+  const [value, setValue] = useState('');
+  const [isPending, startTransition] = useTransition();
 
-  const [count, setCount] = useState(0);
-
-  // 굳이 불필요한 의존성은 useEffect 내에서 만들어 사용하기
-  useEffect(() => {
-    console.log('useEffect');
-    const intervalId = setInterval(() => {
-      // 함수형 업데이트를 하면, 의존성이 필요하지 않음
-      setCount((count) => count + 1);
-    }, 1000);
-
-    return () => {
-      console.log('clearInterval');
-      clearInterval(intervalId);
-    };
-  }, []);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    startTransition(() => {
+      setValue(e.target.value);
+    });
+  };
 
   return (
-    <Profiler id="app" onRender={(...args) => console.log(args)}>
-      <button onClick={() => setCount(count - 1)}>-1</button>
-      <button onClick={() => setCount(count + 1)}>+1</button>
-      <div>{count}</div>
-    </Profiler>
+    <div>
+      <input value={value} onChange={handleChange} />
+      <h3>10,000 multiples of number: {value}</h3>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(10, 1fr)' }}>
+        {isPending
+          ? 'Loading'
+          : Array.from({ length: 10000 }, (_, i) => i + 1).map((num) => <p key={num}>{num * Number(value)}</p>)}
+      </div>
+    </div>
   );
 }
 
