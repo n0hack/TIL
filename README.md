@@ -9,3 +9,9 @@
 <br><br>
 기록의 일부는 제 블로그 <a href="https://lucid-dream.net">Lucid Dream</a>에 시리즈 형식으로 업로드됩니다 ( ◜𖥦◝ )
 </p>
+
+<br>
+
+## 📌 Copyrights
+
+©️ 2023. [Lucid](mailto:nohack-@naver.com) all rights reserved.
