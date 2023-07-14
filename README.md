@@ -1,4 +1,4 @@
-![[Thumbnail](https://twitter.com/magar1sug1)](./assets/banner.jpg)
+![[Thumbnail](https://twitter.com/magar1sug1)](https://github.com/n0hack/TIL/assets/42988225/3678521a-3c4c-494e-8350-8f446cae3a03)
 
 > **success is the sum of small efforts, repeated day in and day out**
 
@@ -9,3 +9,9 @@
 <br><br>
 기록의 일부는 제 블로그 <a href="https://lucid-dream.net">Lucid Dream</a>에 시리즈 형식으로 업로드됩니다 ( ◜𖥦◝ )
 </p>
+
+## 디렉토리 설명
+
+- books: 책으로 공부한 내용을 정리한 디렉토리이며, 책에 담긴 실습 코드도 담고 있습니다.
+- practices: 연습용(Drag, Skeleton 구현 등)으로 가볍게 작성한 코드를 담고 있는 디렉토리입니다.
+- studies: 동영상이나 인터넷에 작성된 문서를 바탕으로 공부한 내용을 정리한 디렉토리입니다.
