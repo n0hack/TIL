@@ -1,4 +1,4 @@
-![[Thumbnail](https://www.pixiv.net/artworks/91877563)](./assets/bg.png)
+![[Thumbnail](https://www.pixiv.net/artworks/91877563)](./assets/test.jpg)
 
 > **success is the sum of small efforts, repeated day in and day out**
 
@@ -12,8 +12,8 @@
 
 <br />
 
-## 📌 Copyrights
+## Copyrights
 
 © 2022. [Lucid, Jihun Jeon][mail] all rights reserved.
 
-[mail]: nohack-@naver.com
+[mail]: mailto:nohack-@naver.com
