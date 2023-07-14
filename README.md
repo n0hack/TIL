@@ -14,4 +14,4 @@
 
 ## 📌 Copyrights
 
-©️ 2023. [Lucid](mailto:nohack-@naver.com) all rights reserved.
+© 2023. [Lucid](mailto:nohack-@naver.com) all rights reserved.
