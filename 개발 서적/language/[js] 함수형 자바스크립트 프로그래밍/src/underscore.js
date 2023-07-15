@@ -47,10 +47,8 @@ function bloop(new_data, body) {
         body(iteratee(data[i], i, data), result);
       }
     } else {
-      for (let key in data) {
-        if (data.hasOwnProperty(key)) {
-          body(iteratee(data[key], key, data), result);
-        }
+      for (let i = 0, keys = _.keys(data), len = keys.length; i < len; i++) {
+        body(iteratee(data[keys[i]], keys[i], data), result);
       }
     }
 
