@@ -69,4 +69,14 @@ _.map = bloop(_.array, _.push_to);
 
 _.each = bloop(_.identity, _.boop);
 
+_.filter = (data, predicate) => {
+  const result = [];
+
+  _.each(data, (val, idx, data) => {
+    if (predicate(val, idx, data)) result.push(val);
+  });
+
+  return result;
+};
+
 export default _;
