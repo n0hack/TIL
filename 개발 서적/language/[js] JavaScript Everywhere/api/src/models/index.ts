@@ -4,4 +4,6 @@ const models = {
   Note,
 };
 
+export type Models = typeof models;
+
 export default models;
