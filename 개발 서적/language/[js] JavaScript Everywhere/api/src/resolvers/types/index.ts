@@ -20,3 +20,15 @@ export type UpdateNoteArgs = {
 export type DeleteNoteArgs = {
   id: string;
 };
+
+export type SignUpArgs = {
+  username: string;
+  email: string;
+  password: string;
+};
+
+export type SignInArgs = {
+  username: string;
+  email: string;
+  password: string;
+};

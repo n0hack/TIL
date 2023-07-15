@@ -7,6 +7,7 @@ import typeDefs from './schema';
 import models from './models';
 import resolvers from './resolvers';
 import { ContextValue } from './resolvers/types';
+import jwt from 'jsonwebtoken';
 
 dotenv.config();
 
@@ -17,6 +18,17 @@ const DB_HOST = process.env.DB_HOST!;
 
 db.connect(DB_HOST);
 
+// JWT로부터 유저 정보 얻기
+const getUser = (token: string) => {
+  if (token) {
+    try {
+      return jwt.verify(token, process.env.JWT_SECRET as string);
+    } catch (err) {
+      throw new Error('유효하지 않은 세션');
+    }
+  }
+};
+
 // Apollo Sever 시작
 async function runServer() {
   const server = new ApolloServer<ContextValue>({ typeDefs, resolvers });
@@ -26,9 +38,13 @@ async function runServer() {
     '/api',
     express.json(),
     expressMiddleware(server, {
-      context: async () => ({
-        models,
-      }),
+      context: async ({ req }) => {
+        const token = req.headers.authorization;
+        const user = getUser(token as string);
+        console.log(user);
+
+        return { models, user };
+      },
     })
   );
 
