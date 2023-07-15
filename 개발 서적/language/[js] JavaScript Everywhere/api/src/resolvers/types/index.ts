@@ -2,6 +2,7 @@ import { Models } from '../../models';
 
 export type ContextValue = {
   models: Models;
+  user: { id: string };
 };
 
 export type ReadNoteArgs = {
@@ -31,4 +32,8 @@ export type SignInArgs = {
   username: string;
   email: string;
   password: string;
+};
+
+export type ReadUserArgs = {
+  username: string;
 };

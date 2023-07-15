@@ -31,7 +31,7 @@ const getUser = (token: string) => {
 
 // Apollo Sever 시작
 async function runServer() {
-  const server = new ApolloServer<ContextValue>({ typeDefs, resolvers });
+  const server = new ApolloServer<Partial<ContextValue>>({ typeDefs, resolvers });
   await server.start();
 
   app.use(
@@ -41,7 +41,6 @@ async function runServer() {
       context: async ({ req }) => {
         const token = req.headers.authorization;
         const user = getUser(token as string);
-        console.log(user);
 
         return { models, user };
       },

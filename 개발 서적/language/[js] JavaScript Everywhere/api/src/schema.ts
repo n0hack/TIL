@@ -4,7 +4,9 @@ export default `#graphql
   type Note {
     id: ID!
     content: String!
-    author: String!
+    author: User!
+    favoriteCount: Int!
+    favoritedBy: [User!]
     createdAt: DateTime!
     updatedAt: DateTime!
   }
@@ -15,11 +17,15 @@ export default `#graphql
     email: String!
     avatar: String!
     notes: [Note!]!
+    favorites: [Note!]!
   }
 
   type Query {
     readNotes: [Note!]
     readNote(id: ID!): Note!
+    readUsers: [User!]
+    readUser(username: String!): User!
+    readMe: User!
   }
 
   type Mutation {
@@ -28,5 +34,6 @@ export default `#graphql
     deleteNote(id: ID!): Boolean!
     signUp(username: String!, email: String!, password: String!): String!
     signIn(username: String!, email: String!, password: String!): String!
+    toggleFavorite(id: ID!): Note!
   }
 `;

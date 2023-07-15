@@ -3,22 +3,47 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import gravatar from '../utils/gravatar';
+import mongoose from 'mongoose';
 
 dotenv.config();
 
 export default {
-  createNote: async (parent: any, args: CreateNoteArgs, { models }: ContextValue) => {
+  createNote: async (parent: any, args: CreateNoteArgs, { models, user }: ContextValue) => {
+    if (!user) {
+      throw new Error('You must be signed in to create a note.');
+    }
+
     return await models.Note.create({
       content: args.content,
-      author: 'Lucid',
+      author: new mongoose.Types.ObjectId(user.id),
     });
   },
-  updateNote: async (parent: any, args: UpdateNoteArgs, { models }: ContextValue) => {
+  updateNote: async (parent: any, args: UpdateNoteArgs, { models, user }: ContextValue) => {
+    if (!user) {
+      throw new Error('You must be signed in to update a note.');
+    }
+
+    // 노트 찾기
+    const note = await models.Note.findById(args.id);
+    if (note && String(note.author) !== user.id) {
+      throw new Error('You do not have permission to update the note.');
+    }
+
     return await models.Note.findByIdAndUpdate({ _id: args.id }, { $set: { content: args.content } }, { new: true });
   },
-  deleteNote: async (parent: any, args: DeleteNoteArgs, { models }: ContextValue) => {
+  deleteNote: async (parent: any, args: DeleteNoteArgs, { models, user }: ContextValue) => {
+    if (!user) {
+      throw new Error('You must be signed in to delete a note.');
+    }
+
+    // 노트 찾기
+    const note = await models.Note.findById(args.id);
+    if (note && String(note.author) !== user.id) {
+      throw new Error('You do not have permission to delete the note.');
+    }
+
     try {
-      await models.Note.findByIdAndDelete({ _id: args.id });
+      await note?.deleteOne();
       return true;
     } catch (err) {
       return false;
@@ -58,5 +83,40 @@ export default {
     }
 
     return jwt.sign({ id: user._id }, process.env.JWT_SECRET as string);
+  },
+  toggleFavorite: async (parent: any, args: { id: string }, { models, user }: ContextValue) => {
+    if (!user) {
+      throw new Error('Error');
+    }
+
+    // 이미 즐겨찾기 했는지 확인
+    const noteCheck = await models.Note.findById(args.id);
+    const hasUser = noteCheck?.favoritedBy.indexOf(user.id as any) ?? -1;
+
+    if (hasUser >= 0) {
+      return await models.Note.findByIdAndUpdate(args.id, {
+        $pull: {
+          favoritedBy: new mongoose.Types.ObjectId(user.id),
+        },
+        $inc: {
+          favoriteCount: -1,
+        },
+      });
+    } else {
+      return await models.Note.findByIdAndUpdate(
+        args.id,
+        {
+          $push: {
+            favoritedBy: new mongoose.Types.ObjectId(user.id),
+          },
+          $inc: {
+            favoriteCount: 1,
+          },
+        },
+        {
+          new: true,
+        }
+      );
+    }
   },
 };
