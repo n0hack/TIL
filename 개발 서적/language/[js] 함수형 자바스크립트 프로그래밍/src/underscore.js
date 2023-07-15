@@ -28,26 +28,47 @@ _.args1 = function (a, b) {
   return b;
 };
 
-_.keys = function (list) {
-  return _.map(list, _.args1);
+_.isObject = (obj) => {
+  const type = typeof obj;
+  return type === 'function' || (type === 'object' && !!obj);
 };
 
-_.map = function (data, iteratee) {
-  const new_list = [];
+_.keys = function (data) {
+  return _.isObject(data) ? Object.keys(data) : [];
+};
 
-  if (isArrayLike(data)) {
-    for (let i = 0; i < data.length; i++) {
-      new_list.push(iteratee(data[i], i, data));
-    }
-  } else {
-    for (let key in data) {
-      if (data.hasOwnProperty(key)) {
-        new_list.push(iteratee(data[key], key, data));
+// map과 each 로직 추상화
+function bloop(new_data, body) {
+  return function (data, iteratee) {
+    const result = new_data(data);
+
+    if (isArrayLike(data)) {
+      for (let i = 0; i < data.length; i++) {
+        body(iteratee(data[i], i, data), result);
+      }
+    } else {
+      for (let key in data) {
+        if (data.hasOwnProperty(key)) {
+          body(iteratee(data[key], key, data), result);
+        }
       }
     }
-  }
 
-  return new_list;
+    return result;
+  };
+}
+
+_.array = () => [];
+
+_.push_to = (val, obj) => {
+  obj.push(val);
+  return val;
 };
+
+_.boop = () => undefined;
+
+_.map = bloop(_.array, _.push_to);
+
+_.each = bloop(_.identity, _.boop);
 
 export default _;
