@@ -16,4 +16,31 @@ export default {
   readMe: async (parent: any, args: {}, { models, user }: ContextValue) => {
     return await models.User.findById(user.id);
   },
+  readNoteFeed: async (parent: any, { cursor }: { cursor: string }, { models }: ContextValue) => {
+    const limit = 10;
+
+    let hasNextPage = false;
+    let cursorQuery = {};
+
+    if (cursor) {
+      cursorQuery = { _id: { $lt: cursor } };
+    }
+
+    let notes = await models.Note.find(cursorQuery)
+      .sort({ _id: -1 })
+      .limit(limit + 1);
+
+    if (notes.length > limit) {
+      hasNextPage = true;
+      notes = notes.slice(0, -1);
+    }
+
+    const newCursor = notes[notes.length - 1]._id;
+
+    return {
+      notes,
+      cursor: newCursor,
+      hasNextPage,
+    };
+  },
 };

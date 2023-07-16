@@ -11,6 +11,12 @@ export default `#graphql
     updatedAt: DateTime!
   }
 
+  type NoteFeed {
+    notes: [Note]!
+    cursor: String!
+    hasNextPage: Boolean!
+  }
+
   type User {
     id: ID!
     username: String!
@@ -26,6 +32,7 @@ export default `#graphql
     readUsers: [User!]
     readUser(username: String!): User!
     readMe: User!
+    readNoteFeed(cursor: String): NoteFeed
   }
 
   type Mutation {

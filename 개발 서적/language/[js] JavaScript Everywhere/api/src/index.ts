@@ -8,6 +8,8 @@ import models from './models';
 import resolvers from './resolvers';
 import { ContextValue } from './resolvers/types';
 import jwt from 'jsonwebtoken';
+import helmet from 'helmet';
+import cors from 'cors';
 
 dotenv.config();
 
@@ -33,6 +35,10 @@ const getUser = (token: string) => {
 async function runServer() {
   const server = new ApolloServer<Partial<ContextValue>>({ typeDefs, resolvers });
   await server.start();
+
+  // 일반적인 웹 취약점으로부터 보호
+  app.use(helmet());
+  app.use(cors());
 
   app.use(
     '/api',
