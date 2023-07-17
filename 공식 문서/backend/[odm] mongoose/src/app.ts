@@ -1,6 +1,3 @@
-import quickStart from '@contents/quick-start';
+import schemas from '@contents/schemas';
 
-quickStart();
-
-// const a = await Promise.resolve(1);
-// console.log(a);
+schemas();
