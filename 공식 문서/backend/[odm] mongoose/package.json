@@ -1,0 +1,20 @@
+{
+  "name": "odm-mongoose",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon --exec ts-node src/app.ts",
+    "start": "yarn build && ts-node -r tsconfig-paths/register dist/app.js",
+    "build": "npx tsc -p tsconfig.json"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "mongoose": "^7.3.4"
+  }
+}
