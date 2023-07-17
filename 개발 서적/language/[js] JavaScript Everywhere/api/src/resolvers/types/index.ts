@@ -37,3 +37,11 @@ export type SignInArgs = {
 export type ReadUserArgs = {
   username: string;
 };
+
+export type ReadNoteFeedArgs = {
+  cursor: string;
+};
+
+export type ToggleFavoriteArgs = {
+  id: string;
+};

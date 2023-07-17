@@ -4,9 +4,9 @@ import { expressMiddleware } from '@apollo/server/express4';
 import dotenv from 'dotenv';
 import db from './db';
 import typeDefs from './schema';
-import models from './models';
-import resolvers from './resolvers';
-import { ContextValue } from './resolvers/types';
+import models from '@models';
+import resolvers from '@resolvers';
+import { ContextValue } from '@resolvers/types';
 import jwt from 'jsonwebtoken';
 import helmet from 'helmet';
 import cors from 'cors';
@@ -21,12 +21,12 @@ const DB_HOST = process.env.DB_HOST!;
 db.connect(DB_HOST);
 
 // JWT로부터 유저 정보 얻기
-const getUser = (token: string) => {
+const getUser = (token?: string) => {
   if (token) {
     try {
-      return jwt.verify(token, process.env.JWT_SECRET as string);
+      return jwt.verify(token, process.env.JWT_SECRET!);
     } catch (err) {
-      throw new Error('유효하지 않은 세션');
+      throw new Error('JWT 인증이 만료되었습니다.');
     }
   }
 };
@@ -46,7 +46,7 @@ async function runServer() {
     expressMiddleware(server, {
       context: async ({ req }) => {
         const token = req.headers.authorization;
-        const user = getUser(token as string);
+        const user = getUser(token);
 
         return { models, user };
       },

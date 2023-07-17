@@ -1,8 +1,16 @@
-import { ContextValue, CreateNoteArgs, DeleteNoteArgs, SignInArgs, SignUpArgs, UpdateNoteArgs } from './types';
+import {
+  ContextValue,
+  CreateNoteArgs,
+  DeleteNoteArgs,
+  SignInArgs,
+  SignUpArgs,
+  ToggleFavoriteArgs,
+  UpdateNoteArgs,
+} from './types';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
-import gravatar from '../utils/gravatar';
+import gravatar from '@utils/gravatar';
 import mongoose from 'mongoose';
 
 dotenv.config();
@@ -63,7 +71,7 @@ export default {
       });
 
       // JWT 생성 및 반환
-      return jwt.sign({ id: user._id }, process.env.JWT_SECRET as string);
+      return jwt.sign({ id: user._id }, process.env.JWT_SECRET!);
     } catch (err) {
       console.error(err);
       throw new Error('Error creating account');
@@ -82,9 +90,9 @@ export default {
       throw new Error('비밀번호가 올바르지 않습니다.');
     }
 
-    return jwt.sign({ id: user._id }, process.env.JWT_SECRET as string);
+    return jwt.sign({ id: user._id }, process.env.JWT_SECRET!);
   },
-  toggleFavorite: async (parent: any, args: { id: string }, { models, user }: ContextValue) => {
+  toggleFavorite: async (parent: any, args: ToggleFavoriteArgs, { models, user }: ContextValue) => {
     if (!user) {
       throw new Error('Error');
     }

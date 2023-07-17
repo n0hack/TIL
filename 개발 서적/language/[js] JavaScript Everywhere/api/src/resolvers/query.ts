@@ -1,4 +1,4 @@
-import { ContextValue, ReadNoteArgs, ReadUserArgs } from './types';
+import { ContextValue, ReadNoteArgs, ReadNoteFeedArgs, ReadUserArgs } from './types';
 
 export default {
   readNotes: async (parent: any, args: {}, { models }: ContextValue) => {
@@ -16,14 +16,14 @@ export default {
   readMe: async (parent: any, args: {}, { models, user }: ContextValue) => {
     return await models.User.findById(user.id);
   },
-  readNoteFeed: async (parent: any, { cursor }: { cursor: string }, { models }: ContextValue) => {
+  readNoteFeed: async (parent: any, args: ReadNoteFeedArgs, { models }: ContextValue) => {
     const limit = 10;
 
     let hasNextPage = false;
     let cursorQuery = {};
 
-    if (cursor) {
-      cursorQuery = { _id: { $lt: cursor } };
+    if (args.cursor) {
+      cursorQuery = { _id: { $lt: args.cursor } };
     }
 
     let notes = await models.Note.find(cursorQuery)
