@@ -1,7 +1,6 @@
 import React from 'react';
 import Header from './Header';
 import Navigation from './Navigation';
-import { Outlet } from 'react-router-dom';
 import { styled } from 'styled-components';
 
 type LayoutProps = {
