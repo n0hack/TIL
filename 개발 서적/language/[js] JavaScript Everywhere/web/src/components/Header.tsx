@@ -1,7 +1,18 @@
+import { gql, useQuery } from '@apollo/client';
 import logo from '@assets/logo.svg';
 import { styled } from 'styled-components';
 
+// 로컬 쿼리
+const IS_LOGGED_IN = gql`
+  query {
+    isLoggedIn @client
+  }
+`;
+
 const Header = () => {
+  const { data } = useQuery(IS_LOGGED_IN);
+  console.log(data);
+
   return (
     <HeaderBar>
       <img src={logo} alt="Notedly Logo" height="40" />

@@ -9,12 +9,12 @@ export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> =
 export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: { input: string; output: string };
-  String: { input: string; output: string };
-  Boolean: { input: boolean; output: boolean };
-  Int: { input: number; output: number };
-  Float: { input: number; output: number };
-  DateTime: { input: any; output: any };
+  ID: { input: string; output: string; }
+  String: { input: string; output: string; }
+  Boolean: { input: boolean; output: boolean; }
+  Int: { input: number; output: number; }
+  Float: { input: number; output: number; }
+  DateTime: { input: any; output: any; }
 };
 
 export type Mutation = {
@@ -27,13 +27,16 @@ export type Mutation = {
   updateNote: Note;
 };
 
+
 export type MutationCreateNoteArgs = {
   content: Scalars['String']['input'];
 };
 
+
 export type MutationDeleteNoteArgs = {
   id: Scalars['ID']['input'];
 };
+
 
 export type MutationSignInArgs = {
   email: Scalars['String']['input'];
@@ -41,15 +44,18 @@ export type MutationSignInArgs = {
   username: Scalars['String']['input'];
 };
 
+
 export type MutationSignUpArgs = {
   email: Scalars['String']['input'];
   password: Scalars['String']['input'];
   username: Scalars['String']['input'];
 };
 
+
 export type MutationToggleFavoriteArgs = {
   id: Scalars['ID']['input'];
 };
+
 
 export type MutationUpdateNoteArgs = {
   content: Scalars['String']['input'];
@@ -84,13 +90,16 @@ export type Query = {
   readUsers?: Maybe<Array<User>>;
 };
 
+
 export type QueryReadNoteArgs = {
   id: Scalars['ID']['input'];
 };
 
+
 export type QueryReadNoteFeedArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
 };
+
 
 export type QueryReadUserArgs = {
   username: Scalars['String']['input'];
@@ -106,159 +115,30 @@ export type User = {
   username: Scalars['String']['output'];
 };
 
+export type SignUpMutationVariables = Exact<{
+  username: Scalars['String']['input'];
+  email: Scalars['String']['input'];
+  password: Scalars['String']['input'];
+}>;
+
+
+export type SignUpMutation = { __typename?: 'Mutation', signUp: string };
+
 export type ReadNoteFeedQueryVariables = Exact<{
   cursor?: InputMaybe<Scalars['String']['input']>;
 }>;
 
-export type ReadNoteFeedQuery = {
-  __typename?: 'Query';
-  readNoteFeed?: {
-    __typename?: 'NoteFeed';
-    cursor: string;
-    hasNextPage: boolean;
-    notes: Array<{
-      __typename?: 'Note';
-      id: string;
-      createdAt: any;
-      content: string;
-      favoriteCount: number;
-      author: { __typename?: 'User'; id: string; username: string; avatar: string };
-    } | null>;
-  } | null;
-};
+
+export type ReadNoteFeedQuery = { __typename?: 'Query', readNoteFeed?: { __typename?: 'NoteFeed', cursor: string, hasNextPage: boolean, notes: Array<{ __typename?: 'Note', id: string, createdAt: any, content: string, favoriteCount: number, author: { __typename?: 'User', id: string, username: string, avatar: string } } | null> } | null };
 
 export type ReadNoteQueryVariables = Exact<{
   readNoteId: Scalars['ID']['input'];
 }>;
 
-export type ReadNoteQuery = {
-  __typename?: 'Query';
-  readNote: {
-    __typename?: 'Note';
-    id: string;
-    createdAt: any;
-    content: string;
-    favoriteCount: number;
-    author: { __typename?: 'User'; username: string; id: string; avatar: string };
-  };
-};
 
-export const ReadNoteFeedDocument = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'OperationDefinition',
-      operation: 'query',
-      name: { kind: 'Name', value: 'ReadNoteFeed' },
-      variableDefinitions: [
-        {
-          kind: 'VariableDefinition',
-          variable: { kind: 'Variable', name: { kind: 'Name', value: 'cursor' } },
-          type: { kind: 'NamedType', name: { kind: 'Name', value: 'String' } },
-        },
-      ],
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'readNoteFeed' },
-            arguments: [
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'cursor' },
-                value: { kind: 'Variable', name: { kind: 'Name', value: 'cursor' } },
-              },
-            ],
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'cursor' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'hasNextPage' } },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'notes' },
-                  selectionSet: {
-                    kind: 'SelectionSet',
-                    selections: [
-                      {
-                        kind: 'Field',
-                        name: { kind: 'Name', value: 'author' },
-                        selectionSet: {
-                          kind: 'SelectionSet',
-                          selections: [
-                            { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-                            { kind: 'Field', name: { kind: 'Name', value: 'username' } },
-                            { kind: 'Field', name: { kind: 'Name', value: 'avatar' } },
-                          ],
-                        },
-                      },
-                      { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-                      { kind: 'Field', name: { kind: 'Name', value: 'createdAt' } },
-                      { kind: 'Field', name: { kind: 'Name', value: 'content' } },
-                      { kind: 'Field', name: { kind: 'Name', value: 'favoriteCount' } },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<ReadNoteFeedQuery, ReadNoteFeedQueryVariables>;
-export const ReadNoteDocument = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'OperationDefinition',
-      operation: 'query',
-      name: { kind: 'Name', value: 'ReadNote' },
-      variableDefinitions: [
-        {
-          kind: 'VariableDefinition',
-          variable: { kind: 'Variable', name: { kind: 'Name', value: 'readNoteId' } },
-          type: { kind: 'NonNullType', type: { kind: 'NamedType', name: { kind: 'Name', value: 'ID' } } },
-        },
-      ],
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'readNote' },
-            arguments: [
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'id' },
-                value: { kind: 'Variable', name: { kind: 'Name', value: 'readNoteId' } },
-              },
-            ],
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'createdAt' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'content' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'favoriteCount' } },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'author' },
-                  selectionSet: {
-                    kind: 'SelectionSet',
-                    selections: [
-                      { kind: 'Field', name: { kind: 'Name', value: 'username' } },
-                      { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-                      { kind: 'Field', name: { kind: 'Name', value: 'avatar' } },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<ReadNoteQuery, ReadNoteQueryVariables>;
+export type ReadNoteQuery = { __typename?: 'Query', readNote: { __typename?: 'Note', id: string, createdAt: any, content: string, favoriteCount: number, author: { __typename?: 'User', username: string, id: string, avatar: string } } };
+
+
+export const SignUpDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SignUp"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"username"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"email"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"password"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"signUp"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"username"},"value":{"kind":"Variable","name":{"kind":"Name","value":"username"}}},{"kind":"Argument","name":{"kind":"Name","value":"email"},"value":{"kind":"Variable","name":{"kind":"Name","value":"email"}}},{"kind":"Argument","name":{"kind":"Name","value":"password"},"value":{"kind":"Variable","name":{"kind":"Name","value":"password"}}}]}]}}]} as unknown as DocumentNode<SignUpMutation, SignUpMutationVariables>;
+export const ReadNoteFeedDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"ReadNoteFeed"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"cursor"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"readNoteFeed"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"cursor"},"value":{"kind":"Variable","name":{"kind":"Name","value":"cursor"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"cursor"}},{"kind":"Field","name":{"kind":"Name","value":"hasNextPage"}},{"kind":"Field","name":{"kind":"Name","value":"notes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"avatar"}}]}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"favoriteCount"}}]}}]}}]}}]} as unknown as DocumentNode<ReadNoteFeedQuery, ReadNoteFeedQueryVariables>;
+export const ReadNoteDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"ReadNote"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"readNoteId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"readNote"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"readNoteId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"content"}},{"kind":"Field","name":{"kind":"Name","value":"favoriteCount"}},{"kind":"Field","name":{"kind":"Name","value":"author"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"username"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"avatar"}}]}}]}}]}}]} as unknown as DocumentNode<ReadNoteQuery, ReadNoteQueryVariables>;
