@@ -3,6 +3,11 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import * as Sentry from '@sentry/react';
+
+Sentry.init({
+  dsn: 'https://05e732ebf31149038d6d10bd1f1c3c00@o4505577011281920.ingest.sentry.io/4505577019473920',
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
