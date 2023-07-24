@@ -39,10 +39,10 @@ class ApiErrorBoundary extends React.Component<P, S> {
   }
 
   render() {
-    console.log(this.state);
-    if (this.state.shouldRethrow) {
-      throw this.state.error;
-    }
+    // console.log(this.state);
+    // if (this.state.shouldRethrow) {
+    //   throw this.state.error;
+    // }
 
     if (!this.state.shouldHandleError) {
       return this.props.children;
