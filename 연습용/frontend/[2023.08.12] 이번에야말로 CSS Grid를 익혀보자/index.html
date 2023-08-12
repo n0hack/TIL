@@ -7,7 +7,8 @@
     <style>
       .container {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(20%, auto));
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, minmax(100px, auto));
       }
 
       .item:nth-of-type(even) {
@@ -15,6 +16,11 @@
       }
       .item:nth-of-type(odd) {
         background-color: slategray;
+      }
+
+      .item:nth-of-type(1) {
+        grid-column: 1 / 3;
+        grid-row: 1/ 3;
       }
     </style>
   </head>
