@@ -109,23 +109,15 @@ body {
 
 .container {
   display: grid;
-  grid-template: "header header header" 100px "main . ." 100px "main . aside" 100px "footer footer footer" 100px/1fr 1fr 1fr;
-}
-
-.item:nth-of-type(1) {
-  grid-area: header;
-}
-
-.item:nth-of-type(2) {
-  grid-area: main;
+  width: 300px;
+  height: 200px;
+  grid-template-columns: 150px 150px;
+  grid-template-rows: 100px 100px;
+  grid-auto-rows: 100px;
 }
 
 .item:nth-of-type(3) {
-  grid-area: aside;
-}
-
-.item:nth-of-type(4) {
-  grid-area: footer;
+  grid-row: 3/4;
 }
 
 /*# sourceMappingURL=index.css.map */
