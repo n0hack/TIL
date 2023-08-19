@@ -1,0 +1,15 @@
+{
+  "name": "tdd",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.4.3"
+  },
+  "devDependencies": {
+    "jest": "^29.6.2",
+    "node-mocks-http": "^1.13.0",
+    "supertest": "^6.3.3"
+  }
+}
