@@ -4,6 +4,7 @@ const PORT = 52273;
 
 const app = express();
 
+app.use(express.json());
 app.get('/', (req, res) => {
   res.send('Hello World');
 });
