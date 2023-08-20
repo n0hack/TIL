@@ -62,4 +62,10 @@ describe('Product Controller Create', () => {
     // send()가 호출되었는지 확인
     expect(res._isEndCalled()).toBeTruthy();
   });
+
+  test('should return json body in response', () => {
+    (productModel.create as jest.Mock).mockReturnValue(newProduct);
+    productController.createProduct(req, res, next);
+    expect(res._getJSONData()).toStrictEqual(newProduct);
+  });
 });
