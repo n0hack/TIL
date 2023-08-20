@@ -55,4 +55,11 @@ describe('Product Controller Create', () => {
     // expect(productModel.create).toBeCalled();
     expect(productModel.create).toBeCalledWith(newProduct);
   });
+
+  test('should return 201 response code', async () => {
+    productController.createProduct(req, res, next);
+    expect(res.statusCode).toBe(201);
+    // send()가 호출되었는지 확인
+    expect(res._isEndCalled()).toBeTruthy();
+  });
 });
