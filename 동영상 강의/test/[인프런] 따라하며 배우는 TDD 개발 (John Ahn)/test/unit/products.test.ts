@@ -1,4 +1,8 @@
 import productController from '../../controller/products';
+import productModel from '../../model/Product';
+
+// 모델이 직접 영향이 받으면 안 되므로 Mocking을
+productModel.create = jest.fn();
 
 // describe('Describe: sum 함수', () => {
 //   test('Test: 1 + 2 = 3이다.', () => {
@@ -28,5 +32,16 @@ import productController from '../../controller/products';
 describe('Product Controller Create', () => {
   test('should have a createProduct function', () => {
     expect(typeof productController.createProduct).toBe('function');
+  });
+
+  test('should call ProductModel.create', async () => {
+    const req: any = {
+      body: { cardId: '22' },
+    };
+    const res: any = {};
+    const next = jest.fn();
+
+    productController.createProduct(req, res, next);
+    expect(productModel.create).toBeCalled();
   });
 });
