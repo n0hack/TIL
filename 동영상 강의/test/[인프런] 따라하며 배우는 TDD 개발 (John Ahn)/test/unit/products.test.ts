@@ -1,8 +1,7 @@
 import productController from '../../controller/products';
 import productModel from '../../model/Product';
-
-// 모델이 직접 영향이 받으면 안 되므로 Mocking을
-productModel.create = jest.fn();
+import httpMocks from 'node-mocks-http';
+import newProduct from '../data/new-product.json';
 
 // describe('Describe: sum 함수', () => {
 //   test('Test: 1 + 2 = 3이다.', () => {
@@ -29,19 +28,23 @@ productModel.create = jest.fn();
 //   });
 // });
 
+// 모델이 직접 영향이 받으면 안 되므로 Mocking을
+productModel.create = jest.fn();
+
 describe('Product Controller Create', () => {
   test('should have a createProduct function', () => {
     expect(typeof productController.createProduct).toBe('function');
   });
 
   test('should call ProductModel.create', async () => {
-    const req: any = {
-      body: { cardId: '22' },
-    };
-    const res: any = {};
+    const req = httpMocks.createRequest();
+    const res = httpMocks.createResponse();
     const next = jest.fn();
 
+    req.body = newProduct;
+
     productController.createProduct(req, res, next);
-    expect(productModel.create).toBeCalled();
+    // expect(productModel.create).toBeCalled();
+    expect(productModel.create).toBeCalledWith(newProduct);
   });
 });
