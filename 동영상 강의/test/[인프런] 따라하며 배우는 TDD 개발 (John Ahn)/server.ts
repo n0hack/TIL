@@ -1,5 +1,5 @@
 import express from 'express';
-import productRoutes from './routes.js';
+import productRoutes from './routes';
 import mongoose from 'mongoose';
 
 mongoose
