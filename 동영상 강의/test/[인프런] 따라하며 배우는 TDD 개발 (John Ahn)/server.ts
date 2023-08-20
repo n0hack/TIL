@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { NextFunction, Request, RequestHandler, Response } from 'express';
 import productRoutes from './routes';
 import mongoose from 'mongoose';
 
@@ -16,9 +16,14 @@ app.get('/', (req, res) => {
   res.send('Hello World');
 });
 
-const PORT = 52273;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+// 비동기 에러 처리를 위한 에러 핸들러
+app.use((error: any, req: Request, res: Response, next: NextFunction) => {
+  res.status(500).json({ message: error.message });
 });
+
+// const PORT = 52273;
+// app.listen(PORT, () => {
+//   console.log(`Server running on port ${PORT}`);
+// });
 
 export default app;
