@@ -68,4 +68,12 @@ describe('Product Controller Create', () => {
     await productController.createProduct(req, res, next);
     expect(res._getJSONData()).toStrictEqual(newProduct);
   });
+
+  test('should handle errors', async () => {
+    const errorMessage = { message: 'description property missing' };
+    const rejectedPromise = Promise.reject(errorMessage);
+    (productModel.create as jest.Mock).mockReturnValue(rejectedPromise);
+    await productController.createProduct(req, res, next);
+    expect(next).toBeCalledWith(errorMessage);
+  });
 });

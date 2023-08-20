@@ -6,7 +6,7 @@ const createProduct: RequestHandler = async (req, res, next) => {
     const createdProduct = await productModel.create(req.body);
     res.status(201).json(createdProduct);
   } catch (e) {
-    res.status(400).send({ message: '잘못된 요청' });
+    next(e);
   }
 };
 
