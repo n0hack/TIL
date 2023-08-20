@@ -1,5 +1,9 @@
 import { RequestHandler } from 'express';
 
-const hello: RequestHandler = (req, res) => res.send('안녕하세요');
+const createProduct: RequestHandler = (req, res, next) => {};
 
-export default { hello };
+const productController = {
+  createProduct,
+};
+
+export default productController;

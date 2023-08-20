@@ -1,24 +1,32 @@
-describe('Describe: sum 함수', () => {
-  test('Test: 1 + 2 = 3이다.', () => {
-    expect(1 + 2).toBe(3);
-  });
+import productController from '../../controller/products';
 
-  test('Test: 1 + 2 = 4가 아니다.', () => {
-    expect(1 + 2).not.toBe(4);
-  });
+// describe('Describe: sum 함수', () => {
+//   test('Test: 1 + 2 = 3이다.', () => {
+//     expect(1 + 2).toBe(3);
+//   });
 
-  test('Test: Mock 함수는 10을 반환한다.', () => {
-    const mockFunction = jest.fn();
-    mockFunction.mockReturnValue(10);
+//   test('Test: 1 + 2 = 4가 아니다.', () => {
+//     expect(1 + 2).not.toBe(4);
+//   });
 
-    expect(mockFunction()).toBe(10);
-  });
+//   test('Test: Mock 함수는 10을 반환한다.', () => {
+//     const mockFunction = jest.fn();
+//     mockFunction.mockReturnValue(10);
 
-  test('Test: Mock 함수는 2번 호출된다.', () => {
-    const mockFunction = jest.fn();
-    mockFunction();
-    mockFunction();
+//     expect(mockFunction()).toBe(10);
+//   });
 
-    expect(mockFunction).toBeCalledTimes(2);
+//   test('Test: Mock 함수는 2번 호출된다.', () => {
+//     const mockFunction = jest.fn();
+//     mockFunction();
+//     mockFunction();
+
+//     expect(mockFunction).toBeCalledTimes(2);
+//   });
+// });
+
+describe('Product Controller Create', () => {
+  test('should have a createProduct function', () => {
+    expect(typeof productController.createProduct).toBe('function');
   });
 });
