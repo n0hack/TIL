@@ -1,9 +1,13 @@
 import { RequestHandler } from 'express';
 import productModel from '../model/Product';
 
-const createProduct: RequestHandler = (req, res, next) => {
-  const createdProduct = productModel.create(req.body);
-  res.status(201).json(createdProduct);
+const createProduct: RequestHandler = async (req, res, next) => {
+  try {
+    const createdProduct = await productModel.create(req.body);
+    res.status(201).json(createdProduct);
+  } catch (e) {
+    res.status(400).send({ message: '잘못된 요청' });
+  }
 };
 
 const productController = {

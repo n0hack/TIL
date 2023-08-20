@@ -8,6 +8,6 @@ router.use((req, res, next) => {
   next();
 });
 
-router.get('/', productController.createProduct);
+router.post('/', productController.createProduct);
 
 export default router;
