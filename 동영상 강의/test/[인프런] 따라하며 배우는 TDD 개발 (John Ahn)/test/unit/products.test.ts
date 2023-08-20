@@ -31,18 +31,26 @@ import newProduct from '../data/new-product.json';
 // 모델이 직접 영향이 받으면 안 되므로 Mocking을
 productModel.create = jest.fn();
 
+let req: ReturnType<typeof httpMocks.createRequest>;
+let res: ReturnType<typeof httpMocks.createResponse>;
+let next: jest.Mock;
+
+beforeEach(() => {
+  req = httpMocks.createRequest();
+  res = httpMocks.createResponse();
+  next = jest.fn();
+});
+
 describe('Product Controller Create', () => {
+  beforeEach(() => {
+    req.body = newProduct;
+  });
+
   test('should have a createProduct function', () => {
     expect(typeof productController.createProduct).toBe('function');
   });
 
   test('should call ProductModel.create', async () => {
-    const req = httpMocks.createRequest();
-    const res = httpMocks.createResponse();
-    const next = jest.fn();
-
-    req.body = newProduct;
-
     productController.createProduct(req, res, next);
     // expect(productModel.create).toBeCalled();
     expect(productModel.create).toBeCalledWith(newProduct);
