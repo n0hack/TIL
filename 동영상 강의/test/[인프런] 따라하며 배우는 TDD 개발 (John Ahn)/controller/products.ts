@@ -19,9 +19,23 @@ const getProducts: RequestHandler = async (req, res, next) => {
   }
 };
 
+const getProductById: RequestHandler = async (req, res, next) => {
+  try {
+    const product = await productModel.findById(req.params.productId);
+    if (product) {
+      res.status(200).json(product);
+    } else {
+      res.status(404).send();
+    }
+  } catch (e) {
+    next(e);
+  }
+};
+
 const productController = {
   createProduct,
   getProducts,
+  getProductById,
 };
 
 export default productController;

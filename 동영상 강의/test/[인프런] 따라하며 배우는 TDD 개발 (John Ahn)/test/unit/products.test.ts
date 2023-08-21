@@ -32,7 +32,9 @@ import allProducts from '../data/all-products.json';
 // 모델이 직접 영향이 받으면 안 되므로 Mocking을
 productModel.create = jest.fn();
 productModel.find = jest.fn();
+productModel.findById = jest.fn();
 
+const productId = '64e378c2e7932102e7eb8f55';
 let req: ReturnType<typeof httpMocks.createRequest>;
 let res: ReturnType<typeof httpMocks.createResponse>;
 let next: jest.Mock;
@@ -107,6 +109,41 @@ describe('Product Controller Get', () => {
     const rejectedPromise = Promise.reject(errorMessage);
     (productModel.find as jest.Mock).mockReturnValue(rejectedPromise);
     await productController.getProducts(req, res, next);
+    expect(next).toHaveBeenCalledWith(errorMessage);
+  });
+});
+
+describe('Product Controller GetById', () => {
+  test('should have a getProductById', () => {
+    expect(typeof productController.getProductById).toBe('function');
+  });
+
+  test('should call productModel.findById', async () => {
+    req.params.productId = productId;
+    await productController.getProductById(req, res, next);
+    expect(productModel.findById).toBeCalledWith(productId);
+  });
+
+  test('should return json body and response code 200', async () => {
+    (productModel.findById as jest.Mock).mockReturnValue(newProduct);
+    await productController.getProductById(req, res, next);
+    expect(res.statusCode).toBe(200);
+    expect(res._getJSONData()).toStrictEqual(newProduct);
+    expect(res._isEndCalled()).toBeTruthy();
+  });
+
+  test("should return 404 when item doesn't exist", async () => {
+    (productModel.findById as jest.Mock).mockReturnValue(null);
+    await productController.getProductById(req, res, next);
+    expect(res.statusCode).toBe(404);
+    expect(res._isEndCalled()).toBeTruthy();
+  });
+
+  test('should handle errors', async () => {
+    const errorMessage = { message: 'error' };
+    const rejectedPromise = Promise.reject(errorMessage);
+    (productModel.findById as jest.Mock).mockReturnValue(rejectedPromise);
+    await productController.getProductById(req, res, next);
     expect(next).toHaveBeenCalledWith(errorMessage);
   });
 });
