@@ -102,5 +102,11 @@ describe('Product Controller Get', () => {
     expect(res._getJSONData()).toStrictEqual(allProducts);
   });
 
-  test('should handle errors', async () => {});
+  test('should handle errors', async () => {
+    const errorMessage = { message: 'Error finding product data' };
+    const rejectedPromise = Promise.reject(errorMessage);
+    (productModel.find as jest.Mock).mockReturnValue(rejectedPromise);
+    await productController.getProducts(req, res, next);
+    expect(next).toHaveBeenCalledWith(errorMessage);
+  });
 });
