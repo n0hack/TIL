@@ -10,8 +10,18 @@ const createProduct: RequestHandler = async (req, res, next) => {
   }
 };
 
+const getProducts: RequestHandler = async (req, res, next) => {
+  try {
+    const allProducts = await productModel.find({});
+    res.status(200).json(allProducts);
+  } catch (e) {
+    next(e);
+  }
+};
+
 const productController = {
   createProduct,
+  getProducts,
 };
 
 export default productController;

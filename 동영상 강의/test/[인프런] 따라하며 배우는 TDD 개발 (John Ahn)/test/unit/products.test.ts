@@ -2,6 +2,7 @@ import productController from '../../controller/products';
 import productModel from '../../model/Product';
 import httpMocks from 'node-mocks-http';
 import newProduct from '../data/new-product.json';
+import allProducts from '../data/all-products.json';
 
 // describe('Describe: sum 함수', () => {
 //   test('Test: 1 + 2 = 3이다.', () => {
@@ -30,6 +31,7 @@ import newProduct from '../data/new-product.json';
 
 // 모델이 직접 영향이 받으면 안 되므로 Mocking을
 productModel.create = jest.fn();
+productModel.find = jest.fn();
 
 let req: ReturnType<typeof httpMocks.createRequest>;
 let res: ReturnType<typeof httpMocks.createResponse>;
@@ -76,4 +78,29 @@ describe('Product Controller Create', () => {
     await productController.createProduct(req, res, next);
     expect(next).toBeCalledWith(errorMessage);
   });
+});
+
+describe('Product Controller Get', () => {
+  test('should have a getProducts function', () => {
+    expect(typeof productController.getProducts).toBe('function');
+  });
+
+  test('should call ProductModel.find({})', async () => {
+    await productController.getProducts(req, res, next);
+    expect(productModel.find).toHaveBeenCalledWith({});
+  });
+
+  test('should return 200 response', async () => {
+    await productController.getProducts(req, res, next);
+    expect(res.statusCode).toBe(200);
+    expect(res._isEndCalled()).toBeTruthy();
+  });
+
+  test('should return json body in response', async () => {
+    (productModel.find as jest.Mock).mockReturnValue(allProducts);
+    await productController.getProducts(req, res, next);
+    expect(res._getJSONData()).toStrictEqual(allProducts);
+  });
+
+  test('should handle errors', async () => {});
 });
