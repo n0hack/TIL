@@ -2,6 +2,13 @@ import request from 'supertest';
 import app from '../../server';
 import newProduct from '../data/new-product.json';
 
+let firstProduct: {
+  _id: string;
+  name: string;
+  description: string;
+  price: number;
+};
+
 test('POST /api/products', async () => {
   const response = await request(app).post('/api/products').send(newProduct);
   expect(response.statusCode).toBe(201);
@@ -12,7 +19,6 @@ test('POST /api/products', async () => {
 test('should return 500 on POST /api/products', async () => {
   const response = await request(app).post('/api/products').send({ name: 'phone' });
   expect(response.statusCode).toBe(500);
-
   expect(response.body).toStrictEqual({
     message: 'Product validation failed: description: Path `description` is required.',
   });
@@ -24,4 +30,17 @@ test('GET /api/products', async () => {
   expect(Array.isArray(response.body)).toBeTruthy();
   expect(response.body[0].name).toBeDefined();
   expect(response.body[0].description).toBeDefined();
+  firstProduct = response.body[0];
+});
+
+test('GET /api/products/:productId', async () => {
+  const response = await request(app).get(`/api/products/${firstProduct._id}`);
+  expect(response.statusCode).toBe(200);
+  expect(response.body.name).toBe(firstProduct.name);
+  expect(response.body.description).toBe(firstProduct.description);
+});
+
+test('GET id doesnt exist /api/products/:productId', async () => {
+  const response = await request(app).get(`/api/products/5f9d0f7c9c6b4c2b2c4c2c4c`);
+  expect(response.statusCode).toBe(404);
 });

@@ -10,5 +10,6 @@ router.use((req, res, next) => {
 
 router.post('/', productController.createProduct);
 router.get('/', productController.getProducts);
+router.get('/:productId', productController.getProductById);
 
 export default router;
