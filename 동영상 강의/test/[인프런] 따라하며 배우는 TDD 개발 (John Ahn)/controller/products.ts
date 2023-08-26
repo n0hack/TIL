@@ -45,11 +45,25 @@ const updateProduct: RequestHandler = async (req, res, next) => {
   }
 };
 
+const deleteProduct: RequestHandler = async (req, res, next) => {
+  try {
+    const deletedProduct = await productModel.findByIdAndDelete(req.params.productId);
+    if (deletedProduct) {
+      res.status(200).json(deletedProduct);
+    } else {
+      res.status(404).send();
+    }
+  } catch (e) {
+    next(e);
+  }
+};
+
 const productController = {
   createProduct,
   getProducts,
   getProductById,
   updateProduct,
+  deleteProduct,
 };
 
 export default productController;

@@ -34,6 +34,7 @@ productModel.create = jest.fn();
 productModel.find = jest.fn();
 productModel.findById = jest.fn();
 productModel.findByIdAndUpdate = jest.fn();
+productModel.findByIdAndDelete = jest.fn();
 
 const productId = '64e378c2e7932102e7eb8f55';
 let req: ReturnType<typeof httpMocks.createRequest>;
@@ -184,6 +185,45 @@ describe('Product Controller Update', () => {
     const rejectedPromise = Promise.reject(errorMessage);
     (productModel.findByIdAndUpdate as jest.Mock).mockReturnValue(rejectedPromise);
     await productController.updateProduct(req, res, next);
+    expect(next).toHaveBeenCalledWith(errorMessage);
+  });
+});
+
+describe('Product Controller Delete', () => {
+  test('should have a deleteProduct function', () => {
+    expect(typeof productController.deleteProduct).toBe('function');
+  });
+
+  test('should call productModel.findByIdAndDelete', async () => {
+    req.params.productId = productId;
+    await productController.deleteProduct(req, res, next);
+    expect(productModel.findByIdAndDelete).toHaveBeenCalledWith(productId);
+  });
+
+  test('should return 200 OK and deleted product', async () => {
+    const deletedProduct = {
+      name: 'deleted product',
+      description: 'deleted description',
+    };
+    (productModel.findByIdAndDelete as jest.Mock).mockReturnValue(deletedProduct);
+    await productController.deleteProduct(req, res, next);
+    expect(res.statusCode).toBe(200);
+    expect(res._getJSONData()).toStrictEqual(deletedProduct);
+    expect(res._isEndCalled()).toBeTruthy();
+  });
+
+  test("should return 404 when item doesn't exist", async () => {
+    (productModel.findByIdAndDelete as jest.Mock).mockReturnValue(null);
+    await productController.deleteProduct(req, res, next);
+    expect(res.statusCode).toBe(404);
+    expect(res._isEndCalled()).toBeTruthy();
+  });
+
+  test('should handle errors', async () => {
+    const errorMessage = { message: 'error' };
+    const rejectedPromise = Promise.reject(errorMessage);
+    (productModel.findByIdAndDelete as jest.Mock).mockReturnValue(rejectedPromise);
+    await productController.deleteProduct(req, res, next);
     expect(next).toHaveBeenCalledWith(errorMessage);
   });
 });
