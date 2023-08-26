@@ -3,13 +3,14 @@ import productController from './controller/products';
 
 const router = express.Router();
 
-router.use((req, res, next) => {
-  console.log('Time:', Date.now());
-  next();
-});
+// router.use((req, res, next) => {
+//   console.log('Time:', Date.now());
+//   next();
+// });
 
 router.post('/', productController.createProduct);
 router.get('/', productController.getProducts);
 router.get('/:productId', productController.getProductById);
+router.put('/:productId', productController.updateProduct);
 
 export default router;
