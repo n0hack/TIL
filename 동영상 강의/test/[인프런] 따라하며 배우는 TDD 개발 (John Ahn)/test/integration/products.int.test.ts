@@ -2,6 +2,8 @@ import request from 'supertest';
 import app from '../../server';
 import newProduct from '../data/new-product.json';
 
+// 통합 테스트는 실제 DB에 접근함
+
 let firstProduct: {
   _id: string;
   name: string;
@@ -63,6 +65,20 @@ test('should return 404 on PUT /api/products', async () => {
     name: 'updated name',
     description: 'updated description',
   });
+
+  expect(res.statusCode).toBe(404);
+});
+
+test('DELETE /api/products', async () => {
+  const res = await request(app)
+    .delete('/api/products/' + firstProduct._id)
+    .send();
+
+  expect(res.statusCode).toBe(200);
+});
+
+test('should return 404 on DELETE /api/products', async () => {
+  const res = await request(app).delete('/api/products/5f9d0f7c9c6b4c2b2c4c2c4c').send();
 
   expect(res.statusCode).toBe(404);
 });
