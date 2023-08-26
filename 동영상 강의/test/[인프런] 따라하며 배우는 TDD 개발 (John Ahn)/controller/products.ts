@@ -32,10 +32,13 @@ const getProductById: RequestHandler = async (req, res, next) => {
   }
 };
 
+const updateProduct: RequestHandler = async (req, res, next) => {};
+
 const productController = {
   createProduct,
   getProducts,
   getProductById,
+  updateProduct,
 };
 
 export default productController;
