@@ -33,6 +33,7 @@ import allProducts from '../data/all-products.json';
 productModel.create = jest.fn();
 productModel.find = jest.fn();
 productModel.findById = jest.fn();
+productModel.findByIdAndUpdate = jest.fn();
 
 const productId = '64e378c2e7932102e7eb8f55';
 let req: ReturnType<typeof httpMocks.createRequest>;
@@ -151,5 +152,38 @@ describe('Product Controller GetById', () => {
 describe('Product Controller Update', () => {
   test('should have a updateProduct function', () => {
     expect(typeof productController.updateProduct).toBe('function');
+  });
+
+  test('should call productModel.findByIdAndUpdate', async () => {
+    req.params.productId = productId;
+    req.body = newProduct;
+    await productController.updateProduct(req, res, next);
+    // new: true 옵션을 넣어야 업데이트된 데이터를 반환함
+    expect(productModel.findByIdAndUpdate).toHaveBeenCalledWith(productId, newProduct, { new: true });
+  });
+
+  test('should return json body and response code 200', async () => {
+    req.params.productId = productId;
+    req.body = newProduct;
+    (productModel.findByIdAndUpdate as jest.Mock).mockReturnValue(newProduct);
+    await productController.updateProduct(req, res, next);
+    expect(res.statusCode).toBe(200);
+    expect(res._getJSONData()).toStrictEqual(newProduct);
+    expect(res._isEndCalled()).toBeTruthy();
+  });
+
+  test("should return 404 when item doesn't exist", async () => {
+    (productModel.findByIdAndUpdate as jest.Mock).mockReturnValue(null);
+    await productController.updateProduct(req, res, next);
+    expect(res.statusCode).toBe(404);
+    expect(res._isEndCalled()).toBeTruthy();
+  });
+
+  test('should handle errors', async () => {
+    const errorMessage = { message: 'error' };
+    const rejectedPromise = Promise.reject(errorMessage);
+    (productModel.findByIdAndUpdate as jest.Mock).mockReturnValue(rejectedPromise);
+    await productController.updateProduct(req, res, next);
+    expect(next).toHaveBeenCalledWith(errorMessage);
   });
 });
