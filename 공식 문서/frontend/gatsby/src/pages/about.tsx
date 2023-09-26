@@ -1,6 +1,7 @@
 import { HeadFC, Link } from 'gatsby';
 import React from 'react';
 import { Layout } from '../components/Layout';
+import { Seo } from '../components/Seo';
 
 const About = () => {
   return (
@@ -10,6 +11,6 @@ const About = () => {
   );
 };
 
-export const Head: HeadFC = () => <title>About Me</title>;
+export const Head: HeadFC = () => <Seo title="소개" />;
 
 export default About;
