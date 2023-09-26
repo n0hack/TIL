@@ -1,14 +1,16 @@
 import React from 'react';
-import { Layout } from '../components/Layout';
-import { HeadFC, PageProps, graphql } from 'gatsby';
-import { Seo } from '../components/Seo';
+import { Layout } from '../../components/Layout';
+import { HeadFC, Link, PageProps, graphql } from 'gatsby';
+import { Seo } from '../../components/Seo';
 
 const Blog = ({ data: { allMdx } }: PageProps<Queries.ReadAllMdxQuery>) => {
   return (
     <Layout pageTitle="My BLog Posts">
       {allMdx.nodes.map((node) => (
         <article key={node.id}>
-          <h2>{node.frontmatter?.title}</h2>
+          <h2>
+            <Link to={`/blog/${node.frontmatter?.slug}`}>{node.frontmatter?.title}</Link>
+          </h2>
           <p>Posted: {node.frontmatter?.date}</p>
           <p>{node.excerpt}</p>
         </article>
@@ -27,6 +29,7 @@ export const query = graphql`
         frontmatter {
           date(formatString: "MMMM D, YYYY")
           title
+          slug
         }
         id
         excerpt
