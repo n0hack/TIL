@@ -2,6 +2,7 @@
 title: 'My First Post'
 date: '2021-07-23'
 slug: my-first-post
+type: post
 hero_image: ./images/char.jpeg
 hero_image_alt: Yet Another Post
 hero_image_credit_text: 'Anthony Duran'
@@ -52,3 +53,15 @@ console.log
 ---
 
 ![이미지](./images/char.jpeg)
+
+![Gif](./images/hakase.gif)
+
+<div style="padding-top:56.25%;position:relative">
+<iframe width="100%" height="100%" style="position:absolute;top:0;left:0;right:0;bottom:0;" src="https://www.youtube.com/embed/eEFVxI9lqjU?si=ukuMF108H_xw7cm8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+
+## 코드
+
+```javascript
+console.log('hi');
+```

@@ -1,5 +1,6 @@
 ---
 title: 'Yet Another Post'
+type: post
 date: '2021-07-25'
 slug: yet-another-post
 hero_image: ./images/char.jpeg
