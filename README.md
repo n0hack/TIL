@@ -16,17 +16,6 @@
 
 <br />
 
-## 📁 Directories
-
-- 개발 서적: 종이 책, E-book
-- 공식 문서: 공식 사이트 문서
-- 동영상 강의: Inflearn, Udemy, Youtube Series
-- 연습용: 단편 글 또는 동영상
-
-> 자료구조, 알고리즘을 비롯한 CS 지식은 algorithms 저장소에서 별도로 관리합니다 ✨
-
-<br />
-
 ## 📌 Copyrights
 
 © 2022. [Lucid](mailto:jihun@lucid-dream.net) all rights reserved.
