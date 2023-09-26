@@ -1,25 +1,35 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { Layout } from '../components/Layout';
 import { HeadFC, PageProps, graphql } from 'gatsby';
 import { Seo } from '../components/Seo';
 
-const Blog = ({ data: { allFile } }: PageProps<Queries.ReadAllFileQuery>) => {
+const Blog = ({ data: { allMdx } }: PageProps<Queries.ReadAllMdxQuery>) => {
   return (
     <Layout pageTitle="My BLog Posts">
-      <ul>
-        {allFile.nodes.map((node) => (
-          <li key={node.name}>{node.name}</li>
-        ))}
-      </ul>
+      {allMdx.nodes.map((node) => (
+        <article key={node.id}>
+          <h2>{node.frontmatter?.title}</h2>
+          <p>Posted: {node.frontmatter?.date}</p>
+          <p>{node.excerpt}</p>
+        </article>
+      ))}
     </Layout>
   );
 };
 
 export const query = graphql`
-  query ReadAllFile {
-    allFile(filter: { sourceInstanceName: { eq: "blog" } }) {
+  query ReadAllMdx {
+    allMdx(
+      filter: { internal: { contentFilePath: { regex: "/contents/posts/.+/" } } }
+      sort: { frontmatter: { date: DESC } }
+    ) {
       nodes {
-        name
+        frontmatter {
+          date(formatString: "MMMM D, YYYY")
+          title
+        }
+        id
+        excerpt
       }
     }
   }

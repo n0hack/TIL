@@ -17,10 +17,18 @@ const config: GatsbyConfig = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        name: `blog`,
-        path: `${__dirname}/blog`,
+        name: `posts`,
+        path: `${__dirname}/contents/posts`,
       },
     },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: `about`,
+        path: `${__dirname}/contents/about`,
+      },
+    },
+    'gatsby-plugin-mdx',
   ],
 };
 
