@@ -1134,6 +1134,19 @@
   resolved "https://registry.yarnpkg.com/@builder.io/partytown/-/partytown-0.7.6.tgz#697acea6b552167a4dd43ddd4827018aa42e0364"
   integrity sha512-snXIGNiZpqjno3XYQN2lbBB+05hsQR/LSttbtIW1c0gmZ7Kh/DIo0YrxlDxCDulAMFPFM8J+4voLwvYepSj3sw==
 
+"@deckdeckgo/highlight-code@^4.4.0":
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/@deckdeckgo/highlight-code/-/highlight-code-4.4.0.tgz#5d6e5463604ce9236d913c328e63a51052f89e0e"
+  integrity sha512-skWKYvIKBpfS3oc7NYu8PvZJ6mVlu1DSsTGD6gt6rsFA3I8TTbtzbo/6deWY/LWkFG1ceGRE5u6LcdzzvBh9vA==
+  dependencies:
+    "@deckdeckgo/utils" "^5.1.0"
+    prismjs "^1.27.0"
+
+"@deckdeckgo/utils@^5.1.0":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@deckdeckgo/utils/-/utils-5.1.0.tgz#ac1fc3c25ca6128bf13c1a4c6226cad540c8a164"
+  integrity sha512-ue/1BXkDBZ9k+Tqs3vyCRIjqxjPnl06ab9WGhGubAXoRtJIE7ZN58/pbLsPCYc4xFcY0TPH3tsWhE7eF/FU8Ew==
+
 "@eslint-community/eslint-utils@^4.2.0":
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/@eslint-community/eslint-utils/-/eslint-utils-4.4.0.tgz#a23514e8fb9af1269d5f7788aa556798d61c6b59"
@@ -5344,6 +5357,14 @@ gatsby-link@^5.12.0:
     gatsby-page-utils "^3.12.0"
     prop-types "^15.8.1"
 
+gatsby-node-helpers@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/gatsby-node-helpers/-/gatsby-node-helpers-1.2.1.tgz#9d21adcaa2e02baa67d4bdf16a3bb27a3a84d553"
+  integrity sha512-fYNQhp7/3sBUkb9QR31CZm6XChN2A78npow/PNglx5U1Sv8Zmd07Io8Mc2K7UO2hUCCSuAmgkSqlqq71NupdQA==
+  dependencies:
+    camel-case "^4.1.2"
+    pascal-case "^3.1.2"
+
 gatsby-page-utils@^3.12.0:
   version "3.12.0"
   resolved "https://registry.yarnpkg.com/gatsby-page-utils/-/gatsby-page-utils-3.12.0.tgz#710ccdbe85315844dd0d01e2b9414bc5b5845fc2"
@@ -5491,6 +5512,16 @@ gatsby-remark-copy-linked-files@^6.12.0:
     probe-image-size "^7.2.3"
     unist-util-visit "^2.0.3"
 
+gatsby-remark-highlight-code@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/gatsby-remark-highlight-code/-/gatsby-remark-highlight-code-3.3.0.tgz#7f01802f0046043db0342a8f2b66e22583781ffc"
+  integrity sha512-tnjA7msvOV4NUPVCpFRkKA+uPDPHubrjjbakhfuBbyEQpwQR0LqJ6BYx6oFJtoLkFroD1DPnLb25/biPKnpMUQ==
+  dependencies:
+    gatsby-node-helpers "^1.2.1"
+    lodash "^4.17.21"
+    mdast-util-to-string "^1.1.0"
+    unist-util-visit "^2.0.2"
+
 gatsby-remark-images@^7.12.0:
   version "7.12.0"
   resolved "https://registry.yarnpkg.com/gatsby-remark-images/-/gatsby-remark-images-7.12.0.tgz#a7856278b9bc311bb8eef33ff31e86ea445905ea"
@@ -5506,6 +5537,15 @@ gatsby-remark-images@^7.12.0:
     query-string "^6.14.1"
     unist-util-select "^3.0.4"
     unist-util-visit-parents "^3.1.1"
+
+gatsby-remark-prismjs@^7.12.0:
+  version "7.12.0"
+  resolved "https://registry.yarnpkg.com/gatsby-remark-prismjs/-/gatsby-remark-prismjs-7.12.0.tgz#eab6cfac831379a0b6959afead6e2504b25712ab"
+  integrity sha512-W5NETUn0UTdvfNUfCnAgfpEI0wIlWk0UDTOvqUFptvyN8R6UW3FMm+KC18uv9WOQyKMgvNGU+UjJ1towTQvNLw==
+  dependencies:
+    "@babel/runtime" "^7.20.13"
+    parse-numeric-range "^1.3.0"
+    unist-util-visit "^2.0.3"
 
 gatsby-script@^2.12.0:
   version "2.12.0"
@@ -7338,6 +7378,11 @@ mdast-util-to-nlcst@^4.0.0:
     unist-util-position "^3.0.0"
     vfile-location "^3.1.0"
 
+mdast-util-to-string@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/mdast-util-to-string/-/mdast-util-to-string-1.1.0.tgz#27055500103f51637bd07d01da01eb1967a43527"
+  integrity sha512-jVU0Nr2B9X3MU4tSK7JP1CMkSvOj7X5l/GboG1tKRw52lLF1x2Ju92Ms9tNetCcbfX3hzlM73zYo2NKkWSfF/A==
+
 mdast-util-to-string@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/mdast-util-to-string/-/mdast-util-to-string-2.0.0.tgz#b8cfe6a713e1091cb5b728fc48885a4767f8b97b"
@@ -8112,6 +8157,11 @@ parse-latin@^4.0.0:
     unist-util-modify-children "^2.0.0"
     unist-util-visit-children "^1.0.0"
 
+parse-numeric-range@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/parse-numeric-range/-/parse-numeric-range-1.3.0.tgz#7c63b61190d61e4d53a1197f0c83c47bb670ffa3"
+  integrity sha512-twN+njEipszzlMJd4ONUYgSfZPDxgHhT9Ahed5uTigpQn90FggW4SA/AIPq/6a149fTbE9qBEcSwE3FAEp6wQQ==
+
 parse-path@^7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/parse-path/-/parse-path-7.0.0.tgz#605a2d58d0a749c8594405d8cc3a2bf76d16099b"
@@ -8581,6 +8631,16 @@ pretty-error@^2.1.2:
   dependencies:
     lodash "^4.17.20"
     renderkid "^2.0.4"
+
+prism-themes@^1.9.0:
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/prism-themes/-/prism-themes-1.9.0.tgz#19c034f3205f1e28d75d89728e54ccd745f7e3dd"
+  integrity sha512-tX2AYsehKDw1EORwBps+WhBFKc2kxfoFpQAjxBndbZKr4fRmMkv47XN0BghC/K1qwodB1otbe4oF23vUTFDokw==
+
+prismjs@^1.27.0, prismjs@^1.29.0:
+  version "1.29.0"
+  resolved "https://registry.yarnpkg.com/prismjs/-/prismjs-1.29.0.tgz#f113555a8fa9b57c35e637bba27509dcf802dd12"
+  integrity sha512-Kx/1w86q/epKcmte75LNrEoT+lX8pBpavuAbvJWRXar7Hz8jrtF+e3vY751p0R8H9HdArwaCTNDDzHg/ScJK1Q==
 
 probe-image-size@^7.2.3:
   version "7.2.3"
@@ -10407,7 +10467,7 @@ unist-util-visit-parents@^3.0.0, unist-util-visit-parents@^3.1.1:
     "@types/unist" "^2.0.0"
     unist-util-is "^4.0.0"
 
-unist-util-visit@^2.0.0, unist-util-visit@^2.0.3:
+unist-util-visit@^2.0.0, unist-util-visit@^2.0.2, unist-util-visit@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/unist-util-visit/-/unist-util-visit-2.0.3.tgz#c3703893146df47203bb8a9795af47d7b971208c"
   integrity sha512-iJ4/RczbJMkD0712mGktuGpm/U4By4FfDonL7N/9tATGIF4imikjOuagyMY53tnZq3NP6BcmlrHhEKAfGWjh7Q==

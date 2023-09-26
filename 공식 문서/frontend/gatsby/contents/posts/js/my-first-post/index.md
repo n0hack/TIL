@@ -64,4 +64,9 @@ console.log
 
 ```javascript
 console.log('hi');
+console.log('hi');
+console.log('hi');
+console.log('hi');
+console.log('hi');
+const loremajdskasjdlksajdlkajdlkadjlkasjdklasdjlkajklsajdklajdlkasjdlkasjdklasjdklasdjklasdjlsadja = () => {};
 ```

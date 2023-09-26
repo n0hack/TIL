@@ -27,9 +27,8 @@ const config: GatsbyConfig = {
               withWebp: true,
             },
           },
-          {
-            resolve: `gatsby-remark-copy-linked-files`,
-          },
+          `gatsby-remark-prismjs`,
+          `gatsby-remark-copy-linked-files`,
         ],
       },
     },
