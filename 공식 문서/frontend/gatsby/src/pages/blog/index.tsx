@@ -32,6 +32,12 @@ export const query = graphql`
           slug
         }
         id
+        parent {
+          ... on File {
+            modifiedTime(formatString: "MMMM D, YYYY")
+            relativePath
+          }
+        }
         excerpt
       }
     }
