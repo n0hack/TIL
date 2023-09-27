@@ -1,19 +1,26 @@
 import React, { Component } from 'react';
 import ScrollBox from './ScrollBox';
+import LifeCycleSamle from './LifeCycleSamle';
+
+function getRandomColor() {
+  return '#' + Math.floor(Math.random() * 16777215).toString(16);
+}
 
 class App extends Component {
-  scrollBox: ScrollBox | null;
+  state = {
+    color: '#000000',
+  };
 
-  constructor(props: any) {
-    super(props);
-    this.scrollBox = null;
-  }
+  handleClick = () => {
+    this.setState({
+      color: getRandomColor(),
+    });
+  };
 
   render() {
     return (
       <div className="App">
-        <ScrollBox ref={(ref) => (this.scrollBox = ref)} />
-        <button onClick={() => this.scrollBox?.scrollToBottom()}>맨 밑으로</button>
+        <LifeCycleSamle color={this.state.color} />
       </div>
     );
   }
