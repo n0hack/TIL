@@ -3,47 +3,43 @@ import { Layout } from '../components/Layout';
 import { HeadFC, Link, PageProps, graphql } from 'gatsby';
 import { Seo } from '../components/Seo';
 
-// const Blog = ({ data: { allMdx } }: PageProps<Queries.ReadAllMdxQuery>) => {
-const Blog = () => {
+const Blog = ({ data: { allMarkdownRemark } }: PageProps<Queries.ReadAllMarkdownQuery>) => {
   return (
     <Layout pageTitle="My BLog Posts">
-      {/* {allMdx.nodes.map((node) => (
-        <article key={node.id}>
-          <h2>
-            <Link to={`/blog/${node.frontmatter?.slug}`}>{node.frontmatter?.title}</Link>
-          </h2>
-          <p>Posted: {node.frontmatter?.date}</p>
-          <p>{node.excerpt}</p>
-        </article>
-      ))} */}
+      {allMarkdownRemark.nodes.map((node) => {
+        const category = (node.fileAbsolutePath as string).match(/posts\/(\w+)\//)?.[1];
+
+        return (
+          <article key={node.id}>
+            <h2>
+              <Link to={`/blog/${category}/${node.frontmatter?.slug}`}>{node.frontmatter?.title}</Link>
+            </h2>
+            <p>Posted: {node.frontmatter?.date}</p>
+            <p>{node.excerpt}</p>
+          </article>
+        );
+      })}
     </Layout>
   );
 };
 
-// export const query = graphql`
-//   query ReadAllMdx {
-//     allMdx(
-//       filter: { internal: { contentFilePath: { regex: "/contents/posts/.+/" } } }
-//       sort: { frontmatter: { date: DESC } }
-//     ) {
-//       nodes {
-//         frontmatter {
-//           date(formatString: "MMMM D, YYYY")
-//           title
-//           slug
-//         }
-//         id
-//         parent {
-//           ... on File {
-//             modifiedTime(formatString: "MMMM D, YYYY")
-//             relativePath
-//           }
-//         }
-//         excerpt
-//       }
-//     }
-//   }
-// `;
+export const query = graphql`
+  query ReadAllMarkdown {
+    allMarkdownRemark(filter: { frontmatter: { type: { eq: "post" } } }, sort: { frontmatter: { date: DESC } }) {
+      totalCount
+      nodes {
+        id
+        frontmatter {
+          date(formatString: "MMMM D, YYYY")
+          title
+          slug
+        }
+        fileAbsolutePath
+        excerpt
+      }
+    }
+  }
+`;
 
 export const Head: HeadFC = () => <Seo title="블로그" />;
 

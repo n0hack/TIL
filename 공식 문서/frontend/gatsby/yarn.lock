@@ -1134,19 +1134,6 @@
   resolved "https://registry.yarnpkg.com/@builder.io/partytown/-/partytown-0.7.6.tgz#697acea6b552167a4dd43ddd4827018aa42e0364"
   integrity sha512-snXIGNiZpqjno3XYQN2lbBB+05hsQR/LSttbtIW1c0gmZ7Kh/DIo0YrxlDxCDulAMFPFM8J+4voLwvYepSj3sw==
 
-"@deckdeckgo/highlight-code@^4.4.0":
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/@deckdeckgo/highlight-code/-/highlight-code-4.4.0.tgz#5d6e5463604ce9236d913c328e63a51052f89e0e"
-  integrity sha512-skWKYvIKBpfS3oc7NYu8PvZJ6mVlu1DSsTGD6gt6rsFA3I8TTbtzbo/6deWY/LWkFG1ceGRE5u6LcdzzvBh9vA==
-  dependencies:
-    "@deckdeckgo/utils" "^5.1.0"
-    prismjs "^1.27.0"
-
-"@deckdeckgo/utils@^5.1.0":
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@deckdeckgo/utils/-/utils-5.1.0.tgz#ac1fc3c25ca6128bf13c1a4c6226cad540c8a164"
-  integrity sha512-ue/1BXkDBZ9k+Tqs3vyCRIjqxjPnl06ab9WGhGubAXoRtJIE7ZN58/pbLsPCYc4xFcY0TPH3tsWhE7eF/FU8Ew==
-
 "@eslint-community/eslint-utils@^4.2.0":
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/@eslint-community/eslint-utils/-/eslint-utils-4.4.0.tgz#a23514e8fb9af1269d5f7788aa556798d61c6b59"
@@ -8637,7 +8624,7 @@ prism-themes@^1.9.0:
   resolved "https://registry.yarnpkg.com/prism-themes/-/prism-themes-1.9.0.tgz#19c034f3205f1e28d75d89728e54ccd745f7e3dd"
   integrity sha512-tX2AYsehKDw1EORwBps+WhBFKc2kxfoFpQAjxBndbZKr4fRmMkv47XN0BghC/K1qwodB1otbe4oF23vUTFDokw==
 
-prismjs@^1.27.0, prismjs@^1.29.0:
+prismjs@^1.29.0:
   version "1.29.0"
   resolved "https://registry.yarnpkg.com/prismjs/-/prismjs-1.29.0.tgz#f113555a8fa9b57c35e637bba27509dcf802dd12"
   integrity sha512-Kx/1w86q/epKcmte75LNrEoT+lX8pBpavuAbvJWRXar7Hz8jrtF+e3vY751p0R8H9HdArwaCTNDDzHg/ScJK1Q==

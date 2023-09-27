@@ -33,8 +33,8 @@ Some of my **favorite** things are:
 
 `블록`
 
-```
-console.log
+```javascript
+console.log('hello');
 ```
 
 - ㅋ

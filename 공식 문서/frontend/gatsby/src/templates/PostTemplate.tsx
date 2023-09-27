@@ -1,11 +1,10 @@
-import { PageProps, graphql } from 'gatsby';
+import { HeadProps, PageProps, graphql } from 'gatsby';
 import React from 'react';
-import { defineCustomElements as deckDeckGoHighlightElement } from '@deckdeckgo/highlight-code/dist/loader';
-
-deckDeckGoHighlightElement();
+import { Seo } from '../components/Seo';
+import * as styles from './PostTemplate.module.scss';
 
 const PostTemplate = ({ data: { markdownRemark } }: PageProps<Queries.ReadMarkdownQuery>) => {
-  return <div style={{ width: 800 }} dangerouslySetInnerHTML={{ __html: markdownRemark?.html! }} />;
+  return <div className={styles.container} dangerouslySetInnerHTML={{ __html: markdownRemark?.html! }} />;
 };
 
 export const query = graphql`
@@ -18,5 +17,9 @@ export const query = graphql`
     }
   }
 `;
+
+export const Head = ({ data: { markdownRemark } }: HeadProps<Queries.ReadMarkdownQuery>) => (
+  <Seo title={markdownRemark?.frontmatter?.title ?? ''} />
+);
 
 export default PostTemplate;
