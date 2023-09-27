@@ -1,29 +1,21 @@
-import React, { Component } from 'react';
-import ScrollBox from './ScrollBox';
-import LifeCycleSamle from './LifeCycleSamle';
+import React from 'react';
+import { useInputs } from './hooks/useInputs';
 
-function getRandomColor() {
-  return '#' + Math.floor(Math.random() * 16777215).toString(16);
-}
+const App = () => {
+  const [state, onChange] = useInputs({ name: '', nickname: '' });
 
-class App extends Component {
-  state = {
-    color: '#000000',
-  };
-
-  handleClick = () => {
-    this.setState({
-      color: getRandomColor(),
-    });
-  };
-
-  render() {
-    return (
-      <div className="App">
-        <LifeCycleSamle color={this.state.color} />
+  return (
+    <div>
+      <div>
+        <input name="name" value={state.name} onChange={onChange('name')} />
+        <input name="nickname" value={state.nickname} onChange={onChange('nickname')} />
       </div>
-    );
-  }
-}
+      <div>
+        <p>이름: {state.name}</p>
+        <p>닉네임: {state.nickname}</p>
+      </div>
+    </div>
+  );
+};
 
 export default App;
