@@ -34,6 +34,7 @@ export const query = graphql`
           title
           slug
         }
+        rawMarkdownBody
         fileAbsolutePath
         excerpt
       }

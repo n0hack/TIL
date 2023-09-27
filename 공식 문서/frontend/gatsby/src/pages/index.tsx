@@ -3,6 +3,7 @@ import React from 'react';
 import { Layout } from '../components/Layout';
 import { StaticImage } from 'gatsby-plugin-image';
 import { Seo } from '../components/Seo';
+import { Search } from '../components/Search';
 
 const IndexPage = () => {
   return (
@@ -12,6 +13,7 @@ const IndexPage = () => {
         alt="Clifford, a reddish-brown pitbull, posing on a couch and looking stoically at the camera"
         src="https://static.wikia.nocookie.net/nichijou/images/b/be/Rhinoceros_Beetle.png/revision/latest?cb=20160611064345"
       />
+      <Search />
     </Layout>
   );
 };
