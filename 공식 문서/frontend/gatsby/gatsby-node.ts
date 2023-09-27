@@ -13,11 +13,7 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions,
           frontmatter {
             slug
           }
-          parent {
-            ... on File {
-              relativePath
-            }
-          }
+          fileAbsolutePath
         }
       }
     }
@@ -28,7 +24,7 @@ export const createPages: GatsbyNode['createPages'] = async ({ graphql, actions,
   }
 
   postResult.data?.allMarkdownRemark.nodes.forEach((node) => {
-    const category = (node.parent as any).relativePath.split('/')[0];
+    const category = node.fileAbsolutePath?.match(/posts\/(\w+)\//)?.[1];
     createPage({
       path: `blog/${category}/${node.frontmatter?.slug}`,
       component: postTemplate,
