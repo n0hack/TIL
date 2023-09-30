@@ -13,20 +13,23 @@ type TodoListItemProps = {
   todo: Todo;
   onToggle: (id: number) => void;
   onRemove: (id: number) => void;
+  style?: React.CSSProperties;
 };
 
-const TodoListItem = ({ todo: { id, text, checked }, onToggle, onRemove }: TodoListItemProps) => {
+const TodoListItem = ({ todo: { id, text, checked }, onToggle, onRemove, style }: TodoListItemProps) => {
   return (
-    <div className="TodoListItem">
-      <div className={clsx('checkbox', checked ? 'checked' : '')} onClick={() => onToggle(id)}>
-        {checked ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
-        <div className="text">{text}</div>
-      </div>
-      <div className="remove" onClick={() => onRemove(id)}>
-        <MdRemoveCircleOutline />
+    <div className="TodoListItem-virtualized" style={style}>
+      <div className="TodoListItem">
+        <div className={clsx('checkbox', checked ? 'checked' : '')} onClick={() => onToggle(id)}>
+          {checked ? <MdCheckBox /> : <MdCheckBoxOutlineBlank />}
+          <div className="text">{text}</div>
+        </div>
+        <div className="remove" onClick={() => onRemove(id)}>
+          <MdRemoveCircleOutline />
+        </div>
       </div>
     </div>
   );
 };
 
-export { TodoListItem };
+export default React.memo(TodoListItem);

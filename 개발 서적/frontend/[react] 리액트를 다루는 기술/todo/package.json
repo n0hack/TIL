@@ -12,11 +12,12 @@
     "@types/react-dom": "^18.0.0",
     "clsx": "^2.0.0",
     "dayjs": "^1.11.10",
-    "kr-date-builder": "^1.1.1",
+    "kr-date-builder": "1.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.11.0",
     "react-scripts": "5.0.1",
+    "react-virtualized": "^9.22.5",
     "sass": "^1.68.0",
     "typescript": "^4.4.2",
     "web-vitals": "^2.1.0"
@@ -46,6 +47,7 @@
     ]
   },
   "devDependencies": {
-    "@total-typescript/ts-reset": "^0.5.1"
+    "@total-typescript/ts-reset": "^0.5.1",
+    "@types/react-virtualized": "^9.21.23"
   }
 }
