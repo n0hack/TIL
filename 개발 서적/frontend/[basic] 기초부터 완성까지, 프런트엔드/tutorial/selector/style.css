@@ -1,0 +1,48 @@
+* {
+  font-size: 1.5rem;
+}
+
+div {
+  display: flex;
+  flex-direction: column;
+}
+
+/* id 속성을 갖는 span 요소 */
+span[id] {
+  color: skyblue;
+}
+
+/* href 속성이 https://example.com인 a 요소 */
+a[href="https://example.com"]
+{
+  color: red;
+}
+
+/* 
+  class가 class1과 일치하는 span 요소
+  띄어쓰기가 있다 하더라도 일치하는 요소를 탐색함
+*/
+span[class~='class1'] {
+  color: blue;
+}
+
+/* 하이픈(-)이 뒤에 있는 경우에도 일치하는 요소 탐색 */
+span[id|='hi'] {
+  color: darkblue;
+}
+
+span[id^='test'] {
+  color: cadetblue;
+}
+
+span[id$='test'] {
+  color: rebeccapurple;
+}
+
+/* 
+  javascript 값이 포함된 요소 탐색
+  문자열이 이어져 있더라도 상관 없이 일치하는 부분 탐색
+*/
+span[id*='javascript'] {
+  color: teal;
+}
