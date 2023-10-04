@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      video {
+        width: 400px;
+        height: 280px;
+        background: black;
+        object-fit: cover;
+      }
+
+      section {
+        margin: 20px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <video id="video-output"></video>
+      <br />
+      <button id="start-button">녹화 시작</button>
+      <button id="finish-button">녹화 종료</button>
+    </section>
+    <section>
+      <video id="recorded-video" controls></video>
+      <br />
+      <button id="download-button">다운로드</button>
+    </section>
+    <script src="./index.js" defer></script>
+  </body>
+</html>
