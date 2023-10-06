@@ -1,0 +1,7 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Greeting from '../../components/Greeting.jsx';
+---
+
+<BaseLayout pageTitle="태그">인덱스요</BaseLayout>
+<Greeting client:load message={['Hi', 'Hello', 'Howdy', 'Hey there']} />
