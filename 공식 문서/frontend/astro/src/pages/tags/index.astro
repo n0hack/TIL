@@ -1,7 +1,22 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Greeting from '../../components/Greeting.jsx';
+import { getCollection } from 'astro:content';
+
+const allBlogPosts = await getCollection('blog');
+const allNewsletters = await getCollection('newsletter');
+
+// console.log(allNewsletters[0].data);
+console.log(allBlogPosts[0]);
 ---
 
 <BaseLayout pageTitle="태그">인덱스요</BaseLayout>
 <Greeting client:load message={['Hi', 'Hello', 'Howdy', 'Hey there']} />
+
+{
+  allNewsletters.map((post) => (
+    <div>
+      <h2>{post.slug}</h2>
+    </div>
+  ))
+}
