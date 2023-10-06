@@ -31,3 +31,5 @@ I will finish the Astro tutorial, and then keep adding more posts. Watch this sp
 ```javascript
 console.log('hello world');
 ```
+
+<!-- ![디젤](deasel.webp); -->
