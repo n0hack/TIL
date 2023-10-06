@@ -32,4 +32,6 @@ I will finish the Astro tutorial, and then keep adding more posts. Watch this sp
 console.log('hello world');
 ```
 
-<!-- ![디젤](deasel.webp); -->
+![디젤](./deasel.webp)
+
+![루피](./ruppe.gif)

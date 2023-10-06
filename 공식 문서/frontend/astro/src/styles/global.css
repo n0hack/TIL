@@ -1,3 +1,5 @@
+@import '/fonts/pretendard.css';
+
 html {
   background-color: #f1f5f9;
   font-family: sans-serif;
@@ -22,6 +24,7 @@ body {
 
 * {
   box-sizing: border-box;
+  font-family: 'Pretendard';
 }
 
 h1 {
