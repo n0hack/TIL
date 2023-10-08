@@ -1,0 +1,12 @@
+{
+  "name": "deep-dive",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
