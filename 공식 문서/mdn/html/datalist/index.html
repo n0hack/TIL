@@ -1,0 +1,39 @@
+<!-- NOTE
+1. datalist는 input 요소의 list 속성과 함께 사용
+2. datalist가 연결되어 있는 input 요소는 자동완성 기능 제공
+ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      section {
+        margin-bottom: 48px;
+      }
+    </style>
+  </head>
+  <body>
+    <section>
+      <h3>Select</h3>
+      <form>
+        <select name="language">
+          <option value="none">선택</option>
+          <option value="en">English</option>
+          <option value="ko">Korean</option>
+          <option value="ja">Japanese</option>
+        </select>
+      </form>
+    </section>
+    <section>
+      <h3>Datalist</h3>
+      <input type="text" list="fruitslist" />
+      <datalist id="fruitslist">
+        <option value="apple" label="사과"></option>
+        <option value="banana" label="바나나"></option>
+        <option value="orange" label="오렌지"></option>
+      </datalist>
+    </section>
+  </body>
+</html>
