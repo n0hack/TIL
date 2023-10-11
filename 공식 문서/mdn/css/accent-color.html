@@ -1,0 +1,25 @@
+<!-- NOTE 사용자 UI 컨트롤러에 대한 색상 강조 (input:checkbox, input:radio, input:range, progress) -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      input {
+        display: block;
+        width: 30px;
+        height: 30px;
+        accent-color: auto;
+      }
+
+      input.custom {
+        accent-color: rebeccapurple;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="checkbox" checked />
+    <input type="checkbox" class="custom" checked />
+  </body>
+</html>
