@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      @namespace svgNamespace url('http://www.w3.org/2000/svg');
+      @namespace htmlNameSpace url('http://www.w3.org/1999/xhtml');
+
+      a {
+        color: red;
+      }
+
+      htmlNameSpace|a {
+        text-decoration-line: line-through;
+      }
+
+      svgNamespace|a {
+        fill: green;
+      }
+    </style>
+  </head>
+  <body>
+    <p>This paragraph <a href="#">has a link</a>.</p>
+
+    <svg width="400" viewBox="0 0 400 20">
+      <a href="#">
+        <text x="0" y="15">Link created in SVG</text>
+      </a>
+    </svg>
+  </body>
+</html>
