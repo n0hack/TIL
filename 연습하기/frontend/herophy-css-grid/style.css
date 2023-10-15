@@ -1,0 +1,75 @@
+body {
+  padding: 80px;
+  color: #555;
+}
+/* 
+.container {
+  width: 400px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 100px);
+  grid-auto-rows: 100px;
+  gap: 20px;
+  border: 10px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  border: 4px solid #555;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: 900;
+  text-shadow: 3px 0 0 rgba(255, 255, 255, 0.5);
+}
+
+.item:nth-child(1) {
+  background: tomato;
+  grid-column: 1/4;
+}
+.item:nth-child(2) {
+  background: orange;
+}
+.item:nth-child(3) {
+  background: limegreen;
+  grid-column: span 2;
+}
+.item:nth-child(4) {
+  background: dodgerblue;
+}
+.item:nth-child(5) {
+  background: hotpink;
+}
+.item:nth-child(6) {
+  background: darkgray;
+} */
+
+.container {
+  display: grid;
+  grid-template-rows: repeat(3, 100px);
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas: 'header header header' 'main . aside' 'main footer footer';
+}
+
+header {
+  grid-area: header;
+  background: tomato;
+}
+
+main {
+  grid-area: main;
+  background: orange;
+}
+
+aside {
+  grid-area: aside;
+  background: limegreen;
+}
+
+footer {
+  grid-area: footer;
+  background: dodgerblue;
+}
