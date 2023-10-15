@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script type="module" src="https://cdn.jsdelivr.net/npm/ionicons/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/ionicons/dist/ionicons/ionicons.js"></script>
+  </head>
+  <body>
+    <div class="menu">
+      <li style="--i: 1; --clr: #ff0000">
+        <a href="#"><ion-icon name="logo-youtube"></ion-icon></a>
+      </li>
+      <li style="--i: 2; --clr: #1877f2">
+        <a href="#"><ion-icon name="logo-facebook"></ion-icon></a>
+      </li>
+      <li style="--i: 3; --clr: #ea4c89">
+        <a href="#"><ion-icon name="logo-dribbble"></ion-icon></a>
+      </li>
+      <li style="--i: 4; --clr: #25d366">
+        <a href="#"><ion-icon name="logo-whatsapp"></ion-icon></a>
+      </li>
+      <div class="toggle">
+        <ion-icon name="share-social"></ion-icon>
+        <ion-icon name="close-outline"></ion-icon>
+      </div>
+    </div>
+
+    <script>
+      let toggle = document.querySelector('.toggle');
+      let menu = document.querySelector('.menu');
+
+      toggle.onclick = function () {
+        menu.classList.toggle('active');
+      };
+    </script>
+  </body>
+</html>
