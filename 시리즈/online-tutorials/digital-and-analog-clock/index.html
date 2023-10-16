@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="clock">
+      <div class="digital" style="--clr: #ff2972">
+        <div class="screen" data-text="Hours">
+          <div class="time">
+            <div id="hour"></div>
+          </div>
+        </div>
+      </div>
+      <div class="digital" style="--clr: #fee800">
+        <div class="screen" data-text="Minutes">
+          <div class="time">
+            <div id="minutes"></div>
+          </div>
+        </div>
+      </div>
+      <div class="digital" style="--clr: #04fc43">
+        <div class="screen" data-text="Seconds">
+          <div class="time">
+            <div id="seconds"></div>
+          </div>
+        </div>
+      </div>
+      <div class="digital">
+        <div class="box" id="hr" style="--clr: #ff2972"></div>
+        <div class="box" id="mn" style="--clr: #fee800"></div>
+        <div class="box" id="sc" style="--clr: #04fc43"></div>
+        <div id="ampm"></div>
+      </div>
+    </div>
+
+    <script>
+      const hour = document.getElementById('hour');
+      const minute = document.getElementById('minutes');
+      const second = document.getElementById('seconds');
+      const ampm = document.getElementById('ampm');
+
+      const hr = document.querySelector('#hr');
+      const mn = document.querySelector('#mn');
+      const sc = document.querySelector('#sc');
+
+      setInterval(() => {
+        const now = new Date();
+        let [h, m, s] = [now.getHours(), now.getMinutes(), now.getSeconds()];
+        const am = h >= 12 ? 'PM' : 'AM';
+
+        if (h > 12) h = h - 12;
+
+        h = h < 10 ? '0' + h : h;
+        m = m < 10 ? '0' + m : m;
+        s = s < 10 ? '0' + s : s;
+
+        hour.innerHTML = h;
+        minute.innerHTML = m;
+        second.innerHTML = s;
+        ampm.innerHTML = am;
+        hr.style.transform = `rotateZ(${h * 30}deg)`;
+        mn.style.transform = `rotateZ(${m * 6}deg)`;
+        sc.style.transform = `rotateZ(${s * 6}deg)`;
+      });
+    </script>
+  </body>
+</html>
