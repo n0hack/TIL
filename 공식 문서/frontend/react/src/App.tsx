@@ -1,10 +1,19 @@
 import { Route, Routes } from 'react-router-dom';
-import HomePage from './pages/Home';
-import AboutPage from './pages/About';
+import Menu from './components/Menu';
+import RedPage from './pages/RedPage';
+import BluePage from './pages/BluePage';
 
 function App() {
-  console.log(IMP);
-  return <div>dd</div>;
+  return (
+    <div>
+      <Menu />
+      <hr />
+      <Routes>
+        <Route path="/red" element={<RedPage />} />
+        <Route path="/blue" element={<BluePage />} />
+      </Routes>
+    </div>
+  );
 }
 
 export default App;
