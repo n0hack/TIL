@@ -1,9 +1,10 @@
-import './App.css';
+// import './App.css';
 import UseDebugValue from './hooks/UseDebugValue';
 import UseDeferredValue from './hooks/UseDeferredValue';
+import UseTransition from './hooks/UseTransition';
 
 function App() {
-  return <UseDeferredValue />;
+  return <UseTransition />;
 }
 
 export default App;

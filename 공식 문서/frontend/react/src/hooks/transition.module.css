@@ -1,0 +1,19 @@
+.container {
+  height: 100%;
+}
+
+.input {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  background-color: gray;
+}
+
+.listWrapper {
+  width: 100%;
+  height: 100%;
+  background: rgb(0 0 0 / 0.2);
+  overflow: auto;
+}
