@@ -3,14 +3,8 @@ import HomePage from './pages/Home';
 import AboutPage from './pages/About';
 
 function App() {
-  return (
-    <div>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/about" element={<AboutPage />} />
-      </Routes>
-    </div>
-  );
+  console.log(IMP);
+  return <div>dd</div>;
 }
 
 export default App;
