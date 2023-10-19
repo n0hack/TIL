@@ -1,8 +1,9 @@
 import './App.css';
 import UseDebugValue from './hooks/UseDebugValue';
+import UseDeferredValue from './hooks/UseDeferredValue';
 
 function App() {
-  return <UseDebugValue />;
+  return <UseDeferredValue />;
 }
 
 export default App;
