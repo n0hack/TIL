@@ -3,27 +3,26 @@ type Store = {
   feeds: NewsFeed[];
 };
 
-type NewsFeed = {
+type News = {
   id: number;
-  comments_count: number;
-  title: string;
-  user: string;
-  points: number;
   time_ago: string;
+  title: string;
+  url: string;
+  user: string;
+  content: string;
+};
+
+type NewsFeed = News & {
+  comments_count: number;
+  points: number;
   read?: boolean;
 };
 
-type NewsContent = {
-  title: string;
-  content: string;
+type NewsContent = News & {
   comments: NewsComment[];
 };
 
-type NewsComment = {
-  id: number;
-  user: string;
-  time_ago: string;
-  content: string;
+type NewsComment = News & {
   comments: NewsComment[];
   level: number;
 };
@@ -41,7 +40,7 @@ const CONTENT_URL = 'https://api.hnpwa.com/v0/item/@id.json';
 const container = document.getElementById('root');
 const content = document.createElement('div');
 
-async function getData(url: string) {
+async function getData<T>(url: string): Promise<T> {
   const res = await fetch(url);
   const data = await res.json();
   return data;
@@ -69,7 +68,7 @@ async function newsFeed() {
   const newsList = [];
 
   if (newsFeed.length === 0) {
-    newsFeed = store.feeds = makeFeeds(await getData(NEWS_URL));
+    newsFeed = store.feeds = makeFeeds(await getData<NewsFeed[]>(NEWS_URL));
   }
 
   // 임의의 템플릿 생성 (템플릿 변수는 마음대로 작명)
@@ -136,7 +135,7 @@ async function newsFeed() {
 
 async function newsDetail() {
   const id = location.hash.match(/\d+/g)?.[0] ?? '';
-  const newsContent: NewsContent = await getData(CONTENT_URL.replace('@id', id));
+  const newsContent = await getData<NewsContent>(CONTENT_URL.replace('@id', id));
   let template = `
     <div class="bg-gray-600 min-h-screen pb-8">
       <div class="bg-white text-xl">
