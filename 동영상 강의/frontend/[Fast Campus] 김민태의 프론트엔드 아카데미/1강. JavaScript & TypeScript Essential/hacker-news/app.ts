@@ -1,5 +1,35 @@
+type Store = {
+  currentPage: number;
+  feeds: NewsFeed[];
+};
+
+type NewsFeed = {
+  id: number;
+  comments_count: number;
+  title: string;
+  user: string;
+  points: number;
+  time_ago: string;
+  read?: boolean;
+};
+
+type NewsContent = {
+  title: string;
+  content: string;
+  comments: NewsComment[];
+};
+
+type NewsComment = {
+  id: number;
+  user: string;
+  time_ago: string;
+  content: string;
+  comments: NewsComment[];
+  level: number;
+};
+
 // 공유되는 자원이라는 의미로 store라는 변수명 사용
-const store = {
+const store: Store = {
   currentPage: 1,
   feeds: [],
 };
@@ -11,17 +41,26 @@ const CONTENT_URL = 'https://api.hnpwa.com/v0/item/@id.json';
 const container = document.getElementById('root');
 const content = document.createElement('div');
 
-async function getData(url) {
+async function getData(url: string) {
   const res = await fetch(url);
   const data = await res.json();
   return data;
 }
 
-function makeFeeds(feeds) {
+function makeFeeds(feeds: NewsFeed[]) {
   for (let i = 0; i < feeds.length; i++) {
     feeds[i].read = false;
   }
   return feeds;
+}
+
+// 타입 가드
+function updateView(html: string) {
+  if (container) {
+    container.innerHTML = html;
+  } else {
+    console.error('최상위 컨테이너가 없어 UI 렌더링을 진행하지 못합니다.');
+  }
 }
 
 async function newsFeed() {
@@ -89,14 +128,15 @@ async function newsFeed() {
   // 템플릿에 삽입을 위한 구간이 많으면, replace를 많이 사용하게 됨 (단점)
   template = template.replace('{{__news_feed__}}', newsList.join(''));
   // 방어 코드 작성 (1보다 작은 페이지로 이동하려 할 때)
-  template = template.replace('{{__prev_page__}}', store.currentPage > 1 ? store.currentPage - 1 : 1);
-  template = template.replace('{{__next_page__}}', store.currentPage >= 10 ? 10 : store.currentPage + 1);
-  container.innerHTML = template;
+  template = template.replace('{{__prev_page__}}', `${store.currentPage > 1 ? store.currentPage - 1 : 1}`);
+  template = template.replace('{{__next_page__}}', `${store.currentPage >= 10 ? 10 : store.currentPage + 1}`);
+
+  updateView(template);
 }
 
 async function newsDetail() {
-  const id = location.hash.match(/\d+/g)[0];
-  const newsContent = await getData(CONTENT_URL.replace('@id', id));
+  const id = location.hash.match(/\d+/g)?.[0] ?? '';
+  const newsContent: NewsContent = await getData(CONTENT_URL.replace('@id', id));
   let template = `
     <div class="bg-gray-600 min-h-screen pb-8">
       <div class="bg-white text-xl">
@@ -134,8 +174,8 @@ async function newsDetail() {
   }
 
   // 댓글에 대한 재귀 호출
-  function makeComment(comments, called = 0) {
-    const commentString = [];
+  function makeComment(comments: NewsComment[], called = 0) {
+    const commentString: string[] = [];
 
     for (let i = 0; i < comments.length; i++) {
       commentString.push(`
@@ -156,7 +196,8 @@ async function newsDetail() {
     return commentString.join('');
   }
 
-  container.innerHTML = template.replace('{{__comments__}}', makeComment(newsContent.comments));
+  template = template.replace('{{__comments__}}', makeComment(newsContent.comments));
+  updateView(template);
 }
 
 function router() {
@@ -165,7 +206,7 @@ function router() {
   if (routePath === '') {
     newsFeed();
   } else if (routePath.indexOf('#/page/') >= 0) {
-    store.currentPage = Number(routePath.match(/\d+/g)[0]);
+    store.currentPage = Number(routePath.match(/\d+/g)?.[0]);
     newsFeed();
   } else {
     newsDetail();
