@@ -34,35 +34,57 @@ const store: Store = {
 };
 
 // Mocking할 때, @id 같은 값을 사용하면, 이후 사용할 때 변경하기 편함
+const NEWS_URL = `https://api.hnpwa.com/v0/news/${store.currentPage}.json`;
 const CONTENT_URL = 'https://api.hnpwa.com/v0/item/@id.json';
 
 // Elements
 const container = document.getElementById('root');
 const content = document.createElement('div');
 
+// 믹스인 (상속이 아닌 방법으로 기능을 추가하는 것)
+// 믹스인 고려사항 1. 상속은 관계를 바꾸고 싶은 경우, 코드 베이스 자체를 바꿔야 함
+// 믹스인 고려사항 2. ts의 class는 다중 상속을 지원하지 않기 때문
+function applyApiMixins(targetClass: any, baseClasses: any[]) {
+  baseClasses.forEach((baseClass) => {
+    Object.getOwnPropertyNames(baseClass.prototype).forEach((name) => {
+      const descriptor = Object.getOwnPropertyDescriptor(baseClass.prototype, name);
+
+      if (descriptor) {
+        Object.defineProperty(targetClass.prototype, name, descriptor);
+      }
+    });
+  });
+}
+
 // 중복 코드를 제거했지만, 코드 베이스가 커지는 경우가 있음
 // 하는 일 자체가 적은 코드가 구조를 갖게 되기 때문 -> 코드가 커져도, 구조가 유지되는 장점이 있음
 class Api {
-  constructor(private url: string) {}
-
-  protected async getRequest<T>(): Promise<T> {
-    const res = await fetch(this.url);
+  async getRequest<T>(url: string): Promise<T> {
+    const res = await fetch(url);
     const data = await res.json();
     return data;
   }
 }
 
-class NewsFeedApi extends Api {
+class NewsFeedApi {
   async getData() {
-    return this.getRequest<NewsFeed[]>();
+    return this.getRequest<NewsFeed[]>(NEWS_URL);
   }
 }
 
-class NewsDetailApi extends Api {
-  async getData() {
-    return this.getRequest<NewsDetail>();
+class NewsDetailApi {
+  async getData(id: string) {
+    return this.getRequest<NewsDetail>(CONTENT_URL.replace('@id', id));
   }
 }
+
+// 믹스인은 타입 추적을 하지 못하기 때문에, interface를 사용해야 함
+// extends만으로는 충분하지 않고, 유연성이 필요한 코드의 경우 믹스인 사용
+interface NewsFeedApi extends Api {}
+interface NewsDetailApi extends Api {}
+
+applyApiMixins(NewsFeedApi, [Api]);
+applyApiMixins(NewsDetailApi, [Api]);
 
 function makeFeeds(feeds: NewsFeed[]) {
   for (let i = 0; i < feeds.length; i++) {
@@ -81,8 +103,7 @@ function updateView(html: string) {
 }
 
 async function newsFeed() {
-  const NEWS_URL = `https://api.hnpwa.com/v0/news/${store.currentPage}.json`;
-  const api = new NewsFeedApi(NEWS_URL);
+  const api = new NewsFeedApi();
   let newsFeed = store.feeds;
   const newsList = [];
 
@@ -154,8 +175,8 @@ async function newsFeed() {
 
 async function newsDetail() {
   const id = location.hash.match(/\d+/g)?.[0] ?? '';
-  const api = new NewsDetailApi(CONTENT_URL.replace('@id', id));
-  const newsContent = await api.getData();
+  const api = new NewsDetailApi();
+  const newsContent = await api.getData(id);
   let template = `
     <div class="bg-gray-600 min-h-screen pb-8">
       <div class="bg-white text-xl">
