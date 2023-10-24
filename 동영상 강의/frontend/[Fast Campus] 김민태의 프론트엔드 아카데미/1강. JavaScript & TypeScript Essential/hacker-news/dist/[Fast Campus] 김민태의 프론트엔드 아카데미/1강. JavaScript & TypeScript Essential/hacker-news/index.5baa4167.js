@@ -596,8 +596,9 @@ function makeFeeds(feeds) {
 }
 async function newsFeed() {
     const NEWS_URL = `https://api.hnpwa.com/v0/news/${store.currentPage}.json`;
-    const newsFeed = await getData(NEWS_URL);
+    let newsFeed = store.feeds;
     const newsList = [];
+    if (newsFeed.length === 0) newsFeed = store.feeds = makeFeeds(await getData(NEWS_URL));
     // 임의의 템플릿 생성 (템플릿 변수는 마음대로 작명)
     // 로직과 UI를 분리하면, 코드가 명확해지고, 유지보수가 쉬워짐
     let template = `
