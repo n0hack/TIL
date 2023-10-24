@@ -18,7 +18,7 @@ type NewsFeed = News & {
   read?: boolean;
 };
 
-type NewsContent = News & {
+type NewsDetail = News & {
   comments: NewsComment[];
 };
 
@@ -40,10 +40,28 @@ const CONTENT_URL = 'https://api.hnpwa.com/v0/item/@id.json';
 const container = document.getElementById('root');
 const content = document.createElement('div');
 
-async function getData<T>(url: string): Promise<T> {
-  const res = await fetch(url);
-  const data = await res.json();
-  return data;
+// 중복 코드를 제거했지만, 코드 베이스가 커지는 경우가 있음
+// 하는 일 자체가 적은 코드가 구조를 갖게 되기 때문 -> 코드가 커져도, 구조가 유지되는 장점이 있음
+class Api {
+  constructor(private url: string) {}
+
+  protected async getRequest<T>(): Promise<T> {
+    const res = await fetch(this.url);
+    const data = await res.json();
+    return data;
+  }
+}
+
+class NewsFeedApi extends Api {
+  async getData() {
+    return this.getRequest<NewsFeed[]>();
+  }
+}
+
+class NewsDetailApi extends Api {
+  async getData() {
+    return this.getRequest<NewsDetail>();
+  }
 }
 
 function makeFeeds(feeds: NewsFeed[]) {
@@ -64,11 +82,12 @@ function updateView(html: string) {
 
 async function newsFeed() {
   const NEWS_URL = `https://api.hnpwa.com/v0/news/${store.currentPage}.json`;
+  const api = new NewsFeedApi(NEWS_URL);
   let newsFeed = store.feeds;
   const newsList = [];
 
   if (newsFeed.length === 0) {
-    newsFeed = store.feeds = makeFeeds(await getData<NewsFeed[]>(NEWS_URL));
+    newsFeed = store.feeds = makeFeeds(await api.getData());
   }
 
   // 임의의 템플릿 생성 (템플릿 변수는 마음대로 작명)
@@ -135,7 +154,8 @@ async function newsFeed() {
 
 async function newsDetail() {
   const id = location.hash.match(/\d+/g)?.[0] ?? '';
-  const newsContent = await getData<NewsContent>(CONTENT_URL.replace('@id', id));
+  const api = new NewsDetailApi(CONTENT_URL.replace('@id', id));
+  const newsContent = await api.getData();
   let template = `
     <div class="bg-gray-600 min-h-screen pb-8">
       <div class="bg-white text-xl">
