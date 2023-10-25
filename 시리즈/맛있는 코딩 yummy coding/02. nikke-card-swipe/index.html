@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="frame"></div>
+    <div class="buttons">
+      <div id="hate-button">❌</div>
+      <div id="like-button">❤️</div>
+    </div>
+
+    <script>
+      /** @type {HTMLDivElement} */
+      const frame = document.querySelector('.frame');
+      const images = [
+        './images/img1.webp',
+        './images/img2.webp',
+        './images/img3.webp',
+        './images/img4.webp',
+        './images/img5.webp',
+      ];
+      let imageCount = 0;
+
+      for (let i = 0; i < 5; i++) {
+        appendCard();
+      }
+
+      /** @type {HTMLDivElement} */
+      let current = frame.querySelector('.card:last-child');
+      let startX = 0;
+      let startY = 0;
+      let moveX = 0;
+      let moveY = 0;
+
+      addEvent(current);
+
+      document.querySelector('.buttons').addEventListener('click', (e) => {
+        if (e.target.id === 'hate-button') {
+          moveX = -1;
+          moveY = 0;
+          complete();
+        } else if (e.target.id === 'like-button') {
+          moveX = 1;
+          moveY = 0;
+          complete();
+        }
+      });
+
+      function appendCard() {
+        const firstCard = frame.firstElementChild;
+        const newCard = document.createElement('div');
+        newCard.className = 'card';
+        newCard.style.backgroundImage = `url(${images[imageCount++ % images.length]})`;
+
+        if (firstCard) frame.insertBefore(newCard, firstCard);
+        else frame.append(newCard);
+      }
+
+      /**
+       * @param {HTMLDivElement} card
+       */
+      function addEvent(card) {
+        card.addEventListener('pointerdown', onPointerDown);
+      }
+
+      function setTransform(x, y, deg, duration) {
+        current.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${deg}deg)`;
+        if (duration) current.style.transition = `transform ${duration}ms`;
+      }
+
+      /** @param {PointerEvent} e */
+      function onPointerDown(e) {
+        startX = e.clientX;
+        startY = e.clientY;
+
+        current.addEventListener('pointermove', onPointerMove);
+        current.addEventListener('pointerup', onPointerUp);
+        current.addEventListener('pointerleave', onPointerLeave);
+      }
+
+      /** @param {PointerEvent} e */
+      function onPointerMove(e) {
+        moveX = e.clientX - startX;
+        moveY = e.clientY - startY;
+
+        setTransform(moveX, moveY, (moveX / innerWidth) * 50);
+      }
+
+      /** @param {PointerEvent} e */
+      function onPointerUp(e) {
+        current.removeEventListener('pointermove', onPointerMove);
+        current.removeEventListener('pointerup', onPointerUp);
+        current.removeEventListener('pointerleave', onPointerLeave);
+
+        // 프레임의 절반을 넘어가는지 체크
+        if (Math.abs(moveX) > frame.clientWidth / 2) {
+          complete();
+        } else {
+          cancel();
+        }
+      }
+
+      /** @param {PointerEvent} e */
+      function onPointerLeave(e) {}
+
+      function complete() {
+        // 날라가는 트랜지션 500ms
+        const flyX = (Math.abs(moveX) / moveX) * innerWidth * 1.1;
+        const flyY = (moveY / moveX) * flyX;
+        setTransform(flyX, flyY, (flyX / innerWidth) * 50, innerWidth * 0.5);
+
+        // 카드 교체
+        const prev = current;
+        const next = current.previousElementSibling;
+        current = next;
+        addEvent(next);
+        appendCard();
+        setTimeout(() => frame.removeChild(prev), innerWidth * 0.5);
+      }
+
+      function cancel() {
+        setTransform(0, 0, 0, 100);
+        setTimeout(() => (current.style.transition = ''), 100);
+      }
+    </script>
+  </body>
+</html>
