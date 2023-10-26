@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "module": "CommonJS",
+    "target": "es6",
+    "sourceMap": true,
+    "lib": ["ES6", "DOM"]
+  }
+}
