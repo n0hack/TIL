@@ -1,4 +1,4 @@
-function* infiniteEnergyGenerator() {
+function* infiniteEnergyGenerator(): Generator<number, number, number> {
   let energy = 1;
   while (true) {
     const booster = yield energy;
