@@ -1,0 +1,21 @@
+---
+import { twMerge } from 'tailwind-merge';
+
+type Props = {
+  name: string;
+  path: string;
+};
+
+const { name, path } = Astro.props;
+
+const active = Astro.url.pathname.includes(path);
+---
+
+<li>
+  <a
+    href={path}
+    class={twMerge('py-8pxr text-sm font-medium duration-100 hover:text-red-400', active && 'text-red-400')}
+  >
+    {name}
+  </a>
+</li>

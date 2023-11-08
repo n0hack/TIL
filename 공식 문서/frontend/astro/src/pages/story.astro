@@ -1,5 +1,4 @@
 ---
-import { Image } from 'astro:assets';
 import Header from '../components/Header.astro';
 ---
 
@@ -11,13 +10,8 @@ import Header from '../components/Header.astro';
     <meta name="generator" content={Astro.generator} />
     <title>Astro</title>
   </head>
-  <body>
-    <Header transition />
-    <main class="h-[200vh]">
-      <div class="relative">
-        <img src="./main.png" alt="ㅇㅇ" />
-        <div class="absolute inset-0 bg-black/50"></div>
-      </div>
-    </main>
+  <body class="h-[200vh] pt-[64px]">
+    <Header />
+    <h1>Story</h1>
   </body>
 </html>
