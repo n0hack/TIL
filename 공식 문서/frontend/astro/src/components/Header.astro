@@ -10,7 +10,13 @@ type Props = {
 const { transition } = Astro.props;
 ---
 
-<header class="fixed inset-0 z-10 h-[64px] w-full transition duration-300">
+<header
+  class={twMerge(
+    'fixed inset-0 z-10 h-[64px] w-full transition duration-300',
+    !transition && 'border-b text-gray-900 bg-white',
+    transition && 'bg-transparent text-white',
+  )}
+>
   <div
     class="mx-auto flex h-full max-w-[1024px] items-center justify-between pl-6 pr-[14px] desktop:pl-[40px] desktop:[pr-30px]"
   >
@@ -37,7 +43,7 @@ const { transition } = Astro.props;
 </header>
 
 <script define:vars={{ transition }}>
-  // if (!transition) return;
+  if (!transition) return;
 
   /** @type {HTMLHeadElement} */
   const header = document.querySelector('header');
@@ -54,6 +60,5 @@ const { transition } = Astro.props;
     }
   }
 
-  handleScroll();
   window.addEventListener('scroll', handleScroll);
 </script>

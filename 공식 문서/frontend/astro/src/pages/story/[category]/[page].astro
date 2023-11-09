@@ -1,0 +1,78 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Header from '../../../components/Header.astro';
+import { getCollection } from 'astro:content';
+import Pagination from '../../../components/Pagination.astro';
+import Category from '../../../components/Category.astro';
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const allStories = await getCollection('story');
+  const categories = [
+    'all',
+    ...new Set(allStories.map((story) => story.data.category)),
+  ];
+
+  return categories.flatMap((category) => {
+    const filteredStories = (
+      category === 'all'
+        ? allStories
+        : allStories.filter((story) => story.data.category === category)
+    ).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+    return paginate(filteredStories, {
+      pageSize: 1,
+      params: { category },
+      props: {
+        categories: categories.map((category) => ({
+          name: category,
+          count:
+            category === 'all'
+              ? allStories.length
+              : allStories.filter((story) => story.data.category === category)
+                  .length,
+          url: `/story/${category}/1`,
+        })),
+      },
+    });
+  });
+}) satisfies GetStaticPaths;
+
+const { page, categories } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro</title>
+  </head>
+  <body>
+    <Header />
+
+    <main class="pt-[64px]">
+      <ul class="flex gap-4">
+        {categories.map((category) => <Category {...category} />)}
+      </ul>
+      <ul>
+        {
+          page.data.map((p) => (
+            <li>
+              <img
+                class="w-[300px] h-[200px] object-cover"
+                src={p.data.thumbnail.url.src}
+              />{' '}
+              {p.data.title}
+            </li>
+          ))
+        }
+      </ul>
+      <Pagination
+        currentPage={page.currentPage}
+        prevUrl={page.url.prev}
+        nextUrl={page.url.next}
+      />
+    </main>
+  </body>
+</html>

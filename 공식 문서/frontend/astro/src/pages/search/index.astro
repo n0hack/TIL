@@ -1,0 +1,72 @@
+---
+import { getCollection } from 'astro:content';
+import Fuse from 'fuse.js';
+import Search from '../../components/Search';
+import Header from '../../components/Header.astro';
+
+const f = await fetch('./s.json');
+console.log(f);
+
+// const q = Astro.url.searchParams.get('q');
+
+// const allStories = await getCollection('story');
+
+// export const prerender = false;
+
+// const list = allStories.map((story) => ({
+//   slug: story.slug,
+//   ...story.data,
+// }));
+
+// const fuse = new Fuse(list, {
+//   keys: ['title', 'summary', 'category'],
+// });
+
+// let results: {
+//   item: {
+//     slug: string;
+//     title: string;
+//     summary: string;
+//     thumbnail: {
+//       url: { src: string };
+//     };
+//     date: Date;
+//   };
+// }[] = [];
+// if (q) results = fuse.search(q);
+
+// const sorted = results
+//   .map((result) => result.item)
+//   .sort((a, b) => b.date.valueOf() - a.date.valueOf());
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro</title>
+  </head>
+  <body>
+    <Header />
+    <main class="pt-[64px]">
+      <!-- <Search data={sorted} client:load /> -->
+      <div class="p-12">
+        <ul class="flex flex-wrap gap-6">
+          <!-- {
+            results.map((result) => (
+              <li class="border rounded-md overflow-hidden shadow-md">
+                <img
+                  class="w-[300px] h-[200px] object-cover"
+                  src={result.item.thumbnail.url.src}
+                />
+                <p class="py-4 text-center">{result.item.title}</p>
+              </li>
+            ))
+          } -->
+        </ul>
+      </div>
+    </main>
+  </body>
+</html>

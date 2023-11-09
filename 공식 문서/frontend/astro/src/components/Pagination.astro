@@ -1,0 +1,13 @@
+---
+type Props = {
+  currentPage: number;
+  prevUrl?: string;
+  nextUrl?: string;
+};
+
+const { currentPage, nextUrl, prevUrl } = Astro.props;
+---
+
+<a href={prevUrl} class="p-2 rounded-full border hover:bg-red-100">&larr;</a>
+<span class="p-2 rounded-full border hover:bg-red-100">{currentPage}</span>
+<a href={nextUrl} class="p-2 rounded-full border hover:bg-red-100">&rarr;</a>

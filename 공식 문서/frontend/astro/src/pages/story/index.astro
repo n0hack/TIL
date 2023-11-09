@@ -1,0 +1,39 @@
+---
+return Astro.redirect('story/all/1');
+// import { getCollection } from 'astro:content';
+// import Header from '../../components/Header.astro';
+// import Story from '../../components/Story';
+
+// const stories = (await getCollection('story')).map((story) => ({
+//   slug: story.slug,
+//   ...story.data,
+// }));
+// const categories = [
+//   'all',
+//   ...new Set(stories.map((story) => story.category)),
+// ].map((category) => {
+//   return {
+//     name: category,
+//     count:
+//       category === 'all'
+//         ? stories.length
+//         : stories.filter((story) => story.category === category).length,
+//   };
+// });
+---
+
+<!-- <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro</title>
+  </head>
+  <body>
+    <Header />
+    <main class="pt-[64px]">
+      <Story list={stories} categories={categories} client:load />
+    </main>
+  </body>
+</html> -->
