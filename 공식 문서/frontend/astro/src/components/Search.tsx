@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import Pagination from './Pagination';
+import { useEffect, useRef, useState } from 'react';
 
 type SearchProps = {
-  data: {
+  datas: {
     slug: string;
     title: string;
     summary: string;
@@ -13,70 +12,50 @@ type SearchProps = {
   }[];
 };
 
-const Search = ({ data }: SearchProps) => {
+const Search = ({ datas }: SearchProps) => {
   const [page, setPage] = useState(1);
-  const [beforePage, setBeforePage] = useState(1);
-  const totalPages = Math.ceil(data.length / 1);
+  const ref = useRef<HTMLUListElement>(null);
+  const sliced = datas.slice(0, page * 9);
+  const observer = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
-    const url = new URL(window.location.href);
-    const pageFromUrl = Number(url.searchParams.get('page'));
+    if (!ref.current) return;
 
-    if (
-      Number.isNaN(pageFromUrl) ||
-      pageFromUrl < 1 ||
-      pageFromUrl > totalPages
-    ) {
-      setPage(1);
-      url.searchParams.set('page', '1');
-    } else {
-      setPage(pageFromUrl);
-      url.searchParams.set('page', String(pageFromUrl));
-    }
-
-    window.history.pushState({}, '', url.toString());
-
-    window.addEventListener('popstate', () => {
-      // console.log(history.state);
-      // const url = new URL(window.location.href);
-      const pageFromUrl = Number(url.searchParams.get('page'));
-      console.log('뒤로가기 페이지 번호:', pageFromUrl);
-
-      // console.log(url, history.state);
-
-      // if (5
-      //   Number.isNaN(pageFromUrl) ||
-      //   pageFromUrl < 1 ||
-      //   pageFromUrl > totalPages
-      // ) {
-      //   setPage(1);
-      //   url.searchParams.set('page', '1');
-      // } else {
-      //   setPage(pageFromUrl);
-      //   url.searchParams.set('page', String(pageFromUrl));
-      // }
+    observer.current = new IntersectionObserver((entries, observer) => {
+      if (!entries[0].isIntersecting) return;
+      console.log(page);
+      setPage((page) => page + 1);
+      observer.disconnect();
     });
   }, []);
 
+  useEffect(() => {
+    if (
+      !ref.current ||
+      page * 9 >= datas.length ||
+      ref.current.children.length === 0
+    )
+      return;
+
+    if (observer && observer.current) {
+      observer.current.observe(
+        ref.current.children[ref.current.children.length - 1]
+      );
+    }
+  }, [page]);
+
   return (
-    <div>
-      <ul>
-        {data?.slice((page - 1) * 1, page * 1).map((post) => (
-          <li key={post.slug}>
-            <img
-              src={post.thumbnail.url.src}
-              className="w-[500px] object-cover"
-            />
-            {post.title}
-          </li>
-        ))}
-      </ul>
-      <Pagination
-        currentPage={page}
-        onClick={setPage}
-        totalPages={totalPages}
-      />
-    </div>
+    <ul ref={ref} className="grid grid-cols-3 gap-6">
+      {sliced?.map((data) => (
+        <li key={data.slug} className="animate-[showSearchItem_1s_forwards]">
+          <img
+            src={data.thumbnail.url.src}
+            className="w-[700px] h-[500px] object-cover"
+          />
+          <p>{data.title}</p>
+        </li>
+      ))}
+    </ul>
   );
 };
 
