@@ -1,7 +1,9 @@
 ---
 import { Image } from 'astro:assets';
-import Header from '../components/Header.astro';
+import Header from '../components/Header/Header.astro';
 import { getCollection } from 'astro:content';
+import Card from '../components/Card.astro';
+import HomeHeroImage from '../components/home/HomeHeroImage.astro';
 
 const allStories = await getCollection('story');
 ---
@@ -15,8 +17,12 @@ const allStories = await getCollection('story');
     <title>Astro</title>
   </head>
   <body>
-    <Header />
-    <main class="h-[200vh] pt-[64px]">
+    <Header>
+      <h1>zz</h1>
+    </Header>
+
+    <main class="h-[200vh]">
+      <HomeHeroImage />
       <!-- <div class="relative">
         <img src="./main.png" alt="ㅇㅇ" />
         <div class="absolute inset-0 bg-black/50"></div>
@@ -27,6 +33,7 @@ const allStories = await getCollection('story');
         placeholder="검색"
         class="m-4 border py-3 px-4 w-[244px]"
       />
+      <Card />
     </main>
   </body>
 </html>

@@ -1,6 +1,6 @@
 ---
-import NavItem from './NavItem.astro';
-import navList from './navLiost';
+import NavItem from '../NavItem.astro';
+import navList from '../navLiost';
 import { twMerge } from 'tailwind-merge';
 
 type Props = {
@@ -52,10 +52,20 @@ const { transition } = Astro.props;
     const filled = !transition || (transition && window.scrollY > 64);
 
     if (filled) {
-      header.classList.add('border-b', 'border-gray-200', 'bg-white', 'text-gray-900');
+      header.classList.add(
+        'border-b',
+        'border-gray-200',
+        'bg-white',
+        'text-gray-900',
+      );
       header.classList.remove('bg-transparent', 'text-white');
     } else {
-      header.classList.remove('border-b', 'border-gray-200', 'bg-white', 'text-gray-900');
+      header.classList.remove(
+        'border-b',
+        'border-gray-200',
+        'bg-white',
+        'text-gray-900',
+      );
       header.classList.add('bg-transparent', 'text-white');
     }
   }
