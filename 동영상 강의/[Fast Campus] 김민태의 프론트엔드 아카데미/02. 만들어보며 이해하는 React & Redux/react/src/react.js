@@ -13,6 +13,9 @@ export function createDOM(node) {
 }
 
 export function createElement(tag, props, ...children) {
+  // null에 대한 방어 코드
+  props = props || {};
+
   return { tag, props, children };
 }
 
