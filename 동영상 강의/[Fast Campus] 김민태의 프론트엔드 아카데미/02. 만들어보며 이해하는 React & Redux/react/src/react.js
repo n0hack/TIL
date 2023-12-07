@@ -16,7 +16,16 @@ export function createElement(tag, props, ...children) {
   // null에 대한 방어 코드
   props = props || {};
 
-  return { tag, props, children };
+  // 함수인 경우에 대한 처리
+  if (typeof tag === 'function') {
+    if (children.length > 0) {
+      return tag({ ...props, children: children.length === 1 ? children[0] : children });
+    } else {
+      return tag(props);
+    }
+  } else {
+    return { tag, props, children };
+  }
 }
 
 export function render(vdom, container) {
