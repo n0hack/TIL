@@ -1,3 +1,6 @@
+const hooks = [];
+let currentComponent = 0;
+
 export class Component {
   constructor(props) {
     this.props = props;
@@ -22,8 +25,23 @@ function makeProps(props, children) {
   return { ...props, children: children.length === 1 ? children[0] : children };
 }
 
+// hook의 구조는 컴포넌트 순서에 의존한다.
+function useState(initValue) {
+  let position = currentComponent - 1;
+
+  if (!hooks[position]) {
+    hooks[position] = initValue;
+  }
+
+  const modifier = (nextValue) => {
+    hooks[position] = nextValue;
+  };
+
+  return [hooks[position], modifier];
+}
+
 export function createElement(tag, props, ...children) {
-  // null에 대한 방어 코드
+  // props가 없는 경우에 대한 처리
   props = props || {};
 
   // 함수인 경우에 대한 처리
@@ -31,23 +49,23 @@ export function createElement(tag, props, ...children) {
     if (tag.prototype instanceof Component) {
       const instance = new tag(makeProps(props, children));
       return instance.render();
-    } else {
-      if (children.length > 0) {
-        return tag(makeProps(props, children));
-      } else {
-        return tag(props);
-      }
     }
-  } else {
-    return { tag, props, children };
+
+    hooks[currentComponent] = null;
+    currentComponent++;
+
+    if (children.length > 0) {
+      return tag(makeProps(props, children));
+    } else {
+      return tag(props);
+    }
   }
+
+  return { tag, props, children };
 }
 
-// export function render(vdom, container) {
-//   container.appendChild(createDOM(vdom));
-// }
-
 export const render = (function () {
+  // 클로저를 이용해 vdom 비교
   let prevDom = null;
 
   return function (vdom, container) {

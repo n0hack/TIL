@@ -3,15 +3,15 @@
 // 코드상으로는 createElement를 사용하고 있지 않지만, 번들에서는 포함하고 있기에 불러와야 한다.
 import { Component, createElement, render } from './react';
 
-class Title extends Component {
-  render() {
-    return <h1>{this.props.children}</h1>;
-  }
-}
-
-// function Title(props) {
-//   return <h1>{props.children}</h1>;
+// class Title extends Component {
+//   render() {
+//     return <h1>{this.props.children}</h1>;
+//   }
 // }
+
+function Title(props) {
+  return <h1>{props.children}</h1>;
+}
 
 function Item(props) {
   return <li style={`color: ${props.color}`}>{props.children}</li>;
