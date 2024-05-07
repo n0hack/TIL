@@ -9,7 +9,6 @@ export class MoviesController {
 
   @Get('search')
   search(@Query('year') searchingYear: string) {
-    console.log(searchingYear);
     return `We are searching for a movie made after: ${searchingYear}`;
   }
 
@@ -20,7 +19,6 @@ export class MoviesController {
 
   @Post()
   create(@Body() movieData) {
-    console.log(movieData);
     return movieData;
   }
 
