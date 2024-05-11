@@ -4,7 +4,6 @@ import { VerifyEmailDto } from './dto/verify-email.dto';
 import { UserLoginDto } from './dto/user-login.dto';
 import { UserInfo } from './UserInfo';
 import { UsersService } from './users.service';
-import { ValidationPipe } from 'src/validation.pipe';
 
 @Controller('users')
 export class UsersController {
@@ -14,7 +13,7 @@ export class UsersController {
    * 회원가입
    */
   @Post()
-  async createUser(@Body(ValidationPipe) dto: CreateUserDto): Promise<void> {
+  async createUser(@Body() dto: CreateUserDto): Promise<void> {
     const { name, email, password } = dto;
     await this.usersService.createUser(name, email, password);
   }
