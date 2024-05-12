@@ -16,13 +16,16 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     UsersModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
+      host: process.env.DB_HOST,
       port: 3307,
-      username: 'root',
-      password: 'test',
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
       database: 'test',
-      entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: true, // 개발 환경에서만 사용
+      entities: ['dist/**/*.entity{.ts,.js}'],
+      synchronize: false, // true는 개발 환경에서만 사용
+      migrations: ['dist/**/migrations/*.js'],
+      migrationsTableName: 'migrations',
+      migrationsRun: false,
     }),
   ],
   controllers: [],

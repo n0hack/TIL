@@ -47,6 +47,9 @@ dependencies:
   typeorm:
     specifier: 0.3.7
     version: 0.3.7(mysql2@3.9.7)(ts-node@10.9.2)
+  ulid:
+    specifier: ^2.3.0
+    version: 2.3.0
   uuid:
     specifier: ^9.0.1
     version: 9.0.1
@@ -113,7 +116,7 @@ devDependencies:
     specifier: ^9.4.3
     version: 9.5.1(typescript@5.4.5)(webpack@5.91.0)
   ts-node:
-    specifier: ^10.9.1
+    specifier: ^10.9.2
     version: 10.9.2(@types/node@20.12.11)(typescript@5.4.5)
   tsconfig-paths:
     specifier: ^4.2.0
@@ -5336,6 +5339,11 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       '@lukeed/csprng': 1.1.0
+
+  /ulid@2.3.0:
+    resolution: {integrity: sha512-keqHubrlpvT6G2wH0OEfSW4mquYRcbe/J8NMmveoQOjUqmo+hXtO+ORCpWhdbZ7k72UtY61BL7haGxW6enBnjw==}
+    hasBin: true
+    dev: false
 
   /undici-types@5.26.5:
     resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==}
