@@ -6,13 +6,14 @@ import { validationSchema } from './config/validationSchema';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { LoggerMiddleware } from './utils/middlewares/logger.middleware';
 import { UsersController } from './users/users.controller';
+import authConfig from './config/authConfig';
 
 @Module({
   imports: [
     // 환경변수를 주입하는 모듈
     ConfigModule.forRoot({
       envFilePath: [`src/config/env/.${process.env.NODE_ENV}.env`],
-      load: [emailConfig],
+      load: [emailConfig, authConfig],
       isGlobal: true,
       validationSchema,
     }),

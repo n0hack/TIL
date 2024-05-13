@@ -1,13 +1,18 @@
-import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Headers, Param, Post, Query, UseGuards } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { VerifyEmailDto } from './dto/verify-email.dto';
 import { UserLoginDto } from './dto/user-login.dto';
 import { UserInfo } from './UserInfo';
 import { UsersService } from './users.service';
+import { AuthService } from 'src/auth/auth.service';
+import { AuthGuard } from 'src/auth.guard';
 
 @Controller('users')
 export class UsersController {
-  constructor(private usersService: UsersService) {}
+  constructor(
+    private usersService: UsersService,
+    private authService: AuthService,
+  ) {}
 
   /**
    * 회원가입
@@ -39,8 +44,9 @@ export class UsersController {
   /**
    * 회원 정보 조회
    */
+  @UseGuards(AuthGuard)
   @Get(':id')
-  async getUserInfo(@Param('id') userId: string): Promise<UserInfo> {
+  async getUserInfo(@Headers() headers: any, @Param('id') userId: string): Promise<UserInfo> {
     return await this.usersService.getUserInfo(userId);
   }
 }

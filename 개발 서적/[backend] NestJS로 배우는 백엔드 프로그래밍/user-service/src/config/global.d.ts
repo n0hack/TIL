@@ -11,6 +11,8 @@ export declare global {
       DB_USERNAME: string;
       DB_PASSWORD: string;
       DB_SYNCHRONIZE: string;
+      // JWT
+      JWT_SECRET: string;
       // Etc
       NODE_ENV: string;
     }
