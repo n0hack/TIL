@@ -21,7 +21,7 @@ export class UsersController {
   /**
    * 이메일 인증
    */
-  @Post('/email-verify')
+  @Post('email-verify')
   async verifyEmail(@Query() dto: VerifyEmailDto): Promise<string> {
     const { signupVerifyToken } = dto;
     return await this.usersService.verifyEmail(signupVerifyToken);
@@ -30,7 +30,7 @@ export class UsersController {
   /**
    * 로그인
    */
-  @Post('/login')
+  @Post('login')
   async login(@Body() dto: UserLoginDto): Promise<string> {
     const { email, password } = dto;
     return await this.usersService.login(email, password);
