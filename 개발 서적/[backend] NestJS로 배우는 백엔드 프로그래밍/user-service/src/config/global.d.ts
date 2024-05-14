@@ -14,7 +14,7 @@ export declare global {
       // JWT
       JWT_SECRET: string;
       // Etc
-      NODE_ENV: string;
+      NODE_ENV: 'development' | 'production';
     }
   }
 }
