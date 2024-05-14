@@ -8,6 +8,7 @@ import { LoggerMiddleware } from './utils/middlewares/logger.middleware';
 import { UsersController } from './users/users.controller';
 import authConfig from './config/authConfig';
 import { AppController } from './app.controller';
+import { ExceptionModule } from './exception/exception.module';
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { AppController } from './app.controller';
       migrationsTableName: 'migrations',
       migrationsRun: false,
     }),
+    ExceptionModule,
   ],
   controllers: [AppController],
   providers: [],
