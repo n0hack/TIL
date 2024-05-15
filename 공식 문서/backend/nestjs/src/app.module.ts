@@ -14,7 +14,8 @@ import { HttpExceptionFilter } from './http-exception.filter';
   providers: [
     /**
      * app.useGlobalFilters(new HttpExceptionFilter());
-     * 전역 범위 필터는 컨텍스트 외부에서 수행되기 때문에 종속성 주입이 필요한 경우 직접 등록할 수 있음
+     * 전역 범위 필터는 모듈 컨텍스트 외부에서 수행되므로, 종속성 주입이 필요한 경우 아래 형태로 직접 등록할 수 있음
+     * https://docs.nestjs.com/exception-filters#binding-filters
      */
     {
       provide: 'APP_FILTER',
