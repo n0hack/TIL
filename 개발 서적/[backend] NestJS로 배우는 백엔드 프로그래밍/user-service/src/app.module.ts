@@ -9,6 +9,7 @@ import { UsersController } from './users/users.controller';
 import authConfig from './config/authConfig';
 import { AppController } from './app.controller';
 import { ExceptionModule } from './exception/exception.module';
+import { BatchModule } from './batch/batch.module';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { ExceptionModule } from './exception/exception.module';
       migrationsRun: false,
     }),
     ExceptionModule,
+    BatchModule,
   ],
   controllers: [AppController],
   providers: [],
