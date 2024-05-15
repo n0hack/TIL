@@ -1,26 +1,27 @@
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { UsersModule } from './users/users.module';
 import { ConfigModule } from '@nestjs/config';
 import emailConfig from './config/emailConfig';
-import { validationSchema } from './config/validationSchema';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { LoggerMiddleware } from './utils/middlewares/logger.middleware';
-import { UsersController } from './users/users.controller';
 import authConfig from './config/authConfig';
-import { AppController } from './app.controller';
+import { validationSchema } from './config/validationSchema';
+import { TerminusModule } from '@nestjs/terminus';
+import { HealthCheckController } from './health-check/health-check.controller';
+import { HttpModule } from '@nestjs/axios';
+import { DogHealthIndicator } from './health-check/dog.health';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { ExceptionModule } from './exception/exception.module';
 import { BatchModule } from './batch/batch.module';
 
 @Module({
   imports: [
-    // 환경변수를 주입하는 모듈
+    UsersModule,
+    // 환경변수 모듈
     ConfigModule.forRoot({
       envFilePath: [`src/config/env/.${process.env.NODE_ENV}.env`],
       load: [emailConfig, authConfig],
       isGlobal: true,
       validationSchema,
     }),
-    UsersModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: process.env.DB_HOST,
@@ -36,12 +37,15 @@ import { BatchModule } from './batch/batch.module';
     }),
     ExceptionModule,
     BatchModule,
+    // Health Check 모듈
+    TerminusModule,
+    HttpModule,
   ],
-  controllers: [AppController],
-  providers: [],
+  controllers: [HealthCheckController],
+  providers: [DogHealthIndicator],
 })
-export class AppModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer.apply(LoggerMiddleware).forRoutes(UsersController);
-  }
+export class AppModule {
+  // configure(consumer: MiddlewareConsumer) {
+  // consumer.apply(LoggerMiddleware).forRoutes(UsersController);
+  // }
 }
