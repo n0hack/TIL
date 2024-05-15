@@ -3,6 +3,7 @@ import {
   Controller,
   Get,
   HttpCode,
+  Inject,
   Param,
   Post,
   UseGuards,
@@ -17,7 +18,12 @@ import { UniqueCat } from 'src/common/decorators/cat.decorator';
 @UseGuards(RolesGuard)
 @Controller('cats')
 export class CatsController {
-  constructor(private catsService: CatsService) {}
+  constructor(
+    private catsService: CatsService,
+    @Inject('CUSTOM_PROVIDER') private readonly test: any,
+  ) {
+    console.log(test);
+  }
 
   @Post()
   @Roles(['admin'])

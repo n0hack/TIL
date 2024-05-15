@@ -4,6 +4,14 @@ import { CatsService } from './cats.service';
 
 @Module({
   controllers: [CatsController],
-  providers: [CatsService],
+  providers: [
+    CatsService,
+    {
+      provide: 'CUSTOM_PROVIDER',
+      useValue: {
+        key: 'value',
+      },
+    },
+  ],
 })
 export class CatsModule {}
