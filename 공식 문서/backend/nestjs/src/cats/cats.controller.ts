@@ -14,16 +14,17 @@ import { Cat } from './interfaces/cat.interface';
 import { Roles } from 'src/common/decorators/roles.decorator';
 import { RolesGuard } from 'src/common/guard/roles.guard';
 import { UniqueCat } from 'src/common/decorators/cat.decorator';
+import { ConfigType } from '@nestjs/config';
+import dbConfig from '../config/db.config';
 
 @UseGuards(RolesGuard)
 @Controller('cats')
 export class CatsController {
   constructor(
     private catsService: CatsService,
+    @Inject(dbConfig.KEY) private databaseConfig: ConfigType<typeof dbConfig>,
     @Inject('CUSTOM_PROVIDER') private readonly test: any,
-  ) {
-    console.log(test);
-  }
+  ) {}
 
   @Post()
   @Roles(['admin'])
@@ -38,6 +39,7 @@ export class CatsController {
 
   @Get('unique')
   async findUniqueCat(@UniqueCat('name') cat) {
+    console.log(process.env);
     return cat;
   }
 

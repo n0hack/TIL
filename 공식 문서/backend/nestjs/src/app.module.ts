@@ -10,9 +10,26 @@ import { logger } from './common/middleware/logger.middleware';
 import { CatsController } from './cats/cats.controller';
 import { HttpExceptionFilter } from './http-exception.filter';
 import { APP_PIPE } from '@nestjs/core';
+import { ConfigModule } from '@nestjs/config';
+import dbConfig from './config/db.config';
+import * as Joi from 'joi';
 
 @Module({
-  imports: [CatsModule],
+  imports: [
+    ConfigModule.forRoot({
+      load: [dbConfig],
+      isGlobal: true,
+      /**
+       * 환경변수 유효성 검사
+       * https://docs.nestjs.com/techniques/configuration#schema-validation
+       */
+      validationSchema: Joi.object({
+        DATABASE_USER: Joi.string().required().default('루시드'),
+        DATABASE_PORT: Joi.number().default(5432),
+      }),
+    }),
+    CatsModule,
+  ],
   providers: [
     /**
      * app.useGlobalFilters(new HttpExceptionFilter());
