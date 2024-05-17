@@ -11,8 +11,11 @@ import { CatsController } from './cats/cats.controller';
 import { HttpExceptionFilter } from './http-exception.filter';
 import { APP_PIPE } from '@nestjs/core';
 import { ConfigModule } from '@nestjs/config';
+import { UsersModule } from './users/users.module';
 import dbConfig from './config/db.config';
 import * as Joi from 'joi';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Users } from './users/users.entity';
 
 @Module({
   imports: [
@@ -28,7 +31,20 @@ import * as Joi from 'joi';
         DATABASE_PORT: Joi.number().default(5432),
       }),
     }),
+    TypeOrmModule.forRoot({
+      type: 'mysql',
+      host: 'localhost',
+      port: +process.env.DATABASE_PORT,
+      username: 'root',
+      password: 'test',
+      database: 'test',
+      entities: [Users],
+      autoLoadEntities: true,
+      // 운영 환경에서는 synchronize: false로 설정해야 함
+      synchronize: true,
+    }),
     CatsModule,
+    UsersModule,
   ],
   providers: [
     /**
