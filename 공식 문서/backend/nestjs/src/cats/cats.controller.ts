@@ -17,12 +17,15 @@ import { RolesGuard } from 'src/common/guard/roles.guard';
 import { UniqueCat } from 'src/common/decorators/cat.decorator';
 import { ConfigType } from '@nestjs/config';
 import dbConfig from '../config/db.config';
+import { SchedulerRegistry } from '@nestjs/schedule';
+import { CronJob } from 'cron';
 
 @UseGuards(RolesGuard)
 @Controller('cats')
 export class CatsController {
   constructor(
     private catsService: CatsService,
+    private schedulerRegistry: SchedulerRegistry,
     @Inject(dbConfig.KEY) private databaseConfig: ConfigType<typeof dbConfig>,
     @Inject('CUSTOM_PROVIDER') private readonly test: any,
   ) {}
@@ -54,6 +57,25 @@ export class CatsController {
   @HttpCode(201)
   changeHttpCode(): string {
     return 'This action should return a status code of 201';
+  }
+
+  @Get('add-cron-job')
+  async addCronJob() {
+    // 1초마다 실행되는 CronJob
+    const job = new CronJob('*/1 * * * * *', () => {
+      console.log('addCronJob 호출로 인한 cron!');
+    });
+    this.schedulerRegistry.addCronJob('cron-job', job);
+    job.start();
+
+    return 'CronJob 추가 완료!';
+  }
+
+  @Get('remove-cron-job')
+  async removeCronJob() {
+    this.schedulerRegistry.deleteCronJob('cron-job');
+
+    return 'CronJob 삭제 완료!';
   }
 
   @Get(':id')

@@ -20,6 +20,9 @@ dependencies:
   '@nestjs/platform-express':
     specifier: ^10.0.0
     version: 10.3.8(@nestjs/common@10.3.8)(@nestjs/core@10.3.8)
+  '@nestjs/schedule':
+    specifier: ^4.0.2
+    version: 4.0.2(@nestjs/common@10.3.8)(@nestjs/core@10.3.8)
   '@nestjs/typeorm':
     specifier: ^10.0.2
     version: 10.0.2(@nestjs/common@10.3.8)(@nestjs/core@10.3.8)(reflect-metadata@0.2.2)(rxjs@7.8.1)(typeorm@0.3.20)
@@ -29,6 +32,9 @@ dependencies:
   class-validator:
     specifier: ^0.14.1
     version: 0.14.1
+  cron:
+    specifier: ^3.1.7
+    version: 3.1.7
   joi:
     specifier: ^17.13.1
     version: 17.13.1
@@ -1014,6 +1020,18 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
+  /@nestjs/schedule@4.0.2(@nestjs/common@10.3.8)(@nestjs/core@10.3.8):
+    resolution: {integrity: sha512-po9oauE7fO0CjhDKvVC2tzEgjOUwhxYoIsXIVkgfu+xaDMmzzpmXY2s1LT4oP90Z+PaTtPoAHmhslnYmo4mSZg==}
+    peerDependencies:
+      '@nestjs/common': ^8.0.0 || ^9.0.0 || ^10.0.0
+      '@nestjs/core': ^8.0.0 || ^9.0.0 || ^10.0.0
+    dependencies:
+      '@nestjs/common': 10.3.8(class-transformer@0.5.1)(class-validator@0.14.1)(reflect-metadata@0.2.2)(rxjs@7.8.1)
+      '@nestjs/core': 10.3.8(@nestjs/common@10.3.8)(@nestjs/platform-express@10.3.8)(reflect-metadata@0.2.2)(rxjs@7.8.1)
+      cron: 3.1.7
+      uuid: 9.0.1
+    dev: false
+
   /@nestjs/schematics@10.1.1(chokidar@3.6.0)(typescript@5.3.3):
     resolution: {integrity: sha512-o4lfCnEeIkfJhGBbLZxTuVWcGuqDCFwg5OrvpgRUBM7vI/vONvKKiB5riVNpO+JqXoH0I42NNeDb0m4V5RREig==}
     peerDependencies:
@@ -1287,6 +1305,10 @@ packages:
   /@types/json-schema@7.0.15:
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
     dev: true
+
+  /@types/luxon@3.4.2:
+    resolution: {integrity: sha512-TifLZlFudklWlMBfhubvgqTXRzLDI5pCbGa4P8a3wPyUQSW+1xQ5eDsreP9DWHX3tjq1ke96uYG/nwundroWcA==}
+    dev: false
 
   /@types/methods@1.1.4:
     resolution: {integrity: sha512-ymXWVrDiCxTBE3+RIrrP533E70eA+9qu7zdWoHuOmGujkYtzf4HQF96b8nwHLqhuf4ykX61IGRIB38CC6/sImQ==}
@@ -2264,6 +2286,13 @@ packages:
 
   /create-require@1.1.1:
     resolution: {integrity: sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==}
+
+  /cron@3.1.7:
+    resolution: {integrity: sha512-tlBg7ARsAMQLzgwqVxy8AZl/qlTc5nibqYwtNGoCrd+cV+ugI+tvZC1oT/8dFH8W455YrywGykx/KMmAqOr7Jw==}
+    dependencies:
+      '@types/luxon': 3.4.2
+      luxon: 3.4.4
+    dev: false
 
   /cross-spawn@7.0.3:
     resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
@@ -3924,6 +3953,11 @@ packages:
   /lru-cache@8.0.5:
     resolution: {integrity: sha512-MhWWlVnuab1RG5/zMRRcVGXZLCXrZTgfwMikgzCegsPnG62yDQo5JnqKkrK4jO5iKqDAZGItAqN5CtKBCBWRUA==}
     engines: {node: '>=16.14'}
+    dev: false
+
+  /luxon@3.4.4:
+    resolution: {integrity: sha512-zobTr7akeGHnv7eBOXcRgMeCP6+uyYsczwmeRCauvpvaAltgNyTbLH/+VaEAPUeWBT+1GuNmz4wC/6jtQzbbVA==}
+    engines: {node: '>=12'}
     dev: false
 
   /magic-string@0.30.5:

@@ -16,6 +16,8 @@ import dbConfig from './config/db.config';
 import * as Joi from 'joi';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Users } from './users/users.entity';
+import { ScheduleModule } from '@nestjs/schedule';
+import { LogTaskService } from './tasks/log.task';
 
 @Module({
   imports: [
@@ -43,6 +45,7 @@ import { Users } from './users/users.entity';
       // 운영 환경에서는 synchronize: false로 설정해야 함
       synchronize: true,
     }),
+    ScheduleModule.forRoot(),
     CatsModule,
     UsersModule,
   ],
@@ -60,6 +63,7 @@ import { Users } from './users/users.entity';
       provide: APP_PIPE,
       useClass: ValidationPipe,
     },
+    LogTaskService,
   ],
 })
 export class AppModule implements NestModule {
