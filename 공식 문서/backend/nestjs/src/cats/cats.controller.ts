@@ -7,6 +7,7 @@ import {
   Param,
   Post,
   UseGuards,
+  Version,
 } from '@nestjs/common';
 import { CatsService } from './cats.service';
 import { CreateCatDto } from './dto/create-cat.dto';
@@ -35,6 +36,12 @@ export class CatsController {
   @Get()
   async findAll(): Promise<Cat[]> {
     return this.catsService.findAll();
+  }
+
+  @Version('2')
+  @Get()
+  async findAllV2(): Promise<Array<unknown>> {
+    return ['버전 2입니다.'];
   }
 
   @Get('unique')
