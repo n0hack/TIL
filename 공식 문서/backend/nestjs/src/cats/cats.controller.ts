@@ -19,6 +19,8 @@ import { ConfigType } from '@nestjs/config';
 import dbConfig from '../config/db.config';
 import { SchedulerRegistry } from '@nestjs/schedule';
 import { CronJob } from 'cron';
+import { EventEmitter2 } from '@nestjs/event-emitter';
+import { CatCreatedEvent } from 'src/cats/events/cat-created.event';
 
 @UseGuards(RolesGuard)
 @Controller('cats')
@@ -28,11 +30,13 @@ export class CatsController {
     private schedulerRegistry: SchedulerRegistry,
     @Inject(dbConfig.KEY) private databaseConfig: ConfigType<typeof dbConfig>,
     @Inject('CUSTOM_PROVIDER') private readonly test: any,
+    private readonly eventEmitter: EventEmitter2,
   ) {}
 
   @Post()
   @Roles(['admin'])
   create(@Body() dto: CreateCatDto) {
+    this.eventEmitter.emit('cat.created', new CatCreatedEvent(dto.name));
     this.catsService.create(dto);
   }
 

@@ -18,6 +18,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Users } from './users/users.entity';
 import { ScheduleModule } from '@nestjs/schedule';
 import { LogTaskService } from './tasks/log.task';
+import { EventEmitterModule } from '@nestjs/event-emitter';
+import { CatsListener } from './cats/events/cats.listener';
 
 @Module({
   imports: [
@@ -46,6 +48,7 @@ import { LogTaskService } from './tasks/log.task';
       synchronize: true,
     }),
     ScheduleModule.forRoot(),
+    EventEmitterModule.forRoot(),
     CatsModule,
     UsersModule,
   ],
@@ -64,6 +67,7 @@ import { LogTaskService } from './tasks/log.task';
       useClass: ValidationPipe,
     },
     LogTaskService,
+    CatsListener,
   ],
 })
 export class AppModule implements NestModule {
