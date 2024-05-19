@@ -23,6 +23,8 @@ import { CatsListener } from './cats/events/cats.listener';
 import { AppController } from './app.controller';
 import { UploadModule } from './upload/upload.module';
 import { MulterModule } from '@nestjs/platform-express';
+import { AuthModule } from './auth/auth.module';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [
@@ -56,6 +58,7 @@ import { MulterModule } from '@nestjs/platform-express';
     UsersModule,
     UploadModule,
     MulterModule.register({}),
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [
