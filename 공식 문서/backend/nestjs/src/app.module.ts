@@ -20,6 +20,9 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { LogTaskService } from './tasks/log.task';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { CatsListener } from './cats/events/cats.listener';
+import { AppController } from './app.controller';
+import { UploadModule } from './upload/upload.module';
+import { MulterModule } from '@nestjs/platform-express';
 
 @Module({
   imports: [
@@ -51,7 +54,10 @@ import { CatsListener } from './cats/events/cats.listener';
     EventEmitterModule.forRoot(),
     CatsModule,
     UsersModule,
+    UploadModule,
+    MulterModule.register({}),
   ],
+  controllers: [AppController],
   providers: [
     /**
      * app.useGlobalFilters(new HttpExceptionFilter());
