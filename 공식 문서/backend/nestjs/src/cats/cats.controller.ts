@@ -21,9 +21,11 @@ import { SchedulerRegistry } from '@nestjs/schedule';
 import { CronJob } from 'cron';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { CatCreatedEvent } from 'src/cats/events/cat-created.event';
+import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 
 @UseGuards(RolesGuard)
 @Controller('cats')
+@ApiTags('고양이 관련 API 모음')
 export class CatsController {
   constructor(
     private catsService: CatsService,
@@ -35,6 +37,23 @@ export class CatsController {
 
   @Post()
   @Roles(['admin'])
+  @ApiOperation({
+    description: '새로운 고양이를 만드는 API입니다.',
+    summary: '고양이 생성',
+  })
+  @ApiBody({
+    type: CreateCatDto,
+    description: '새로운 고양이에 대한 정보를 입력해주세요.',
+    examples: {
+      루시_추가: {
+        value: {
+          name: '루시',
+          age: 3,
+          breed: '코숏',
+        },
+      },
+    },
+  })
   create(@Body() dto: CreateCatDto) {
     this.eventEmitter.emit('cat.created', new CatCreatedEvent(dto.name));
     this.catsService.create(dto);
