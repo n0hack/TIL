@@ -2,11 +2,21 @@
   "name": "others",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "exports": "./index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon --exec node --loader ts-node/esm"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "nodemon": "^3.1.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1"
+  },
+  "type": "module"
 }

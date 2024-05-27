@@ -1,0 +1,5 @@
+{
+  "watch": ["."],
+  "ext": "ts",
+  "ignore": ["node_modules"]
+}
