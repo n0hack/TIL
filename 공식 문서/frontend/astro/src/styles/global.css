@@ -78,3 +78,7 @@ h1 {
     display: none;
   }
 }
+
+figure {
+  margin: 0;
+}

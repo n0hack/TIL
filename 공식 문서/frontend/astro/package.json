@@ -11,9 +11,16 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.8.1",
+    "@astrojs/mdx": "^3.1.2",
     "@astrojs/preact": "^3.5.0",
     "astro": "^4.11.5",
+    "hastscript": "^9.0.0",
     "preact": "^10.22.1",
-    "typescript": "^5.5.3"
+    "rehype": "^13.0.1",
+    "rehype-accessible-emojis": "^0.3.2",
+    "rehype-figure": "^1.0.1",
+    "remark-toc": "^9.0.0",
+    "typescript": "^5.5.3",
+    "unist-util-visit": "^5.0.0"
   }
 }
