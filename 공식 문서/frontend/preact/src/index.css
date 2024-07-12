@@ -1,7 +1,0 @@
-nav:not(.sidebar) {
-  height: 60px;
-  display: flex;
-  justify-content: end;
-  gap: 24px;
-  border-bottom: 1px solid black;
-}
