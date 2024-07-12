@@ -1,0 +1,20 @@
+---
+import { fade, ViewTransitions } from 'astro:transitions';
+import CommonHead from '../../components/CommonHead.astro';
+import './style.css';
+import NoTransitionNav from '../../components/NoTransitionNav.astro';
+---
+
+<!doctype html>
+<html lang="en" transition:animate="none">
+  <head>
+    <CommonHead /><ViewTransitions />
+  </head>
+  <body>
+    <NoTransitionNav />
+    <main transition:animate={fade({ duration: '1s' })}>
+      <h1>나의 웹사이트에 오신 것을 환영합니다!</h1>
+      <img transition:animate="none" src="https://media1.tenor.com/m/QFAXCr3DJbYAAAAd/mayu-uozumi-mayu.gif" alt="dd" />
+    </main>
+  </body>
+</html>
