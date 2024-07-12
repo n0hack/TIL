@@ -1,0 +1,57 @@
+---
+import Footer from '../components/Footer.astro';
+import Navigation from '../components/Navigation.astro';
+import '../styles/global.css';
+
+const pageTitle = '소개 페이지';
+
+const identity = {
+  firstName: '루시드',
+  country: '대한민국',
+  occupation: '개발자',
+  hobbies: ['일본어', '드라마', '게임'],
+};
+
+const skills = ['HTML', 'CSS', 'JavaScript', 'React', 'Astro'];
+
+const skillColor = 'navy';
+const fontWeight = 'bold';
+const textCase = 'uppercase';
+---
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>{pageTitle}</title>
+    <style define:vars={{ skillColor, fontWeight, textCase }}>
+      h1 {
+        color: purple;
+        font-size: 4rem;
+      }
+
+      .skill {
+        color: var(--skillColor);
+        font-weight: var(--fontWeight);
+        text-transform: var(--textCase);
+      }
+    </style>
+  </head>
+  <body>
+    <Navigation />
+
+    <h1>{pageTitle}</h1>
+    <p>간단한 정보</p>
+    <ul>
+      <li>이름: {identity.firstName}</li>
+      <li>국적: {identity.country}</li>
+      <li>직업: {identity.occupation}</li>
+      <li>취미: {identity.hobbies.join(', ')}</li>
+    </ul>
+    <p>보유 기술</p>
+    <ul>
+      {skills.map((skill) => <li class="skill">{skill}</li>)}
+    </ul>
+
+    <Footer />
+  </body>
+</html>
