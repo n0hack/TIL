@@ -2,16 +2,24 @@
 import type { GetStaticPaths } from 'astro';
 import type { CollectionEntry } from 'astro:content';
 import { getCollection } from 'astro:content';
-import '../../styles/global.css';
+import '../../../styles/global.css';
 
-export const getStaticPaths = (async () => {
+export const getStaticPaths = async () => {
   const collections = await getCollection('newsletter');
 
-  return collections.map((collection) => ({
-    params: { slug: collection.slug },
-    props: collection,
-  }));
-}) satisfies GetStaticPaths;
+  return collections.map((collection) => {
+    const [lang, ...slug] = collection.slug.split('/');
+
+    console.log({
+      params: { lang, slug: slug.join('/') },
+      props: collection,
+    });
+    return {
+      params: { lang, slug: slug.join('/') },
+      props: collection,
+    };
+  });
+};
 
 type Props = CollectionEntry<'newsletter'>;
 

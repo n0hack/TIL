@@ -2,6 +2,8 @@
 import { getCollection } from 'astro:content';
 
 const allNewsLetters = await getCollection('newsletter');
+
+console.log(allNewsLetters);
 ---
 
 <head>

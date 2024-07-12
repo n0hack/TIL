@@ -1,6 +1,13 @@
+---
+import { getLangFromUrl, useTranslation, useTranslatedPath } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslation(lang);
+const translatePath = useTranslatedPath(lang);
+---
+
 <div class="nav-links">
-  <a href="/">홈</a>
-  <a href="/about">소개</a>
-  <a href="/blog">블로그</a>
-  <a href="/tags">태그</a>
+  <a href={translatePath('/')}>{t('nav.home')}</a>
+  <a href={translatePath('/about')}>{t('nav.about')}</a>
+  <a href={translatePath('/mdx-posts')}>{t('nav.newsletter')}</a>
 </div>

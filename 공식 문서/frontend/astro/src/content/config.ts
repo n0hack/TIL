@@ -9,14 +9,6 @@ const newsletterCollection = defineCollection({
     }),
 });
 
-const blogCollection = defineCollection({
-  type: 'content',
-  schema: z.object({
-    title: z.string(),
-  }),
-});
-
 export const collections = {
   newsletter: newsletterCollection,
-  blog: blogCollection,
 };

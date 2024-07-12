@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import '../../styles/global.css';
+
+const pageTitle = '紹介ページ';
+
+const identity = {
+  firstName: '루시드',
+  country: '韓国',
+  occupation: 'エンジニア',
+  hobbies: ['日本語', 'ドラマ', 'ゲーム'],
+};
+
+const skills = ['HTML', 'CSS', 'JavaScript', 'React', 'Astro'];
+---
+
+<BaseLayout pageTitle={pageTitle}>
+  <p>간단한 정보</p>
+  <ul>
+    <li>名前: {identity.firstName}</li>
+    <li>国籍: {identity.country}</li>
+    <li>職業: {identity.occupation}</li>
+    <li>趣味: {identity.hobbies.join(', ')}</li>
+  </ul>
+  <p>보유 기술</p>
+  <ul>
+    {skills.map((skill) => <li class="skill">{skill}</li>)}
+  </ul>
+</BaseLayout>
