@@ -1,0 +1,39 @@
+---
+import { getLangFromUrl, useTranslatedPath, useTranslations } from 'src/i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang, 'nav');
+const translatePath = useTranslatedPath(lang);
+---
+
+<nav>
+  <ul>
+    <li><a href={translatePath('/')}>{t('home')}</a></li>
+    <li><a href={translatePath('/news')}>{t('news')}</a></li>
+    <li><a href={translatePath('/blog')}>{t('blog')}</a></li>
+  </ul>
+</nav>
+
+<style>
+  nav {
+    background-color: #333;
+    color: white;
+  }
+
+  ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+  }
+
+  a {
+    display: block;
+    color: white;
+    padding: 1rem 1rem;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+</style>
