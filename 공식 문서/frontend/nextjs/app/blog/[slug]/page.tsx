@@ -5,5 +5,5 @@ const Page = ({ params }: { params: { slug: string } }) => {
 export default Page;
 
 export async function generateStaticParams() {
-  return [{ slug: '1' }];
+  return [{ slug: 'en-US' }, { slug: 'de' }];
 }
