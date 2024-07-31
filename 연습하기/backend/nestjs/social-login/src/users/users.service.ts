@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './user.entity';
 import { Repository } from 'typeorm';
 
-type TUser = {
+type UserData = {
   socialId: string;
   provider: 'kakao' | 'naver';
   nickname: string;
@@ -16,18 +16,15 @@ export class UsersService {
     @InjectRepository(User) private readonly userRepository: Repository<User>,
   ) {}
 
-  async findOrCreateUser({ socialId, provider, nickname, email }: TUser) {
+  async validateUser({ provider, socialId, nickname, email }: UserData) {
     let user = await this.userRepository.findOne({
-      where: {
-        socialId,
-        provider,
-      },
+      where: { provider, socialId },
     });
 
     if (!user) {
-      user = this.userRepository.create({
-        socialId,
+      user = await this.userRepository.create({
         provider,
+        socialId,
         nickname,
         email,
       });

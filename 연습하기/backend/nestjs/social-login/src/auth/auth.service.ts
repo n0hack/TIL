@@ -4,6 +4,7 @@ import { ConfigType } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import authConfig from 'config/auth.config';
 import { firstValueFrom } from 'rxjs';
+import { User } from 'src/users/user.entity';
 import { UsersService } from 'src/users/users.service';
 
 @Injectable()
@@ -25,24 +26,42 @@ export class AuthService {
     const CLIENT_ID = this.config.kakao.client_id;
     const REDIRECT_URI = this.config.kakao.redirect_uri;
     const RESPONSE_TYPE = 'code';
-    const REQUEST_URL = 'https://kauth.kakao.com/oauth/authorize';
+    const AUTHORIZE_URL = 'https://kauth.kakao.com/oauth/authorize';
 
-    return `${REQUEST_URL}?${this.formUrlEncoded({
+    return `${AUTHORIZE_URL}?${this.formUrlEncoded({
       client_id: CLIENT_ID,
       redirect_uri: REDIRECT_URI,
       response_type: RESPONSE_TYPE,
     })}`;
   }
 
-  async getKakaoUserInfo(code: string) {
+  async getKakaoUser(token: string): Promise<any> {
+    const url = 'https://kapi.kakao.com/v2/user/me';
+    const headers = { Authorization: `Bearer ${token}` };
+    const { data } = await firstValueFrom(
+      this.httpService.get(url, { headers }),
+    );
+    return data;
+  }
+
+  async authenticateKakaoUser(code: string) {
+    const tokenData = await this.getKakaoToken(code);
+    const userInfo = await this.getKakaoUser(tokenData.access_token);
+    return this.usersService.validateUser({
+      socialId: userInfo.id.toString(),
+      provider: 'kakao',
+      nickname: userInfo.properties.nickname,
+    });
+  }
+
+  async getKakaoToken(code: string) {
     const GET_TOKEN_URL = '	https://kauth.kakao.com/oauth/token';
-    const GET_USER_INFO_URL = 'https://kapi.kakao.com/v2/user/me';
     const GRANT_TYPE = 'authorization_code';
     const CLIENT_ID = this.config.kakao.client_id;
     const REDIRECT_URI = this.config.kakao.redirect_uri;
     const CLIENT_SECRET = this.config.kakao.client_secret;
 
-    const requestBody = this.formUrlEncoded({
+    const params = this.formUrlEncoded({
       grant_type: GRANT_TYPE,
       client_id: CLIENT_ID,
       redirect_uri: REDIRECT_URI,
@@ -51,27 +70,18 @@ export class AuthService {
     });
 
     // 토큰 발급
-    const { data } = await firstValueFrom(
-      this.httpService.post(GET_TOKEN_URL, requestBody),
+    const { data: tokenData } = await firstValueFrom(
+      this.httpService.post(GET_TOKEN_URL, params),
     );
 
-    // 유저 정보 조회
-    const { data: userInfo } = await firstValueFrom(
-      this.httpService.get(GET_USER_INFO_URL, {
-        headers: { Authorization: `Bearer ${data.access_token}` },
-      }),
-    );
+    return tokenData;
+  }
 
-    const user = await this.usersService.findOrCreateUser({
-      socialId: userInfo.id.toString(),
-      provider: 'kakao',
-      nickname: userInfo.properties.nickname,
-    });
-
-    // JWT 생성
-    const payload = { sub: user.id };
-    const token = this.jwtService.sign(payload);
-
-    return { user, token };
+  async login(user: User) {
+    const payload = { sub: user.id, nickname: user.nickname };
+    return {
+      access_token: this.jwtService.sign(payload, { expiresIn: '5m' }),
+      refresh_token: this.jwtService.sign(payload, { expiresIn: '7d' }),
+    };
   }
 }

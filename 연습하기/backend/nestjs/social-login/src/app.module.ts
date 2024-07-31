@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { HttpModule } from '@nestjs/axios';
 import { ConfigModule } from '@nestjs/config';
 import authConfig from 'config/auth.config';
 import { AuthModule } from './auth/auth.module';
@@ -8,7 +7,6 @@ import { User } from './users/user.entity';
 
 @Module({
   imports: [
-    HttpModule,
     ConfigModule.forRoot({
       isGlobal: true,
       load: [authConfig],
