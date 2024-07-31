@@ -1,11 +1,13 @@
 import Header from '@/components/Header';
 import LoginButton from '@/components/LoginButton';
-import Link from 'next/link';
 
-export default function Home() {
+const Page = () => {
   return (
-    <div className="">
+    <div>
       <Header />
+      <LoginButton />
     </div>
   );
-}
+};
+
+export default Page;
