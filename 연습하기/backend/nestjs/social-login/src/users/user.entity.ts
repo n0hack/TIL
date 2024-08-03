@@ -1,6 +1,13 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, Index, PrimaryGeneratedColumn } from 'typeorm';
+
+export enum AuthProvider {
+  KAKAO = 'kakao',
+  NAVER = 'naver',
+  LOCAL = 'local',
+}
 
 @Entity()
+@Index(['provider', 'providerId'], { unique: true })
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
@@ -8,12 +15,15 @@ export class User {
   @Column()
   nickname: string;
 
-  @Column({ nullable: true })
-  email: string;
+  @Column()
+  profileImage: string;
+
+  @Column({ type: 'enum', enum: AuthProvider })
+  provider: AuthProvider; // 인증 제공 업체(ex. 카카오/네이버/로컬)
 
   @Column()
-  socialId: string; // 소셜 ID
+  providerId: string; // 인증 제공 업체 고유 ID
 
-  @Column()
-  provider: string; // 소셜 제공 업체(ex. 카카오/네이버)
+  @CreateDateColumn()
+  createdAt: Date;
 }

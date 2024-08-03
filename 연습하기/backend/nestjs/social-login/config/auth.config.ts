@@ -2,8 +2,12 @@ import { registerAs } from '@nestjs/config';
 
 export default registerAs('auth', () => ({
   kakao: {
-    client_id: process.env.KAKAO_ID,
-    redirect_uri: process.env.KAKAO_REDIRECT_URI,
-    client_secret: process.env.KAKAO_SECRET,
+    clientID: process.env.KAKAO_APP_ID,
+    clientSecret: process.env.KAKAO_SECRET,
+    redirectURI: process.env.KAKAO_REDIRECT_URI,
+  },
+  jwt: {
+    accessTokenSecret: process.env.ACCESS_TOKEN_SECRET,
+    refreshTokenSecret: process.env.REFRESH_TOKEN_SECRET,
   },
 }));

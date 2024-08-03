@@ -1,36 +1,42 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { User } from './user.entity';
+import { User as UserEntity } from './user.entity';
 import { Repository } from 'typeorm';
-
-type UserData = {
-  socialId: string;
-  provider: 'kakao' | 'naver';
-  nickname: string;
-  email?: string;
-};
 
 @Injectable()
 export class UsersService {
-  constructor(
-    @InjectRepository(User) private readonly userRepository: Repository<User>,
-  ) {}
+  constructor(@InjectRepository(UserEntity) private readonly userRepository: Repository<UserEntity>) {}
 
-  async validateUser({ provider, socialId, nickname, email }: UserData) {
-    let user = await this.userRepository.findOne({
-      where: { provider, socialId },
+  async findUserByProvider(param: Pick<UserEntity, 'provider' | 'providerId'>) {
+    return await this.userRepository.findOne({
+      where: {
+        provider: param.provider,
+        providerId: param.providerId,
+      },
     });
+  }
 
+  async findUserById(id: number) {
+    const user = await this.userRepository.findOne({ where: { id } });
+    return {
+      nickname: user.nickname,
+      profileImage: user.profileImage,
+    };
+  }
+
+  async findUserOrCreate(
+    param: Pick<UserEntity, 'provider' | 'providerId' | 'nickname' | 'profileImage'>,
+  ): Promise<UserEntity> {
+    let user = await this.findUserByProvider(param);
     if (!user) {
       user = await this.userRepository.create({
-        provider,
-        socialId,
-        nickname,
-        email,
+        nickname: param.nickname,
+        profileImage: param.profileImage,
+        provider: param.provider,
+        providerId: param.providerId,
       });
       await this.userRepository.save(user);
     }
-
     return user;
   }
 }
