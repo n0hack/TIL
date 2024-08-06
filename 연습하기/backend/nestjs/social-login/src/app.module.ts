@@ -7,6 +7,7 @@ import { AppService } from './app.service';
 import { User as UserEntity } from './users/user.entity';
 import { AuthModule } from './auth/auth.module';
 import authConfig from 'config/auth.config';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import authConfig from 'config/auth.config';
       }),
       inject: [ConfigService],
     }),
+    UsersModule,
     AuthModule,
     RedisModule,
   ],

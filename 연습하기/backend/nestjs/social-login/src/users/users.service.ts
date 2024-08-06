@@ -7,7 +7,17 @@ import { Repository } from 'typeorm';
 export class UsersService {
   constructor(@InjectRepository(UserEntity) private readonly userRepository: Repository<UserEntity>) {}
 
-  async findUserByProvider(param: Pick<UserEntity, 'provider' | 'providerId'>) {
+  async create(param: UserEntity) {
+    const user = await this.userRepository.create(param);
+    await this.userRepository.save(user);
+    return user;
+  }
+
+  async find(param: Partial<UserEntity>) {
+    return await this.userRepository.findOne({ where: { ...param } });
+  }
+
+  async findByProvider(param: Pick<UserEntity, 'provider' | 'providerId'>) {
     return await this.userRepository.findOne({
       where: {
         provider: param.provider,
@@ -16,26 +26,15 @@ export class UsersService {
     });
   }
 
-  async findUserById(id: number) {
+  async findById(id: number) {
     const user = await this.userRepository.findOne({ where: { id } });
-    return {
-      nickname: user.nickname,
-      profileImage: user.profileImage,
-    };
+    return user;
   }
 
-  async findUserOrCreate(
-    param: Pick<UserEntity, 'provider' | 'providerId' | 'nickname' | 'profileImage'>,
-  ): Promise<UserEntity> {
-    let user = await this.findUserByProvider(param);
+  async findUserOrCreate(param: UserEntity) {
+    let user = await this.findByProvider(param);
     if (!user) {
-      user = await this.userRepository.create({
-        nickname: param.nickname,
-        profileImage: param.profileImage,
-        provider: param.provider,
-        providerId: param.providerId,
-      });
-      await this.userRepository.save(user);
+      user = await this.create(param);
     }
     return user;
   }

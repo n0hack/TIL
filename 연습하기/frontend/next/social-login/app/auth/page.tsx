@@ -1,13 +1,7 @@
-import Header from '@/components/Header';
-import LoginButton from '@/components/LoginButton';
+import KakaoLoginButton from '@/components/KakaoLoginButton';
 
 const Page = () => {
-  return (
-    <div>
-      <Header />
-      <LoginButton />
-    </div>
-  );
+  return <KakaoLoginButton />;
 };
 
 export default Page;

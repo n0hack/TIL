@@ -1,20 +1,26 @@
 'use client';
 
-import Image from 'next/image';
 import React from 'react';
-import kakaoImage from '@/public/kakao_login.png';
 
 type LoginButtonProps = {};
 
 const LoginButton = ({}: LoginButtonProps) => {
-  const handleClick = () => {
+  const handleLogin = () => {
+    // // auth 페이지인지 체크
+    // if (window.location.pathname.includes('/auth')) {
+    //   return;
+    // }
+
     const currentUrl = window.location.href;
-    window.location.href = `http://localhost:4000/auth/kakao/login?redirect_uri=${currentUrl}`;
+    window.location.href = '/auth';
   };
 
   return (
-    <button onClick={handleClick}>
-      <Image src={kakaoImage} alt="로그인" priority />
+    <button
+      className="h-full flex items-center justify-center px-8 hover:bg-gray-100 transition font-medium"
+      onClick={handleLogin}
+    >
+      로그인
     </button>
   );
 };

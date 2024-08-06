@@ -1,32 +1,42 @@
-'use client';
-import Link from 'next/link';
+import { useEffect } from 'react';
 
-type HeaderProps = {};
+type HeaderProps = {
+  Component?: React.ReactNode;
+};
 
-const Header = ({}: HeaderProps) => {
+const Header = ({ Component }: HeaderProps) => {
   return (
-    <nav>
-      <ul className="flex gap-4">
-        <li>
-          <Link className="border rounded-md px-4 py-2 flex bg-purple-300 font-medium hover:bg-purple-400" href="/">
-            홈
-          </Link>
-        </li>
-        <li>
-          <Link className="border rounded-md px-4 py-2 flex bg-purple-300 font-medium hover:bg-purple-400" href="/test">
-            테스트
-          </Link>
-        </li>
-        <li>
-          <Link
-            className="border rounded-md px-4 py-2 flex bg-purple-300 font-medium hover:bg-purple-400"
-            href={`/auth`}
-          >
-            로그인
-          </Link>
-        </li>
-      </ul>
-    </nav>
+    <header className="h-16 w-full border-b flex px-8">
+      <nav className="h-full flex-1">
+        <ul className="flex h-full">
+          <li>
+            <a
+              className="h-full flex items-center justify-center px-8 hover:bg-gray-100 transition font-medium"
+              href="/"
+            >
+              홈
+            </a>
+          </li>
+          <li>
+            <a
+              className="h-full flex items-center justify-center px-8 hover:bg-gray-100 transition font-medium"
+              href="/mypost"
+            >
+              내가 쓴 글
+            </a>
+          </li>
+          <li>
+            <a
+              className="h-full flex items-center justify-center px-8 hover:bg-gray-100 transition font-medium"
+              href="/test"
+            >
+              테스트
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div className="h-full flex">{Component}</div>
+    </header>
   );
 };
 
