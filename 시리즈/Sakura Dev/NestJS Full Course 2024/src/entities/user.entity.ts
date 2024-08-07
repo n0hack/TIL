@@ -1,13 +1,4 @@
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  ManyToMany,
-  OneToMany,
-  PrimaryGeneratedColumn,
-  JoinColumn,
-  JoinTable,
-} from 'typeorm';
+import { Column, CreateDateColumn, Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn, JoinTable } from 'typeorm';
 import { Property } from './property.entity';
 
 @Entity()
