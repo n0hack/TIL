@@ -9,12 +9,15 @@ import {
   Post,
   Query,
   UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { PropertyService } from './property.service';
 import { CreatePropertyDto } from './dto/create-property.dto';
 import { ParseIdPipe } from './pipes/parse-id.pipe';
 import { ZodValidationPipe } from './pipes/zod-validation.pipe';
 import { createPropertySchema } from './dto/create-property-zod.dto';
+import { HeadersDto } from './dto/headers.dto';
+import { RequestHeader } from './pipes/request-header';
 
 @Controller('property')
 export class PropertyController {
@@ -44,8 +47,11 @@ export class PropertyController {
   }
 
   @Patch(':id')
-  update(@Param('id', ParseIdPipe) id: number, @Body() body: CreatePropertyDto) {
-    console.log(typeof id, id);
-    return body;
+  update(
+    @Param('id', ParseIdPipe) id: number,
+    @Body() body: CreatePropertyDto,
+    @RequestHeader(new ValidationPipe({ whitelist: true, validateCustomDecorators: true })) header: HeadersDto,
+  ) {
+    return header;
   }
 }
