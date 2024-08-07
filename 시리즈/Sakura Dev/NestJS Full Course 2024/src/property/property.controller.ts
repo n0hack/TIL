@@ -25,13 +25,15 @@ export class PropertyController {
 
   @Get()
   findAll() {
-    return 'All properties';
+    this.propertyService.findAll();
   }
 
   @Get(':id')
   findOne(@Param('id', ParseIntPipe) id, @Query('sort', ParseBoolPipe) sort) {
-    console.log(typeof id, typeof sort);
-    return id;
+    console.log(typeof id);
+    console.log(typeof sort);
+
+    return this.propertyService.findOne();
   }
 
   @Post()
@@ -40,18 +42,17 @@ export class PropertyController {
   create(
     // @Body(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }))
     @Body()
-    body: CreatePropertyDto,
+    dto: CreatePropertyDto,
   ) {
-    console.log(body);
-    return body;
+    return this.propertyService.create(dto);
   }
 
   @Patch(':id')
   update(
     @Param('id', ParseIdPipe) id: number,
-    @Body() body: CreatePropertyDto,
+    @Body() dto: CreatePropertyDto,
     @RequestHeader(new ValidationPipe({ whitelist: true, validateCustomDecorators: true })) header: HeadersDto,
   ) {
-    return header;
+    return this.propertyService.update(id, dto, header);
   }
 }
