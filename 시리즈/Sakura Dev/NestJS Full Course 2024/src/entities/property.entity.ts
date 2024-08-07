@@ -1,4 +1,4 @@
-import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToMany, ManyToOne, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { PropertyFeature } from './property-feature.entity';
 import { User } from './user.entity';
 
@@ -22,4 +22,7 @@ export class Property {
   @ManyToOne(() => User, (user) => user.properties, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'ownerId' })
   user: User;
+
+  @ManyToMany(() => User, (user) => user.likedProperties)
+  likedBy: User[];
 }
