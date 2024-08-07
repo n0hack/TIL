@@ -1,5 +1,6 @@
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { PropertyFeature } from './property-feature.entity';
+import { User } from './user.entity';
 
 @Entity()
 export class Property {
@@ -17,4 +18,8 @@ export class Property {
 
   @OneToOne(() => PropertyFeature, (propertyFeature) => propertyFeature.property, { cascade: true })
   propertyFeature: PropertyFeature;
+
+  @ManyToOne(() => User, (user) => user.properties, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'ownerId' })
+  user: User;
 }
