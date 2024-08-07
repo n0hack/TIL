@@ -40,11 +40,11 @@ export class PropertyService {
 
   async update(id: number, dto: UpdatePropertyDto) {
     const property = await this.findOne(id);
-    return await this.propertyRepo.update(property, dto);
+    return await this.propertyRepo.update({ id: property.id }, dto);
   }
 
   async delete(id: number) {
     const property = await this.findOne(id);
-    return await this.propertyRepo.delete(property);
+    return await this.propertyRepo.delete({ id: property.id });
   }
 }

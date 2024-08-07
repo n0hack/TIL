@@ -13,5 +13,8 @@ export default registerAs(
     database: 'nestjs-full-course',
     entities: [path.resolve(__dirname, '..') + '/**/*.entity{.ts,.js}'],
     synchronize: true,
+
+    migrationsRun: false,
+    migrations: [path.resolve(__dirname, '..') + '/**/migrations/*{.ts,.js}'],
   }),
 );
