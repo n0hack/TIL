@@ -9,6 +9,10 @@ import { Repository } from 'typeorm';
 export class UserService {
   constructor(@InjectRepository(User) private userRepo: Repository<User>) {}
 
+  async updateHashedRefreshToken(userId: number, hashedRefreshToken: string) {
+    return await this.userRepo.update({ id: userId }, { hashedRefreshToken });
+  }
+
   async create(createUserDto: CreateUserDto) {
     const user = await this.userRepo.create(createUserDto); // create를 사용하지 않고, 바로 save하면 트리거가 발생하지 않음
     return await this.userRepo.save(user);
@@ -27,7 +31,7 @@ export class UserService {
   async findOne(id: number) {
     return await this.userRepo.findOne({
       where: { id },
-      select: ['firstName', 'lastName', 'email'],
+      select: ['firstName', 'lastName', 'email', 'hashedRefreshToken'],
     });
   }
 
