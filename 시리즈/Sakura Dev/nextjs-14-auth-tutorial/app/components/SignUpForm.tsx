@@ -9,11 +9,16 @@ import {
   UserIcon,
 } from "@heroicons/react/20/solid";
 import { Button, Checkbox, Input, Link } from "@nextui-org/react";
-import React, { useReducer, useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import { z } from "zod";
 import validator from "validator";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import PasswordStrength from "./PasswordStrength";
+import { passwordStrength } from "check-password-strength";
+import { registerUser } from "@/lib/actions/authActions";
+import { toast } from "react-toastify";
+import prisma from "@/lib/prisma";
 
 const FormSchema = z
   .object({
@@ -58,14 +63,26 @@ const SignUpForm = () => {
   } = useForm<InputType>({
     resolver: zodResolver(FormSchema),
   });
+  const [passStrength, setPassStrength] = useState(0);
   const [isVisiblePass, toggleIsVisiblePass] = useReducer(
     (isVisible) => !isVisible,
     false
   );
 
   const saveUser: SubmitHandler<InputType> = async (data) => {
-    console.log({ data });
+    const { accepted, confirmPassword, ...user } = data;
+    try {
+      const result = await registerUser(user);
+      toast.success("The User Registered Successfully");
+    } catch (e) {
+      toast.error("An error occurred while registering the user");
+      console.error(e);
+    }
   };
+
+  useEffect(() => {
+    setPassStrength(passwordStrength(watch().password).id);
+  }, [watch().password]);
 
   return (
     <form
@@ -124,6 +141,7 @@ const SignUpForm = () => {
           )
         }
       />
+      <PasswordStrength passStrength={passStrength} />
       <Input
         isInvalid={!!errors.confirmPassword}
         errorMessage={errors.confirmPassword?.message}
