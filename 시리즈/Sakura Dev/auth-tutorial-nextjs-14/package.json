@@ -1,0 +1,41 @@
+{
+  "name": "auth-tutorial-nextjs-14",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@auth/prisma-adapter": "^2.4.2",
+    "@heroicons/react": "^2.1.5",
+    "@hookform/resolvers": "^3.9.0",
+    "@nextui-org/react": "^2.4.6",
+    "@prisma/client": "^5.18.0",
+    "bcrypt": "^5.1.1",
+    "framer-motion": "^11.3.24",
+    "mini-css-extract-plugin": "^2.9.0",
+    "next": "14.2.5",
+    "next-auth": "^4.24.7",
+    "prisma": "^5.18.0",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-hook-form": "^7.52.2",
+    "validator": "^13.12.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@types/validator": "^13.12.0",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.5",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
+  }
+}
