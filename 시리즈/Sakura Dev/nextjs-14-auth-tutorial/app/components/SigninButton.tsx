@@ -7,13 +7,11 @@ import { Button } from "@nextui-org/react";
 const SigninButton = () => {
   const { data: session } = useSession();
 
-  console.log(session);
-
   return (
     <div className="flex items-center gap-2">
       {session && session.user ? (
         <>
-          <p>{`${session.user.firstName} ${session.user.lastName}`}</p>
+          <Link href="/profile">{`${session.user.firstName} ${session.user.lastName}`}</Link>
           <Link className="text-sky-500 hover:text-sky-600 transition-colors" href={"/api/auth/signout"}>
             Sign Out
           </Link>
