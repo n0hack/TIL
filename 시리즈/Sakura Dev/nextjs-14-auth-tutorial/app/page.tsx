@@ -1,8 +1,7 @@
-import { Button } from '@nextui-org/react';
-import Image from 'next/image';
-import Appbar from './components/Appbar';
+import { Button } from "@nextui-org/react";
+import { sendMail } from "@/lib/mail";
 
-export default function Home() {
+export default async function Home() {
   return (
     <div>
       <Button>Click me</Button>
