@@ -35,6 +35,8 @@ export const authOptions: AuthOptions = {
 
         if (!isPasswordCorrect) throw new Error("비밀번호가 일치하지 않습니다.");
 
+        if (!user.emailVerified) throw new Error("이메일 인증부터 해주세요.");
+
         const { password, ...userWithoutPass } = user;
 
         return userWithoutPass;

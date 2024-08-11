@@ -2,6 +2,7 @@ import { log } from "console";
 import nodemailer from "nodemailer";
 import HandleBars from "handlebars";
 import { activationTemplate } from "./emailTemplates/activation";
+import { resetPasswordTemplate } from "./emailTemplates/resetPass";
 
 export async function sendMail({ to, subject, body }: { to: string; subject: string; body: string }) {
   const { SMTP_EMAIL, SMTP_GMAIL_PASS, SMTP_USER, SMTP_PASS } = process.env;
@@ -36,6 +37,13 @@ export async function sendMail({ to, subject, body }: { to: string; subject: str
 
 export function comipleActivationTemplate(name: string, url: string) {
   const template = HandleBars.compile(activationTemplate);
+  const htmlBody = template({ name, url });
+
+  return htmlBody;
+}
+
+export function comipleResetPassTemplate(name: string, url: string) {
+  const template = HandleBars.compile(resetPasswordTemplate);
   const htmlBody = template({ name, url });
 
   return htmlBody;
