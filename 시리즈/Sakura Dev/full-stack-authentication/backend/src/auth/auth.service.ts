@@ -5,6 +5,8 @@ import * as argon from 'argon2';
 import { JwtService } from '@nestjs/jwt';
 import { JwtPayload } from 'src/types/jwt';
 
+const EXPIRE_TIME = 20 * 1000;
+
 @Injectable()
 export class AuthService {
   constructor(
@@ -32,6 +34,7 @@ export class AuthService {
           expiresIn: '7d',
           secret: process.env.JWT_REFRESH,
         }),
+        expiresIn: new Date().setTime(new Date().getTime() + EXPIRE_TIME),
       },
     };
   }
@@ -67,6 +70,7 @@ export class AuthService {
           expiresIn: '7d',
           secret: process.env.JWT_REFRESH,
         }),
+        expiresIn: new Date().setTime(new Date().getTime() + EXPIRE_TIME),
       },
     };
   }
