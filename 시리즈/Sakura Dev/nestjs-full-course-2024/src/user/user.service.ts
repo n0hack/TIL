@@ -31,11 +31,15 @@ export class UserService {
   async findOne(id: number) {
     return await this.userRepo.findOne({
       where: { id },
-      select: ['firstName', 'lastName', 'email', 'hashedRefreshToken'],
+      select: ['id', 'firstName', 'lastName', 'email', 'hashedRefreshToken', 'role'],
     });
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
     return `This action updates a #${id} user`;
+  }
+
+  remove(id: number) {
+    return 'hi';
   }
 }
