@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import { db } from '@/lib/db';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -15,9 +14,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const user = await db.user.findMany({});
-  console.log(user);
-
   return (
     <html lang="en">
       <body className={inter.className}>{children}</body>
