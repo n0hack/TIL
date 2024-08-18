@@ -12,7 +12,21 @@ export default defineConfig({
 
   // Useful for theme customization
   theme: {
-    extend: {},
+    extend: {
+      tokens: {
+        colors: {
+          bliss: {
+            50: { value: '#c0392b' },
+            100: { value: '#3498db' },
+          },
+        },
+      },
+      semanticTokens: {
+        colors: {
+          primary: { value: '{colors.bliss.100}' },
+        },
+      },
+    },
   },
 
   // The output directory for your css system
