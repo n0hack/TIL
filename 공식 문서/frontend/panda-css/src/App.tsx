@@ -2,6 +2,7 @@ import React from 'react';
 import { css } from '../styled-system/css';
 import { Card } from './components/card';
 import { List } from './components/list';
+import { Button } from './components/button';
 
 const style = css({
   fontSize: '2xl',
@@ -36,6 +37,9 @@ function App() {
       <div data-loading className={css({ _loading: { color: 'red' } })}>
         안녕
       </div>
+      <Button size="small" color="primary" css={css({ color: 'red.400' })}>
+        클릭!
+      </Button>
     </React.Fragment>
   );
 }
