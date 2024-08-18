@@ -8,12 +8,16 @@ const style = css({
   '& span': {
     color: 'pink.400',
   },
+  desktop: {
+    color: 'blue',
+  },
 });
 
 function App() {
   return (
     <React.Fragment>
       <div className={style}>
+        <p className={css({ fontWeight: 700 })}>안녕</p>
         <p className={css({ color: 'primary' })}>Bliss River</p>
         <p className={css({ color: 'bliss.50' })}>Bliss Alizarin</p>
         <span>Span</span>

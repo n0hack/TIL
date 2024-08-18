@@ -13,6 +13,13 @@ export default defineConfig({
   // Useful for theme customization
   theme: {
     extend: {
+      breakpoints: {
+        sm: '640px',
+        md: '768px',
+        lg: '1044px',
+        xl: '1880px',
+        desktop: '1024px',
+      },
       tokens: {
         colors: {
           bliss: {
