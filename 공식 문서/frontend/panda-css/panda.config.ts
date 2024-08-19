@@ -35,6 +35,58 @@ export default defineConfig({
       },
     },
   },
+  patterns: {
+    extend: {
+      scrollable: {
+        description: 'A container that allows for scrolling',
+        defaultValues: {
+          direction: 'vertical',
+          hideScrollbar: true,
+        },
+        properties: {
+          // The direction of the scroll
+          direction: { type: 'enum', value: ['horizontal', 'vertical'] },
+          // Whether to hide the scrollbar
+          hideScrollbar: { type: 'boolean' },
+        },
+        // disallow the `overflow` property (in TypeScript)
+        blocklist: ['overflow'],
+        transform(props) {
+          const { direction, hideScrollbar, ...rest } = props;
+          return {
+            overflow: 'auto',
+            height: direction === 'horizontal' ? '100%' : 'auto',
+            width: direction === 'vertical' ? '100%' : 'auto',
+            scrollbarWidth: hideScrollbar ? 'none' : 'auto',
+            WebkitOverflowScrolling: 'touch',
+            '&::-webkit-scrollbar': {
+              display: hideScrollbar ? 'none' : 'auto',
+            },
+            ...rest,
+          };
+        },
+      },
+      lucidPattern: {
+        description: 'flex한 컨테이너를 만듭니다.',
+        properties: {
+          direction: { type: 'enum', value: ['row', 'column'] },
+        },
+        defaultValues: {
+          direction: 'row',
+        },
+        blocklist: ['direction'],
+        transform(props) {
+          const { direction, ...rest } = props;
+
+          return {
+            display: 'flex',
+            flexDirection: direction,
+            ...rest,
+          };
+        },
+      },
+    },
+  },
 
   // The output directory for your css system
   outdir: 'styled-system',

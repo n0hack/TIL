@@ -4,6 +4,7 @@ import { Card } from './components/card';
 import { List } from './components/list';
 import { Button } from './components/button';
 import { CustomComponent } from './components/custom-component';
+import { lucidPattern } from '../styled-system/patterns';
 
 const style = css({
   fontSize: '2xl',
@@ -42,6 +43,10 @@ function App() {
         클릭!
       </Button>
       <CustomComponent mt="4" test="hi" color="red" className="lucid" css={{ fontWeight: '700' }} />
+      <div className={lucidPattern({ direction: 'column' })}>
+        <p>hi</p>
+        <p>hi2</p>
+      </div>
     </React.Fragment>
   );
 }
