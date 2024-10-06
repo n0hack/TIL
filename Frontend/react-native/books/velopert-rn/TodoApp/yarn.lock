@@ -2065,6 +2065,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-native-community/async-storage@npm:^1.12.1":
+  version: 1.12.1
+  resolution: "@react-native-community/async-storage@npm:1.12.1"
+  dependencies:
+    deep-assign: ^3.0.0
+  peerDependencies:
+    react: ^16.8
+    react-native: ">=0.59"
+  checksum: 68b519eb9fc50899257878440fd49a500d4b35c3899311c56c672e779df6516f0760204f6c8edcb3e83398c61a775822996aac6974be4b55a04ad30448d8662d
+  languageName: node
+  linkType: hard
+
 "@react-native-community/cli-clean@npm:14.1.0":
   version: 14.1.0
   resolution: "@react-native-community/cli-clean@npm:14.1.0"
@@ -2622,6 +2634,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/react-native-vector-icons@npm:^6.4.18":
+  version: 6.4.18
+  resolution: "@types/react-native-vector-icons@npm:6.4.18"
+  dependencies:
+    "@types/react": "*"
+    "@types/react-native": ^0.70
+  checksum: 1ef458cb5e7a37f41eb400e3153940b1b152e4df76a7c06c7a47c712dbfe46e14b9999f04dde1bd074f338f850e161c6c925174ddea33386b74f8112c940065b
+  languageName: node
+  linkType: hard
+
+"@types/react-native@npm:^0.70":
+  version: 0.70.19
+  resolution: "@types/react-native@npm:0.70.19"
+  dependencies:
+    "@types/react": "*"
+  checksum: 79b504fa56340631079e7c20ea0d9412ec14147b76d0ce189f4403936f529ef1e6fd031383afab117846c5ae039123bcf3afc948bae4432269c6780282726f71
+  languageName: node
+  linkType: hard
+
 "@types/react-test-renderer@npm:^18.0.0":
   version: 18.3.0
   resolution: "@types/react-test-renderer@npm:18.3.0"
@@ -2867,31 +2898,6 @@ __metadata:
   checksum: 4f656b7b4672f2ce6e272f2427d8b0824ed11546a601d8d5412b9d7704e83db38a8d9f402ecdf2b9063fc164af842ad0ec4a55819f621ed7e7ea4d1efcc74524
   languageName: node
   linkType: hard
-
-"TodoApp@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "TodoApp@workspace:."
-  dependencies:
-    "@babel/core": ^7.20.0
-    "@babel/preset-env": ^7.20.0
-    "@babel/runtime": ^7.20.0
-    "@react-native/babel-preset": 0.75.4
-    "@react-native/eslint-config": 0.75.4
-    "@react-native/metro-config": 0.75.4
-    "@react-native/typescript-config": 0.75.4
-    "@types/react": ^18.2.6
-    "@types/react-test-renderer": ^18.0.0
-    babel-jest: ^29.6.3
-    eslint: ^8.19.0
-    jest: ^29.6.3
-    prettier: 2.8.8
-    react: 18.3.1
-    react-native: 0.75.4
-    react-native-safe-area-context: ^4.11.0
-    react-test-renderer: 18.3.1
-    typescript: 5.0.4
-  languageName: unknown
-  linkType: soft
 
 "abbrev@npm:^2.0.0":
   version: 2.0.0
@@ -3655,6 +3661,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"cliui@npm:^7.0.2":
+  version: 7.0.4
+  resolution: "cliui@npm:7.0.4"
+  dependencies:
+    string-width: ^4.2.0
+    strip-ansi: ^6.0.0
+    wrap-ansi: ^7.0.0
+  checksum: ce2e8f578a4813806788ac399b9e866297740eecd4ad1823c27fd344d78b22c5f8597d548adbcc46f0573e43e21e751f39446c5a5e804a12aace402b7a315d7f
+  languageName: node
+  linkType: hard
+
 "cliui@npm:^8.0.1":
   version: 8.0.1
   resolution: "cliui@npm:8.0.1"
@@ -3972,6 +3989,15 @@ __metadata:
     babel-plugin-macros:
       optional: true
   checksum: 045b595557b2a8ea2eb9b0b4623d764e9a87326486fe2b61191b4342ed93dc01245644d8a09f3108a50c0ee7965f1eedd92e4a3a503ed89ea8e810566ea27f9a
+  languageName: node
+  linkType: hard
+
+"deep-assign@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "deep-assign@npm:3.0.0"
+  dependencies:
+    is-obj: ^1.0.0
+  checksum: 9041ccc72ae1980f014d4b745d6135d8f0e71d60ac433397550789c27e6b4d14bc0de2af69777e09f97e1d0da3007a8d78de36f7bf9df931c9968b68fc9546ab
   languageName: node
   linkType: hard
 
@@ -4419,7 +4445,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-react-hooks@npm:^4.6.0":
+"eslint-plugin-react-hooks@npm:^4.6.0, eslint-plugin-react-hooks@npm:^4.6.2":
   version: 4.6.2
   resolution: "eslint-plugin-react-hooks@npm:4.6.2"
   peerDependencies:
@@ -5578,6 +5604,13 @@ __metadata:
   version: 7.0.0
   resolution: "is-number@npm:7.0.0"
   checksum: 456ac6f8e0f3111ed34668a624e45315201dff921e5ac181f8ec24923b99e9f32ca1a194912dc79d539c97d33dba17dc635202ff0b2cf98326f608323276d27a
+  languageName: node
+  linkType: hard
+
+"is-obj@npm:^1.0.0":
+  version: 1.0.1
+  resolution: "is-obj@npm:1.0.1"
+  checksum: 3ccf0efdea12951e0b9c784e2b00e77e87b2f8bd30b42a498548a8afcc11b3287342a2030c308e473e93a7a19c9ea7854c99a8832a476591c727df2a9c79796c
   languageName: node
   linkType: hard
 
@@ -7717,7 +7750,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.8.1":
+"prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
@@ -7803,6 +7836,21 @@ __metadata:
     react: "*"
     react-native: "*"
   checksum: 6d6af265ecf1b9cb45e042a335f2c5da472ad41eb5d4fda8e31a1607b344726f0f4f9501ef3a3a731cec3784ba93485b44cbdafbf5f13055caa130c703bbd307
+  languageName: node
+  linkType: hard
+
+"react-native-vector-icons@npm:^10.2.0":
+  version: 10.2.0
+  resolution: "react-native-vector-icons@npm:10.2.0"
+  dependencies:
+    prop-types: ^15.7.2
+    yargs: ^16.1.1
+  bin:
+    fa-upgrade.sh: bin/fa-upgrade.sh
+    fa5-upgrade: bin/fa5-upgrade.sh
+    fa6-upgrade: bin/fa6-upgrade.sh
+    generate-icon: bin/generate-icon.js
+  checksum: fda930df4e63f12533268f5b339ebe4c77c691eae43503328466b3087ed868a06a4593fd246e75ac6b5ec955543eec35608c7922191bdcc3b3a94ed7f3575ef0
   languageName: node
   linkType: hard
 
@@ -8901,6 +8949,35 @@ __metadata:
   languageName: node
   linkType: hard
 
+"todo-app@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "todo-app@workspace:."
+  dependencies:
+    "@babel/core": ^7.20.0
+    "@babel/preset-env": ^7.20.0
+    "@babel/runtime": ^7.20.0
+    "@react-native-community/async-storage": ^1.12.1
+    "@react-native/babel-preset": 0.75.4
+    "@react-native/eslint-config": 0.75.4
+    "@react-native/metro-config": 0.75.4
+    "@react-native/typescript-config": 0.75.4
+    "@types/react": ^18.2.6
+    "@types/react-native-vector-icons": ^6.4.18
+    "@types/react-test-renderer": ^18.0.0
+    babel-jest: ^29.6.3
+    eslint: ^8.19.0
+    eslint-plugin-react-hooks: ^4.6.2
+    jest: ^29.6.3
+    prettier: 2.8.8
+    react: 18.3.1
+    react-native: 0.75.4
+    react-native-safe-area-context: ^4.11.0
+    react-native-vector-icons: ^10.2.0
+    react-test-renderer: 18.3.1
+    typescript: 5.0.4
+  languageName: unknown
+  linkType: soft
+
 "toidentifier@npm:1.0.1":
   version: 1.0.1
   resolution: "toidentifier@npm:1.0.1"
@@ -9477,6 +9554,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"yargs-parser@npm:^20.2.2":
+  version: 20.2.9
+  resolution: "yargs-parser@npm:20.2.9"
+  checksum: 8bb69015f2b0ff9e17b2c8e6bfe224ab463dd00ca211eece72a4cd8a906224d2703fb8a326d36fdd0e68701e201b2a60ed7cf81ce0fd9b3799f9fe7745977ae3
+  languageName: node
+  linkType: hard
+
 "yargs-parser@npm:^21.1.1":
   version: 21.1.1
   resolution: "yargs-parser@npm:21.1.1"
@@ -9500,6 +9584,21 @@ __metadata:
     y18n: ^4.0.0
     yargs-parser: ^18.1.2
   checksum: 40b974f508d8aed28598087720e086ecd32a5fd3e945e95ea4457da04ee9bdb8bdd17fd91acff36dc5b7f0595a735929c514c40c402416bbb87c03f6fb782373
+  languageName: node
+  linkType: hard
+
+"yargs@npm:^16.1.1":
+  version: 16.2.0
+  resolution: "yargs@npm:16.2.0"
+  dependencies:
+    cliui: ^7.0.2
+    escalade: ^3.1.1
+    get-caller-file: ^2.0.5
+    require-directory: ^2.1.1
+    string-width: ^4.2.0
+    y18n: ^5.0.5
+    yargs-parser: ^20.2.2
+  checksum: b14afbb51e3251a204d81937c86a7e9d4bdbf9a2bcee38226c900d00f522969ab675703bee2a6f99f8e20103f608382936034e64d921b74df82b63c07c5e8f59
   languageName: node
   linkType: hard
 

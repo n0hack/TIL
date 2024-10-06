@@ -4,19 +4,21 @@ import {
   Keyboard,
   Platform,
   StyleSheet,
-  Text,
   TextInput,
   TouchableNativeFeedback,
   TouchableOpacity,
   View,
 } from 'react-native';
 
-type AddTodoProps = {};
+type AddTodoProps = {
+  onInsert: (text: string) => void;
+};
 
-const AddTodo = ({}: AddTodoProps) => {
+const AddTodo = ({ onInsert }: AddTodoProps) => {
   const [text, setText] = useState('');
 
   const handlePress = () => {
+    onInsert(text);
     setText('');
     Keyboard.dismiss();
   };
