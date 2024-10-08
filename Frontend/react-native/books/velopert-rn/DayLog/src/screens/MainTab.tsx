@@ -3,6 +3,7 @@ import FeedsScreen from './FeedsScreen';
 import SearchScreen from './SearchScreen';
 import CalendarScreen from './CalendarScreen';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import SearchHeader from '../components/SearchHeader';
 
 export type MainTabParamList = {
   Feeds: undefined;
@@ -28,12 +29,16 @@ const MainTab = ({}: MainTabProps) => {
       <Tab.Screen
         name="Calendar"
         component={CalendarScreen}
-        options={{ tabBarIcon: ({ color, size }) => <Icon name="event" size={size} color={color} /> }}
+        options={{ title: '달력', tabBarIcon: ({ color, size }) => <Icon name="event" size={size} color={color} /> }}
       />
       <Tab.Screen
         name="Search"
         component={SearchScreen}
-        options={{ tabBarIcon: ({ color, size }) => <Icon name="search" size={size} color={color} /> }}
+        options={{
+          title: '검색',
+          tabBarIcon: ({ color, size }) => <Icon name="search" size={size} color={color} />,
+          headerTitle: () => <SearchHeader />,
+        }}
       />
     </Tab.Navigator>
   );

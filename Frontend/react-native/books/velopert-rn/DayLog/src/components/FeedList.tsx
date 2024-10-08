@@ -6,9 +6,10 @@ import { useState } from 'react';
 type FeedListProps = {
   logs: Log[];
   onScrolledToBottom?: (isBottom: boolean) => void;
+  ListHeaderComponent?: React.ReactElement;
 };
 
-const FeedList = ({ logs, onScrolledToBottom }: FeedListProps) => {
+const FeedList = ({ logs, onScrolledToBottom, ListHeaderComponent }: FeedListProps) => {
   const [refreshing, setRefreshing] = useState(false);
 
   const handleRefresh = async () => {
@@ -43,6 +44,7 @@ const FeedList = ({ logs, onScrolledToBottom }: FeedListProps) => {
           onScrolledToBottom(false);
         }
       }}
+      ListHeaderComponent={ListHeaderComponent}
     />
   );
 };

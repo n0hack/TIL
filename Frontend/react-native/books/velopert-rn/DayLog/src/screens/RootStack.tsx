@@ -1,10 +1,11 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { MainTab } from './MainTab';
 import WriteScreen from './WriteScreen';
+import { Log } from '../contexts/LogContext';
 
 export type RootStackParamList = {
   MainTab: undefined;
-  Write: undefined;
+  Write?: { log: Log };
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
