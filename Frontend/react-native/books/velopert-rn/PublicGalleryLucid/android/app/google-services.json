@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "431675018666",
+    "project_id": "public-gallery-fcc05",
+    "storage_bucket": "public-gallery-fcc05.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:431675018666:android:8b2cc48c91e9d51fb8afd3",
+        "android_client_info": {
+          "package_name": "com.publicgallerylucid"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGzt1_-lWpeaJhmU8f9X5NN9TejDviPl4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
