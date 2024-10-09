@@ -16,6 +16,8 @@
 		8F2ECE77E311C6DD3123AF5A /* Pods_PublicGalleryLucid_PublicGalleryLucidTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27F20DC663BB5C94F65BA686 /* Pods_PublicGalleryLucid_PublicGalleryLucidTests.framework */; };
 		A11F54BC668986761A753F2F /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = BDBB2CD02E4957A2CA7ED826 /* PrivacyInfo.xcprivacy */; };
 		B5E02C442CB60986003B0276 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B5E02C432CB60986003B0276 /* GoogleService-Info.plist */; };
+		7BBED451BCEC4D5AB7FBE925 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22D49FB5163642E495B5A701 /* BootSplash.storyboard */; };
+		F5C77462B207412F96BB3585 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E5B92DC16BB43B58D089B52 /* Colors.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		B5E02C432CB60986003B0276 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BDBB2CD02E4957A2CA7ED826 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = PublicGalleryLucid/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		22D49FB5163642E495B5A701 /* BootSplash.storyboard */ = {isa = PBXFileReference; name = "BootSplash.storyboard"; path = "PublicGalleryLucid/BootSplash.storyboard"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		3E5B92DC16BB43B58D089B52 /* Colors.xcassets */ = {isa = PBXFileReference; name = "Colors.xcassets"; path = "PublicGalleryLucid/Colors.xcassets"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = folder.assetcatalog; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +103,8 @@
 				13B07FB71A68108700A75B9A /* main.m */,
 				13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */,
 				BDBB2CD02E4957A2CA7ED826 /* PrivacyInfo.xcprivacy */,
+				22D49FB5163642E495B5A701 /* BootSplash.storyboard */,
+				3E5B92DC16BB43B58D089B52 /* Colors.xcassets */,
 			);
 			name = PublicGalleryLucid;
 			sourceTree = "<group>";
@@ -254,6 +260,8 @@
 				B5E02C442CB60986003B0276 /* GoogleService-Info.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				A11F54BC668986761A753F2F /* PrivacyInfo.xcprivacy in Resources */,
+				7BBED451BCEC4D5AB7FBE925 /* BootSplash.storyboard in Resources */,
+				F5C77462B207412F96BB3585 /* Colors.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

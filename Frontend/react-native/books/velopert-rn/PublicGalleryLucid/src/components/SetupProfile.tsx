@@ -2,7 +2,6 @@ import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { useContext, useState } from 'react';
 import {
   ActivityIndicator,
-  Image,
   Platform,
   Pressable,
   StyleSheet,
@@ -19,6 +18,7 @@ import {
 } from 'react-native-image-picker';
 import { UserContext } from '../contexts/UserContext';
 import storage from '@react-native-firebase/storage';
+import { Avatar } from './Avatar';
 
 type SetupProfileProps = {};
 
@@ -88,13 +88,9 @@ const SetupProfile = ({}: SetupProfileProps) => {
   return (
     <View style={styles.container}>
       <Pressable onPress={onSelectImage}>
-        <Image
-          style={styles.circle}
-          source={
-            response
-              ? { uri: response.assets?.[0].uri }
-              : require('../assets/user.png')
-          }
+        <Avatar
+          source={response ? { uri: response.assets?.[0].uri } : undefined}
+          size={128}
         />
       </Pressable>
       <View style={styles.form}>
@@ -124,12 +120,6 @@ const styles = StyleSheet.create({
     marginTop: 24,
     paddingHorizontal: 16,
     width: '100%',
-  },
-  circle: {
-    backgroundColor: '#cdcdcd',
-    borderRadius: 64,
-    width: 128,
-    height: 128,
   },
   form: {
     marginTop: 16,
