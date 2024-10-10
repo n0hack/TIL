@@ -1,12 +1,5 @@
-//
-//  RCTAlertModule.h
-//  NativeModuleWorkshop
-//
-//  Created by Lucid on 10/10/24.
-//
+#import <UIKit/UIKit.h>
+#import <React/RCTBridgeModule.h>
 
-#ifndef RCTAlertModule_h
-#define RCTAlertModule_h
-
-
-#endif /* RCTAlertModule_h */
+@interface RCTAlertModule: NSObject <RCTBridgeModule>
+@end
