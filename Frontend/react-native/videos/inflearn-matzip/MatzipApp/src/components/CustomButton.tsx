@@ -1,12 +1,5 @@
-import {
-  Dimensions,
-  Pressable,
-  PressableProps,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
-import { colors } from '../constants';
+import { Dimensions, Pressable, PressableProps, StyleSheet, Text, View } from 'react-native';
+import { colors } from '@/constants';
 
 interface CustomButtonProps extends PressableProps {
   label: string;
@@ -17,13 +10,7 @@ interface CustomButtonProps extends PressableProps {
 
 const deviceHeight = Dimensions.get('screen').height;
 
-const CustomButton = ({
-  label,
-  variant = 'filled',
-  size = 'large',
-  inValid = false,
-  ...rest
-}: CustomButtonProps) => {
+const CustomButton = ({ label, variant = 'filled', size = 'large', inValid = false, ...rest }: CustomButtonProps) => {
   return (
     <Pressable
       disabled={inValid}
