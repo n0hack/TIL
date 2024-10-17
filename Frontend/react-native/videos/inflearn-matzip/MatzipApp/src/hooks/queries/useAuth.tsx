@@ -1,11 +1,12 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { getAccessToken, getProfile, logout, postLogin, postSignup } from '@/api/auth';
+import { getAccessToken, getProfile, logout, postLogin, postSignup, ResponseProfile } from '@/api/auth';
 import { UseMutationCustomOptions, UseQueryCustomOptions } from '@/types/common';
 import { removeEncryptStorage, setEncryptStorage } from '@/utils';
 import { removeHeader, setHeader } from '@/utils/header';
 import { useEffect } from 'react';
 import queryClient from '@/api/queryClient';
 import { numbers, queryKeys, storageKeys } from '@/constants';
+import { Profile } from '@/types/domain';
 
 function useSignup(mutationOptions?: UseMutationCustomOptions) {
   return useMutation({
@@ -59,7 +60,7 @@ function useGetRefreshToken() {
   return { isSuccess, isError };
 }
 
-function useGetProfile(queryOptions?: UseQueryCustomOptions) {
+function useGetProfile(queryOptions?: UseQueryCustomOptions<ResponseProfile>) {
   return useQuery({
     queryKey: [queryKeys.AUTH, queryKeys.GET_PROFILE],
     queryFn: getProfile,

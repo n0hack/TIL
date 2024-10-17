@@ -15,6 +15,8 @@
 		66BAC419706B454B27FA4ACD /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = B2A017E0FB6D07D18F9DD9FB /* PrivacyInfo.xcprivacy */; };
 		7699B88040F8A987B510C191 /* libPods-MatzipApp-MatzipAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-MatzipApp-MatzipAppTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		B5DDA6922CC1A71F00A60CDA /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B5DDA6912CC1A71F00A60CDA /* Config.xcconfig */; };
+		B5DDA6932CC1A71F00A60CDA /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = B5DDA6912CC1A71F00A60CDA /* Config.xcconfig */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,7 +47,8 @@
 		5DCACB8F33CDC322A6C60F78 /* libPods-MatzipApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MatzipApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = MatzipApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-MatzipApp-MatzipAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MatzipApp-MatzipAppTests.release.xcconfig"; path = "Target Support Files/Pods-MatzipApp-MatzipAppTests/Pods-MatzipApp-MatzipAppTests.release.xcconfig"; sourceTree = "<group>"; };
-		B2A017E0FB6D07D18F9DD9FB /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = MatzipApp/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		B2A017E0FB6D07D18F9DD9FB /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = MatzipApp/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		B5DDA6912CC1A71F00A60CDA /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -89,6 +92,7 @@
 		13B07FAE1A68108700A75B9A /* MatzipApp */ = {
 			isa = PBXGroup;
 			children = (
+				B5DDA6912CC1A71F00A60CDA /* Config.xcconfig */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -239,6 +243,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5DDA6932CC1A71F00A60CDA /* Config.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,6 +251,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5DDA6922CC1A71F00A60CDA /* Config.xcconfig in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				66BAC419706B454B27FA4ACD /* PrivacyInfo.xcprivacy in Resources */,
@@ -519,6 +525,7 @@
 		};
 		83CBBA201A601CBA00E9B192 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B5DDA6912CC1A71F00A60CDA /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CC = "";
@@ -603,6 +610,7 @@
 		};
 		83CBBA211A601CBA00E9B192 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B5DDA6912CC1A71F00A60CDA /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CC = "";
