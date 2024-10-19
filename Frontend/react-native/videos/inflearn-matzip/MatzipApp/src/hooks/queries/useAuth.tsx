@@ -6,7 +6,6 @@ import { removeHeader, setHeader } from '@/utils/header';
 import { useEffect } from 'react';
 import queryClient from '@/api/queryClient';
 import { numbers, queryKeys, storageKeys } from '@/constants';
-import { Profile } from '@/types/domain';
 
 function useSignup(mutationOptions?: UseMutationCustomOptions) {
   return useMutation({
