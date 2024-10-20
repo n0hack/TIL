@@ -23,6 +23,18 @@ export const useImagePicker = ({ initialImages = [] }: useImagePickerProps) => {
     setImageUris(prev => [...prev, ...uris.map(uri => ({ uri }))]);
   };
 
+  const deleteImageUri = (uri: string) => {
+    const newImageUris = imageUris.filter(imageUri => imageUri.uri !== uri);
+    setImageUris(newImageUris);
+  };
+
+  const changeImageUrisOrder = (fromIndex: number, toIndex: number) => {
+    const copyImageUris = [...imageUris];
+    const [removedImage] = copyImageUris.splice(fromIndex, 1);
+    copyImageUris.splice(toIndex, 0, removedImage);
+    setImageUris(copyImageUris);
+  };
+
   const handleChange = () => {
     ImageCropPicker.openPicker({
       mediaType: 'photo',
@@ -49,5 +61,10 @@ export const useImagePicker = ({ initialImages = [] }: useImagePickerProps) => {
       });
   };
 
-  return { imageUris, handleChange };
+  return {
+    imageUris,
+    handleChange,
+    delete: deleteImageUri,
+    changeOrder: changeImageUrisOrder,
+  };
 };
