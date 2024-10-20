@@ -18,7 +18,7 @@ import { MarkerColor } from '@/types/domain';
 import { getDateWithSeperator, validateAddPost } from '@/utils';
 import { StackScreenProps } from '@react-navigation/stack';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { Image, Platform, SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
+import { SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import Octicons from 'react-native-vector-icons/Octicons';
 
@@ -65,7 +65,7 @@ const AddPostScreen = ({ navigation, route }: AddPostScreenProps) => {
       description: addPost.values.description,
       color: markerColor,
       score,
-      imageUris: [],
+      imageUris: imagePicker.imageUris,
       address,
     };
     createPost.mutate(
@@ -80,6 +80,7 @@ const AddPostScreen = ({ navigation, route }: AddPostScreenProps) => {
     address,
     createPost,
     date,
+    imagePicker.imageUris,
     location,
     markerColor,
     navigation,
