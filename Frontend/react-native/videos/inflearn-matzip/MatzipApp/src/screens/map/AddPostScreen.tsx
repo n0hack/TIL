@@ -1,20 +1,24 @@
 import { AddPostHeaderRight } from '@/components/AddPostHeaderRight';
 import { CustomButton } from '@/components/CustomButton';
 import { DatePickerOptions } from '@/components/DatePickerOptions';
+import { ImageInput } from '@/components/ImageInput';
 import { InputField } from '@/components/InputField';
 import { MarkerSelector } from '@/components/MarkerSelector';
+import { PreviewImageList } from '@/components/PreviewImageList';
 import { ScoreInput } from '@/components/ScoreInput';
 import { colors, mapNavigations } from '@/constants';
 import { useMutateCreatePost } from '@/hooks/queries/useMutateCreatePost';
 import { useForm } from '@/hooks/useForm';
 import { useGetAddress } from '@/hooks/useGetAddress';
+import { useImagePicker } from '@/hooks/useImagePicker';
 import { useModal } from '@/hooks/useModal';
+import { usePermission } from '@/hooks/usePermission';
 import { MapStackParamList } from '@/navigations/stack/MapStackNavigator';
 import { MarkerColor } from '@/types/domain';
 import { getDateWithSeperator, validateAddPost } from '@/utils';
 import { StackScreenProps } from '@react-navigation/stack';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
+import { Image, Platform, SafeAreaView, ScrollView, StyleSheet, View } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import Octicons from 'react-native-vector-icons/Octicons';
 
@@ -34,6 +38,8 @@ const AddPostScreen = ({ navigation, route }: AddPostScreenProps) => {
   const [date, setDate] = useState(new Date());
   const [isPicked, setIsPicked] = useState(false);
   const dateOption = useModal();
+  const imagePicker = useImagePicker({ initialImages: [] });
+  usePermission('PHOTO');
 
   const handleSelectMarker = (name: MarkerColor) => {
     setMarkerColor(name);
@@ -117,6 +123,10 @@ const AddPostScreen = ({ navigation, route }: AddPostScreenProps) => {
           />
           <MarkerSelector markerColor={markerColor} onPressMarker={handleSelectMarker} score={score} />
           <ScoreInput score={score} onChangeScore={handleChangeScore} />
+          <View style={styles.imagesViewer}>
+            <ImageInput onChange={imagePicker.handleChange} />
+            <PreviewImageList imageUris={imagePicker.imageUris} />
+          </View>
           <DatePickerOptions
             date={date}
             isVisible={dateOption.isVisible}
@@ -141,6 +151,9 @@ const styles = StyleSheet.create({
   inputContainer: {
     gap: 20,
     marginBottom: 20,
+  },
+  imagesViewer: {
+    flexDirection: 'row',
   },
 });
 

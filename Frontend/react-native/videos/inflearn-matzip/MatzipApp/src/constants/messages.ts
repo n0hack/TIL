@@ -15,4 +15,8 @@ export const alerts = {
     TITLE: '추가할 위치를 선택해주세요.',
     DESCRIPTION: '지도를 길게 누르면 위치가 선택됩니다.',
   },
+  ADD_IMAGE_LIMIT: {
+    TITLE: '이미지 개수 초과',
+    DESCRIPTION: '추가 가능한 이미지는 최대 5개입니다.',
+  },
 } as const;

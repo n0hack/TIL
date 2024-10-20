@@ -88,6 +88,7 @@ android {
         manifestPlaceholders = [
             GOOGLE_MAP_API_KEY: "${GOOGLE_MAP_API_KEY}"
         ]
+        vectorDrawables.useSupportLibrary = true
     }
     signingConfigs {
         debug {
