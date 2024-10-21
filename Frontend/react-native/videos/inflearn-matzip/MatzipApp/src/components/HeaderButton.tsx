@@ -2,7 +2,7 @@ import { colors } from '@/constants';
 import { Pressable, PressableProps, StyleSheet, Text } from 'react-native';
 
 type HeaderButtonProps = PressableProps & {
-  labelText: string;
+  labelText?: string;
   icon?: React.ReactNode;
   hasError?: boolean;
 };
