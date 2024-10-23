@@ -1,0 +1,21 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { languages } from 'src/i18n/ui';
+import { getLangFromUrl, useTranslations } from 'src/i18n/utils';
+import Base from 'src/layouts/Base.astro';
+
+export const getStaticPaths = (() => {
+  return Object.entries(languages).map(([k]) => {
+    return {
+      params: { lang: k },
+    };
+  });
+}) satisfies GetStaticPaths;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang, 'home');
+---
+
+<Base lang={lang}>
+  <h1>{t('title')}</h1>
+</Base>

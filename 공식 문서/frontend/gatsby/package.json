@@ -1,0 +1,44 @@
+{
+  "name": "gatsby",
+  "version": "1.0.0",
+  "private": true,
+  "description": "gatsby",
+  "author": "Lucid",
+  "keywords": [
+    "gatsby"
+  ],
+  "scripts": {
+    "dev": "yarn clean && gatsby develop",
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "gatsby": "^5.12.4",
+    "gatsby-plugin-fusejs": "^2.0.2",
+    "gatsby-plugin-image": "^3.12.0",
+    "gatsby-plugin-sass": "^6.12.0",
+    "gatsby-plugin-sharp": "^5.12.0",
+    "gatsby-remark-copy-linked-files": "^6.12.0",
+    "gatsby-remark-highlight-code": "^3.3.0",
+    "gatsby-remark-images": "^7.12.0",
+    "gatsby-remark-prismjs": "^7.12.0",
+    "gatsby-source-filesystem": "^5.12.0",
+    "gatsby-transformer-remark": "^6.12.0",
+    "gatsby-transformer-sharp": "^5.12.0",
+    "prism-themes": "^1.9.0",
+    "prismjs": "^1.29.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-use-fusejs": "^2.0.2",
+    "sass": "^1.68.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.3.3",
+    "@types/react": "^18.2.14",
+    "@types/react-dom": "^18.2.6",
+    "typescript": "^5.1.6"
+  }
+}

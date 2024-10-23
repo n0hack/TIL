@@ -1,0 +1,26 @@
+---
+import { getCollection } from 'astro:content';
+
+const allNewsLetters = await getCollection('newsletter');
+
+console.log(allNewsLetters);
+---
+
+<head>
+  <meta charset="utf-8" />
+</head>
+<body>
+  <h1>Newsletters</h1>
+  <ul>
+    {
+      allNewsLetters.map((newsletter) => (
+        <li>
+          <a href={`/mdx-posts/${newsletter.slug}`}>
+            <img src={newsletter.data.image.src} />
+            {newsletter.data.title}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</body>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>GOOGLE_MAP_API_KEY</key>
+	<string>${GOOGLE_MAP_API_KEY}</string>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>MatzipApp</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(MARKETING_VERSION)</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<false/>
+		<key>NSAllowsLocalNetworking</key>
+		<true/>
+	</dict>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>위치 확인을 위해서 위치 접근 권한 동의가 필요합니다. 동의하면, 현재 위치의 장소를 등록하는데 사용됩니다. 설정에서 이를 변경할 수 있습니다. 위치는 서버에
+			전송되지 않습니다.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>위치 확인을 위해서 위치 접근 권한 동의가 필요합니다. 동의하면, 현재 위치의 장소를 등록하는데 사용됩니다. 설정에서 이를 변경할 수 있습니다. 위치는 서버에
+			전송되지 않습니다.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>위치 확인을 위해서 위치 접근 권한 동의가 필요합니다. 동의하면, 현재 위치의 장소를 등록하는데 사용됩니다. 설정에서 이를 변경할 수 있습니다. 위치는 서버에
+			전송되지 않습니다.</string>
+	<key>NSMotionUsageDiscription</key>
+	<string>위치 확인을 위해서 위치 접근 권한 동의가 필요합니다. 동의하면, 현재 위치의 장소를 등록하는데 사용됩니다. 설정에서 이를 변경할 수 있습니다. 위치는 서버에
+			전송되지 않습니다.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>게시글 등록 시 사진 선택을 위해 라이브러리 접근 권한이 필요합니다.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>게시글 등록 시 사진 선택을 위해 라이브러리 접근 권한이 필요합니다.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>게시글 등록 시 사진 촬영을 위해 카메라 접근 권한이 필요합니다.</string>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>arm64</string>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>AntDesign.ttf</string>
+		<string>Entypo.ttf</string>
+		<string>EvilIcons.ttf</string>
+		<string>Feather.ttf</string>
+		<string>FontAwesome.ttf</string>
+		<string>FontAwesome5_Brands.ttf</string>
+		<string>FontAwesome5_Regular.ttf</string>
+		<string>FontAwesome5_Solid.ttf</string>
+		<string>FontAwesome6_Brands.ttf</string>
+		<string>FontAwesome6_Regular.ttf</string>
+		<string>FontAwesome6_Solid.ttf</string>
+		<string>Foundation.ttf</string>
+		<string>Ionicons.ttf</string>
+		<string>MaterialIcons.ttf</string>
+		<string>MaterialCommunityIcons.ttf</string>
+		<string>SimpleLineIcons.ttf</string>
+		<string>Octicons.ttf</string>
+		<string>Zocial.ttf</string>
+		<string>Fontisto.ttf</string>
+	</array>
+</dict>
+</plist>

@@ -1,0 +1,33 @@
+---
+import { getCollection } from 'astro:content';
+
+// import { unified } from 'unified';
+// import remarkParse from 'remark-parse';
+// import remarkRehype from 'remark-rehype';
+// import rehypeStringify from 'rehype-stringify';
+// import rehypeDocument from 'rehype-document';
+
+// const file = await unified()
+//   .use(remarkParse)
+//   .use(remarkRehype)
+//   .use(rehypeDocument, { title: '안녕!' })
+//   .use(rehypeStringify)
+//   .process('# Hello World!');
+// console.log(file);
+// console.log(files[0].rawContent);
+const contents = await getCollection('blog');
+const content = contents[0];
+const { Content } = await content.render();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <Content />
+  </body>
+</html>

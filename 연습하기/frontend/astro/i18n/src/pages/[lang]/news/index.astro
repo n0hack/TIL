@@ -1,0 +1,52 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
+import { languages } from 'src/i18n/ui';
+import { getLangFromUrl, useTranslations } from 'src/i18n/utils';
+import Base from 'src/layouts/Base.astro';
+
+export const getStaticPaths = (async () => {
+  const collections = await getCollection('news');
+  console.log(collections);
+
+  return Object.entries(languages).map(([k]) => {
+    return {
+      params: { lang: k },
+      props: { contents: collections.filter((c) => c.id.split('/')[0] === k) },
+    };
+  });
+}) satisfies GetStaticPaths;
+
+const { contents } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang, 'news');
+---
+
+<Base lang={lang}>
+  <h1>{t('title')}</h1>
+  <ul>
+    {
+      contents.map((content) => (
+        <li>
+          <a href={`/${lang}/news${content.slug.split(lang)[1]}`}>
+            <img src={content.data.thumbnail.src} alt={content.data.title} />
+            {content.data.title}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</Base>
+
+<style>
+  ul {
+    display: flex;
+  }
+  a {
+    display: flex;
+    flex-direction: column;
+  }
+  img {
+    width: 320px;
+  }
+</style>

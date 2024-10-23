@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyBo_VxE26XuxoJM8EYSa2JfFOyHAj-ffOQ</string>
+	<key>GCM_SENDER_ID</key>
+	<string>431675018666</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>org.reactjs.native.example.PublicGalleryLucid</string>
+	<key>PROJECT_ID</key>
+	<string>public-gallery-fcc05</string>
+	<key>STORAGE_BUCKET</key>
+	<string>public-gallery-fcc05.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:431675018666:ios:f25ff795f2d65707b8afd3</string>
+</dict>
+</plist>
