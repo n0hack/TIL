@@ -1,0 +1,24 @@
+.skeleton {
+  width: 100px;
+  height: 100px;
+  background-color: rgba(0, 0, 0, 0.1);
+  margin-bottom: 12px;
+  animation: load infinite 3s;
+}
+
+.skeleton img {
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes load {
+  0% {
+    background: rgba(0, 0, 0, 0.05);
+  }
+  50% {
+    background: rgba(0, 0, 0, 0.1);
+  }
+  100% {
+    background: rgba(0, 0, 0, 0.05);
+  }
+}
