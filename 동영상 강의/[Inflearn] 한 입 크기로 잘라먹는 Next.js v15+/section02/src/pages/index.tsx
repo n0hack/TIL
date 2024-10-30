@@ -4,9 +4,26 @@ import { SearchableLayout } from '@/components/searchable-layout';
 import styles from './index.module.css';
 import books from '@/mock/books.json';
 import { BookItem } from '@/components/book-item';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
+
+export const getServerSideProps = (async () => {
+  // 컴포넌트보다 먼저 실행되어서, 컴포넌트에 필요한 데이터를 불러오는 함수
+  // 오직 서버 측에서 단 한 번만 실행된다.
+  const data = 'hello';
+
+  return {
+    props: {
+      data,
+    },
+  };
+}) satisfies GetServerSideProps<{ data: string }>;
 
 // 개발 모드로 켰을 때는, 프리페칭이 동작하지 않는다.
-export default function Home() {
+export default function Home({ data }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  // 컴포넌트 또한 서버에서 한 번 실행되기 때문에, 조건 없이 window.location 등을 사용하게 되면 에러가 발생한다.
+  // window가 undefined이기 때문인데, 이를 해결하는 방법 중 하나로 클라이언트에서만 실행되는 useEffect를 이용할 수 있다.
+  console.log(data);
+
   return (
     <div className={styles.container}>
       <section>
