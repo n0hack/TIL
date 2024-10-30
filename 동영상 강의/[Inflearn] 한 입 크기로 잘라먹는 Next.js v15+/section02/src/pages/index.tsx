@@ -2,14 +2,26 @@
 // 이를 해결하기 위해서는 컴포넌트나 페이지에 따라 독립적인 클래스명을 생성하는 CSS Module을 이용할 수 있다.
 import { SearchableLayout } from '@/components/searchable-layout';
 import styles from './index.module.css';
+import books from '@/mock/books.json';
+import { BookItem } from '@/components/book-item';
 
 // 개발 모드로 켰을 때는, 프리페칭이 동작하지 않는다.
 export default function Home() {
   return (
-    <>
-      <h1 className={`${styles.h1}`}>인덱스</h1>
-      <h2 className={`${styles.h2}`}>H2</h2>
-    </>
+    <div className={styles.container}>
+      <section>
+        <h3>지금 추천하는 도서</h3>
+        {books.map((book) => (
+          <BookItem key={book.id} {...book} />
+        ))}
+      </section>
+      <section>
+        <h3>등록된 모든 도서</h3>
+        {books.map((book) => (
+          <BookItem key={book.id} {...book} />
+        ))}
+      </section>
+    </div>
   );
 }
 
