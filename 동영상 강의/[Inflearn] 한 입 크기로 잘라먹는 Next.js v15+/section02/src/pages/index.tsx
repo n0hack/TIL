@@ -3,11 +3,13 @@
 import { SearchableLayout } from '@/components/searchable-layout';
 import styles from './index.module.css';
 import { BookItem } from '@/components/book-item';
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
+import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import fetchBooks from '@/lib/fetch-books';
 import fetchRandomBooks from '@/lib/fetch-random-books';
 
-export const getServerSideProps = (async () => {
+// 자주 변경되지 않는 페이지는 SSG로 사전 빌드 시간에 생성하는 것이 좋다.
+// getStaticProps나 getServerSideProps가 없다면, 기본적으로 SSG로 동작한다.
+export const getStaticProps = (async () => {
   const [allBooks, recoBooks] = await Promise.all([fetchBooks(), fetchRandomBooks()]);
 
   return {
@@ -16,10 +18,21 @@ export const getServerSideProps = (async () => {
       recoBooks,
     },
   };
-}) satisfies GetServerSideProps;
+}) satisfies GetStaticProps;
+
+// export const getServerSideProps = (async () => {
+//   const [allBooks, recoBooks] = await Promise.all([fetchBooks(), fetchRandomBooks()]);
+
+//   return {
+//     props: {
+//       allBooks,
+//       recoBooks,
+//     },
+//   };
+// }) satisfies GetServerSideProps;
 
 // 개발 모드로 켰을 때는, 프리페칭이 동작하지 않는다.
-export default function Home({ allBooks, recoBooks }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function Home({ allBooks, recoBooks }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <div className={styles.container}>
       <section>
