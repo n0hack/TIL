@@ -18,7 +18,9 @@ export const getStaticProps = (async () => {
       recoBooks,
     },
     // ISR(증분 정적 재생성) 적용 - 초 단위
-    revalidate: 3,
+    // revalidate: 3,
+    // On-demand ISR(주문형 ISR) - 사용자 요청에 따라 재생성하는 방법(API 이용)
+    // ㄴ 초 단위 생성이 불필요한 페이지들의 경우에 적용을 고려할 수 있다.
   };
 }) satisfies GetStaticProps;
 
