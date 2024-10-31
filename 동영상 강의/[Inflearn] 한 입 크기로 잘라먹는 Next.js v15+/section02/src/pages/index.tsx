@@ -17,6 +17,8 @@ export const getStaticProps = (async () => {
       allBooks,
       recoBooks,
     },
+    // ISR(증분 정적 재생성) 적용 - 초 단위
+    revalidate: 3,
   };
 }) satisfies GetStaticProps;
 
