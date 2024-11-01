@@ -1,5 +1,15 @@
 import { BookData } from '@/types';
 import styles from './page.module.css';
+import { notFound } from 'next/navigation';
+
+// 정적 경로에 해당되지 않는 페이지는 자동으로 NotFound로 보낸다.
+// dynamicParams를 허용하지 않겠다는 의미 (기본값 - ture)
+// export const dynamicParams = false;
+
+// params를 사용하는 페이지도 기본적으로 동적 페이지이나, 정적 경로 생성을 통해 풀라우트 캐싱이 가능하다.
+export function generateStaticParams() {
+  return [{ id: '1' }, { id: '2' }, { id: '3' }];
+}
 
 type Params = Promise<{ id: string }>;
 
@@ -7,9 +17,13 @@ type Params = Promise<{ id: string }>;
 const BookPage = async ({ params }: { params: Params }) => {
   const { id: bookId } = await params;
 
+  // 정적 경로 생성을 하게 된 경우, 캐싱이 적용되지 않았더라도 캐싱 처리를 하게 된다. (정적 페이지가 되므로)
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/book/${bookId}`);
 
   if (!response.ok) {
+    if (response.status === 404) {
+      notFound();
+    }
     return <div>오류가 발생했습니다...</div>;
   }
 

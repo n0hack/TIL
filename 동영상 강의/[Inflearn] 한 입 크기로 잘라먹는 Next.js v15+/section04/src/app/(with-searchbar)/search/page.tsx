@@ -6,7 +6,11 @@ import { BookData } from '@/types';
 const SearchPage = async ({ searchParams }: { searchParams: Promise<{ q: string }> }) => {
   const { q } = await searchParams;
 
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/book/search?q=${q}`);
+  // 검색과 같은 페이지는 searchParams와 같은 동적인 값을 사용하기 때문에 정적 페이지로 만들 수는 없다.
+  // 그럼에도 조금이라도 빠르게 만들고 싶다면, 데이터 캐싱을 이용해 볼 수 있다.
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/book/search?q=${q}`, {
+    cache: 'force-cache',
+  });
 
   if (!response.ok) {
     return <div>오류가 발생했습니다...</div>;
