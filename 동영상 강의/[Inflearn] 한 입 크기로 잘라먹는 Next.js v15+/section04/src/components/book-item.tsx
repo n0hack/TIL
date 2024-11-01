@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 type BookItemProps = BookData;
 
-const BookItem = ({ id, title, subTitle, description, author, publisher, coverImgUrl }: BookItemProps) => {
+const BookItem = ({ id, title, subTitle, author, publisher, coverImgUrl }: BookItemProps) => {
   return (
     <Link className={styles.container} href={`/book/${id}`}>
       <img src={coverImgUrl} />

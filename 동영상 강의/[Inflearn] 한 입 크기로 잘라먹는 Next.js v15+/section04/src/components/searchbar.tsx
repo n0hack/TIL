@@ -9,7 +9,8 @@ import styles from './serachbar.module.css';
 const Searchbar = () => {
   const [search, setSearch] = useState('');
   const router = useRouter();
-  const searchParams = useSearchParams();
+  // 사전 렌더링 중에는 값을 알 수 없기 때문에, 빌드 시 에러가 발생하므로 클라이언트에서만 렌더링 될 수 있도록 한다.
+  const searchParams = useSearchParams(); // 쿼리스트링을 불러왔을 때 종료되는 비동기 함수이므로 Suspense로 감싸줘야 한다.
 
   const q = searchParams.get('q');
 

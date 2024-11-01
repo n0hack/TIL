@@ -15,7 +15,7 @@ async function AllBooks() {
   // ㄴ 렌더링이 종료되면 요청 캐시가 소멸되기에 데이터 캐싱과는 엄연히 다르다.
   // [데이터 캐시] 백엔드에서 응답 받은 데이터를 거의 영구적으로 보관하기 위해 사용한다.
   // ㄴ 서버가 구동 중인 동안에는 계속 유지된다.
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/book`);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/book`, { cache: 'force-cache' });
 
   if (!response.ok) {
     return <div>오류가 발생했습니다...</div>;
