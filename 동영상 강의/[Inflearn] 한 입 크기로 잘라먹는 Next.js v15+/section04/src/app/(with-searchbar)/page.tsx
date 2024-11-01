@@ -4,7 +4,13 @@ import { BookData } from '@/types';
 
 // 여러 요청을 불러오는 경우, 각 요청에 맞게 컴포넌트를 나눠주면 좋다.
 async function AllBooks() {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/book`);
+  // 캐싱을 적용하게 되면, Next 서버의 데이터 캐시 쪽에 json 형태로 값을 저장(.next/cache/fetch-cache)하고 활용하게 된다.
+  // fetch의 캐싱 기본값은 no-store이고, v15부터 기본값으로 변경되었다. (v14까지는 자동으로 캐싱되었음)
+  // cache: 'no-store' - 캐싱 X
+  // cache: 'forced-cache' - 영구 캐싱
+  // next: { revalidate: n } - ISR과 비슷하게 캐싱 (Set - Hit - Stale - Set - Hit 반복) // Set 캐싱, Hit 일치, Stale 상함
+  // next: { tags: ['a'] } - On-demand ISR과 비슷하게 요청에 의해 캐싱
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/book`, { cache: 'no-store' });
 
   if (!response.ok) {
     return <div>오류가 발생했습니다...</div>;
@@ -22,7 +28,7 @@ async function AllBooks() {
 }
 
 async function RecoBooks() {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/book/random`);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/book/random`, { next: { revalidate: 3 } });
 
   if (!response.ok) {
     return <div>오류가 발생했습니다...</div>;
