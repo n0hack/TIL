@@ -10,7 +10,12 @@ async function AllBooks() {
   // cache: 'forced-cache' - 영구 캐싱
   // next: { revalidate: n } - ISR과 비슷하게 캐싱 (Set - Hit - Stale - Set - Hit 반복) // Set 캐싱, Hit 일치, Stale 상함
   // next: { tags: ['a'] } - On-demand ISR과 비슷하게 요청에 의해 캐싱
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/book`, { cache: 'no-store' });
+
+  // [리퀘스트 메모이제이션] 데이터 캐시 이전에 하나의 페이지를 렌더링하기 위해 요청하는 API 중 중복된 것이 있을 때 캐싱 용도로 사용한다.
+  // ㄴ 렌더링이 종료되면 요청 캐시가 소멸되기에 데이터 캐싱과는 엄연히 다르다.
+  // [데이터 캐시] 백엔드에서 응답 받은 데이터를 거의 영구적으로 보관하기 위해 사용한다.
+  // ㄴ 서버가 구동 중인 동안에는 계속 유지된다.
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/book`);
 
   if (!response.ok) {
     return <div>오류가 발생했습니다...</div>;
