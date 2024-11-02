@@ -2,6 +2,14 @@ import { BookItem } from '@/components/book-item';
 import styles from './page.module.css';
 import { BookData } from '@/types';
 
+// 특정 페이지의 유형을 Static 또는 Dynamic으로 강제 설정하는 옵션
+// 1. auto - 기본값, 아무것도 강제하지 않음
+// 2. force-dynamic - 페이지를 강제로 dynamic 페이지로 설정
+// 3. force-static - 페이지를 강제로 static 페이지로 설정
+// 4. error - 페이지를 강제로 static 페이지로 설정 (빌드가 안 된다 하면 에러 출력)
+// ㄴ search 페이지 쪽은 searchParams를 사용하고 있기에 에러가 출력된다.
+// export const dynamic = 'force-static';
+
 // 여러 요청을 불러오는 경우, 각 요청에 맞게 컴포넌트를 나눠주면 좋다.
 async function AllBooks() {
   // 캐싱을 적용하게 되면, Next 서버의 데이터 캐시 쪽에 json 형태로 값을 저장(.next/cache/fetch-cache)하고 활용하게 된다.
