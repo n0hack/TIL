@@ -1,7 +1,8 @@
-import { BookData } from '@/types';
+import { BookData, ReviewData } from '@/types';
 import styles from './page.module.css';
 import { notFound } from 'next/navigation';
-import { createReviewAction } from '@/actions/create-review.action';
+import { ReviewItem } from '@/components/review-item';
+import { ReviewEditor } from '@/components/review-editor';
 
 // 라우트 세그먼트 옵션
 // 강제로 페이지를 static 또는 dynamic으로 만드는 옵션 (auto, force-static, force-dynamic, error - static으로 하되, static으로 만들면 안 되는 경우 오류 발생)
@@ -47,19 +48,23 @@ const BookDetail = async ({ bookId }: { bookId: string }) => {
   );
 };
 
-function ReviewEditor({ bookId }: { bookId: string }) {
+const ReviewList = async ({ bookId }: { bookId: string }) => {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/review/book/${bookId}`);
+
+  if (!response.ok) {
+    throw new Error(`Review fetch failed: ${response.statusText}`);
+  }
+
+  const reviews: ReviewData[] = await response.json();
+
   return (
     <section>
-      <form action={createReviewAction}>
-        {/* 고정적인 값이 필요한 경우, 이런 형태로 트릭을 활용할 수 있다. */}
-        <input type="text" name="bookId" value={bookId} hidden readOnly />
-        <input type="text" name="content" placeholder="리뷰 내용" required />
-        <input type="text" name="author" placeholder="작성자" required />
-        <button type="submit">작성하기</button>
-      </form>
+      {reviews.map((review) => (
+        <ReviewItem key={review.id} {...review} />
+      ))}
     </section>
   );
-}
+};
 
 type Params = Promise<{ id: string }>;
 
@@ -71,6 +76,7 @@ const BookPage = async ({ params }: { params: Params }) => {
     <div className={styles.container}>
       <BookDetail bookId={bookId} />
       <ReviewEditor bookId={bookId} />
+      <ReviewList bookId={bookId} />
     </div>
   );
 };
