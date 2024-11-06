@@ -1,4 +1,5 @@
 import { BookItem } from '@/components/book-item';
+import { BookListSkeleton } from '@/components/skeleton/book-list-skeleton';
 import { BookData } from '@/types';
 import { delay } from '@/util/delay';
 import { Suspense } from 'react';
@@ -34,7 +35,7 @@ const SearchPage = async ({ searchParams }: { searchParams: Promise<{ q: string 
 
   return (
     // 스트리밍과 동일하게 그냥 Suspense만 쓰면, 쿼리스트링 변경 시 로딩 상태가 사라지나, key를 이용하면 쿼리스트링에 따라 로딩 상태를 발생시킬 수 있다.
-    <Suspense key={q} fallback={<div>Loading...</div>}>
+    <Suspense key={q} fallback={<BookListSkeleton count={3} />}>
       <SearchResult q={q || ''} />
     </Suspense>
   );
