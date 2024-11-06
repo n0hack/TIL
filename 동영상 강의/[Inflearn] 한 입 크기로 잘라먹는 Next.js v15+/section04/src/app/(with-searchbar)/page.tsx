@@ -1,6 +1,11 @@
 import { BookItem } from '@/components/book-item';
 import styles from './page.module.css';
 import { BookData } from '@/types';
+import { delay } from '@/util/delay';
+import { Suspense } from 'react';
+
+// Suspense 활용을 위해 강제로 다이나믹 페이지 만들기
+export const dynamic = 'force-dynamic';
 
 // 특정 페이지의 유형을 Static 또는 Dynamic으로 강제 설정하는 옵션
 // 1. auto - 기본값, 아무것도 강제하지 않음
@@ -12,6 +17,8 @@ import { BookData } from '@/types';
 
 // 여러 요청을 불러오는 경우, 각 요청에 맞게 컴포넌트를 나눠주면 좋다.
 async function AllBooks() {
+  await delay(1500);
+
   // 캐싱을 적용하게 되면, Next 서버의 데이터 캐시 쪽에 json 형태로 값을 저장(.next/cache/fetch-cache)하고 활용하게 된다.
   // fetch의 캐싱 기본값은 no-store이고, v15부터 기본값으로 변경되었다. (v14까지는 자동으로 캐싱되었음)
   // cache: 'no-store' - 캐싱 X
@@ -41,6 +48,8 @@ async function AllBooks() {
 }
 
 async function RecoBooks() {
+  await delay(3000);
+
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/book/random`, { next: { revalidate: 3 } });
 
   if (!response.ok) {
@@ -69,11 +78,15 @@ export default function Home() {
     <div className={styles.container}>
       <section>
         <h3>지금 추천하는 도서</h3>
-        <RecoBooks />
+        <Suspense fallback={<div>도서를 불러오는 중입니다...</div>}>
+          <RecoBooks />
+        </Suspense>
       </section>
       <section>
         <h3>등록된 모든 도서</h3>
-        <AllBooks />
+        <Suspense fallback={<div>도서를 불러오는 중입니다...</div>}>
+          <AllBooks />
+        </Suspense>
       </section>
     </div>
   );
