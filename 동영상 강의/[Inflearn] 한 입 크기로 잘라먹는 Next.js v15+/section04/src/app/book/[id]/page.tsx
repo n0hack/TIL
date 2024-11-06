@@ -2,6 +2,11 @@ import { BookData } from '@/types';
 import styles from './page.module.css';
 import { notFound } from 'next/navigation';
 
+// 라우트 세그먼트 옵션
+// 강제로 페이지를 static 또는 dynamic으로 만드는 옵션 (auto, force-static, force-dynamic, error - static으로 하되, static으로 만들면 안 되는 경우 오류 발생)
+// 매우 특별한 상황이 아니라면 권장되지 않는 옵션이다. (각 컴포넌트들의 용도에 따라 NextJS는 세밀하게 렌더링을 조정하고 있기 때문)
+// export const dynamic = "";
+
 // 정적 경로에 해당되지 않는 페이지는 자동으로 NotFound로 보낸다.
 // dynamicParams를 허용하지 않겠다는 의미 (기본값 - ture)
 // export const dynamicParams = false;
