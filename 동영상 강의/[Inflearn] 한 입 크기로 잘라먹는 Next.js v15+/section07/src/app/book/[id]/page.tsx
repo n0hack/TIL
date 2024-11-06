@@ -1,6 +1,7 @@
 import { BookData } from '@/types';
 import styles from './page.module.css';
 import { notFound } from 'next/navigation';
+import { createReviewAction } from '@/actions/create-review.action';
 
 // 라우트 세그먼트 옵션
 // 강제로 페이지를 static 또는 dynamic으로 만드는 옵션 (auto, force-static, force-dynamic, error - static으로 하되, static으로 만들면 안 되는 경우 오류 발생)
@@ -46,24 +47,14 @@ const BookDetail = async ({ bookId }: { bookId: string }) => {
   );
 };
 
-function ReviewEditor() {
-  // 서버 액션을 만들게 되면, 이 코드를 실행하는 API가 자동으로 생성되며 브라우저에서 사용 시 호출된다.
-  // 단순한 기능만 처리해도 될 경우에는 간결하게 서버 액션을 만들어 활용하면 좋다.
-  // 조금 더 간결하게 편리하게 서버 측 동작을 정의하는 것에 목적을 두고 있다.
-  async function createReviewAction(formData: FormData) {
-    'use server';
-
-    const content = formData.get('content')?.toString();
-    const author = formData.get('author')?.toString();
-
-    console.log(content, author);
-  }
-
+function ReviewEditor({ bookId }: { bookId: string }) {
   return (
     <section>
       <form action={createReviewAction}>
-        <input type="text" name="content" placeholder="리뷰 내용" />
-        <input type="text" name="author" placeholder="작성자" />
+        {/* 고정적인 값이 필요한 경우, 이런 형태로 트릭을 활용할 수 있다. */}
+        <input type="text" name="bookId" value={bookId} hidden readOnly />
+        <input type="text" name="content" placeholder="리뷰 내용" required />
+        <input type="text" name="author" placeholder="작성자" required />
         <button type="submit">작성하기</button>
       </form>
     </section>
@@ -79,7 +70,7 @@ const BookPage = async ({ params }: { params: Params }) => {
   return (
     <div className={styles.container}>
       <BookDetail bookId={bookId} />
-      <ReviewEditor />
+      <ReviewEditor bookId={bookId} />
     </div>
   );
 };
