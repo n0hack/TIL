@@ -49,7 +49,9 @@ const BookDetail = async ({ bookId }: { bookId: string }) => {
 };
 
 const ReviewList = async ({ bookId }: { bookId: string }) => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/review/book/${bookId}`);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/review/book/${bookId}`, {
+    next: { tags: [`review-${bookId}}`] },
+  });
 
   if (!response.ok) {
     throw new Error(`Review fetch failed: ${response.statusText}`);
