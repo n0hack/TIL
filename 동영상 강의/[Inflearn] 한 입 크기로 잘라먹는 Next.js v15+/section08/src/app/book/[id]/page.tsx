@@ -3,6 +3,7 @@ import styles from './page.module.css';
 import { notFound } from 'next/navigation';
 import { ReviewItem } from '@/components/review-item';
 import { ReviewEditor } from '@/components/review-editor';
+import Image from 'next/image';
 
 // 라우트 세그먼트 옵션
 // 강제로 페이지를 static 또는 dynamic으로 만드는 옵션 (auto, force-static, force-dynamic, error - static으로 하되, static으로 만들면 안 되는 경우 오류 발생)
@@ -36,7 +37,7 @@ const BookDetail = async ({ bookId }: { bookId: string }) => {
   return (
     <section>
       <div className={styles.cover_img_container} style={{ backgroundImage: `url('${coverImgUrl}')` }}>
-        <img src={coverImgUrl} />
+        <Image src={coverImgUrl} width={240} height={300} alt={`도서 ${title}의 표지 이미지`} />
       </div>
       <div className={styles.title}>{title}</div>
       <div className={styles.subTitle}>{subTitle}</div>
