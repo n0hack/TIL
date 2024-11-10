@@ -37,6 +37,7 @@ const RAW_RUNTIME_STATE =
           ["@types/testing-library__jest-dom", "npm:6.0.0"],\
           ["classnames", "npm:2.5.1"],\
           ["clsx", "npm:2.1.1"],\
+          ["date-fns", "npm:4.1.0"],\
           ["eslint", "npm:8.57.0"],\
           ["eslint-config-prettier", "virtual:efe1763f48a1a789144d819afe97cffa3346ee2f464e9c7652b26290d830b9a3e90e5496c21f0ef2e7f8a66e53bc8a549d7f1867c7213cd5156faefbd19468ef#npm:9.1.0"],\
           ["eslint-config-react-app", "virtual:efe1763f48a1a789144d819afe97cffa3346ee2f464e9c7652b26290d830b9a3e90e5496c21f0ef2e7f8a66e53bc8a549d7f1867c7213cd5156faefbd19468ef#npm:7.0.1"],\
@@ -8041,6 +8042,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["date-fns", [\
+      ["npm:4.1.0", {\
+        "packageLocation": "../../../../../.yarn/berry/cache/date-fns-npm-4.1.0-764604ee0f-10c0.zip/node_modules/date-fns/",\
+        "packageDependencies": [\
+          ["date-fns", "npm:4.1.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["dayjs", [\
       ["npm:1.11.13", {\
         "packageLocation": "../../../../../.yarn/berry/cache/dayjs-npm-1.11.13-d478bb9479-10c0.zip/node_modules/dayjs/",\
@@ -13574,6 +13584,7 @@ const RAW_RUNTIME_STATE =
           ["@types/testing-library__jest-dom", "npm:6.0.0"],\
           ["classnames", "npm:2.5.1"],\
           ["clsx", "npm:2.1.1"],\
+          ["date-fns", "npm:4.1.0"],\
           ["eslint", "npm:8.57.0"],\
           ["eslint-config-prettier", "virtual:efe1763f48a1a789144d819afe97cffa3346ee2f464e9c7652b26290d830b9a3e90e5496c21f0ef2e7f8a66e53bc8a549d7f1867c7213cd5156faefbd19468ef#npm:9.1.0"],\
           ["eslint-config-react-app", "virtual:efe1763f48a1a789144d819afe97cffa3346ee2f464e9c7652b26290d830b9a3e90e5496c21f0ef2e7f8a66e53bc8a549d7f1867c7213cd5156faefbd19468ef#npm:7.0.1"],\

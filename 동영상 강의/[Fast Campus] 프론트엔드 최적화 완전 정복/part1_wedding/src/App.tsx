@@ -2,9 +2,12 @@ import styles from './App.module.scss';
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 import { FullScreenMessage } from './components/shared/FullScreenMessage';
+import { Heading } from './components/sections/Heading';
+import { Video } from './components/sections/Video';
+import { Wedding } from './models/wedding';
 
 function App() {
-  const [wedding, setWedding] = useState(null);
+  const [wedding, setWedding] = useState<Wedding | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -30,7 +33,7 @@ function App() {
       });
   }, []);
 
-  if (!loading) {
+  if (loading) {
     return <FullScreenMessage type="loading" />;
   }
 
@@ -38,8 +41,18 @@ function App() {
     return <FullScreenMessage type="error" />;
   }
 
+  if (wedding === null) {
+    return null;
+  }
+
+  const { date } = wedding;
+
   return (
-    <div className={clsx(styles.container)}>{JSON.stringify(wedding)}</div>
+    <div className={clsx(styles.container)}>
+      <Heading date={date} />
+      <Video />
+      {JSON.stringify(wedding)}
+    </div>
   );
 }
 
