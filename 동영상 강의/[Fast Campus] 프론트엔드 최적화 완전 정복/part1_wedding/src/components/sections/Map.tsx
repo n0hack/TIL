@@ -82,8 +82,8 @@ const WayToCome = ({
     <div className={styles.wrap_waytocome}>
       <div className={styles.txt_label}>{label}</div>
       <ul>
-        {list.map((waytocome) => (
-          <li>{waytocome}</li>
+        {list.map((waytocome, index) => (
+          <li key={index}>{waytocome}</li>
         ))}
       </ul>
     </div>

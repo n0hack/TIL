@@ -26,8 +26,6 @@ const Share = ({ brideName, date, groomName }: ShareProps) => {
     document.head.appendChild(script);
 
     script.onload = () => {
-      console.log(window);
-
       if (!window.Kakao.isInitialized()) {
         window.Kakao.init(process.env.REACT_APP_KAKAO_APP_KEY);
       }
