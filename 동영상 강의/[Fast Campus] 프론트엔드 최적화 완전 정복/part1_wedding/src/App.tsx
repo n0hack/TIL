@@ -12,6 +12,7 @@ import { Calendar } from './components/sections/Calendar';
 import { Map } from './components/sections/Map';
 import { Contact } from './components/sections/Contact';
 import { Share } from './components/sections/Share';
+import { Modal } from './components/shared/Modal';
 
 function App() {
   const [wedding, setWedding] = useState<Wedding | null>(null);

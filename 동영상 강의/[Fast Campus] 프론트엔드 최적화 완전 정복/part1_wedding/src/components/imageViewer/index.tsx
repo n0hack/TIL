@@ -4,6 +4,7 @@ import styles from './ImageViewer.module.scss';
 
 import 'swiper/css';
 import './swiper.css';
+import { Dimmed } from '../shared/Dimmed';
 
 type ImageViewerProps = {
   images: string[];
@@ -23,7 +24,7 @@ const ImageViewer = ({
   }
 
   return (
-    <div className={clsx(styles.dimmed)}>
+    <Dimmed>
       <CloseButton className={styles.ico_close} onClose={onClose} />
       <Swiper
         spaceBetween={20}
@@ -39,7 +40,7 @@ const ImageViewer = ({
           );
         })}
       </Swiper>
-    </div>
+    </Dimmed>
   );
 };
 
