@@ -3,7 +3,7 @@ import { PropsWithChildren } from 'react';
 import styles from './Section.module.scss';
 
 type SectionProps = {
-  title?: string;
+  title?: React.ReactNode;
   className?: string;
 };
 

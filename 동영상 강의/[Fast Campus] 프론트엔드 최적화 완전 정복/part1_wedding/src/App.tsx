@@ -8,6 +8,7 @@ import { Wedding } from './models/wedding';
 import { ImageGallery } from './components/sections/ImageGallery';
 import { Intro } from './components/sections/Intro';
 import { Invitation } from './components/sections/Invitation';
+import { Calendar } from './components/sections/Calendar';
 
 function App() {
   const [wedding, setWedding] = useState<Wedding | null>(null);
@@ -70,6 +71,7 @@ function App() {
       />
       <Invitation message={invitation} />
       <ImageGallery images={galleryImages} />
+      <Calendar date={date} />
       {JSON.stringify(wedding)}
     </div>
   );
