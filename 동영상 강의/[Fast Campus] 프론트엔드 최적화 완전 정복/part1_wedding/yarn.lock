@@ -10256,6 +10256,7 @@ __metadata:
     react-dom: "npm:^18.3.1"
     react-scripts: "npm:5.0.1"
     sass: "npm:^1.80.6"
+    swiper: "npm:9"
     typescript: "npm:^4.4.2"
     web-vitals: "npm:^2.1.0"
   languageName: unknown
@@ -12562,6 +12563,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ssr-window@npm:^4.0.2":
+  version: 4.0.2
+  resolution: "ssr-window@npm:4.0.2"
+  checksum: 10c0/e91f690f42ab2d4e36577a631a9d7b9bd20864ab99c1394481f64c5a0ae6922165ac0a06228560c2ccdd4f68338e795f2fd3cc16fbf9bfcc9c561bb89eb237cd
+  languageName: node
+  linkType: hard
+
 "ssri@npm:^10.0.0":
   version: 10.0.6
   resolution: "ssri@npm:10.0.6"
@@ -12975,6 +12983,15 @@ __metadata:
   bin:
     svgo: bin/svgo
   checksum: 10c0/0741f5d5cad63111a90a0ce7a1a5a9013f6d293e871b75efe39addb57f29a263e45294e485a4d2ff9cc260a5d142c8b5937b2234b4ef05efdd2706fb2d360ecc
+  languageName: node
+  linkType: hard
+
+"swiper@npm:9":
+  version: 9.4.1
+  resolution: "swiper@npm:9.4.1"
+  dependencies:
+    ssr-window: "npm:^4.0.2"
+  checksum: 10c0/29feb1e92c344c32d24d7c852577b8b167816ec65bb486418816abbc8e1d6f50b3fb339780392ffa8ba91582508f804bab1e1ab3bd80d9d9b66fc323b6055445
   languageName: node
   linkType: hard
 
