@@ -6,6 +6,7 @@ import 'react-day-picker/style.css';
 
 import styles from './Calendar.module.scss';
 import { DayPicker } from 'react-day-picker';
+import React from 'react';
 
 type CalendarProps = {
   date: string;
@@ -66,4 +67,4 @@ const Calendar = ({ date }: CalendarProps) => {
   );
 };
 
-export { Calendar };
+export default React.memo(Calendar);

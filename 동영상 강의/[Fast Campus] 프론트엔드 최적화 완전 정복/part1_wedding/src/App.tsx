@@ -8,7 +8,7 @@ import { Wedding } from './models/wedding';
 import { ImageGallery } from './components/sections/ImageGallery';
 import { Intro } from './components/sections/Intro';
 import { Invitation } from './components/sections/Invitation';
-import { Calendar } from './components/sections/Calendar';
+import Calendar from './components/sections/Calendar';
 import { Map } from './components/sections/Map';
 import { Contact } from './components/sections/Contact';
 import { Share } from './components/sections/Share';
@@ -19,6 +19,7 @@ function App() {
   const [wedding, setWedding] = useState<Wedding | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [count, setCount] = useState(0);
 
   // 1. wedding 데이터 호출
   useEffect(() => {
@@ -66,6 +67,12 @@ function App() {
 
   return (
     <div className={clsx(styles.container)}>
+      <button
+        style={{ position: 'fixed', top: 0 }}
+        onClick={() => setCount((prev) => prev + 1)}
+      >
+        + {count}
+      </button>
       <Heading date={date} />
       <Video />
       <Intro

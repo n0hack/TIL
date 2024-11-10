@@ -54,7 +54,7 @@ const AttendCountModal = ({ wedding }: AttendCountModalProps) => {
         close();
       },
     });
-  }, []);
+  }, [open, close, wedding, haveSeenModal]);
 
   return null;
 };
