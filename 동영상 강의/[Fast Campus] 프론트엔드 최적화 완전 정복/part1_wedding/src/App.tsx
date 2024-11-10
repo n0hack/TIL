@@ -17,10 +17,6 @@ function App() {
   // API 호출부를 분리했기에, 테스트가 필요하다면 useWedding에 대한 모킹만 작업하면 된다.
   const { wedding, loading, error } = useWedding();
 
-  if (error) {
-    return <FullScreenMessage type="error" />;
-  }
-
   if (!wedding) {
     return null;
   }

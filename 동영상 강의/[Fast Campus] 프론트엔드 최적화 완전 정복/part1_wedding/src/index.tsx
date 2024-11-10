@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import { FullScreenMessage } from './components/shared/FullScreenMessage';
 
 import './scss/global.scss';
+import ErrorBoundary from './components/shared/ErrorBoundary';
 
 const queryClient = new QueryClient();
 
@@ -16,9 +17,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <QueryClientProvider client={queryClient}>
     <ModalContextProvider>
-      <Suspense fallback={<FullScreenMessage type="loading" />}>
-        <App />
-      </Suspense>
+      <ErrorBoundary fallbackUI={<FullScreenMessage type="error" />}>
+        <Suspense fallback={<FullScreenMessage type="loading" />}>
+          <App />
+        </Suspense>
+      </ErrorBoundary>
     </ModalContextProvider>
   </QueryClientProvider>,
 );
