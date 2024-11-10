@@ -13,6 +13,7 @@ import { Map } from './components/sections/Map';
 import { Contact } from './components/sections/Contact';
 import { Share } from './components/sections/Share';
 import { Modal } from './components/shared/Modal';
+import { AttendCountModal } from './components/AttendCountModal';
 
 function App() {
   const [wedding, setWedding] = useState<Wedding | null>(null);
@@ -60,6 +61,7 @@ function App() {
     bride,
     location,
     message: { intro, invitation },
+    attendCount,
   } = wedding;
 
   return (
@@ -79,6 +81,7 @@ function App() {
       <Map location={location} />
       <Contact groom={groom} bride={bride} />
       <Share brideName={bride.name} date={date} groomName={groom.name} />
+      <AttendCountModal wedding={wedding} />
     </div>
   );
 }
