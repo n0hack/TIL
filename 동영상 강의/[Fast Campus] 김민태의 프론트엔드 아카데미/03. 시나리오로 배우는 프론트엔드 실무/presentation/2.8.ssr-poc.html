@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Presentation</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/theme/night.min.css" />    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/highlight/monokai.min.css"/>
+    <link rel="stylesheet" href="/default.css"/>
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+				<section>
+					<section>
+						<h2>SSR PoC</h2>
+						<h3>Next.js</h3>
+					</section>
+				</section>
+				
+				<section>
+					<section>
+						<h2>Setup</h2>
+					</section>
+					<section>
+						<h3>Create Database</h3>
+						<p class="small-text">/bootstrap/mysql/database-init.sql</p>
+						<pre>
+							<code class="pad" data-trim data-noescape>
+								CREATE DATABASE 12shop DEFAULT CHARACTER SET = 'utf8mb4';
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h3>Run b2c-server</h3>
+						<p class="small-text">/backend/b2c-server</p>
+						<pre>
+							<code class="pad" data-trim data-noescape>
+								$ npm install ⏎
+								$ npm run start:init ⏎
+								$ npm run start:debug ⏎
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h3>Create Dumy Data</h3>
+						<p class="small-text">/bootstrap/mysql/database-init.sql</p>
+						<pre>
+							<code class="pad" data-trim data-noescape>
+								insert into products (id, productName, price, detailDescription, active)
+								values 
+									('5c9503aa-8603-418c-8934-ca6ebeb4e0b1', '기후환 동양화', 10, '', true),
+								...
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h3>Request Test Call</h3>
+						<p class="small-text">/step-by-step/poc-ssr-showcase/rest.http</p>
+						<pre>
+							<code class="pad" data-trim data-noescape>
+								GET http://api.12shop.com:3000/products HTTP/1.1
+							</code>
+						</pre>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>PoC 계획</h2>
+						<h3>무엇을 확인할 것인가?</h3>
+					</section>
+					<section>
+						<h2>목표</h2>
+						<ul>
+							<li>Next.js SSR 라우트 구조 확인</li>
+							<li>페이지별 Meta Taging</li>
+							<li>API Fetching</li>
+							<li>Next.js 기능 목록 체크</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>PoC</h2>
+					</section>
+					<section>
+						<h3>프로젝트 생성</h3>
+						<pre>
+							<code class="pad" data-trim data-noescape>
+								$ npx create-next-app@latest
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h3>package.json 실행 포트 변경</h3>
+						<pre>
+							<code class="pad" data-trim data-noescape data-ln-start-from="5" data-line-numbers="2">
+								"scripts": {
+									"dev": "next dev -p 7070",
+									"build": "next build",
+									"start": "next start",
+									"lint": "next lint"
+								},							
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h3>Next.js SSR 라우트 구조 확인</h3>
+						<h5><a href="https://nextjs.org/docs/routing/introduction" target="_blank">
+							File-system based router</a>
+						</h5>
+						<img src="/images/pages-route.png" alt="" width="70%">
+					</section>
+					<section>
+						<h3>Next.js SSR 라우트 구조 확인</h3>
+						<h5>동물적인 불안감...🧐</h5>
+						<ul>
+							<li>File-system routing</li>
+							<li>Dynamic routing</li>
+							<li>Shallow routing</li>
+							<li>Routing & <a href="https://nextjs.org/docs/basic-features/data-fetching/overview" target="_blank">Lifecycle</a></li>
+						</ul>
+					</section>
+					<section>
+						<h3>페이지별 Meta Taging</h3>
+						<p><a href="https://nextjs.org/docs/api-reference/next/head" target="_blank">next/head</a></p>
+					</section>
+					<section>
+						<h3>API Fetching</h3>
+						<ul>
+							<li>Server side
+								<ul>
+									<li>
+										<a href="https://nextjs.org/docs/basic-features/data-fetching/get-server-side-props" target="_blank">
+											getServerSideProps</a></li>
+									<li>
+										<a href="https://nextjs.org/docs/basic-features/data-fetching/get-static-props" target="_blank">
+											getStaticProps</a></li>
+								</ul>
+							</li>
+							<li><a href="https://nextjs.org/docs/basic-features/data-fetching/client-side" target="_blank">
+								Client side</a></li>
+							<li><a href="https://nextjs.org/docs/api-routes/introduction" target="_blank">API gateway</a></li>
+						</ul>
+					</section>
+					<section>
+						<h3>Next.js 기능 목록 체크</h3>
+						<ul>
+							<li><a href="https://nextjs.org/docs/basic-features/image-optimization" target="_blank">
+									Image optimization
+								</a></li>
+							<li><a href="https://nextjs.org/docs/basic-features/font-optimization" target="_blank">
+									Font optimization
+								</a></li>							
+						</ul>
+					</section>
+					<section>
+						<h3>지름길</h3>
+						<p><a href="https://github.com/ixartz/Next-js-Boilerplate" target="_blank">Next.js Boilerplate</a></p>
+						<pre>
+							<code class="pad" data-trim data-noescape>
+								"dependencies": {
+									"next": "^12.2.2",
+									"next-seo": "^5.4.0",
+									"react": "^18.2.0",
+									"react-dom": "^18.2.0"
+								},
+								"devDependencies": {
+									"@commitlint/cli": "^17.0.3",
+									"@commitlint/config-conventional": "^17.0.3",
+									"@next/bundle-analyzer": "^12.2.2",
+									"@testing-library/cypress": "^8.0.3",
+									"@testing-library/jest-dom": "^5.16.4",
+									"@testing-library/react": "^13.3.0",
+									"@types/jest": "^28.1.5",
+									"@types/node": "^18.0.4",
+									"@types/react": "^18.0.15",
+									"@typescript-eslint/eslint-plugin": "^5.30.6",
+									"@typescript-eslint/parser": "^5.30.6",
+									"autoprefixer": "^10.4.7",
+									"cross-env": "^7.0.3",
+									"cssnano": "^5.1.12",
+									"cypress": "^10.3.0",
+									"eslint": "^8.19.0",
+									"eslint-config-airbnb-base": "^15.0.0",
+									"eslint-config-airbnb-typescript": "^17.0.0",
+									"eslint-config-next": "^12.2.2",
+									"eslint-config-prettier": "^8.5.0",
+									"eslint-plugin-cypress": "^2.12.1",
+									"eslint-plugin-import": "^2.26.0",
+									"eslint-plugin-jest": "^26.6.0",
+									"eslint-plugin-jest-dom": "^4.0.2",
+									"eslint-plugin-jest-formatting": "^3.1.0",
+									"eslint-plugin-jsx-a11y": "^6.6.0",
+									"eslint-plugin-prettier": "^4.2.1",
+									"eslint-plugin-react": "^7.30.1",
+									"eslint-plugin-react-hooks": "^4.6.0",
+									"eslint-plugin-simple-import-sort": "^7.0.0",
+									"eslint-plugin-tailwindcss": "^3.6.0",
+									"eslint-plugin-testing-library": "^5.5.1",
+									"eslint-plugin-unused-imports": "^2.0.0",
+									"husky": "^8.0.1",
+									"jest": "^28.1.3",
+									"jest-environment-jsdom": "^28.1.3",
+									"lint-staged": "^13.0.3",
+									"npm-run-all": "^4.1.5",
+									"postcss": "^8.4.14",
+									"prettier": "^2.7.1",
+									"rimraf": "^3.0.2",
+									"start-server-and-test": "^1.14.0",
+									"tailwindcss": "^3.1.6",
+									"typescript": "^4.7.4"
+								},								
+							</code>
+						</pre>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>npm start</h2>
+					</section>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/highlight/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/markdown/markdown.min.js"></script>
+		<script src="/setup.js"></script>
+
+	</body>
+</html>

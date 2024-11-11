@@ -1,0 +1,16 @@
+###
+GET http://localhost:1205/api/logs HTTP/1.1 
+
+###
+POST http://localhost:1205/api/logs HTTP/1.1 
+content-type: application/json
+
+{
+  "service": "12shop",
+  "application": "showcase",
+  "screen": "home",
+  "event": "enter",
+  "user": "ibare",
+  "extraData": "",
+  "clientTimestamp": {{$timestamp}}
+}

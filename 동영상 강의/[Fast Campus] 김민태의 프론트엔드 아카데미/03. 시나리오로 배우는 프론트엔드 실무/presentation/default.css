@@ -1,0 +1,21 @@
+.slides section.has-dark-background,
+.slides section.has-dark-background h3 {
+  color: #fff;
+}
+.slides section.has-light-background,
+.slides section.has-light-background h3 {
+  color: #222;
+}
+.slides section .reverse {
+  background: #e7ad52 !important;
+  color: white;
+}
+.slides section .pad {
+  padding: 1.5em;
+}
+.slides section .small-text {
+  font-size: 18px;
+}
+.slides section .hide {
+  opacity: 0;
+}

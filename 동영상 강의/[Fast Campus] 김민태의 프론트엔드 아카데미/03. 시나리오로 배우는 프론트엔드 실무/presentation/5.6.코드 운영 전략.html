@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Presentation</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/theme/night.min.css" />    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/highlight/monokai.min.css"/>
+    <link rel="stylesheet" href="/default.css"/>
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+				<section>
+					<section>
+						<h2>코드 운영 전략</h2>
+					</section>
+				</section>
+				
+				<section>
+					<section>
+						<h3>물리적 형식</h3>
+						<p>멀티 레포 vs 모노 레포</p>
+					</section>
+					<section>
+						<h3>멀티 레포</h3>
+						<p>성격이 다른 레포가 생성되는 현상 - OK</p>
+						<p>성격이 유사한 레포가 생성되는 현상 - Not OK</p>
+					</section>
+					<section>
+						<h3>모노 레포</h3>
+						<p>성격이 유사한 레포가 지속적으로 추가된다면 도입 고려</p>
+						<p>많은 컨벤션 필요, 작게 시작하며 노하우 축적 필요</p>
+					</section>
+				</section>
+				
+				<section>
+					<section>
+						<h4>논리적 형식 #1</h4>
+						<img src="/images/git-flow.png" alt="" width="40%">
+					</section>
+					<section>
+						<h4>논리적 형식 #2</h4>
+						<img src="/images/github-flow.png" alt="" width="60%">
+					</section>
+					<section>
+						<h4>논리적 형식 #3</h4>
+						<img src="/images/gitlab-flow.png" alt="" width="50%">
+					</section>
+					<section>
+						<h4>무엇을 선택해야할까?</h4>
+						<ul>
+							<li>릴리즈 라이프 사이클을 고려하기</li>
+							<li>협업 개발자와 팀 규모 고려하기</li>
+							<li>피처 브랜치 라이프사이클 고려하기</li>
+						</ul>
+					</section>
+					
+				</section>
+        
+			</div>
+
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/highlight/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/markdown/markdown.min.js"></script>
+		<script src="/setup.js"></script>
+
+	</body>
+</html>

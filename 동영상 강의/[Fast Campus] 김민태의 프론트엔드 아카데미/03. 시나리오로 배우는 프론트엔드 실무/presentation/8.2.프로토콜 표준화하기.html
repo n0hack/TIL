@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Presentation</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/theme/night.min.css" />    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/highlight/monokai.min.css"/>
+    <link rel="stylesheet" href="/default.css"/>
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+				<section>
+					<section>
+						<h2>프로토콜 표준화</h2>
+					</section>
+				</section>
+				
+				<section>
+					<section>
+						<h3>메세지 표준이 없다면?</h3>
+						<h4>MSA 서버 환경에선 필연적으로 발생</h4>
+					</section>
+
+					<section>
+						<h3>Case 1. b2c-server</h3>
+						<pre>
+							<code data-trim data-noescape>
+								[
+									{
+										"id": "0021c4d6-9ad4-473a-a7d0-06158a26b646",
+										"productName": "빈티지 일렉 기타",
+										"price": 12,
+										"detailDescription": "기타는 여러 장점에도 불구하고, 음량이...",
+										"active": true,
+										"photos": [
+											{
+												"id": "ece4fac7-afeb-4c2d-833f-cc5cdd8aa92d",
+												"url": "01,ece4fac7-afeb-4c2d-833f-cc5cdd8aa92d.jpg",
+												"contentType": "image/jpeg",
+											}
+										]
+									},	
+								]
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h3>Case 2. webview1</h3>
+						<pre>
+							<code data-trim data-noescape>
+								{
+									"status":"OK",
+									"statusCode":200,
+									"error":"",
+									"result":[
+										{
+											"id":"0021c4d6-9ad4-473a-a7d0-06158a26b646",
+											"productName":"빈티지 일렉 기타",
+											"price":12,
+											"detailDescription":"..."
+										}
+									]
+								}
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h3>Case 3. remote-config</h3>
+						<pre>
+							<code data-trim data-noescape>
+								{
+									"status": "OK",
+									"statusCode": 200,
+									"data": {
+										"config": {
+											"metadata": {
+												"title": "12shop"
+											},
+											"server": {
+												"cdn": "http://cdn.12shop.com:1201",
+												"b2c": "http://api.12shop.com:1202",
+												"web0": "http://api.12shop.com:1203",
+												"web1": "http://api.12shop.com:1203",
+												"webview1": "http://api.12shop.com:1204",
+												"applog": "http://api.12shop.com:1205"
+											}
+										}
+									}
+								}
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h3>Case 4. Error</h3>
+						<pre>
+							<code data-trim data-noescape>
+								{
+									"status": "ERROR",
+									"statusCode": 200,
+									"data": {
+										"error": "bla bla bla"
+									}
+								}
+							</code>
+						</pre>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>해결책?</h2>						
+					</section>
+					<section data-transition="slide-in fade-out">
+						<h3>해결책?</h3>
+						<P>서버 표준 도입 vs. 클라이언트 표준 도입</P>
+					</section>
+					<section data-transition="fade-in slide-out">
+						<h3>해결책?</h3>
+						<P>서버 표준 도입 vs. <span class="reverse">클라이언트 표준 도입</span></P>
+					</section>
+					<section>
+						<h3>eg. BFF</h3>
+						<p>Backend For Frontend</p>
+					</section>
+				</section>
+ 
+			</div>
+
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/highlight/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/markdown/markdown.min.js"></script>
+		<script src="/setup.js"></script>
+
+	</body>
+</html>

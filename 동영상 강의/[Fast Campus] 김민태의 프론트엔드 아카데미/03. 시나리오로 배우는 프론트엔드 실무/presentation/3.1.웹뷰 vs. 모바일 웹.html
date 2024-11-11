@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Presentation</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/theme/night.min.css" />    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/highlight/monokai.min.css"/>
+    <link rel="stylesheet" href="/default.css"/>
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+				<section>
+					<section>
+						<h2>웹뷰와의 첫 만남</h2>
+						<h3>웹뷰 vs. 모바일 웹</h3>
+					</section>
+				</section>
+				
+				<section>
+					<section>
+						<h2>웹뷰를 왜?</h2>
+						<h4>오직 서비스적 측면</h4>
+					</section>
+					<section>
+						<h3>Native Showcase</h3>
+						<img src="/images/showcase-screen.png" alt="" width="25%">
+					</section>
+					<section>
+						<h3>Webview Showcase</h3>
+						<img src="/images/showcase-screen.png" alt="" width="25%">
+					</section>
+					<section>
+						<h3>Native vs. Webview</h3>
+						<img src="/images/showcase-screen.png" alt="" width="25%">
+						<img src="/images/showcase-screen.png" alt="" width="25%">
+					</section>
+
+					<section>
+						<img src="/images/showcase-screen.png" alt="" width="10%">
+						<img src="/images/showcase-screen.png" alt="" width="10%">
+						<h3>뭐가 다르지?</h3>
+						<ol>
+							<li>기존 네이티브 쇼케이스 화면을 웹뷰로 교체</li>
+							<li>더 많은 기능을 더 빠르게 제공</li>
+							<li>eg. 기민한 프로모션을 적용할 화면</li>
+						</ol>
+					</section>
+					<section>
+						<h2>네이티브로는 안되나?</h2>
+						<h3>오직 서비스 관점에선</h3>
+						<h3><span class="reverse">Native 구현이 좋다!</span></h3>
+					</section>
+					<section>
+						<h2>그런데 왜 웹뷰를?</h2>
+						<h4>오직 기술적 측면</h4>
+					</section>
+					<section>
+						<h3>이유는? 속도와 복잡도</h3>
+						<img src="/images/screen-complexity.png" width="60%" alt="">
+						<ul>
+							<li>앱 스토어(플랫폼) 리스크</li>
+							<li>앱 버전별 하위 호환성 유지의 어려움</li>
+							<li>희귀한 앱 개발자</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>웹뷰는 웹이 아닌가?</h2>
+					</section>
+					<section>
+						<h2>(모바일)웹은</h2>
+						<ul>
+							<li>독립된 어플리케이션이다</li>
+							<li>독립된 서비스다</li>
+							<li>앱이 메인 체널이라면 웹은 메인이 되기 어렵다</li>
+						</ul>
+					</section>
+					<section>
+						<h2>웹뷰는 #1</h2>
+						<ul>
+							<li>앱 내 컴포넌트 중 하나다</li>
+							<li>어플리케이션의 구성 요소 중 하나다</li>
+						</ul>
+					</section>
+					<section>
+						<h2>웹뷰는 #2</h2>
+						<h3>웹과 달리 성능에 대한 접근이 달라야한다</h3>
+							
+						<ul>
+							<li>LCP - 더 빨리. 네이티브와 연계된 사용자 동선</li>
+							<li>CLS - 네이티브는 UI가 조립되지 않는다</li>
+							<li>FID - 앱 사용자는 기다려주지 않는다</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>웹뷰는 #3</h2>
+						<h3>다양한 로딩 UX전략 필요</h3>						
+						<img src="/images/showcase-screen.png" width="20%" alt="">
+					</section>
+					<section data-transition="slide-in fade-out">
+						<img src="/images/only-native-showcase.png" width="20%" alt="">
+					</section>
+					<section data-transition="fade-in fade-out">
+						<img src="/images/only-native-showcase.png" width="20%" alt="">
+						<img src="/images/webview-component.png" width="20%" alt="">
+					</section>
+					<section data-transition="fade-in fade-out">
+						<img src="/images/only-native-showcase.png" width="20%" alt="">
+						<img src="/images/webview-component.png" width="20%" alt="">
+						<img src="/images/web-showcase.png" width="20%" alt="">
+					</section>
+					<section data-transition="fade-in fade-out">
+						<img src="/images/only-native-showcase.png" width="20%" alt="">
+						<img src="/images/webview-component.png" width="20%" alt="">
+						<img src="/images/web-showcase.png" width="20%" alt="">
+						<img src="/images/showcase-screen.png" width="20%" alt="">
+					</section>
+					<section>
+						<h2>웹뷰는 #3.1</h2>
+						<h3>앱에서 로딩 구현</h3>
+
+						<ul>
+							<li>웹앱과 커뮤니케이션 필요</li>
+							<li>웹 콘텐츠 로딩 체크가 정확하지 않음</li>
+							<li>eg. 웹앱 크래시에 대책이 없음</li>
+						</ul>
+					</section>
+					<section>
+						<h2>웹뷰는 #3.2</h2>
+						<h3>웹에서 로딩 구현</h3>
+
+						<ul>
+							<li>정확한 로더의 In & Out 가능</li>
+							<li>웹앱 작동 전까지 딜레이 구간이 발생함</li>
+							<li>사전 로더 보다 스캘레톤 로더 전략이 이상적</li>
+							<li><span class="reverse">캐싱 로직 구현의 적극적 시도가 필요함</span></li>
+						</ul>
+					</section>
+				</section>
+        
+			</div>
+
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/highlight/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/markdown/markdown.min.js"></script>
+		<script src="/setup.js"></script>
+
+	</body>
+</html>

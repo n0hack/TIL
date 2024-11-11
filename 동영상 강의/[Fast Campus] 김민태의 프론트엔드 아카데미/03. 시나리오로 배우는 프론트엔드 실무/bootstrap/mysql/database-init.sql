@@ -1,0 +1,68 @@
+
+-- Active: 1660122730716@@127.0.0.1@3306
+
+CREATE DATABASE 12shop DEFAULT CHARACTER SET = 'utf8mb4';
+    
+insert into products (id, productName, price, detailDescription, active)
+values 
+  ('e9d744fb-b3e8-42e4-819b-454d0c962879','가죽 가방',4, '', true),
+  ('b6671fbe-b019-48b0-9279-1d9f423454a8','스테인레스 냄비',10, '', true),
+  ('59ba9e20-4ed7-4e9b-b8d3-41e6cb2fc1b1','바이올린',36, '', true),
+  ('aa704c8c-b3e1-4551-a21c-7fb851da5bbf','빈티지 헤드폰',12, '', true),
+  ('b9dba928-4a3f-426e-9bb6-b4da01de7a61','마샬 스피커',12, '', true),
+  ('4ab83a65-8a21-4b30-bb53-e0d30df96d09','최고사양 노트북',52, '', true),
+  ('10572d3c-e79c-40f1-844e-ceeb5a0df674','여행용 자전거',12, '', true),
+  ('4dcfd369-b185-483f-9122-031fc49c47c6','조이패드셋',4, '', true),
+  ('8726fdb0-ced7-4c59-80f2-a233d43cabb9','빈티지 필름 카메라',8, '', true),
+  ('37d4defd-530f-4b4a-9535-c831704e9876','빈티지 시계',24, '', true),
+  ('327789e3-fd10-4200-8541-f42d5cee7e70','스위스 7박 여행',64, '', true),
+  ('d3a3b045-850b-4aa0-952e-7bc9fcfc35e0','캠핑 화로대',10, '', true),
+  ('401fa095-be60-4f3e-8668-2853703dcf43','미니 필름 카메라',3, '', true),
+  ('53b595e1-ff0d-4dd1-90e6-e50b52978b9d','고급 인이어 이어폰',1, '', true),
+  ('4ae1c912-7e44-4eb8-bf40-d4c77e937689','12 컬러 쉐도우',3, '', true),
+  ('a54d4f1a-461d-401d-8bd1-f7cb05e011fb','파리 브레드 시즌권',3, '', true),
+  ('d0b1782c-0a75-4129-a36f-b5f9d310d132','중형 필름 카메라',6, '', true),
+  ('83f6cfd0-d7a1-41f5-b9dc-02e160d0c606','1인용 텐트',16, '', true),
+  ('82979cff-8b80-45a4-afd0-5a0da47f96cc','메탈틱 일렉 기타',32, '', true),
+  ('b1a48fab-554a-4b4f-93d3-1b6d1324b971','고급 목욕제',2, '', true),
+  ('97d1b3bf-1d32-4269-af7c-8e22ba8a6472','콘덴서 마이크',8, '', true),
+  ('2eab8d33-6558-4ae8-9da3-94c51647fa56','보쉬 공구 풀셋',14, '', true),
+  ('f032c12e-1e56-4ee6-9ec6-efd5366e067c','2인용 텐트',18, '', true),
+  ('f961dee9-51c6-45e7-b71e-cab0a7584f62','소형 북쉘프 스피커',14, '', true),
+  ('f9777903-95fa-4993-a31b-8186225be4b0','빈티지 마이크 세트',20, '', true),
+  ('48aa1a96-08a9-4ba7-a98c-a9a8b866a4db','하와이 9박 여행',72, '', true),
+  ('1ab70391-4b78-4d8e-a237-05c23b8a7232','캠핑 나이프',6, '', true),
+  ('0021c4d6-9ad4-473a-a7d0-06158a26b646','빈티지 일렉 기타',12, '', true),
+  ('5ec1a1a2-2918-45d1-8a1f-f0b87a56b6c0','캠핑용 버너',2, '', true);
+
+insert into `product-photos` (productId, id, url, contentType, width, height, filesize)
+values 
+  ('e9d744fb-b3e8-42e4-819b-454d0c962879','1eba1856-c145-4cff-b480-82f274dcafe1','01,1eba1856-c145-4cff-b480-82f274dcafe1.jpg','image/jpeg',1920,1280,0),
+  ('b6671fbe-b019-48b0-9279-1d9f423454a8','2b2189c1-2b77-46a4-b4eb-17546af72af5','01,2b2189c1-2b77-46a4-b4eb-17546af72af5.jpg','image/jpeg',1280,848,0),
+  ('59ba9e20-4ed7-4e9b-b8d3-41e6cb2fc1b1','0babdd92-603f-4efb-80e4-f597c1582719','01,0babdd92-603f-4efb-80e4-f597c1582719.jpg','image/jpeg',1463,1920,0),
+  ('aa704c8c-b3e1-4551-a21c-7fb851da5bbf','2773d1e9-fda7-42ea-b645-a7eb251d359c','01,2773d1e9-fda7-42ea-b645-a7eb251d359c.jpg','image/jpeg',1920,1271,0),
+  ('b9dba928-4a3f-426e-9bb6-b4da01de7a61','34bdfd0a-671d-4ab1-b32c-59f0025fd7e4','01,34bdfd0a-671d-4ab1-b32c-59f0025fd7e4.jpg','image/jpeg',1920,1358,0),
+  ('4ab83a65-8a21-4b30-bb53-e0d30df96d09','3c0e259c-a6fc-455f-b358-731c4b518c8a','01,3c0e259c-a6fc-455f-b358-731c4b518c8a.jpg','image/jpeg',1920,1280,0),
+  ('10572d3c-e79c-40f1-844e-ceeb5a0df674','138f07ce-2346-4514-8f6b-be057b6c461c','01,138f07ce-2346-4514-8f6b-be057b6c461c.jpg','image/jpeg',1920,1279,0),
+  ('4dcfd369-b185-483f-9122-031fc49c47c6','5415cfb8-c94f-497f-b0a8-aeabae954587','01,5415cfb8-c94f-497f-b0a8-aeabae954587.jpg','image/jpeg',1920,1280,0),
+  ('8726fdb0-ced7-4c59-80f2-a233d43cabb9','546c89db-0ef9-4eee-acd8-7b44b8ba5c8f','01,546c89db-0ef9-4eee-acd8-7b44b8ba5c8f.jpg','image/jpeg',1920,1080,0),
+  ('37d4defd-530f-4b4a-9535-c831704e9876','571d0374-3644-4044-b092-635c323edc76','01,571d0374-3644-4044-b092-635c323edc76.jpg','image/jpeg',1920,989,0),
+  ('327789e3-fd10-4200-8541-f42d5cee7e70','5666c948-57ec-4d25-a804-018304f4eb1b','01,5666c948-57ec-4d25-a804-018304f4eb1b.jpg','image/jpeg',1920,1276,0),
+  ('d3a3b045-850b-4aa0-952e-7bc9fcfc35e0','58570ea4-0088-443a-986e-df0700d02ef9','01,58570ea4-0088-443a-986e-df0700d02ef9.jpg','image/jpeg',1920,1280,0),
+  ('401fa095-be60-4f3e-8668-2853703dcf43','62cee61e-35c8-41c4-b0d1-a15c4fbe12fe','01,62cee61e-35c8-41c4-b0d1-a15c4fbe12fe.jpg','image/jpeg',1920,1440,0),
+  ('53b595e1-ff0d-4dd1-90e6-e50b52978b9d','661242ea-da43-4f4a-820a-60684ac3e083','01,661242ea-da43-4f4a-820a-60684ac3e083.jpg','image/jpeg',1920,1275,0),
+  ('4ae1c912-7e44-4eb8-bf40-d4c77e937689','64acec57-010c-426e-ad9a-8dd55c6dad29','01,64acec57-010c-426e-ad9a-8dd55c6dad29.jpg','image/jpeg',1920,1280,0),
+  ('a54d4f1a-461d-401d-8bd1-f7cb05e011fb','9677c5aa-68c6-407c-8832-2cdfe1a2f9c6','01,9677c5aa-68c6-407c-8832-2cdfe1a2f9c6.jpg','image/jpeg',1920,1280,0),
+  ('d0b1782c-0a75-4129-a36f-b5f9d310d132','a1a36a66-e18f-4372-b114-b4af1b9562dc','01,a1a36a66-e18f-4372-b114-b4af1b9562dc.jpg','image/jpeg',1920,1282,0),
+  ('83f6cfd0-d7a1-41f5-b9dc-02e160d0c606','9538d11e-c44a-4ae3-87ce-1407e4b9949b','01,9538d11e-c44a-4ae3-87ce-1407e4b9949b.jpg','image/jpeg',1920,1078,0),
+  ('82979cff-8b80-45a4-afd0-5a0da47f96cc','bfe47ef0-8fd0-48ec-9562-4b3edee83fed','01,bfe47ef0-8fd0-48ec-9562-4b3edee83fed.jpg','image/jpeg',1920,1280,0),
+  ('b1a48fab-554a-4b4f-93d3-1b6d1324b971','8a73b190-a776-4244-a730-75f1c2eedb9d','01,8a73b190-a776-4244-a730-75f1c2eedb9d.jpg','image/jpeg',1920,1440,0),
+  ('97d1b3bf-1d32-4269-af7c-8e22ba8a6472','c57c3a47-91d9-453d-9519-d3c1dc6212ad','01,c57c3a47-91d9-453d-9519-d3c1dc6212ad.jpg','image/jpeg',1920,1271,0),
+  ('2eab8d33-6558-4ae8-9da3-94c51647fa56','cc1299c7-39ea-4676-b8fe-a849f9c698f7','01,cc1299c7-39ea-4676-b8fe-a849f9c698f7.jpg','image/jpeg',1920,1280,0),
+  ('f032c12e-1e56-4ee6-9ec6-efd5366e067c','c97721d4-9f87-44d2-bf7c-4d23f3ee3116','01,c97721d4-9f87-44d2-bf7c-4d23f3ee3116.jpg','image/jpeg',1920,1233,0),
+  ('f961dee9-51c6-45e7-b71e-cab0a7584f62','cc615c44-29c1-4483-b555-857ecb5ac2bf','01,cc615c44-29c1-4483-b555-857ecb5ac2bf.jpg','image/jpeg',1920,1282,0),
+  ('f9777903-95fa-4993-a31b-8186225be4b0','ccd9de8d-83c8-4de1-bb20-ea858fa3b9f3','01,ccd9de8d-83c8-4de1-bb20-ea858fa3b9f3.jpg','image/jpeg',1920,1271,0),
+  ('48aa1a96-08a9-4ba7-a98c-a9a8b866a4db','e9f53398-546a-49c0-b5c9-954cf9f1243b','01,e9f53398-546a-49c0-b5c9-954cf9f1243b.jpg','image/jpeg',1920,1440,0),
+  ('1ab70391-4b78-4d8e-a237-05c23b8a7232','ec822a7f-1802-478e-b51a-93392afcad95','01,ec822a7f-1802-478e-b51a-93392afcad95.jpg','image/jpeg',1920,1282,0),
+  ('0021c4d6-9ad4-473a-a7d0-06158a26b646','ece4fac7-afeb-4c2d-833f-cc5cdd8aa92d','01,ece4fac7-afeb-4c2d-833f-cc5cdd8aa92d.jpg','image/jpeg',1920,1134,0),
+  ('5ec1a1a2-2918-45d1-8a1f-f0b87a56b6c0','fe9caecf-2fad-4993-84cf-03db0ad3e59e','01,fe9caecf-2fad-4993-84cf-03db0ad3e59e.jpg','image/jpeg',1459,1920,0);

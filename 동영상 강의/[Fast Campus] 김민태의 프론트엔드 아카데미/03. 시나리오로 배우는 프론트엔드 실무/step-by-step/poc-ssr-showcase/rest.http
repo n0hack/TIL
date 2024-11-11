@@ -1,0 +1,3 @@
+### Products
+GET http://api.12shop.com:3000/products HTTP/1.1
+
