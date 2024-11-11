@@ -1,10 +1,25 @@
-const path = require('path');
+const CracoAlias = require('craco-alias');
 
 module.exports = {
-  webpack: {
-    alias: {
-      '@': path.resolve(__dirname, 'src/'),
-      '@components': path.resolve(__dirname, 'src/components'),
+  plugins: [
+    {
+      plugin: CracoAlias,
+      options: {
+        source: 'tsconfig',
+        tsConfigPath: 'tsconfig.json',
+      },
     },
+  ],
+  babel: {
+    presets: [
+      [
+        '@babel/preset-react',
+        {
+          runtime: 'automatic',
+          importSource: '@emotion/react',
+        },
+      ],
+    ],
+    plugins: ['@emotion/babel-plugin'],
   },
 };

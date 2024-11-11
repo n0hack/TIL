@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 
-type TestProps = {};
-
-const Test = ({}: TestProps) => {
+const Test = () => {
   const [s, setS] = useState(1);
 
   useEffect(() => {
