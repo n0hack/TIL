@@ -1,4 +1,4 @@
-# udemy-tanstack-query
+# udemy-tanstack-query-v5
 
 - 학습 날짜: 25.02.09
 - 기술 스택: Vite, TypeScript, React Query v5
