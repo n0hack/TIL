@@ -5,12 +5,20 @@ export type Post = {
   userId: number;
 };
 
+export type Comment = {
+  postId: number;
+  id: number;
+  name: string;
+  email: string;
+  body: string;
+};
+
 export async function fetchPosts(pageNum: number): Promise<Post[]> {
   const response = await fetch(`https://jsonplaceholder.typicode.com/posts?_limit=10&_page=${pageNum}`);
   return response.json();
 }
 
-export async function fetchComments(postId: number) {
+export async function fetchComments(postId: number): Promise<Comment[]> {
   const response = await fetch(`https://jsonplaceholder.typicode.com/comments?postId=${postId}`);
   return response.json();
 }

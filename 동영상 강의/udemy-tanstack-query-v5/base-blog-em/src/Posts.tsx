@@ -1,12 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { fetchPosts, Post } from './api';
-
-type PostsProps = {};
+import { PostDetail } from './PostDetail';
 
 const maxPostPage = 10;
 
-export function Posts({}: PostsProps) {
+export function Posts() {
   const [currentPage, setCurrentPage] = useState(0);
   const [selectedPost, setSelectedPost] = useState<Post | null>(null);
 
