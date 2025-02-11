@@ -19,17 +19,13 @@ export function Posts() {
   });
 
   useEffect(() => {
+    if (currentPage >= maxPostPage) return;
+
     const nextPage = currentPage + 1;
-    const previousPage = currentPage - 1;
 
     queryClient.prefetchQuery({
       queryKey: ['posts', nextPage],
       queryFn: () => fetchPosts(nextPage),
-    });
-
-    queryClient.prefetchQuery({
-      queryKey: ['posts', previousPage],
-      queryFn: () => fetchPosts(previousPage),
     });
   }, [currentPage, queryClient]);
 
