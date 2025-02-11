@@ -1,5 +1,5 @@
-import { useQuery } from '@tanstack/react-query';
-import { useState } from 'react';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useEffect, useState } from 'react';
 import { fetchPosts, Post } from './api';
 import { PostDetail } from './PostDetail';
 
@@ -9,12 +9,29 @@ export function Posts() {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedPost, setSelectedPost] = useState<Post | null>(null);
 
+  const queryClient = useQueryClient();
+
   const { data, isError, isLoading, error } = useQuery({
     queryKey: ['posts', currentPage],
     queryFn: () => fetchPosts(currentPage),
     // 2 seconds
     staleTime: 2000,
   });
+
+  useEffect(() => {
+    const nextPage = currentPage + 1;
+    const previousPage = currentPage - 1;
+
+    queryClient.prefetchQuery({
+      queryKey: ['posts', nextPage],
+      queryFn: () => fetchPosts(nextPage),
+    });
+
+    queryClient.prefetchQuery({
+      queryKey: ['posts', previousPage],
+      queryFn: () => fetchPosts(previousPage),
+    });
+  }, [currentPage, queryClient]);
 
   if (isLoading) {
     return <h3>Loading...</h3>;
