@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .message {
+        width: 300px;
+        color: #fff;
+        background-color: purple;
+        margin-top: 5px;
+        padding: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="message" cols="50" rows="5"></textarea>
+
+    <button onclick="sendMessage()">전송</button>
+    <button onclick="webSocketClose()">종료</button>
+    <div id="messages"></div>
+  </body>
+
+  <script>
+    const ws = new WebSocket('ws://localhost:3000');
+
+    function sendMessage() {
+      ws.send(document.getElementById('message').value);
+    }
+
+    function webSocketClose() {
+      console.log('종료 누름');
+      ws.close();
+    }
+
+    ws.onopen = () => {
+      console.log('WebSocket 연결 성공');
+    };
+
+    ws.onmessage = (event) => {
+      // 엔터 키를 <br /> 태그로 변경
+      const message = event.data.replace(/(\r\n|\n|\r)/g, '<br />');
+      const messageBox = document.createElement('div');
+
+      messageBox.innerHTML = message;
+      messageBox.className = 'message';
+
+      document.getElementById('messages').append(messageBox);
+    };
+
+    ws.onclose = () => {
+      console.log('WebSocket 연결 종료');
+      document.getElementById('messages').append('서버 접속 종료');
+    };
+  </script>
+</html>
