@@ -1,7 +1,13 @@
-import { Module } from '@nestjs/common';
+import {
+  MiddlewareConsumer,
+  Module,
+  NestModule,
+  RequestMethod,
+} from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CatsModule } from './cats/cats.module';
+import { logger } from './common/middlewares/logger.middleware';
 import { TestDynamicModule } from './test-dynamic/test-dynamic.module';
 
 @Module({
@@ -13,4 +19,15 @@ import { TestDynamicModule } from './test-dynamic/test-dynamic.module';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  // 미들웨어 적용
+  // 특정 라우터/메서드 적용 가능하며, 컨트롤러 자체를 보낼 수도 있음
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      // 쉼표로 구분하여 순차적으로 등록하면, 순서대로 실행됨
+      // 모든 경로에 미들웨어를 한 번에 등록하고 싶은 경우, main.ts에서 app에 적용하면 됨
+      // .apply(LoggerMiddleware)
+      .apply(logger)
+      .forRoutes({ path: 'cats/*path', method: RequestMethod.GET });
+  }
+}
