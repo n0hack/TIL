@@ -9,14 +9,18 @@ import {
   Query,
   Res,
   UseFilters,
+  UseGuards,
 } from '@nestjs/common';
 import { CreateCatDto } from './cats.dto';
 import type { Response } from 'express';
 import { CatsService } from './cats.service';
 import { TestDynamicService } from 'src/test-dynamic/test-dynamic.service';
 import { HttpExceptionFilter } from 'src/common/filters/http-exception.filter';
+import { RolesGuard } from 'src/common/guards/roles.guard';
+import { Roles } from 'src/common/decorators/roles.decorator';
 
 @Controller('cats')
+@UseGuards(RolesGuard)
 export class CatsController {
   // NestJS는 생성자를 통해 의존성 주입 가능(기본적으로 싱글톤 인스턴스)
   constructor(
@@ -28,6 +32,12 @@ export class CatsController {
   @UseFilters(new HttpExceptionFilter())
   testExceptionFilter() {
     throw new HttpException('test', HttpStatus.FORBIDDEN);
+  }
+
+  @Post('test-reflector')
+  @Roles(['admin'])
+  testReflector() {
+    return 'test';
   }
 
   @Post()
