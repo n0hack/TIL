@@ -9,12 +9,18 @@ import { AppService } from './app.service';
 import { CatsModule } from './cats/cats.module';
 import { logger } from './common/middlewares/logger.middleware';
 import { TestDynamicModule } from './test-dynamic/test-dynamic.module';
+import { ConfigModule } from './config/config.module';
 
 @Module({
   imports: [
     CatsModule,
     // global이 false이기 때문에, 어쨌든 공유 모듈로 사용되고 있음
     TestDynamicModule.forRoot({}),
+    // forRoot = 전역 설정
+    // forFeature = forRoot 설정 확장
+    // 호출하는 모듈에서 특정 속성을 줘서 사용하고 싶은 경우 = register (호출할 때마다 새로 생성)
+    // 보통 forRoot와 register를 같이 쓰는 일은 없음
+    ConfigModule.register({ folder: './config' }),
   ],
   controllers: [AppController],
   providers: [
