@@ -11,11 +11,15 @@ import {
 import { CreateCatDto } from './cats.dto';
 import type { Response } from 'express';
 import { CatsService } from './cats.service';
+import { TestDynamicService } from 'src/test-dynamic/test-dynamic.service';
 
 @Controller('cats')
 export class CatsController {
   // NestJS는 생성자를 통해 의존성 주입 가능(기본적으로 싱글톤 인스턴스)
-  constructor(private catsService: CatsService) {}
+  constructor(
+    private catsService: CatsService,
+    private testDynamicService: TestDynamicService,
+  ) {}
 
   @Post()
   create(
@@ -40,8 +44,15 @@ export class CatsController {
     return this.catsService.findAll();
   }
 
-  @Get('abcd/*')
-  findAllWithWildcard(): string {
+  @Get('test-dynamic')
+  testDynamic() {
+    return this.testDynamicService.getTest();
+  }
+
+  @Get('abcd/*path')
+  findAllWithWildcard(@Param('path') path: string): string {
+    // 그냥 *만 쓰던 것이 Deprecated됨
+    console.log(path);
     return 'This route uses a wildcard';
   }
 
