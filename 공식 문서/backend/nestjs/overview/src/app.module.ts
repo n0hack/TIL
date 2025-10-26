@@ -17,7 +17,14 @@ import { TestDynamicModule } from './test-dynamic/test-dynamic.module';
     TestDynamicModule.forRoot({}),
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    // {
+    //   // 전역 필터이지만, DI가 필요한 경우 이 안에서 토큰과 함께 등록
+    //   provide: APP_FILTER,
+    //   useClass: HttpExceptionFilter,
+    // },
+  ],
 })
 export class AppModule implements NestModule {
   // 미들웨어 적용

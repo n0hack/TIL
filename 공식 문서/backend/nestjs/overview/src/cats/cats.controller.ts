@@ -2,16 +2,19 @@ import {
   Body,
   Controller,
   Get,
+  HttpException,
   HttpStatus,
   Param,
   Post,
   Query,
   Res,
+  UseFilters,
 } from '@nestjs/common';
 import { CreateCatDto } from './cats.dto';
 import type { Response } from 'express';
 import { CatsService } from './cats.service';
 import { TestDynamicService } from 'src/test-dynamic/test-dynamic.service';
+import { HttpExceptionFilter } from 'src/common/filters/http-exception.filter';
 
 @Controller('cats')
 export class CatsController {
@@ -20,6 +23,12 @@ export class CatsController {
     private catsService: CatsService,
     private testDynamicService: TestDynamicService,
   ) {}
+
+  @Get('test-exception-filter')
+  @UseFilters(new HttpExceptionFilter())
+  testExceptionFilter() {
+    throw new HttpException('test', HttpStatus.FORBIDDEN);
+  }
 
   @Post()
   create(
