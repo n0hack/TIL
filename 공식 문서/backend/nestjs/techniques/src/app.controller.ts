@@ -1,7 +1,8 @@
-import { Controller, Get, Inject } from '@nestjs/common';
+import { Controller, Get, Inject, Req } from '@nestjs/common';
 import type { ConfigType } from '@nestjs/config';
 import databaseConfig from 'config/database.config';
 import { AppService } from './app.service';
+import type { Request } from 'express';
 
 @Controller()
 export class AppController {
@@ -21,5 +22,11 @@ export class AppController {
     const dbUser = this.dbConfig.user;
 
     return dbUser;
+  }
+
+  @Get('cookie-test')
+  cookieTest(@Req() req: Request) {
+    console.log(req.cookies);
+    return req.cookies;
   }
 }
