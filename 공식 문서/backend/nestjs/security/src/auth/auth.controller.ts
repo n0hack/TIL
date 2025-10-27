@@ -13,6 +13,7 @@ import { AuthGuard } from './auth.guard';
 import { Public } from './auth.decorator';
 
 @Controller('auth')
+@UseGuards(AuthGuard)
 export class AuthController {
   constructor(private authService: AuthService) {}
 
@@ -23,7 +24,7 @@ export class AuthController {
     return this.authService.signIn(signInDto.username, signInDto.password);
   }
 
-  @UseGuards(AuthGuard)
+  // @UseGuards(AuthGuard)
   @Get('profile')
   getProfile(@Req() req) {
     return req.user;
