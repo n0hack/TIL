@@ -1,7 +1,10 @@
+import { suit, tossFace } from "./fonts";
+import "./globals.css";
+
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ko">
-      <body>
+      <body className={`${suit.variable} ${tossFace.variable} font-suit antialiased`}>
         <main>{children}</main>
       </body>
     </html>
