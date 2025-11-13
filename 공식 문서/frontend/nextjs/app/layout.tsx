@@ -1,5 +1,10 @@
+import type { Metadata } from "next";
 import { suit, tossFace } from "./fonts";
 import "./globals.css";
+
+export const metadata: Metadata = {
+  title: "NextJS v16",
+};
 
 export default function AppLayout({ children }: LayoutProps<"/">) {
   return (
