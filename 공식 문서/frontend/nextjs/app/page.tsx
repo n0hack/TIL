@@ -9,7 +9,7 @@ export default function AppPage() {
         ipsa magni? Nisi incidunt at praesentium ducimus vel, sed, iste corrupti suscipit labore ea, eos vero. Aliquam
         error beatae tenetur pariatur quod atque enim ex, laudantium ea dolor sed est consequatur optio nostrum eos
         maxime dignissimos numquam eius eaque exercitationem cumque, ab neque tempora. Animi, porro nulla earum
-        architecto id sapiente velit, est sunt iste ipsam quo? <span className="emoji">❤️</span>
+        architecto id sapiente velit, est sunt iste ipsam quo? <span className="font-tossface">❤️</span>
       </p>
     </div>
   );
